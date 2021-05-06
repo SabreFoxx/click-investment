@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "node_modules/bulma/sass/utilities/_all";
+@import "node_modules/bulma/sass/base/_all";
+@import "node_modules/bulma/sass/elements/_all";
+@import "node_modules/bulma/sass/form/_all";
+// @import "node_modules/bulma/sass/components/breadcrumb.sass";
+// @import "node_modules/bulma/sass/components/dropdown.sass";
+// @import "node_modules/bulma/sass/components/media.sass";
+// @import "node_modules/bulma/sass/components/message.sass";
+// @import "node_modules/bulma/sass/components/modal.sass";
+// @import "node_modules/bulma/sass/components/pagination.sass";
+// @import "node_modules/bulma/sass/components/panel.sass";
+// @import "node_modules/bulma/sass/components/tabs.sass";
+
+body {
+    color: rgb(85, 85, 85);
+    background-color: $background-color;
+    font-size: calc(1vw + 0.6em);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+
+    @media (min-width: 48em) {
+        font-size: calc(1vw + 0.4em);
+    }
+}
+
+img {
+    max-width: 100% !important;
+}
