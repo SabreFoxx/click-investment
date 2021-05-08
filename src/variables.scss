@@ -1,0 +1,24 @@
+// If we're going to override Bulma variables, we need to do it before importing Bulma modules
+// So in our styles.scss file, we should import this file before importing Bulma and/or its modules
+
+/* Imports necessary to modify bulma variables */
+@import "node_modules/bulma/sass/utilities/initial-variables",
+"node_modules/bulma/sass/utilities/functions";
+/* Override initial variables default here */
+// Add a serif family
+$family-serif: "Montserrat", sans-serif;
+$primary: #ffac1d;
+$link: #24405f;
+$background-color: white;
+$my-grey: #d8d8d8;
+$control-radius: 0px;
+$input-radius: 0px;
+/* End override initial variables */
+
+
+/* Import necessary to modify bulma derived variables */
+@import "node_modules/bulma/sass/utilities/derived-variables";
+/* Override derived variables default here */
+/* End override derived variables */
+
+$control-width: 1024px;
