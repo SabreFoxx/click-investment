@@ -4,7 +4,7 @@
 @import "node_modules/bulma/sass/elements/_all";
 @import "node_modules/bulma/sass/form/_all";
 // @import "node_modules/bulma/sass/components/breadcrumb.sass";
-// @import "node_modules/bulma/sass/components/dropdown.sass";
+@import "node_modules/bulma/sass/components/dropdown.sass";
 // @import "node_modules/bulma/sass/components/media.sass";
 // @import "node_modules/bulma/sass/components/message.sass";
 // @import "node_modules/bulma/sass/components/modal.sass";
@@ -16,7 +16,7 @@ body {
     color: rgb(85, 85, 85);
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
-    font-family: 'Montserrat', sans-serif;
+    font-family: $main-font;
     overflow-x: hidden;
 
     @media (min-width: 48em) {
@@ -26,4 +26,10 @@ body {
 
 img {
     max-width: 100% !important;
+}
+
+.nav {
+    position: fixed;
+    top: 0%;
+    width: 100%;
 }

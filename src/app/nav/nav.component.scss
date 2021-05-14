@@ -1,0 +1,41 @@
+@import 'src/variables.scss';
+
+.wrapper {
+    margin: 0;
+    padding: 0 3em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button {
+    padding: 0;
+    border: none;
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+
+    &.is-active, &.is-active:focus {
+        border: none !important;
+        outline: none !important;
+        outline: 0px !important;
+    }
+
+    &:focus {
+        border: none !important;
+        outline: 0px !important;
+    }
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
+.contact {
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+

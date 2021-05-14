@@ -1,0 +1,30 @@
+.small-img {
+    // background-image: url('/assets/small.jpeg');
+    min-height: 600px;
+    padding: 3em;
+    border: 25px solid black;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    // background-origin: content-box;
+    // background-position: 50% 75%;
+    background-color: blue;
+}
+
+.big-img {
+    background-image: url('/assets/big.jpg');
+    min-height: 300px;
+    // background-attachment: fixed;
+    background-position: -25% 50%;
+    background-repeat: no-repeat;
+    background-color: blue;
+}
+
+.large-img {
+    background-image: url('/assets/big.jpg');
+    min-height: 720px;
+    border: 25px solid black;
+    padding: 30px;
+    background-clip: border-box;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+}
