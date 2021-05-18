@@ -12,6 +12,11 @@
 // @import "node_modules/bulma/sass/components/panel.sass";
 // @import "node_modules/bulma/sass/components/tabs.sass";
 
+@font-face {
+    font-family: 'Univers';
+    src: url('assets/Zurich__Light_BT.ttf');
+}
+
 body {
     color: $grey-dark;
     background-color: $background-color;
