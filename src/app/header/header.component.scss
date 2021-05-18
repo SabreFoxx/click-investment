@@ -1,0 +1,33 @@
+@import 'src/variables.scss';
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    letter-spacing: 1.5px;
+}
+
+.button {
+    margin-left: 2em;
+    padding: 0;
+    border: none;
+    font-family: $main-font;
+    font-weight: 400;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: $grey-dark;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+.dropdown-trigger {
+    line-height: 0;
+}
+
+.nav {
+    display: flex;
+    font-size: 0.77em;
+    align-items: center;
+}

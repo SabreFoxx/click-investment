@@ -13,11 +13,12 @@
 // @import "node_modules/bulma/sass/components/tabs.sass";
 
 body {
-    color: rgb(85, 85, 85);
+    color: $grey-dark;
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
     font-family: $main-font;
     overflow-x: hidden;
+    padding-top: 4em;
 
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);
@@ -28,8 +29,29 @@ img {
     max-width: 100% !important;
 }
 
-.nav {
+.root-container {
+    margin: auto;
+    padding-left: $page-padding !important;
+    padding-right: $page-padding !important;
+    max-width: $control-width !important;
+}
+
+.header {
     position: fixed;
     top: 0%;
     width: 100%;
+}
+
+.horizontal-line {
+    border-bottom: 1px solid $grey-light;
+}
+
+.svg-icon {
+    display: inline !important;
+    width: 1.5rem; // 24px
+    height: 1.5rem; // 24px
+    stroke-width: 0;
+    vertical-align: middle !important;
+    stroke: currentColor;
+    fill: currentColor;
 }

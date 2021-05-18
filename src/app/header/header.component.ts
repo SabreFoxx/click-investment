@@ -1,25 +1,25 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'nav[app-nav]',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  selector: 'header[app-header]',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class NavComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('dropdown') dropdown: ElementRef;
   isMenuShown: boolean = false;
 
-  constructor() { }
-
-  ngAfterViewInit(): void {
-
-  }
+  constructor(public me: ElementRef) { }
 
   toggleMenu() {
     this.isMenuShown = !this.isMenuShown;
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+
   }
 
 }

@@ -5,14 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './header/nav/nav.component';
+import { SvgComponent } from './svg/svg.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     NotFoundComponent,
-    NavComponent
+    NavComponent,
+    SvgComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
