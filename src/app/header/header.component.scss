@@ -20,6 +20,12 @@
     &:focus {
         text-decoration: underline;
     }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+        box-shadow: none !important;
+    }
 }
 
 .dropdown-trigger {

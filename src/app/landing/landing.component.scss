@@ -2,7 +2,7 @@
     background-image: url('/assets/hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 88vh;
     background-position-x: 10%;
     position: relative;
 
@@ -31,18 +31,5 @@
     h2 {
         font-size: 1.1em;
         font-weight: bold;
-    }
-}
-
-.is-transparent {
-    background-color: transparent;
-    border-width: 2px;
-    box-sizing: content-box;
-    margin: 1em auto;
-    color: white;
-    font-weight: bold;
-
-    &:hover {
-        box-shadow: 5px 5px 0px 3px white, -5px -5px 0px 3px white;
     }
 }
