@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
+  { path: 'test', component: NotFoundComponent },
   { path: '', component: LandingComponent },
   { path: '*', component: NotFoundComponent }
 ];
