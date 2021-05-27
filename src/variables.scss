@@ -7,12 +7,13 @@
 /* Override initial variables default here */
 // Add a serif family
 $family-serif: "Montserrat", sans-serif;
-$primary: #ffac1d;
+$primary: #5b9571;
 $link: #24405f;
 $background-color: white;
 $my-grey: #d8d8d8;
-$control-radius: 0px;
-$input-radius: 0px;
+$input-radius: 4px;
+$input-border-color: $grey;
+$input-hover-border-color: $grey-dark;
 /* End override initial variables */
 
 

@@ -1,3 +1,5 @@
+@import 'src/variables.scss';
+
 .hero {
     background-image: url('/assets/hero.jpg');
     background-repeat: no-repeat;
@@ -31,5 +33,14 @@
     h2 {
         font-size: 1.1em;
         font-weight: bold;
+    }
+}
+
+.is-rounded {
+    border-color: white;
+    color: white;
+
+    &:hover {
+        box-shadow: 0px 0px 0px 2px white;
     }
 }
