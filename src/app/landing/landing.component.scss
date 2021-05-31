@@ -44,3 +44,41 @@
         box-shadow: 0px 0px 0px 2px white;
     }
 }
+
+.advice {
+    $separation: 4em;
+    font-size: 1.6em;
+    text-align: center;
+
+    .black {
+        background-color: black;
+        font-weight: bold;
+        min-height: 4em;
+        margin-bottom: ($separation / 2) * -1;
+
+        h2 {
+            width: 32%;
+            display: inline-block;
+            margin: $separation / 2 auto $separation auto;
+        }
+    }
+
+    .image {
+        margin: auto;
+        max-width: $control-width;
+        width: 85%;
+    }
+
+    .do {
+        font-size: 0.6em;
+
+        .is-rounded {
+            border-color: $grey-dark;
+            color: $grey-dark;
+        
+            &:hover {
+                box-shadow: 0px 0px 0px 2px $grey-dark;
+            }
+        }
+    }
+}
