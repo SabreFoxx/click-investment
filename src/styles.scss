@@ -38,10 +38,19 @@ img {
     max-width: 100% !important;
 }
 
-.root-container {
+@mixin pad-container {
     margin: auto;
     padding-left: $page-padding !important;
     padding-right: $page-padding !important;
+}
+
+.padd {
+    @include pad-container();
+    max-width: $control-width - 150px !important;
+}
+
+.nav-container {
+    @include pad-container();
     max-width: $control-width !important;
 }
 
@@ -51,6 +60,15 @@ img {
     width: 100%;
     z-index: 1;
     background-color: white;
+}
+
+.section,
+.spc {
+    margin: $line-margin auto;
+}
+
+.sm-spc {
+    margin: $line-margin / 2 auto;
 }
 
 .horizontal-line {

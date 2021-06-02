@@ -6,7 +6,8 @@
 "node_modules/bulma/sass/utilities/functions";
 /* Override initial variables default here */
 // Add a serif family
-$family-serif: "Montserrat", sans-serif;
+$family-serif: "Montserrat",
+sans-serif;
 $primary: #5b9571;
 $link: #24405f;
 $background-color: white;
@@ -23,5 +24,55 @@ $input-hover-border-color: $grey-dark;
 /* End override derived variables */
 
 $control-width: 1400px;
-$main-font: Arial, Helvetica, sans-serif;
+$main-font: Arial,
+Helvetica,
+sans-serif;
 $page-padding: 2rem;
+$line-margin: 2em;
+
+/* Headings */
+$leading: 1em !default;
+$scale: 1 !default;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+    line-height: $leading;
+}
+
+h1 {
+    $multiplier: 2.5;
+    font-size: $multiplier * $scale * 1em;
+    margin-top: ($multiplier / 2) * $leading;
+    font-weight: bold;
+}
+
+h2 {
+    $multiplier: 1.4;
+    font-size: $multiplier * $scale * 1em;
+    margin-top: ($multiplier / 2) * $leading;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1 * $scale * 1em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: $scale / 2 * 1em;
+}
+
+h5 {
+    font-size: $scale / 3 * 1em;
+}
+
+h6 {
+    font-size: $scale / 4 * 1em;
+}
+
+// multiplying by 1em is just to convert to the type
