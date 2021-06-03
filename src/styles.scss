@@ -32,6 +32,10 @@ body {
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);
     }
+    
+    @media (min-width: 64em) {
+        font-size: calc(1vw + 0.08em);
+    }
 }
 
 img {

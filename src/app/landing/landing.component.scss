@@ -111,14 +111,13 @@
 
     &-second {
         background-color: $primary;
-        $fb: 100%;
 
         .container {
             display: flex;
         }
 
         &-cell {
-            flex-basis: $fb / 3;
+            flex-basis: (100% / 3);
         }
     }
 }

@@ -1,0 +1,13 @@
+@import 'src/variables.scss';
+
+.social {
+    text-transform: uppercase;
+}
+
+.top {
+    display: flex;
+
+    > div {
+        flex-basis: (100% / 5);
+    }
+}
