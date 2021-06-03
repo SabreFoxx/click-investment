@@ -44,7 +44,7 @@ img {
     padding-right: $page-padding !important;
 }
 
-.padd {
+.container {
     @include pad-container();
     max-width: $control-width - 150px !important;
 }
@@ -62,7 +62,7 @@ img {
     background-color: white;
 }
 
-.section,
+section,
 .spc {
     margin: $line-margin auto;
 }
