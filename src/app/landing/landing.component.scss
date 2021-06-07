@@ -89,19 +89,21 @@
             margin: 0.1em 0.5em;
         }
     }
-
-    &-background {
-        height: 75vh;
-        min-height: 500px;
-        background-color: blue;
-    }
 }
 
-.black {
+.board {
     margin: 0;
-    height: 80vh;
+    height: 82vh;
     min-height: 500px;
-    background-color: black;
+    background-color: black; // TODO remove
+
+    &.art {
+        background-clip: border-box;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: linear-gradient(to right top, #ffffff, #ffffff0e, #ffffff00),
+        url('/assets/family.jpg');
+    }
 }
 
 .desc {
