@@ -104,6 +104,52 @@
         background-image: linear-gradient(to right top, #ffffff, #ffffff0e, #ffffff00),
         url('/assets/family.jpg');
     }
+
+    &-container {
+        display: flex;
+    }
+
+    &.desc {
+        color: white;
+        text-align: center;
+        padding: $page-padding $page-padding * 6;
+
+        header {
+            margin: $margin auto;
+
+            h1 {
+                font-weight: lighter;
+            }
+
+            p {
+                margin: $margin / 2 auto;
+            }
+        }
+
+        .left {
+            b {
+                font-size: 20em;
+                font-weight: lighter;
+                letter-spacing: -0.9rem;
+                line-height: 0.5;
+            }
+
+            span {
+                font-size: 4em;
+                margin-left: 0.4em;
+            }
+        }
+
+        .right {
+            text-align: left;
+            margin-left: 4em;
+
+            li {
+                font-size: 3em;
+                margin: 0.1em 0;
+            }
+        }
+    }
 }
 
 .desc {

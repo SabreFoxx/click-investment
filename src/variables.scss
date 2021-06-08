@@ -27,7 +27,8 @@ $control-width: 1400px;
 $main-font: Arial,
 Helvetica,
 sans-serif;
-$page-padding: 2rem;
+$margin: 2em;
+$page-padding: $margin;
 $line-margin: 2em;
 
 /* Headings */
