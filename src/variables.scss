@@ -11,7 +11,6 @@ sans-serif;
 $primary: #5b9571;
 $link: #24405f;
 $background-color: white;
-$my-grey: #d8d8d8;
 $input-radius: 4px;
 $input-border-color: $grey;
 $input-hover-border-color: $grey-dark;
@@ -41,21 +40,18 @@ h3,
 h4,
 h5,
 h6 {
-    margin-bottom: 0;
-    line-height: $leading;
+    line-height: 2;
 }
 
 h1 {
     $multiplier: 2.5;
     font-size: $multiplier * $scale * 1em;
-    margin-top: ($multiplier / 2) * $leading;
     font-weight: bold;
 }
 
 h2 {
     $multiplier: 1.4;
     font-size: $multiplier * $scale * 1em;
-    margin-top: ($multiplier / 2) * $leading;
     font-weight: bold;
 }
 
