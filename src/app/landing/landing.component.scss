@@ -78,6 +78,7 @@
 
     >div {
         flex-basis: 50%;
+        margin: 0 $margin / 2;
     }
 }
 
@@ -88,6 +89,37 @@
         li {
             display: inline-block;
             margin: 0.1em 0.5em;
+        }
+    }
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4em;
+    background-color: $link;
+    color: findColorInvert($link);
+    min-height: 180px;
+
+    > * {
+        font-size: 1.1em;
+        width: 80%;
+        text-align: left;
+        margin: 0 $margin;
+
+        h2 {
+            font-weight: lighter;
+            line-height: 1.4;
+        }
+    }
+
+    a {
+        &:link,
+        &:hover,
+        &:visited {
+            color: findColorInvert($link);
+            text-decoration: underline;
         }
     }
 }
@@ -164,4 +196,8 @@
 .footnote {
     background-color: $primary;
     padding: $page-padding;
+}
+
+.grey-bg {
+    background-color: $grey-lightest;
 }
