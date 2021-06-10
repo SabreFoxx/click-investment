@@ -78,17 +78,29 @@
 
     >div {
         flex-basis: 50%;
-        margin: 0 $margin / 2;
     }
 }
 
 .persuade {
+    font-size: 1.1em;
+
     &-links {
         text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: bold;
+        align-self: flex-end;
+        margin-left: auto;
 
         li {
             display: inline-block;
             margin: 0.1em 0.5em;
+            margin-right: 2em;
+        }
+
+        a.current {
+            color: darken($link, 10%);
+            text-decoration: underline;
         }
     }
 }
@@ -131,11 +143,28 @@
     background-color: black; // TODO remove
 
     &.art {
+        position: relative;
         background-clip: border-box;
         background-repeat: no-repeat;
         background-size: cover;
         background-image: linear-gradient(to right top, #ffffff, #ffffff0e, #ffffff00),
             url('/assets/family.jpg');
+
+        span {
+            position: absolute;
+            bottom: 4rem;
+            left: 4rem;
+            font-size: 3em;
+            width: 30%;
+
+            &::before {
+                content: '" ';
+            }
+
+            &::after {
+                content: ' "';
+            }
+        }
     }
 
     &-container {

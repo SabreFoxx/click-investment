@@ -1,3 +1,4 @@
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { NgModule } from '@angular/core';
@@ -5,9 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'test', component: NotFoundComponent },
-  { path: '', component: LandingComponent },
-  { path: '*', component: NotFoundComponent }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

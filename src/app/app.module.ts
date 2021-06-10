@@ -10,6 +10,7 @@ import { SvgComponent } from './svg/svg.component';
 import { HeaderComponent } from './header/header.component';
 import { SignInComponent } from './landing/sign-in/sign-in.component';
 import { FooterComponent } from './footer/footer.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
     SvgComponent,
     HeaderComponent,
     SignInComponent,
-    FooterComponent
+    FooterComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
