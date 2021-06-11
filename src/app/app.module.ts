@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { SignInComponent } from './landing/sign-in/sign-in.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HeaderComponent,
     SignInComponent,
     FooterComponent,
-    SignUpComponent
+    SignUpComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
