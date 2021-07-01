@@ -1,3 +1,4 @@
+import { PreSignupComponent } from './pre-signup/pre-signup.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
@@ -6,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
+  { path: 'pre-signup', component: PreSignupComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'test', component: NotFoundComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
