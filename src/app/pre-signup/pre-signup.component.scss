@@ -1,0 +1,87 @@
+@import '/src/variables.scss';
+
+.flex {
+    display: flex;
+
+    .shadow-border {
+        flex-basis: 40%;
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
+        border: 1px solid black;
+        border-radius: 0.6em;
+        padding: 1em $page-padding;
+
+        ul>li {
+            margin: $margin auto;
+            display: flex;
+
+            .item-icon {
+                padding: 0.1em;
+                margin-right: 1em;
+                border-radius: 50%;
+                background-color: #69923a;
+                color: white;
+                height: min-content;
+                flex-shrink: 1;
+            }
+
+            p::first-line {
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 48em) {
+            margin-right: $margin;
+        }
+    }
+
+    .side {
+        flex-basis: 60%;
+        padding: 1em $page-padding;
+
+        ol {
+            list-style: none;
+            counter-reset: item;
+
+            li {
+                counter-increment: item;
+                margin-bottom: 0.5em;
+
+                &::before {
+                    content: counter(item);
+                    display: inline-flex;
+                    border-radius: 50%;
+                    color: white;
+                    width: 2em;
+                    height: 2em;
+                    background-color: #69923a;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 0.5em;
+                    font-weight: bolder;
+                }
+
+                >*:not(strong) {
+                    margin-left: 2.5em;
+                }
+            }
+        }
+
+        .list-item {
+            display: inline-block;
+        }
+    }
+}
+
+.border {
+    border: 1px solid black;
+    padding: 0.5em $page-padding;
+    margin: $margin auto;
+
+    @media (min-width: 48em) {
+        max-width: 70%;
+    }
+}
+
+.is-rounded {
+    margin: 1em 0;
+}

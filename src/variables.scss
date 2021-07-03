@@ -28,11 +28,18 @@ Helvetica,
 sans-serif;
 $margin: 2em;
 $page-padding: $margin;
+$padding: $margin;
 $line-margin: 2em;
 
 /* Headings */
 $leading: 1em !default;
 $scale: 1 !default;
+
+@mixin pad-container {
+    margin: auto;
+    padding-left: $page-padding !important;
+    padding-right: $page-padding !important;
+}
 
 h1,
 h2,
