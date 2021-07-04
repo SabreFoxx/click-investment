@@ -1,6 +1,5 @@
 @import 'src/variables.scss';
 
-$input-height: 3.5rem;
 $flex-basis: 30%;
 
 .sign-in-form {
@@ -11,37 +10,6 @@ $flex-basis: 30%;
         flex-basis: $flex-basis;
         flex-grow: 1;
         margin: 0 0.7em;
-    }
-}
-
-.input-container {
-    $font-size: 1rem;
-    $padding: 0.3rem; // allowance for shadow hover effect to show
-
-    padding: $padding 0;
-    max-height: $input-height + $padding;
-
-    .label {
-        display: block;
-        line-height: 0;
-        font-size: $font-size;
-        transform: translate(1rem, calc(#{$font-size} + #{$input-height / 4}));
-        transform-origin: left;
-        transition: transform 0.2s ease, font-size 0.2s ease;
-    }
-
-    .move-label {
-        transform: translate(0.9rem, $input-height / 4);
-        font-size: $font-size / 1.5;
-    }
-
-    .input {
-        position: static;
-        height: $input-height;
-
-        &:hover {
-            border-width: 2px;
-        }
     }
 }
 

@@ -20,9 +20,10 @@ $input-hover-border-color: $grey-dark;
 /* Import necessary to modify bulma derived variables */
 @import "node_modules/bulma/sass/utilities/derived-variables";
 /* Override derived variables default here */
+$control-width: 1400px;
 /* End override derived variables */
 
-$control-width: 1400px;
+/* My variables */
 $main-font: Arial,
 Helvetica,
 sans-serif;
@@ -30,6 +31,7 @@ $margin: 2em;
 $page-padding: $margin;
 $padding: $margin;
 $line-margin: 2em;
+$input-height: 3.5rem;
 
 /* Headings */
 $leading: 1em !default;

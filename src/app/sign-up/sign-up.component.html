@@ -1,1 +1,32 @@
-<p>sign-up works!</p>
+<section class="sign-up">
+
+    <form class="sign-up-form root-container spc">
+        <h1>Tell us about yourself</h1>
+        <div class="form-horizontal">
+            <div class="input-container">
+                <label #label for="username" class="label">Username</label>
+                <input #input class="input" id="username" type="text">
+            </div>
+            <div class="input-container">
+                <label #label for="password" class="label">Password</label>
+                <input #input class="input" id="password" type="text">
+            </div>
+        </div>
+        <div class="form-horizontal">
+            <div class="input-container">
+                <label #label for="username" class="label">Username</label>
+                <input #input class="input" id="username" type="text">
+            </div>
+            <div class="input-container">
+                <label #label for="password" class="label">Password</label>
+                <input #input class="input" id="password" type="text">
+            </div>
+        </div>
+
+    </form>
+
+    <div class="side">
+        <button class="button is-rounded is-white" type="submit">Sign up</button>
+        <a routerLink="/pre-signup" class="button is-rounded">Quit</a>
+    </div>
+</section>
