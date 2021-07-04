@@ -53,7 +53,6 @@
                     color: white;
                     width: 2em;
                     height: 2em;
-                    background-color: #69923a;
                     align-items: center;
                     justify-content: center;
                     margin-right: 0.5em;
@@ -63,6 +62,18 @@
                 >*:not(strong) {
                     margin-left: 2.5em;
                 }
+            }
+
+            .blue::before {
+                background-color: #0098db;
+            }
+
+            .orange::before {
+                background-color: #e37222;
+            }
+
+            .purple::before {
+                background-color: #80379b;
             }
         }
 

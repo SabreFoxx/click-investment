@@ -8,11 +8,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavComponent } from './header/nav/nav.component';
 import { SvgComponent } from './svg/svg.component';
 import { HeaderComponent } from './header/header.component';
-import { SignInComponent } from './landing/sign-in/sign-in.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PreSignupComponent } from './pre-signup/pre-signup.component';
+import { SigninFormComponent } from './signin-form/signin-form.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,11 @@ import { PreSignupComponent } from './pre-signup/pre-signup.component';
     NavComponent,
     SvgComponent,
     HeaderComponent,
-    SignInComponent,
     FooterComponent,
     SignUpComponent,
     DashboardComponent,
-    PreSignupComponent
+    PreSignupComponent,
+    SigninFormComponent
   ],
   imports: [
     BrowserModule,
