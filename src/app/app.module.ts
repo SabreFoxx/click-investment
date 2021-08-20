@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,10 +10,7 @@ import { NavComponent } from './header/nav/nav.component';
 import { SvgComponent } from './svg/svg.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PreSignupComponent } from './pre-signup/pre-signup.component';
-import { SigninFormComponent } from './signin-form/signin-form.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +21,12 @@ import { SigninFormComponent } from './signin-form/signin-form.component';
     SvgComponent,
     HeaderComponent,
     FooterComponent,
-    SignUpComponent,
     DashboardComponent,
-    PreSignupComponent,
-    SigninFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

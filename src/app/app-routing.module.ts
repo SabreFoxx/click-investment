@@ -1,9 +1,10 @@
-import { PreSignupComponent } from './pre-signup/pre-signup.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { LandingComponent } from './landing/landing.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { LandingComponent } from './landing/landing.component';
+import { PreSignupComponent } from './auth/pre-signup/pre-signup.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
