@@ -27,7 +27,6 @@ body {
     font-size: calc(1vw + 0.6em);
     font-family: $main-font;
     overflow-x: hidden;
-    padding-top: 4em;
 
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);

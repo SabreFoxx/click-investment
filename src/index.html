@@ -1,13 +1,50 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>ClickInvestment</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style type="text/css">
+    @-webkit-keyframes rotate360 {
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotate360 {
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading {
+      position: relative;
+      top: 50%;
+      width: 100%;
+      -webkit-animation: 2s rotate360 infinite linear;
+      animation: 2s rotate360 infinite linear;
+    }
+
+    .loading-container {
+      height: 100vh;
+      margin: auto;
+      max-width: 60px;
+    }
+
+  </style>
 </head>
+
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loading-container">
+      <img class="loading" src="/assets/bitcoin.svg">
+    </div>
+  </app-root>
 </body>
+
 </html>
