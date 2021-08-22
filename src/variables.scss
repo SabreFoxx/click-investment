@@ -28,7 +28,7 @@ $main-font: Arial,
 Helvetica,
 sans-serif;
 $margin: 2em;
-$page-padding: $margin;
+$page-padding: 2rem;
 $padding: $margin;
 $line-margin: 2em;
 $input-height: 3.5rem;
@@ -49,7 +49,7 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 2;
+    line-height: 1.4;
 }
 
 h1 {

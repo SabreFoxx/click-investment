@@ -1,26 +1,40 @@
 <section #hero class="hero">
     <header class="bold">
         <h1>A plan built to get you where you want to go</h1>
+        <br>
         <h2>Investment Personal Advisor Services®. For today's world or anytime.</h2>
-        <button class="button is-rounded">Let's make it happen</button>
+        <button class="button is-rounded" style="font-size: 0.8em;">Let's make it happen</button>
     </header>
 </section>
 
-<app-signin-form></app-signin-form>
+<section class="root-container">
+    <app-signin-form></app-signin-form>
+    <div class="middle-text">
+        <a [routerLink]="['/forgot-password']" class="middle-text">Forgot your username or
+            password?</a>
+        <a [routerLink]="['/signup']" class="middle-text">Sign up for online account access</a>
+    </div>
+</section>
 
-<div class="spc" style="width: 60%; text-align: center;">
-    <span>COVID-19 alerts and mail service interruptions</span>
-</div>
-
-<div class="spc" style="width: 35%; text-align: center;">
+<br>
+<div class="middle-text spc">
     <span>
+        <svg class="svg-icon">
+            <use xlink:href="#information"></use>
+        </svg>
+    </span>
+    <a [routerLink]="['/cov']">COVID-19 alerts and mail service interruptions</a>
+</div>
+<br>
+<div class="middle-text spc">
+    <span id="boast">
         Investment is made up of more than 30 million investors, all with
         unique stories and
         individual goals. You're in good company.
     </span>
 </div>
 
-<section class="advice grey-bg">
+<section class="advice grey-bg spc">
     <div class="advice-black">
         <h2>
             <strong style="color: white;">It all starts with a plan. Choose how to build
@@ -28,7 +42,7 @@
         </h2>
     </div>
 
-    <div class="do root-container">
+    <div class="root-container">
         <img src="assets/advice.jpg" alt="Financial advice" srcset="">
         <h3 class="sm-spc">Work with an advisor</h3>
         <p class="sm-spc">Get personalized support as you strive toward your goals, no matter

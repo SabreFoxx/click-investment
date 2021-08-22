@@ -46,11 +46,6 @@ img {
     max-width: $control-width - 150px !important;
 }
 
-.nav-container {
-    @include pad-container();
-    max-width: $control-width !important;
-}
-
 .header {
     position: fixed;
     top: 0%;
@@ -98,7 +93,7 @@ img {
         }
     }
 
-    &.is-white {
+    &.is-primary {
         background-color: $primary;
         color: white;
         transition: background-color 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease;
@@ -116,8 +111,18 @@ img {
     $font-size: 1rem;
     $padding: 0.3rem; // allowance for shadow hover effect to show
 
+    position: relative;
     padding: $padding 0;
     max-height: $input-height + $padding;
+
+    .input {
+        position: static;
+        height: $input-height;
+
+        &:hover {
+            border-width: 2px;
+        }
+    }
 
     .label {
         display: block;
@@ -133,12 +138,23 @@ img {
         font-size: $font-size / 1.5;
     }
 
-    .input {
-        position: static;
+    .fixed-icon {
+        display: block;
+        position: absolute;
+        top: 50%;
         height: $input-height;
 
-        &:hover {
-            border-width: 2px;
+        svg {
+            position: relative;
+            top: calc(-1 * #{$input-height / 6});
+        }
+
+        &.is-right {
+            right: 1rem;
+        }
+
+        &.is-left {
+            left: 1rem;
         }
     }
 }
