@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Univers';
-    src: url('assets/Zurich__Light_BT.ttf');
+    src: url('assets/font/Zurich__Light_BT.ttf');
 }
 
 body {
@@ -55,11 +55,15 @@ img {
 }
 
 .spc {
-    margin: $line-margin auto;
+    margin-top: $line-margin !important;
 }
 
 .sm-spc {
-    margin: $line-margin / 2 auto;
+    margin-top: $line-margin / 2 !important;
+}
+
+.tny-spc {
+    margin-top: $line-margin / 4 !important;
 }
 
 .horizontal-line {

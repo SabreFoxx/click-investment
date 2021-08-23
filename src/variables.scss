@@ -33,15 +33,27 @@ $padding: $margin;
 $line-margin: 2em;
 $input-height: 3.5rem;
 
-/* Headings */
-$leading: 1em !default;
-$scale: 1 !default;
-
 @mixin pad-container {
     margin: auto;
     padding-left: $page-padding !important;
     padding-right: $page-padding !important;
 }
+
+.font-size-bigger {
+    font-size: 1.1em;
+}
+
+.font-size-big {
+    font-size: 1.2em;
+}
+
+.font-size-large {
+    font-size: 1.8em;
+}
+
+/* Headings */
+$leading: 1em !default;
+$scale: 1 !default;
 
 h1,
 h2,
