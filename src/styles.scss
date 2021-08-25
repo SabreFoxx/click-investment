@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "variables";
 @import "node_modules/bulma/sass/utilities/_all";
 @import "node_modules/bulma/sass/base/_all";
@@ -59,11 +61,11 @@ img {
 }
 
 .sm-spc {
-    margin-top: $line-margin / 2 !important;
+    margin-top: $line-margin * 0.5 !important;
 }
 
 .tny-spc {
-    margin-top: $line-margin / 4 !important;
+    margin-top: $line-margin * 0.25 !important;
 }
 
 .horizontal-line {
@@ -132,14 +134,14 @@ img {
         display: block;
         line-height: 0;
         font-size: $font-size;
-        transform: translate(1rem, calc(#{$font-size} + #{$input-height / 4}));
+        transform: translate(1rem, calc(#{$font-size} + #{$input-height * 0.25}));
         transform-origin: left;
         transition: transform 0.2s ease, font-size 0.2s ease;
     }
 
     .move-label {
-        transform: translate(0.9rem, $input-height / 4);
-        font-size: $font-size / 1.5;
+        transform: translate(0.9rem, $input-height * 0.25);
+        font-size: math.div($font-size, 1.5);
     }
 
     .fixed-icon {
@@ -150,7 +152,7 @@ img {
 
         svg {
             position: relative;
-            top: calc(-1 * #{$input-height / 6});
+            top: calc(-1 * #{math.div($input-height, 6)});
         }
 
         &.is-right {

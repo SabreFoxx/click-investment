@@ -1,14 +1,5 @@
 @import 'src/variables.scss';
 
-.top {
-    display: flex;
-    line-height: 2;
-
-    > div {
-        flex-basis: (100% / 5);
-    }
-}
-
 .bottom {
     background-color: $grey-lightest;
     padding: $page-padding 0;

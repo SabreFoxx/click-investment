@@ -63,7 +63,7 @@
         h2 {
             width: 32%;
             display: inline-block;
-            margin: $separation / 2 auto $separation auto;
+            margin: $separation * 0.5 auto $separation auto;
         }
     }
 }
@@ -71,27 +71,36 @@
 .try,
 .persuade {
     display: flex;
-
-    >div {
-        flex-basis: 50%;
-    }
+    justify-content: space-between;
 }
 
 .persuade {
-    font-size: 1.1em;
+    font-size: 1.15em;
 
     &-links {
+        align-self: flex-end;
+        flex-basis: 57%;
+        font-weight: bold;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        font-weight: bold;
-        align-self: flex-end;
+        letter-spacing: 5px;
         margin-left: auto;
 
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-left: auto;
+        }
+
         li {
-            display: inline-block;
-            margin: 0.1em 0.5em;
-            margin-right: 2em;
+            display: block;
+            margin: 0.1em 0;
+
+            @media (min-width: 48em) {
+                display: inline-block;
+                margin: 0.1em 0 0.1em auto;
+            }
         }
 
         a.current {
@@ -129,6 +138,7 @@
     }
 
     a {
+
         &:link,
         &:hover,
         &:visited {
@@ -140,8 +150,7 @@
 
 .board {
     margin: 0;
-    height: 82vh;
-    min-height: 500px;
+    min-height: 80vh;
     background-color: black; // TODO remove
 
     &.art {
@@ -155,16 +164,17 @@
         span {
             position: absolute;
             bottom: 4rem;
-            left: 4rem;
-            font-size: 3em;
+            left: $page-padding * 2;
+            font-size: 2.5em;
+            font-weight: lighter;
             width: 30%;
 
             &::before {
-                content: '" ';
+                content: '"';
             }
 
             &::after {
-                content: ' "';
+                content: '"';
             }
         }
     }
@@ -176,7 +186,7 @@
     &.desc {
         color: white;
         text-align: center;
-        padding: $page-padding $page-padding * 6;
+        padding: 6em $page-padding * 6;
 
         header {
             margin: $margin auto;
@@ -186,7 +196,7 @@
             }
 
             p {
-                margin: $margin / 2 auto;
+                margin: $margin * 0.5 auto;
             }
         }
 
@@ -227,6 +237,11 @@
 .footnote {
     background-color: $primary;
     padding: $page-padding;
+
+    p {
+        margin: 1em 0;
+        font-size: 1.1em;
+    }
 }
 
 .grey-bg {
@@ -261,4 +276,18 @@
     @media (min-width: 48em) {
         max-width: 47%;
     }
+}
+
+.top {
+    display: flex;
+    line-height: 2;
+    text-align: left;
+
+    > div {
+        flex-basis: (100% * 0.2); // 100% / 5
+    }
+}
+
+.top h3 {
+    margin: 1em 0;
 }
