@@ -9,7 +9,7 @@ pipeline {
 		}
 		stage('Compile') {
 			steps {
-				sh 'ng build --prod'
+				sh 'ng build'
 			}
 		}
 	}
