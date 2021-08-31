@@ -27,7 +27,7 @@ body {
     color: $grey-dark;
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
-    font-family: $main-font;
+    font-family: $display-font;
     overflow-x: hidden;
 
     @media (min-width: 48em) {
