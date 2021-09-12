@@ -1,0 +1,17 @@
+<form class="signin-form spc">
+    <div class="input-container">
+        <label #label for="username" class="label">Username</label>
+        <input #input class="input" id="username" type="text">
+    </div>
+    <div class="input-container">
+        <label #label for="password" class="label">Password</label>
+        <input #input class="input" id="password" type="text">
+        <span class="fixed-icon is-right">
+            <svg class="svg-icon">
+                <use xlink:href="#eye"></use>
+            </svg>
+        </span>
+    </div>
+    <button class="button is-rounded is-link" type="submit">Log on</button>
+    <a [routerLink]="['/auth/signup_']" class="button is-rounded">Open an account</a>
+</form>

@@ -1,0 +1,12 @@
+.logo {
+    margin-right: 3em;
+}
+
+.nav-items {
+    display: flex;
+    font-size: 1.4em;
+
+    > * {
+        padding: 1.8em 1.5em;
+    }
+}
