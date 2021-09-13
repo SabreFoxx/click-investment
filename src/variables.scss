@@ -8,7 +8,7 @@
 "node_modules/bulma/sass/utilities/functions";
 /* Override initial variables default here */
 // Add a serif family
-$family-serif: "Montserrat",
+$family-serif: 'Pridi, serif',
 sans-serif;
 $primary: #5b9571;
 $link: #005F82;
@@ -27,7 +27,7 @@ $control-width: 1400px;
 
 /* My variables */
 $display-font: 'EB Garamond', serif;
-$text-font: 'Scope One', serif;
+$text-font: 'Pridi', serif;
 
 $margin: 2em;
 $page-padding: 2rem;
@@ -64,6 +64,7 @@ h4,
 h5,
 h6 {
     line-height: 1.4;
+    font-family: $display-font;
 }
 
 h1 {

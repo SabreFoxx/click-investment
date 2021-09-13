@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NavComponent } from './header/nav/nav.component';
+import { NavComponent } from './components/header/nav/nav.component';
 import { SvgComponent } from './svg/svg.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { InputBoxComponent } from './components/input-box/input-box.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    InputBoxComponent,
   ],
   imports: [
     BrowserModule,

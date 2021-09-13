@@ -53,8 +53,8 @@
             </section>
         </div>
         <div class="flex">
-            <a routerLink="/" class="button is-rounded is-primary">Back</a>
-            <a routerLink="/sign-up" class="button is-rounded"
+            <a routerLink="/" class="button is-rounded is-link">Back</a>
+            <a [routerLink]="['/auth/signup']" class="button is-rounded"
                style="margin-left: auto">Continue</a>
         </div>
     </article>

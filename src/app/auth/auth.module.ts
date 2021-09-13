@@ -3,13 +3,14 @@ import { PreSignupComponent } from './pre-signup/pre-signup.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { SigninFormComponent } from './signin-form/signin-form.component';
+import { SigninFormComponent } from '../components/signin-form/signin-form.component';
 import { AuthModuleRootComponent } from './auth-module-root/auth-module-root.component';
 import { Routes, RouterModule } from '@angular/router';
 
 export const authRoutes: Routes = [
   { path: 'signin', component: SigninFormComponent },
-  { path: 'signup', component: SignUpComponent }
+  { path: 'signup', component: SignUpComponent },
+  { path: 'signup_', component: PreSignupComponent },
 ]
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { StyleAdjustmentService } from './../services/style-adjustment.service';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { HostListener } from '@angular/core';
 

@@ -1,19 +1,6 @@
 @import 'src/variables.scss';
 
-.sign-up {
-    display: flex;
-}
-
-.form-horizontal {
-    display: flex;
-    justify-content: space-between;
-    flex-basis: 75%;
-    
-    >* {
-        flex-basis: 48%;
-    }
-}
-
-.side {
-    flex-basis: 25%;
+h2 {
+    font-weight: normal;
+    font-size: 2em;
 }

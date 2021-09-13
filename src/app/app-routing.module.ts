@@ -10,8 +10,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
-  { path: 'pre-signup', component: PreSignupComponent },
-  { path: 'sign-up', component: SignUpComponent },
   { path: 'auth', component: AuthModuleRootComponent, children: authRoutes },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

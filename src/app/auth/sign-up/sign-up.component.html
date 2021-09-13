@@ -1,32 +1,46 @@
-<section class="sign-up">
-
-    <form class="sign-up-form root-container spc">
-        <h1>Tell us about yourself</h1>
-        <div class="form-horizontal">
+<div class="border spc">
+    <form>
+        <h2>Open and account</h2>
+        <br>
+        <div class="input-row">
             <div class="input-container">
-                <label #label for="username" class="label">Username</label>
-                <input #input class="input" id="username" type="text">
+                <label #label for="surname" class="label">Surname</label>
+                <input #input class="input" id="surname" type="text">
             </div>
+            <div class="input-container">
+                <label #label for="firstname" class="label">Firstname</label>
+                <input #input class="input" id="firstname" type="text">
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="input-container">
+                <label #label for="othernames" class="label">Other names</label>
+                <input #input class="input" id="othernames" type="text">
+            </div>
+            <div class="input-container"></div>
+        </div>
+        <div class="input-container">
+            <label #label for="email" class="label">Email</label>
+            <input #input class="input" id="email" type="email">
+        </div>
+        <div class="input-container">
+            <label #label for="phone" class="label">Phone number</label>
+            <input #input class="input" id="phone" type="tel">
+        </div>
+        <div class="input-row">
             <div class="input-container">
                 <label #label for="password" class="label">Password</label>
                 <input #input class="input" id="password" type="text">
             </div>
-        </div>
-        <div class="form-horizontal">
             <div class="input-container">
-                <label #label for="username" class="label">Username</label>
-                <input #input class="input" id="username" type="text">
-            </div>
-            <div class="input-container">
-                <label #label for="password" class="label">Password</label>
-                <input #input class="input" id="password" type="text">
+                <label #label for="repassword" class="label">Retype password</label>
+                <input #input class="input" id="repassword" type="text">
             </div>
         </div>
 
+        <div class="input-row">
+            <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
+            <button class="button is-rounded is-link" type="submit">Submit</button>
+        </div>
     </form>
-
-    <div class="side">
-        <button class="button is-rounded is-primary" type="submit">Sign up</button>
-        <a routerLink="/pre-signup" class="button is-rounded">Quit</a>
-    </div>
-</section>
+</div>

@@ -85,82 +85,108 @@ img {
 .button {
     &.is-rounded {
         background-color: transparent;
-        border: 1px solid $primary;
+        border: 1px solid $link;
         box-sizing: content-box;
         margin: 1em auto;
-        color: $primary;
+        color: $link;
         font-weight: bold;
         transition: box-shadow 200ms ease-in-out;
 
         &:hover {
-            box-shadow: 0px 0px 0px 2px $primary;
-            border: 1px solid $primary; // override bulma's
-            color: $primary;
+            box-shadow: 0px 0px 0px 2px $link;
+            border: 1px solid $link; // override bulma's
+            color: $link;
         }
     }
 
-    &.is-primary {
-        background-color: $primary;
+    &.is-link {
+        background-color: $link;
         color: white;
         transition: background-color 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease;
 
         &:hover {
-            background-color: lighten($primary, 7%);
-            border-color: lighten($primary, 7%);
-            box-shadow: 0px 0px 0px 2px lighten($primary, 7%);
+            background-color: lighten($link, 7%);
+            border-color: lighten($link, 7%);
+            box-shadow: 0px 0px 0px 2px lighten($link, 7%);
             color: white;
         }
     }
 }
 
-.input-container {
-    $font-size: 1rem;
-    $padding: 0.3rem; // allowance for shadow hover effect to show
+.input {
+    &-row {
+        display: flex;
+        align-items: center;
 
-    position: relative;
-    padding: $padding 0;
-    max-height: $input-height + $padding;
-
-    .input {
-        position: static;
-        height: $input-height;
-
-        &:hover {
-            border-width: 2px;
+        >* {
+            flex-basis: 50%;
         }
     }
 
-    .label {
-        display: block;
-        line-height: 0;
-        font-size: $font-size;
-        transform: translate(1rem, calc(#{$font-size} + #{$input-height * 0.25}));
-        transform-origin: left;
-        transition: transform 0.2s ease, font-size 0.2s ease;
+    &-container {
+        $font-size: 1rem;
+        $padding: 0.3rem; // allowance for shadow hover effect to show
+
+        position: relative;
+        padding: $padding 0;
+        max-height: $input-height + $padding;
+        margin: 0.5em 0.7em 0 0;
+
+        .input {
+            position: static;
+            height: $input-height;
+            font-family: $text-font;
+            font-weight: 200;
+
+            &:hover {
+                border-width: 2px;
+            }
+        }
+
+        .label {
+            display: block;
+            line-height: 0;
+            font-family: $text-font;
+            font-weight: 200;
+            font-size: $font-size;
+            transform: translate(1rem, calc(#{$font-size} + #{$input-height * 0.25}));
+            transform-origin: left;
+            transition: transform 0.2s ease, font-size 0.2s ease;
+        }
+
+        .move-label {
+            transform: translate(0.9rem, $input-height * 0.25);
+            font-size: math.div($font-size, 1.5);
+        }
+
+        .fixed-icon {
+            display: block;
+            position: absolute;
+            top: 50%;
+            height: $input-height;
+
+            svg {
+                position: relative;
+                top: calc(-1 * #{math.div($input-height, 6)});
+            }
+
+            &.is-right {
+                right: 1rem;
+            }
+
+            &.is-left {
+                left: 1rem;
+            }
+        }
     }
+}
 
-    .move-label {
-        transform: translate(0.9rem, $input-height * 0.25);
-        font-size: math.div($font-size, 1.5);
-    }
+.border {
+    border: 1px solid black;
+    padding: 0.5em $page-padding;
+    margin: $margin auto;
 
-    .fixed-icon {
-        display: block;
-        position: absolute;
-        top: 50%;
-        height: $input-height;
-
-        svg {
-            position: relative;
-            top: calc(-1 * #{math.div($input-height, 6)});
-        }
-
-        &.is-right {
-            right: 1rem;
-        }
-
-        &.is-left {
-            left: 1rem;
-        }
+    @media (min-width: 48em) {
+        max-width: 55%;
     }
 }
