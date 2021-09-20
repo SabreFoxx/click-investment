@@ -1,11 +1,11 @@
-import { PreSignupComponent } from './pre-signup/pre-signup.component';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+
+import { PreSignupComponent } from './pre-signup/pre-signup.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SigninFormComponent } from '../components/signin-form/signin-form.component';
-import { AuthModuleRootComponent } from './auth-module-root/auth-module-root.component';
-import { Routes, RouterModule } from '@angular/router';
+import { AuthRootComponent } from './root/root.component';
 
 export const authRoutes: Routes = [
   { path: 'signin', component: SigninFormComponent },
@@ -15,7 +15,7 @@ export const authRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AuthModuleRootComponent,
+    AuthRootComponent,
     PreSignupComponent,
     SignUpComponent,
     SigninFormComponent

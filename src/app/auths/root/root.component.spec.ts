@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthModuleRootComponent } from './auth-module-root.component';
+import { AuthRootComponent } from './root.component';
 
 describe('AuthModuleRootComponent', () => {
-  let component: AuthModuleRootComponent;
-  let fixture: ComponentFixture<AuthModuleRootComponent>;
+  let component: AuthRootComponent;
+  let fixture: ComponentFixture<AuthRootComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthModuleRootComponent ]
+      declarations: [ AuthRootComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthModuleRootComponent);
+    fixture = TestBed.createComponent(AuthRootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
