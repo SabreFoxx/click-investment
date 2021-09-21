@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthRootComponent } from './root.component';
+import { BasePanelComponent } from './base-panel.component';
 
-describe('AuthModuleRootComponent', () => {
-  let component: AuthRootComponent;
-  let fixture: ComponentFixture<AuthRootComponent>;
+describe('BasePanelComponent', () => {
+  let component: BasePanelComponent;
+  let fixture: ComponentFixture<BasePanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthRootComponent ]
+      declarations: [ BasePanelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthRootComponent);
+    fixture = TestBed.createComponent(BasePanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

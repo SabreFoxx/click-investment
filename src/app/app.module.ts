@@ -1,3 +1,5 @@
+import { DashboardModule } from './dashboards/dashboard.module';
+import { ComponentModule } from './components/component.module';
 import { AuthModule } from './auths/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,27 +8,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NavComponent } from './components/header/nav/nav.component';
 import { SvgComponent } from './svg/svg.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { InputBoxComponent } from './components/input-box/input-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     NotFoundComponent,
-    NavComponent,
     SvgComponent,
-    HeaderComponent,
-    FooterComponent,
-    InputBoxComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    ComponentModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

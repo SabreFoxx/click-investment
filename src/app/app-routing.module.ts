@@ -1,17 +1,21 @@
+import { SigninFormComponent } from './components/signin-form/signin-form.component';
+import { BasePanelComponent } from './dashboards/base-panel/base-panel.component';
 import { authRoutes } from './auths/auth.module';
-import { dashboardRoutes } from './dashboards/dashboard/dashboard.module';
-import { AuthRootComponent } from './auths/root/root.component';
+import { dashboardRoutes } from './dashboards/dashboard.module';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { infoRoutes } from './infos/info.module';
 
 const routes: Routes = [
   { path: 'home', component: LandingComponent },
-  { path: 'auth', component: AuthRootComponent, children: authRoutes },
+  { path: 'auth', children: authRoutes },
+  { path: 'info', children: infoRoutes },
+  { path: 'popup', component: SigninFormComponent, outlet: 'extra' }, // e.g /home(extra:popup)
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  ...dashboardRoutes,
+  { path: '', component: BasePanelComponent, children: dashboardRoutes },
   { path: '**', component: NotFoundComponent }
 ];
 
