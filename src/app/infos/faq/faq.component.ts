@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Content } from 'src/services/faq-content.service';
 
 @Component({
   selector: 'app-faq',
