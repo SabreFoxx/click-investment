@@ -1,3 +1,4 @@
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { DashboardModule } from './dashboards/dashboard.module';
 import { ComponentModule } from './components/component.module';
 import { AuthModule } from './auths/auth.module';
@@ -22,7 +23,8 @@ import { SvgComponent } from './svg/svg.component';
     AppRoutingModule,
     AuthModule,
     ComponentModule,
-    DashboardModule
+    DashboardModule,
+    NgScrollbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

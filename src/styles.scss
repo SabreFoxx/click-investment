@@ -23,12 +23,18 @@
     src: url('assets/font/Zurich__Light_BT.ttf');
 }
 
+html {
+    // remove window's scrollbar
+    overflow: hidden;
+}
+
 body {
     color: $grey-dark;
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
     font-family: $display-font;
     overflow-x: hidden;
+    height: 100vh;
 
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);
