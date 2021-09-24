@@ -1,0 +1,8 @@
+html {
+    // remove window's scrollbar since we're using NgScrollbarModule
+    overflow: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
