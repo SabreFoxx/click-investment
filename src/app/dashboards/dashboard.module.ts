@@ -1,3 +1,4 @@
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,8 @@ export const dashboardRoutes: Routes = [
     BasePanelComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgScrollbarModule
   ]
 })
 export class DashboardModule { }

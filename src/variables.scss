@@ -34,11 +34,16 @@ $page-padding: 2rem;
 $padding: $margin;
 $line-margin: 2em;
 $input-height: 3.5rem;
+$nav-easing: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 @mixin pad-container {
     margin: auto;
     padding-left: $page-padding !important;
     padding-right: $page-padding !important;
+}
+
+@mixin border-radius {
+    border-radius: 10px 10px 10px 10px;
 }
 
 .font-size-bigger {

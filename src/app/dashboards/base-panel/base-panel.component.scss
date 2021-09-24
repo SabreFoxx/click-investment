@@ -1,4 +1,161 @@
-.dashboard-container {
+@import '/src/variables.scss';
+
+// remove window's scrollbar since we're using NgScrollbarModule
+// also, using encapsulation: ViewEncapsulation.None
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+ng-scrollbar {
+    --scrollbar-size: 8px;
+    --scrollbar-thumb-color: #28df93 !important;
+    --scrollbar-thumb-hover-color: rgb(231, 46, 46) !important;
+    --scrollbar-border-radius: 4px;
+}
+
+.app {
     height: 100vh;
     background-color: blue;
+    $top-height: 30%;
+
+    &-menu {
+        width: 22%;
+        max-width: 500px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        background:
+            linear-gradient(173.89deg,
+                rgba(255, 0, 0, 0.09) 0%,
+                rgba(235, 255, 0, 0.0747) 15.56%,
+                rgba(0, 255, 41, 0.09) 32.09%,
+                rgba(0, 255, 224, 0.09) 49.74%,
+                rgba(5, 0, 255, 0.0585) 65.76%,
+                rgba(255, 0, 245, 0.0244958) 82.55%,
+                rgba(255, 0, 0, 0.09) 100%),
+            $primary;
+
+        &-top {
+            display: flex;
+            flex-direction: column;
+            min-height: $top-height;
+        }
+    }
+
+    &-nav {
+        height: 50%;
+    }
+}
+
+.menu-button {
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background-color: transparent;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+    height: 25%;
+    min-height: 45px;
+    max-height: 250px;
+    margin-right: 10px;
+    transition: $nav-easing;
+    @include border-radius;
+
+    @media (min-width: 48em) {
+        // display: none;
+    }
+
+    &:hover {
+        background: mix(black, $primary, 10);
+    }
+
+    $slice-height: 2px;
+
+    &__slice {
+        position: relative;
+        height: $slice-height;
+        width: 40px;
+        background: white;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            height: $slice-height;
+            width: 100%;
+            background: white;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            height: $slice-height;
+            width: 100%;
+            background: white;
+        }
+    }
+
+    &__slice,
+    &__slice:before,
+    &__slice:after {
+        will-change: transform;
+        transition: $nav-easing;
+    }
+
+    &--active {
+        .menu-button__slice {
+            background: $link;
+            transform: rotate(90deg);
+
+            &:before {
+                background: $link;
+                transform: rotate(-45deg) translate(-7px, -7px) scaleX(0.7);
+            }
+
+            &:after {
+                background: $link;
+                transform: rotate(45deg) translate(-7px, 7px) scaleX(0.7);
+            }
+        }
+    }
+}
+
+.text {
+    text-align: center;
+    font-family: $text-font;
+    color: $white-ter;
+
+    &-welcome {
+        font-size: 1.5em;
+        font-weight: 200;
+    }
+
+    &-name {
+        font-size: 2.4em;
+        font-weight: 400;
+        line-height: 0.8;
+    }
+}
+
+.profile-pic {
+    max-width: 55% !important;
+    max-height: 200px;
+    margin: 0.1em auto 2em auto;
+}
+
+.foo {
+    height: 100px;
+    width: 100%;
 }

@@ -28,7 +28,6 @@ body {
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
     font-family: $display-font;
-    height: 100vh;
 
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);
