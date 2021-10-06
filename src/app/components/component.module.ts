@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { LibraryComponent } from './library/library.component';
+import { SideMenuItemComponent } from './side-menu-item/side-menu-item.component';
+import { HorizontalLineComponent } from './horizontal-line/horizontal-line.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { LibraryComponent } from './library/library.component';
     InputBoxComponent,
     SigninFormComponent,
     MenuComponent,
-    LibraryComponent
+    LibraryComponent,
+    SideMenuItemComponent,
+    HorizontalLineComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,8 @@ import { LibraryComponent } from './library/library.component';
     NavComponent,
     FooterComponent,
     InputBoxComponent,
-    SigninFormComponent
+    SigninFormComponent,
+    SideMenuItemComponent
   ]
 })
 export class ComponentModule { }

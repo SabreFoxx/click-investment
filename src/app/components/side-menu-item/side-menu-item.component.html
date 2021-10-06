@@ -1,0 +1,9 @@
+<div class="side-menu" [class.highlight]="active">
+    <div [class.vert]="active"></div>
+    <div class="content">
+        <ng-content select=".svg-icon"></ng-content>
+        <span class="name">
+            <ng-content select=".name"></ng-content>
+        </span>
+    </div>
+</div>
