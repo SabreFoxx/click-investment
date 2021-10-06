@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'info', children: infoRoutes },
   { path: 'popup', component: SigninFormComponent, outlet: 'extra' }, // e.g /home(extra:popup)
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: BasePanelComponent, children: dashboardRoutes },
+  { path: 'app', component: BasePanelComponent, children: dashboardRoutes },
   { path: 'component-lib', component: LibraryComponent },
   { path: '**', component: NotFoundComponent }
 ];

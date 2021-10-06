@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlanComponent } from './plan/plan.component';
 import { BasePanelComponent } from './base-panel/base-panel.component';
+import { ComponentModule } from '../components/component.module';
 
 export const dashboardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -20,7 +21,8 @@ export const dashboardRoutes: Routes = [
   ],
   imports: [
     CommonModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    ComponentModule
   ]
 })
 export class DashboardModule { }

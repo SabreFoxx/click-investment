@@ -7,6 +7,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class BasePanelComponent implements OnInit {
+  items: Array<any>;
+
   disabled = false;
   compact = true;
   invertX = false;
@@ -26,5 +28,7 @@ export class BasePanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.items = new Array(10);
+    console.log(this.items)
   }
 }

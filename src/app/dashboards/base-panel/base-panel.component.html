@@ -12,23 +12,70 @@
         <nav class="app-nav">
             <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar"
                           [disabled]="disabled">
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
-                <div class="foo">hello</div>
+                <app-side-menu-item [active]="true">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#tablet-dashboard"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Dashboard</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Transactions</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#face-man"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Profile</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#cog-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Settings</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Transactions</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Transactions</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Transactions</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Transactions</ng-container>
+                </app-side-menu-item>
             </ng-scrollbar>
         </nav>
     </aside>
