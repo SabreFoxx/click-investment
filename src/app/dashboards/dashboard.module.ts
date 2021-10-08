@@ -22,7 +22,8 @@ export const dashboardRoutes: Routes = [
   imports: [
     CommonModule,
     NgScrollbarModule,
-    ComponentModule
+    ComponentModule,
+    RouterModule
   ]
 })
 export class DashboardModule { }

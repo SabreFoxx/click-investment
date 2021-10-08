@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { LibraryComponent } from './library/library.component';
 import { SideMenuItemComponent } from './side-menu-item/side-menu-item.component';
-import { HorizontalLineComponent } from './horizontal-line/horizontal-line.component';
+import { PlanCardComponent } from './plan-card/plan-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { HorizontalLineComponent } from './horizontal-line/horizontal-line.compo
     MenuComponent,
     LibraryComponent,
     SideMenuItemComponent,
-    HorizontalLineComponent
+    PlanCardComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +35,8 @@ import { HorizontalLineComponent } from './horizontal-line/horizontal-line.compo
     FooterComponent,
     InputBoxComponent,
     SigninFormComponent,
-    SideMenuItemComponent
+    SideMenuItemComponent,
+    PlanCardComponent
   ]
 })
 export class ComponentModule { }

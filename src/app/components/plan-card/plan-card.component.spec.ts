@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HorizontalLineComponent } from './horizontal-line.component';
+import { PlanCardComponent } from './plan-card.component';
 
-describe('HorizontalLineComponent', () => {
-  let component: HorizontalLineComponent;
-  let fixture: ComponentFixture<HorizontalLineComponent>;
+describe('PlanCardComponent', () => {
+  let component: PlanCardComponent;
+  let fixture: ComponentFixture<PlanCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HorizontalLineComponent ]
+      declarations: [ PlanCardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HorizontalLineComponent);
+    fixture = TestBed.createComponent(PlanCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

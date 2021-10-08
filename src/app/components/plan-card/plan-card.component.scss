@@ -1,0 +1,53 @@
+@import '/src/variables.scss';
+
+.card {
+    position: relative;
+    width: 200px;
+    height: 260px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: -95%;
+    margin: auto;
+    width: 85%;
+    height: 85%;
+    color: $white-ter;
+}
+
+.svg-icon {
+    color: white;
+    width: 3rem;
+    height: 3rem;
+}
+
+.plan {
+    font-size: 2.5em;
+    font-weight: 600;
+    font-family: $text-font;
+    line-height: 0.9;
+    margin: 0.3em 0;
+    display: block;
+}
+
+.currency {
+    font-size: 1.6em;
+    font-family: $text-font;
+    margin: 0;
+    line-height: 0.6;
+}
+
+.amount {
+    display: block;
+    font-size: 2em;
+    color: white;
+    margin: 0;
+    line-height: 1.1;
+}

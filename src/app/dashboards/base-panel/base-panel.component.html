@@ -6,7 +6,7 @@
             </div>
             <img class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture" srcset="">
             <span class="text text-welcome">Welcome,</span>
-            <span class="text text-name">Syndey Chiboy</span>
+            <span class="text text-name">John Adams</span>
         </div>
 
         <nav class="app-nav">
@@ -23,7 +23,7 @@
                 <app-side-menu-item [active]="false">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
-                            <use xlink:href="#handshake-outline"></use>
+                            <use xlink:href="#cards-variant"></use>
                         </svg>
                     </ng-container>
                     <ng-container class="name">Transactions</ng-container>
@@ -31,11 +31,30 @@
                 <app-side-menu-item [active]="false">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
+                            <use xlink:href="#handshake-outline"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Plans</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="false">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#cash-multiple"></use>
+                        </svg>
+                    </ng-container>
+                    <ng-container class="name">Loans</ng-container>
+                </app-side-menu-item>
+                <app-side-menu-item [active]="true">
+                    <ng-container class="svg-icon">
+                        <svg class="svg-icon">
                             <use xlink:href="#face-man"></use>
                         </svg>
                     </ng-container>
                     <ng-container class="name">Profile</ng-container>
                 </app-side-menu-item>
+
+                <hr class="line">
+
                 <app-side-menu-item [active]="false">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
@@ -47,36 +66,24 @@
                 <app-side-menu-item [active]="false">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
-                            <use xlink:href="#handshake-outline"></use>
+                            <use xlink:href="#information-outline"></use>
                         </svg>
                     </ng-container>
-                    <ng-container class="name">Transactions</ng-container>
+                    <ng-container class="name">About</ng-container>
                 </app-side-menu-item>
                 <app-side-menu-item [active]="false">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
-                            <use xlink:href="#handshake-outline"></use>
+                            <use xlink:href="#logout"></use>
                         </svg>
                     </ng-container>
-                    <ng-container class="name">Transactions</ng-container>
-                </app-side-menu-item>
-                <app-side-menu-item [active]="false">
-                    <ng-container class="svg-icon">
-                        <svg class="svg-icon">
-                            <use xlink:href="#handshake-outline"></use>
-                        </svg>
-                    </ng-container>
-                    <ng-container class="name">Transactions</ng-container>
-                </app-side-menu-item>
-                <app-side-menu-item [active]="false">
-                    <ng-container class="svg-icon">
-                        <svg class="svg-icon">
-                            <use xlink:href="#handshake-outline"></use>
-                        </svg>
-                    </ng-container>
-                    <ng-container class="name">Transactions</ng-container>
+                    <ng-container class="name">Logout</ng-container>
                 </app-side-menu-item>
             </ng-scrollbar>
         </nav>
     </aside>
+
+    <div class="app-panel">
+        <router-outlet></router-outlet>
+    </div>
 </div>

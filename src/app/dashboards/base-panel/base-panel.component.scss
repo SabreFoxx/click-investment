@@ -18,11 +18,12 @@ ng-scrollbar {
 }
 
 .app {
-    height: 100vh;
-    background-color: blue;
     $top-height: 45%;
+    height: 100vh;
+    display: flex;
 
     &-menu {
+        flex-shrink: 1;
         width: 22%;
         max-width: 500px;
         height: 100%;
@@ -49,8 +50,15 @@ ng-scrollbar {
         }
     }
 
+    &-panel {
+        flex-grow: 1;
+        width: 78%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
     &-nav {
-        height: 50%;
+        height: 100% - $top-height - 1.5%;
     }
 }
 
