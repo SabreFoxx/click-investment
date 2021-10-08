@@ -1,15 +1,13 @@
 <div class="card">
-    <img src="/assets/img/card-gold.svg" />
+    <img src="/assets/img/{{plan.image}}" />
     <div class="details">
         <div>
-            <svg class="svg-icon">
-                <use xlink:href="#gold"></use>
-            </svg>
-            <span class="plan">Gold Plan</span>
+            <div [innerHTML]="icon"></div>
+            <span class="plan">{{plan.name}}</span>
         </div>
         <div>
-            <span class="currency">USD</span>
-            <span class="amount">$15,732</span>
+            <span class="currency">{{plan.currency}}</span>
+            <span class="amount">${{plan.amount}}</span>
         </div>
     </div>
 </div>

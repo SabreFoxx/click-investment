@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';
 
 @Component({
@@ -8,10 +9,15 @@ import { Plan } from 'src/models/plan';
 })
 export class PlanCardComponent implements OnInit {
   @Input() plan: Plan;
-  
-  constructor() { }
+  icon: SafeHtml;
 
+  constructor(private sanitizer: DomSanitizer) { }
   ngOnInit(): void {
+    this.icon = this.sanitizer.bypassSecurityTrustHtml(`
+        <svg class="svg-icon">
+          <use xlink:href="#${this.plan.icon}"></use>
+        </svg>
+    `);
   }
 
 }
