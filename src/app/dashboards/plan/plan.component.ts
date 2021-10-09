@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Plan } from 'src/models/plan';
+import { PlanRepositoryService } from 'src/services/plan-repository.service';
 
 @Component({
   selector: 'app-plan',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
+  plans: Plan[];
 
-  constructor() { }
+  constructor(private plans_: PlanRepositoryService) { }
 
   ngOnInit(): void {
+    this.plans = this.plans_.plans;
   }
 
 }

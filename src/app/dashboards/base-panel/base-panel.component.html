@@ -82,8 +82,12 @@
         </nav>
     </aside>
 
-    <div class="app-panel">
-        <app-top-bar></app-top-bar>
-        <router-outlet></router-outlet>
+    <div class="app-base">
+        <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
+            <app-top-bar></app-top-bar>
+            <main class="app-panel">
+                <router-outlet></router-outlet>
+            </main>
+        </ng-scrollbar>
     </div>
 </div>

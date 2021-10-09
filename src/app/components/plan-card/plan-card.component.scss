@@ -2,12 +2,16 @@
 
 .card {
     position: relative;
-    width: 240px;
-    height: 312px;
-    margin-bottom: 1em;
+    width: 220px;
+    height: 286px;
+    margin: 0 0.05em 1em 0.05em;
 
     img {
         width: 100%;
+    }
+
+    &:hover {
+        filter: drop-shadow(1px 4px 4px rgba(0, 0, 0, 0.5));
     }
 }
 

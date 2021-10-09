@@ -7,6 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlanComponent } from './plan/plan.component';
 import { BasePanelComponent } from './base-panel/base-panel.component';
 import { ComponentModule } from '../components/component.module';
+import { TransactionComponent } from './transaction/transaction.component';
+import { LoanComponent } from './loan/loan.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingComponent } from './setting/setting.component';
 
 export const dashboardRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -17,7 +21,11 @@ export const dashboardRoutes: Routes = [
   declarations: [
     DashboardComponent,
     PlanComponent,
-    BasePanelComponent
+    BasePanelComponent,
+    TransactionComponent,
+    LoanComponent,
+    ProfileComponent,
+    SettingComponent
   ],
   imports: [
     CommonModule,

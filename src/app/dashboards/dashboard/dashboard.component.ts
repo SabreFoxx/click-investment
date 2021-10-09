@@ -1,5 +1,3 @@
-import { Plan } from 'src/models/plan';
-import { PlanRepositoryService } from './../../../services/plan-repository.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,12 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  plans: Plan[];
 
-  constructor(private plans_: PlanRepositoryService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.plans = this.plans_.plans;
-  }
+  ngOnInit(): void { }
 
 }

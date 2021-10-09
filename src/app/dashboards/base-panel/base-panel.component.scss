@@ -50,12 +50,15 @@ ng-scrollbar {
         }
     }
 
-    &-panel {
+    &-base {
         flex-grow: 1;
         width: 78%;
         height: 100%;
         overflow-y: hidden;
-        padding: 0.5em 0 0 0.5em;
+    }
+
+    &-panel {
+        padding: 0 $padding;
     }
 
     &-nav {

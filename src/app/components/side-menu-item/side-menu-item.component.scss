@@ -1,3 +1,5 @@
+@import "/src/variables.scss";
+
 .side-menu {
     position: relative;
     display: flex;
@@ -9,7 +11,7 @@
     .content {
         display: flex;
         justify-content: space-around;
-        margin-left: 3.5em;
+        margin-left: $margin;
         align-items: center;
     }
 

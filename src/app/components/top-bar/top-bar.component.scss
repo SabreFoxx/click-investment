@@ -2,7 +2,7 @@
 
 .top-bar {
     display: flex;
-    padding: 0.5em;
+    margin: 0.5em $margin;
 }
 
 .title {
@@ -22,15 +22,23 @@
 }
 
 .svg-icon {
-    margin: 0 1em;
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+
+    &:not(:last-child) {
+        margin: 0 1.5em;
+    }
 }
 
-.search-icon {
-    position: relative;
-    right: -3rem - 2.8rem;
-    z-index: 1;
-    margin: 0;
+.search {
+    display: inline-flex;
+    align-items: center;
+
+    &-icon {
+        position: relative;
+        right: -4rem - 3.2rem;
+        z-index: 1;
+        margin: 0;
+    }
 }
 
 label {
@@ -45,5 +53,6 @@ label {
     border: 0;
     background-color: $white-ter;
     width: 250px;
+    max-height: 25px;
     box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
 }
