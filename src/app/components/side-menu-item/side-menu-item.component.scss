@@ -1,5 +1,7 @@
 @import "/src/variables.scss";
 
+$highlight: rgba(#dadada, 0.3);
+
 .side-menu {
     position: relative;
     display: flex;
@@ -7,6 +9,11 @@
     height: 3.5em;
     color: white;
     font-weight: lighter;
+    transition: background-color 200ms ease-out;
+
+    &:hover {
+        background-color: $highlight;
+    }
 
     .content {
         display: flex;
@@ -27,9 +34,13 @@
         font-size: 1.5em;
         margin: 0 0.5em;
     }
+
+    a {
+        color: white;
+    }
 }
 
 .highlight {
-    background-color: rgba($color: #dadada, $alpha: 0.3);
+    background-color: $highlight;
     font-weight: bold;
 }
