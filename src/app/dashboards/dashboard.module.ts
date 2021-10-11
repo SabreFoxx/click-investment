@@ -1,3 +1,4 @@
+import { PlanRepositoryService } from 'src/services/plan-repository.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,8 +14,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 
 export const dashboardRoutes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'plans', component: PlanComponent }
+  { path: 'transactions', component: TransactionComponent },
+  { path: 'plans', component: PlanComponent, resolve: { resolvePlans: PlanRepositoryService } },
+  { path: 'loans', component: LoanComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'settings', component: SettingComponent }
 ]
 
 @NgModule({

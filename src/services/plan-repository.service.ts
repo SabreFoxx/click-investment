@@ -1,10 +1,12 @@
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Plan } from 'src/models/plan';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlanRepositoryService {
+export class PlanRepositoryService implements Resolve<any> {
   plans: Plan[];
 
   constructor() {
@@ -53,5 +55,13 @@ export class PlanRepositoryService {
         amount: "15,732"
       }
     ]
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plan[]> {
+    let plansObservable = new Observable<Plan[]>(subscriber => {
+      subscriber.next(this.plans);
+      subscriber.complete();
+    });
+    return plansObservable;
   }
 }

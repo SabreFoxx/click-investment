@@ -1,6 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
-import { PlanRepositoryService } from 'src/services/plan-repository.service';
 
 @Component({
   selector: 'app-plan',
@@ -8,12 +10,12 @@ import { PlanRepositoryService } from 'src/services/plan-repository.service';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
-  plans: Plan[];
+  plans: Observable<Plan[]>;
 
-  constructor(private plans_: PlanRepositoryService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.plans = this.plans_.plans;
+    this.plans = this.route.data.pipe(pluck('resolvePlans'));
   }
 
 }
