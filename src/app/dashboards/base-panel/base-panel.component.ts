@@ -10,5 +10,7 @@ export class BasePanelComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('init')
+  }
 }

@@ -3,6 +3,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SwiperModule } from 'swiper/angular';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlanComponent } from './plan/plan.component';
@@ -15,7 +16,11 @@ import { SettingComponent } from './setting/setting.component';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    resolve: { resolvePlans: PlanRepositoryService }
+  },
   { path: 'transactions', component: TransactionComponent },
   { path: 'plans', component: PlanComponent, resolve: { resolvePlans: PlanRepositoryService } },
   { path: 'loans', component: LoanComponent },
@@ -37,7 +42,8 @@ export const dashboardRoutes: Routes = [
     CommonModule,
     NgScrollbarModule,
     ComponentModule,
-    RouterModule
+    RouterModule,
+    SwiperModule
   ]
 })
 export class DashboardModule { }

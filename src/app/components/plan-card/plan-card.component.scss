@@ -6,6 +6,11 @@
     height: 286px;
     margin: 0 0.05em 1em 0.05em;
     cursor: pointer;
+    caret-color: transparent;
+    // prevent text selection
+    -webkit-touch-callout: none; /* iOS Safari only */
+    user-select: none;
+    transition: filter 200ms linear;
 
     img {
         width: 100%;

@@ -19,12 +19,13 @@ ng-scrollbar {
 
 .app {
     $top-height: 45%;
+    $menu-width: 22vw;
     height: 100vh;
     display: flex;
 
     &-menu {
         flex-shrink: 1;
-        width: 22%;
+        width: $menu-width;
         max-width: 500px;
         height: 100%;
         display: flex;
@@ -52,13 +53,14 @@ ng-scrollbar {
 
     &-base {
         flex-grow: 1;
-        width: 78%;
-        height: 100%;
+        width: 100vw - $menu-width;
         overflow-y: hidden;
     }
 
     &-panel {
         padding: 0 $padding;
+        width: 100vw - $menu-width;
+        box-sizing: border-box;
     }
 
     &-nav {

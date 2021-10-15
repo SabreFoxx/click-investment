@@ -3,6 +3,9 @@
 .top-bar {
     display: flex;
     margin: 0.5em $margin;
+    // prevent text selection
+    -webkit-touch-callout: none; /* iOS Safari only */
+    user-select: none;
 }
 
 .title {

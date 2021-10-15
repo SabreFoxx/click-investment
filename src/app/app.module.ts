@@ -24,7 +24,7 @@ import { SvgComponent } from './svg/svg.component';
     AuthModule,
     ComponentModule,
     DashboardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

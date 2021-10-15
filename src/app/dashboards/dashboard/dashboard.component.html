@@ -1,1 +1,13 @@
-<p>Dashboard works</p>
+<!-- <div class="top">
+    <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [plan]="plan">
+    </app-plan-card>
+</div> -->
+
+<swiper [config]="config" (swiper)="onSwiper($event)"
+        (slideChange)="onSlideChange()">
+    <ng-template swiperSlide *ngFor="let plan of plans | async">
+        <app-plan-card [plan]="plan">
+        </app-plan-card>
+    </ng-template>
+    
+</swiper>

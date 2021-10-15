@@ -1,0 +1,16 @@
+@import "node_modules/swiper/swiper.scss";
+
+.swiper {
+  width: 70%;
+  margin-top: 1em;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  width: 250px;
+  height: 300px;
+}
+
+.top {
+    display: flex;
+}
