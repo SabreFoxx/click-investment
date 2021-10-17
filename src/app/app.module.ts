@@ -4,6 +4,7 @@ import { ComponentModule } from './components/component.module';
 import { AuthModule } from './auths/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { SvgComponent } from './svg/svg.component';
     ComponentModule,
     DashboardModule,
     NgScrollbarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
