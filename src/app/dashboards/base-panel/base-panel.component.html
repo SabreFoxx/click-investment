@@ -85,8 +85,8 @@
     <div class="app-base">
         <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
             <app-top-bar></app-top-bar>
-            <main class="app-panel">
-                <router-outlet></router-outlet>
+            <main class="app-panel" [@fadeAnim]="prepareRoute(outlet)">
+                <router-outlet #outlet="outlet"></router-outlet>
             </main>
         </ng-scrollbar>
     </div>

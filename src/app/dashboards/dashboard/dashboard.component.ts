@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
     grabCursor: true,
     slidesPerView: 'auto',
     pagination: true,
+    allowTouchMove: true,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,

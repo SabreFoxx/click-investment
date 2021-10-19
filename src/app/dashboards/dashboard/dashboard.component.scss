@@ -1,16 +1,13 @@
 @import "node_modules/swiper/swiper.scss";
 
-.swiper {
-  width: 70%;
-  margin-top: 1em;
-  margin-right: auto;
-}
+// uses ViewEncapsulation.None
 
 .swiper-slide {
   width: 250px;
   height: 300px;
 }
 
-.top {
-    display: flex;
+.swiper {
+  padding-left: 15%;
+  padding-right: 15%;
 }

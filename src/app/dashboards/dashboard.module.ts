@@ -19,10 +19,15 @@ export const dashboardRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    resolve: { resolvePlans: PlanRepositoryService }
+    resolve: { resolvePlans: PlanRepositoryService },
+    data: { animation: 'HomePage' }
   },
   { path: 'transactions', component: TransactionComponent },
-  { path: 'plans', component: PlanComponent, resolve: { resolvePlans: PlanRepositoryService } },
+  {
+    path: 'plans', component: PlanComponent,
+    resolve: { resolvePlans: PlanRepositoryService },
+    data: { animation: 'AboutPage' }
+  },
   { path: 'loans', component: LoanComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'settings', component: SettingComponent }

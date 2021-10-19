@@ -58,8 +58,10 @@ ng-scrollbar {
     }
 
     &-panel {
-        padding: 0 $padding;
-        width: 100vw - $menu-width;
+        $margin-here: 1.5vw;
+        position: relative;
+        margin: 0 $margin-here;
+        width: 100vw - $menu-width - (2*$margin-here);
         box-sizing: border-box;
     }
 

@@ -3,11 +3,9 @@
     </app-plan-card>
 </div> -->
 
-<swiper [config]="config" (swiper)="onSwiper($event)"
-        (slideChange)="onSlideChange()">
+<swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
     <ng-template swiperSlide *ngFor="let plan of plans | async">
         <app-plan-card [plan]="plan">
         </app-plan-card>
     </ng-template>
-    
 </swiper>
