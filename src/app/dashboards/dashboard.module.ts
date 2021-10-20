@@ -13,6 +13,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { LoanComponent } from './loan/loan.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
+import { ChartsModule } from 'ng2-charts';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -48,7 +49,8 @@ export const dashboardRoutes: Routes = [
     NgScrollbarModule,
     ComponentModule,
     RouterModule,
-    SwiperModule
+    SwiperModule,
+    ChartsModule
   ]
 })
 export class DashboardModule { }
