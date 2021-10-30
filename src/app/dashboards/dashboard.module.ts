@@ -1,10 +1,10 @@
-import { PlanRepositoryService } from 'src/services/plan-repository.service';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
 
+import { PlanRepositoryService } from 'src/services/plan-repository.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlanComponent } from './plan/plan.component';
 import { BasePanelComponent } from './base-panel/base-panel.component';
