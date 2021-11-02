@@ -14,9 +14,11 @@ import { LoanComponent } from './loan/loan.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { ChartsModule } from 'ng2-charts';
+import { PaymentComponent } from './payment/payment.component';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'payment', component: PaymentComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -42,7 +44,8 @@ export const dashboardRoutes: Routes = [
     TransactionComponent,
     LoanComponent,
     ProfileComponent,
-    SettingComponent
+    SettingComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
