@@ -1,0 +1,42 @@
+@import '/src/variables.scss';
+
+.pay-card {
+    // Set the width of the parent of figure.canvas, .section in this case to adjust width but
+    // maintain aspect ratio
+    position: relative;
+    padding: 0;
+    width: 300px;
+    padding-bottom: (2 / 11) * 100%; // For example 75% is for ratio 4:3, so we do (3 / 4) * 100%
+    max-height: 10px;
+    border-radius: 1em;
+
+    background: linear-gradient(68.44deg, #2B4584 0%,
+            #335B75 18.54%, #3B7266 41.98%,
+            #428857 66.98%,
+            #4A9E48 100%);
+
+    &-content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5em;
+        color: white;
+        font-size: 2em;
+    }
+
+    .method {
+        text-align: right;
+        font-size: 1.1em;
+        font-weight: 700;
+        font-family: $text-font;
+    }
+}
+
+.chip {
+    // background-image: url('/assets/img/chip.png');
+    width: 50px;
+    // height: 100px;
+    z-index: 20;
+}

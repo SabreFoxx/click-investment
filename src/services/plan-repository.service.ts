@@ -58,10 +58,9 @@ export class PlanRepositoryService implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plan[]> {
-    let plansObservable = new Observable<Plan[]>(subscriber => {
+    return new Observable<Plan[]>(subscriber => {
       subscriber.next(this.plans);
       subscriber.complete();
     });
-    return plansObservable;
   }
 }

@@ -18,6 +18,7 @@ Swiper.use([EffectCoverflow, Pagination]);
 })
 export class DashboardComponent implements OnInit {
   plans: Observable<Plan[]>;
+  
   config: SwiperOptions = {
     effect: 'coverflow',
     grabCursor: true,

@@ -12,6 +12,7 @@ import { LibraryComponent } from './library/library.component';
 import { SideMenuItemComponent } from './side-menu-item/side-menu-item.component';
 import { PlanCardComponent } from './plan-card/plan-card.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { PaymentCardComponent } from './payment-card/payment-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     LibraryComponent,
     SideMenuItemComponent,
     PlanCardComponent,
-    TopBarComponent
+    TopBarComponent,
+    PaymentCardComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     SigninFormComponent,
     SideMenuItemComponent,
     PlanCardComponent,
-    TopBarComponent
+    TopBarComponent,
+    PaymentCardComponent
   ]
 })
 export class ComponentModule { }
