@@ -1,1 +1,21 @@
-<app-payment-card></app-payment-card>
+<section class="payment">
+    <h2 class="payment-title deposit">Deposit</h2>
+    <p class="payment-desc">Choose the method by which you'll make payment</p>
+
+    <div class="payment-methods">
+        <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
+                          [css]="card.cssClass" [text]="'Payment Method'">
+        </app-payment-card>
+    </div>
+</section>
+
+<section class="payment" style="background-color: rgba(0, 0, 0, 0.01);">
+    <h2 class="payment-title withdrawal">Withdrawal</h2>
+    <p class="payment-desc">Choose the method by which you'll withdraw your money</p>
+
+    <div class="payment-methods" style="opacity: 0.8;">
+        <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
+                          [css]="card.cssClass" [text]="'Withdrawal Method'">
+        </app-payment-card>
+    </div>
+</section>

@@ -15,10 +15,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { ChartsModule } from 'ng2-charts';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentMethodService } from 'src/services/payment-method.service';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'payment', component: PaymentComponent },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    resolve: { paymentMethods: PaymentMethodService }
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,

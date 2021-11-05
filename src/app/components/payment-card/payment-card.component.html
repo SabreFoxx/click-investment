@@ -1,11 +1,13 @@
-<div class="pay-card">
+<div class="pay-card {{css}}">
     <div class="pay-card-content">
-        <div class="method">XRP</div>
+        <div class="pay-card-method">{{name}}</div>
         <div class="sticker">
-            <div class="chip">
-                <img src="/assets/img/chip.png" alt="" srcset="">
-            </div>
-            <div class="connection-icon"></div>
+            <img src="/assets/img/chip.svg" draggable="false">
+            <img src="/assets/img/connection.svg" class="connect" draggable="false">
         </div>
+        <div class="pay-card-number">
+            <span>XXXX</span><span>XXXX</span><span>XXXX</span><span>XXXX</span>
+        </div>
+        <span class="pay-card-text">{{text}}</span>
     </div>
 </div>

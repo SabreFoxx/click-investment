@@ -1,28 +1,45 @@
-<svg width="275" height="197" viewBox="0 0 275 197" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_i_10:60)">
-<rect x="0.5" y="0.5" width="274" height="196" rx="35" fill="url(#paint0_linear_10:60)"/>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 511 511" style="enable-background:new 0 0 511 511;" xml:space="preserve">
+<path fill="white" d="M455.5,56h-400C24.897,56,0,80.897,0,111.5v288C0,430.103,24.897,455,55.5,455h400c30.603,0,55.5-24.897,55.5-55.5v-288
+	C511,80.897,486.103,56,455.5,56z M464,248H343v-56.5c0-4.687,3.813-8.5,8.5-8.5H464V248z M343,263h121v65H343V263z M479,223h17v65
+	h-17V223z M479,208v-65h17v65H479z M464,168H351.5c-12.958,0-23.5,10.542-23.5,23.5V408H183V103h272.5c4.687,0,8.5,3.813,8.5,8.5
+	V168z M168,248H47v-65h121V248z M32,288H15v-65h17V288z M47,263h121v65H47V263z M263,88V71h137v17H263z M248,88H111V71h137V88z
+	 M168,103v65H47v-56.5c0-4.687,3.813-8.5,8.5-8.5H168z M32,208H15v-65h17V208z M15,303h17v65H15V303z M47,343h121v65H55.5
+	c-4.687,0-8.5-3.813-8.5-8.5V343z M248,423v17H111v-17H248z M263,423h137v17H263V423z M343,408v-65h121v56.5
+	c0,4.687-3.813,8.5-8.5,8.5H343z M479,303h17v65h-17V303z M496,111.5V128h-17v-16.5c0-12.958-10.542-23.5-23.5-23.5H415V71h40.5
+	C477.832,71,496,89.168,496,111.5z M55.5,71H96v17H55.5C42.542,88,32,98.542,32,111.5V128H15v-16.5C15,89.168,33.168,71,55.5,71z
+	 M15,399.5V383h17v16.5c0,12.958,10.542,23.5,23.5,23.5H96v17H55.5C33.168,440,15,421.832,15,399.5z M455.5,440H415v-17h40.5
+	c12.958,0,23.5-10.542,23.5-23.5V383h17v16.5C496,421.832,477.832,440,455.5,440z"/>
+<g>
 </g>
-<path d="M0.18458 68.3374H93.3581C99.2573 50.22 115.845 12.8881 135 8.5C142.114 10.9932 158.736 19.9688 168.313 35.9255M0.18457 131.167H93.3581C93.3581 162.282 121.119 185.02 135 192.5C158.319 184.921 176.295 148.453 182.367 131.167H274.5M274.5 83.2967H182.367C178.203 75.4846 172.373 57.4669 182.367 47.893" stroke="url(#paint1_linear_10:60)" stroke-width="3"/>
-<defs>
-<filter id="filter0_i_10:60" x="0.5" y="0.5" width="274" height="196" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dx="-3" dy="-3"/>
-<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_10:60"/>
-</filter>
-<linearGradient id="paint0_linear_10:60" x1="0.5" y1="0.5" x2="246" y2="196.5" gradientUnits="userSpaceOnUse">
-<stop stop-color="#ABABAB"/>
-<stop offset="0.3125" stop-color="white"/>
-<stop offset="0.630208" stop-color="#BDBDBD"/>
-<stop offset="1" stop-color="#5E5E5E"/>
-</linearGradient>
-<linearGradient id="paint1_linear_10:60" x1="10.4999" y1="11.5" x2="256" y2="187.5" gradientUnits="userSpaceOnUse">
-<stop stop-color="#7D7D7D"/>
-<stop offset="0.494792" stop-color="white"/>
-<stop offset="1" stop-color="#1C1C1C"/>
-</linearGradient>
-</defs>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
 </svg>

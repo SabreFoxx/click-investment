@@ -97,8 +97,19 @@ h5 {
     font-size: math.div($scale, 3) * 1em;
 }
 
+// multiplying by 1em is just to convert to the type
 h6 {
     font-size: $scale * 0.25 * 1em;
 }
 
-// multiplying by 1em is just to convert to the type
+$pastel-color-sky-blue: #cbf6f8;
+$pastel-color-blue: #a8e4ef;
+$pastel-color-green: #0cc078;
+$pastel-color-lemon-green: #79de79;
+$pastel-color-yellow: #fcfc99;
+$pastel-color-red: #fb6962;
+
+$info-color-red: #ff4038;
+$info-color-yellow: #ffe716;
+$info-color-green: #2df726;
+$info-color-blue: #2279e3;
