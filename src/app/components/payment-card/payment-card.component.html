@@ -1,4 +1,7 @@
-<div class="pay-card {{css}}">
+<swal #alert [swalOptions]="alertOptions" (confirm)="handleConfirm()" (dismiss)="handleDismiss()">
+</swal>
+
+<div class="pay-card {{css}}" (click)="alert.fire()">
     <div class="pay-card-content">
         <div class="pay-card-method">{{name}}</div>
         <div class="sticker">
@@ -9,8 +12,5 @@
             <span>XXXX</span><span>XXXX</span><span>XXXX</span><span>XXXX</span>
         </div>
         <span class="pay-card-text">{{text}}</span>
-        <button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
-            Do it!
-        </button>
     </div>
 </div>

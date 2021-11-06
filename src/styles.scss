@@ -81,6 +81,11 @@ img {
     vertical-align: middle !important;
     stroke: currentColor;
     fill: currentColor;
+
+    &-for-sweet-alert {
+        width: 3rem;
+        height: 3rem;
+    }
 }
 
 .button {
