@@ -1,4 +1,6 @@
 import { RouterModule } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NavComponent } from './header/nav/nav.component';
 import { SigninFormComponent } from './signin-form/signin-form.component';
@@ -31,7 +33,8 @@ import { PaymentCardComponent } from './payment-card/payment-card.component';
   imports: [
     CommonModule,
     RouterModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    SweetAlert2Module
   ],
   exports: [
     HeaderComponent,
