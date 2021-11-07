@@ -19,6 +19,7 @@
 // @import "node_modules/bulma/sass/components/tabs.sass";
 
 @import "csshake/scss/csshake-slow.scss";
+@import "/src/animations.scss";
 
 @font-face {
     font-family: 'Univers';
@@ -89,6 +90,8 @@ img {
 }
 
 .button {
+    font-family: $text-font;
+    
     &.is-rounded {
         background-color: transparent;
         border: 1px solid $link;
@@ -116,6 +119,10 @@ img {
             box-shadow: 0px 0px 0px 2px lighten($link, 7%);
             color: white;
         }
+    }
+
+    &.mgn:nth-child(even) {
+        margin-left: 1em;
     }
 }
 

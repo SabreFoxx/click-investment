@@ -29,8 +29,8 @@ export class PaymentCardComponent implements OnInit {
     focusCancel: true,
     buttonsStyling: false,
     customClass: {
-      confirmButton: 'button is-rounded is-link',
-      cancelButton: 'button is-rounded'
+      confirmButton: 'button is-rounded is-link mgn',
+      cancelButton: 'button is-rounded mgn'
     }
   }
 
