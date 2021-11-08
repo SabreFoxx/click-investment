@@ -1,22 +1,22 @@
 @use "sass:math";
 
 @import "variables";
-@import "node_modules/bulma/sass/utilities/_all";
-@import "node_modules/bulma/sass/base/_all";
-@import "node_modules/bulma/sass/elements/_all";
-@import "node_modules/bulma/sass/form/shared.sass";
-@import "node_modules/bulma/sass/form/input-textarea.sass";
-@import "node_modules/bulma/sass/form/checkbox-radio.sass";
-@import "node_modules/bulma/sass/form/select.sass";
-@import "node_modules/bulma/sass/form/file.sass";
-@import "node_modules/bulma/sass/components/dropdown.sass";
-// @import "node_modules/bulma/sass/components/breadcrumb.sass";
-// @import "node_modules/bulma/sass/components/media.sass";
-// @import "node_modules/bulma/sass/components/message.sass";
-// @import "node_modules/bulma/sass/components/modal.sass";
-// @import "node_modules/bulma/sass/components/pagination.sass";
-// @import "node_modules/bulma/sass/components/panel.sass";
-// @import "node_modules/bulma/sass/components/tabs.sass";
+@import "bulma/sass/utilities/_all";
+@import "bulma/sass/base/_all";
+@import "bulma/sass/elements/_all";
+@import "bulma/sass/form/shared.sass";
+@import "bulma/sass/form/input-textarea.sass";
+@import "bulma/sass/form/checkbox-radio.sass";
+@import "bulma/sass/form/select.sass";
+@import "bulma/sass/form/file.sass";
+@import "bulma/sass/components/dropdown.sass";
+@import "bulma/sass/components/pagination.sass";
+// @import "bulma/sass/components/breadcrumb.sass";
+// @import "bulma/sass/components/media.sass";
+// @import "bulma/sass/components/message.sass";
+// @import "bulma/sass/components/modal.sass";
+// @import "bulma/sass/components/panel.sass";
+// @import "bulma/sass/components/tabs.sass";
 
 @import "csshake/scss/csshake-slow.scss";
 @import "/src/animations.scss";
@@ -27,7 +27,7 @@
 }
 
 body {
-    color: $grey-dark;
+    color: $text-color;
     background-color: $background-color;
     font-size: calc(1vw + 0.6em);
     font-family: $display-font;
@@ -91,7 +91,7 @@ img {
 
 .button {
     font-family: $text-font;
-    
+
     &.is-rounded {
         background-color: transparent;
         border: 1px solid $link;
@@ -220,4 +220,61 @@ hr.line {
     background-color: white;
     margin: 0.8em 4px;
     padding: 0;
+}
+
+.main-title {
+    flex-grow: 1;
+    flex-basis: 50%;
+    margin: auto;
+    margin-right: auto;
+    font-size: 3em;
+    font-family: $display-font;
+    font-weight: 600;
+    line-height: 1.125;
+    color: $text-color;
+}
+
+h2.sub-title {
+    font-size: 2em;
+    line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.4;
+    font-family: $display-font;
+}
+
+h1 {
+    $multiplier: 2.5;
+    font-size: $multiplier * $scale * 1em;
+    font-weight: bold;
+}
+
+h2 {
+    $multiplier: 1.4;
+    font-size: $multiplier * $scale * 1em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1 * $scale * 1em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: $scale * 0.5 * 1em;
+}
+
+h5 {
+    font-size: math.div($scale, 3) * 1em;
+}
+
+// multiplying by 1em is just to convert to the type
+h6 {
+    font-size: $scale * 0.25 * 1em;
 }

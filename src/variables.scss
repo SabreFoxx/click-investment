@@ -28,6 +28,7 @@ $control-width: 1400px;
 /* My variables */
 $display-font: 'EB Garamond', serif;
 $text-font: 'Pridi', serif;
+$text-color: rgb(90, 90, 90);
 
 $margin: 2em;
 $page-padding: 2rem;
@@ -61,46 +62,6 @@ $nav-easing: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 /* Headings */
 $leading: 1em !default;
 $scale: 1 !default;
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    line-height: 1.4;
-    font-family: $display-font;
-}
-
-h1 {
-    $multiplier: 2.5;
-    font-size: $multiplier * $scale * 1em;
-    font-weight: bold;
-}
-
-h2 {
-    $multiplier: 1.4;
-    font-size: $multiplier * $scale * 1em;
-    font-weight: bold;
-}
-
-h3 {
-    font-size: 1 * $scale * 1em;
-    font-weight: bold;
-}
-
-h4 {
-    font-size: $scale * 0.5 * 1em;
-}
-
-h5 {
-    font-size: math.div($scale, 3) * 1em;
-}
-
-// multiplying by 1em is just to convert to the type
-h6 {
-    font-size: $scale * 0.25 * 1em;
-}
 
 $pastel-color-sky-blue: #cbf6f8;
 $pastel-color-blue: #a8e4ef;

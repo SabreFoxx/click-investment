@@ -5,7 +5,7 @@
     width: 220px;
     height: 286px;
     margin: 0 0.05em 1em 0.05em;
-    cursor: pointer;
+    cursor: drag;
 
     // prevent text selection
     caret-color: transparent;
@@ -33,6 +33,14 @@
     width: 85%;
     height: 85%;
     color: $white-ter;
+
+    .chart {
+        flex-grow: 2;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 50%;
+    }
 }
 
 .svg-icon {

@@ -1,15 +1,13 @@
 @import 'src/variables.scss';
 
 .payment {
+    margin-bottom: 2em;
+
     &-methods {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: space-around;
-    }
-
-    &-title {
-        font-size: 2em;
     }
 
     &-desc {

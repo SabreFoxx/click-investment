@@ -1,0 +1,43 @@
+@import 'src/variables.scss';
+
+.table {
+    width: 100%;
+    font-family: $text-font;
+    font-size: 1.1em;
+    color: $text-color;
+    margin-bottom: 1em;
+
+    th,
+    td {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        padding-left: 0;
+        color: $text-color;
+    }
+
+    tr {
+        transition: all 200ms ease-in;
+
+        &.row:hover {
+            background-color: $grey-lightest;
+        }
+    }
+}
+
+.paging {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .position {
+        margin-right: 2em;
+    }
+
+    .pagination {
+        flex-grow: 1;
+    }
+}
+
+.sub-title {
+    color: $link;
+}

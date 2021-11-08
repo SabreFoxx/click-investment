@@ -15,6 +15,7 @@ import { SideMenuItemComponent } from './side-menu-item/side-menu-item.component
 import { PlanCardComponent } from './plan-card/plan-card.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { PaymentCardComponent } from './payment-card/payment-card.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PaymentCardComponent } from './payment-card/payment-card.component';
     CommonModule,
     RouterModule,
     NgScrollbarModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    ChartsModule
   ],
   exports: [
     HeaderComponent,
