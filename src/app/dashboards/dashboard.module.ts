@@ -10,7 +10,6 @@ import { PlanComponent } from './plan/plan.component';
 import { BasePanelComponent } from './base-panel/base-panel.component';
 import { ComponentModule } from '../components/component.module';
 import { TransactionComponent } from './transaction/transaction.component';
-import { LoanComponent } from './loan/loan.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { ChartsModule } from 'ng2-charts';
@@ -36,7 +35,6 @@ export const dashboardRoutes: Routes = [
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'AboutPage' }
   },
-  { path: 'loans', component: LoanComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'settings', component: SettingComponent }
 ]
@@ -47,7 +45,6 @@ export const dashboardRoutes: Routes = [
     PlanComponent,
     BasePanelComponent,
     TransactionComponent,
-    LoanComponent,
     ProfileComponent,
     SettingComponent,
     PaymentComponent

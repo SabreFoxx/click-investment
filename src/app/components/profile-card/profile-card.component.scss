@@ -1,0 +1,31 @@
+@import '/src/variables.scss';
+
+.profile {
+    &-card {
+        @include card();
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-text {
+        text-align: center;
+        font-family: $display-font;
+        padding: 0.2em 0;
+
+        &.name {
+            font-size: 2.4em;
+            font-weight: 600;
+            line-height: 0.8;
+        }
+
+        &.email {
+            font-size: 1.5em;
+            font-weight: 200;
+            color: $pastel-color-red;
+        }
+    }
+}
+
+.line {
+    background-color: lighten($text-color, 40%);
+}

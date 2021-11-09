@@ -16,7 +16,7 @@
     }
 
     tr {
-        transition: all 200ms ease-in;
+        transition: all 150ms ease-in;
 
         &.row:hover {
             background-color: $grey-lightest;
@@ -40,4 +40,32 @@
 
 .sub-title {
     color: $link;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    span {
+        display: block;
+        border: 2px solid $grey-lightest;
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+
+    .success {
+        background-color: $pastel-color-green;
+    }
+
+    .pending {
+        background-color: $pastel-color-orange;
+    }
+
+    .failure {
+        background-color: $pastel-color-red;
+    }
 }

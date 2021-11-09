@@ -16,6 +16,7 @@ import { PlanCardComponent } from './plan-card/plan-card.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { PaymentCardComponent } from './payment-card/payment-card.component';
 import { ChartsModule } from 'ng2-charts';
+import { ProfileCardComponent } from './profile-card/profile-card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ChartsModule } from 'ng2-charts';
     SideMenuItemComponent,
     PlanCardComponent,
     TopBarComponent,
-    PaymentCardComponent
+    PaymentCardComponent,
+    ProfileCardComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { ChartsModule } from 'ng2-charts';
     SideMenuItemComponent,
     PlanCardComponent,
     TopBarComponent,
-    PaymentCardComponent
+    PaymentCardComponent,
+    ProfileCardComponent
   ]
 })
 export class ComponentModule { }
