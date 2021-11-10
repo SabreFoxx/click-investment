@@ -24,8 +24,20 @@
             color: $pastel-color-red;
         }
     }
+
+    &-info {
+        font-family: $text-font;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.2em 0;
+    }
 }
 
 .line {
     background-color: lighten($text-color, 40%);
+}
+
+.value {
+    font-weight: bold;
 }
