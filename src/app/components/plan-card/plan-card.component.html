@@ -5,10 +5,12 @@
             <div [innerHTML]="icon"></div>
             <span class="plan">{{plan.name}}</span>
         </div>
-        <canvas class="chart" baseChart [datasets]="lineChartData"
-                [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                [chartType]="lineChartType" [legend]="false" (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+
+        <div style="text-align:center">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                       [xaxis]="chartOptions.xaxis" [title]="chartOptions.title"></apx-chart>
+        </div>
+
         <div>
             <span class="currency">{{plan.currency}}</span>
             <span class="amount">${{plan.amount}}</span>

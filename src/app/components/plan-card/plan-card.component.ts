@@ -1,8 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label, Color } from 'ng2-charts';
 import { Plan } from 'src/models/plan';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexTitleSubtitle
+} from "ng-apexcharts";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  title: ApexTitleSubtitle;
+};
 
 @Component({
   selector: 'app-plan-card',
@@ -13,56 +25,29 @@ export class PlanCardComponent implements OnInit {
   @Input() plan: Plan;
   icon: SafeHtml;
 
-  public lineChartType: ChartType = 'line';
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 100], label: 'Series A' },
-  ];
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
 
-  public lineChartLabels: Label[] = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'
-  ];
-
-  public lineChartOptions = {
-    responsive: true,
-
-    plugins: {
-      legend: {
-        labels: {
-          color: "blue",
-          font: {
-            size: 10
-          }
+  constructor(private sanitizer: DomSanitizer) {
+    this.chartOptions = {
+      series: [
+        {
+          name: "My-series",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
         }
+      ],
+      chart: {
+        height: 350,
+        type: "bar"
+      },
+      title: {
+        text: "My First Angular Chart"
+      },
+      xaxis: {
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
       }
-    },
-
-    scales: {
-      xAxes: [{
-        gridLines: {
-          display: false,
-        },
-      }],
-      yAxes: [{
-        gridLines: {
-          drawBorder: false,
-        },
-        display: false
-      }]
-    }
-  };
-
-  public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(255,255,255,0.5)',
-      borderColor: 'rgba(255,255,255,0.8)',
-      pointBackgroundColor: '#fff',
-      pointBorderColor: 'rgba(148,159,177,1)',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-
-  constructor(private sanitizer: DomSanitizer) { }
+    };
+  }
 
   ngOnInit(): void {
     this.icon = this.sanitizer.bypassSecurityTrustHtml(`
@@ -70,14 +55,6 @@ export class PlanCardComponent implements OnInit {
           <use xlink:href="#${this.plan.icon}"></use>
         </svg>
     `);
-  }
-
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
   }
 
 }

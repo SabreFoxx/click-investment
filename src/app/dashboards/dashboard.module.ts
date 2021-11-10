@@ -12,7 +12,6 @@ import { ComponentModule } from '../components/component.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
-import { ChartsModule } from 'ng2-charts';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 
@@ -54,8 +53,7 @@ export const dashboardRoutes: Routes = [
     NgScrollbarModule,
     ComponentModule,
     RouterModule,
-    SwiperModule,
-    ChartsModule
+    SwiperModule
   ]
 })
 export class DashboardModule { }
