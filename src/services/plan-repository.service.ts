@@ -18,13 +18,13 @@ export class PlanRepositoryService implements Resolve<any> {
         currency: "USD",
         amount: "20,500"
       }, {
-        name: "Gold plan",
+        name: "Gold",
         image: "card-gold.svg",
         icon: "gold",
         currency: "USD",
         amount: "15,732"
       }, {
-        name: "Diamond plan",
+        name: "Diamond",
         image: "card-diamond.svg",
         icon: "diamond",
         currency: "USD",

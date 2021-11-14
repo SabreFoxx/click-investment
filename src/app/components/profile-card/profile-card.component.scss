@@ -1,10 +1,13 @@
 @import '/src/variables.scss';
 
 .profile {
+    height: 100%;
+    
     &-card {
         @include card();
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 
     &-text {

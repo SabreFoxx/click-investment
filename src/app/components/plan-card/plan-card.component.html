@@ -6,9 +6,8 @@
             <span class="plan">{{plan.name}}</span>
         </div>
 
-        <div style="text-align:center">
-            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                       [xaxis]="chartOptions.xaxis" [title]="chartOptions.title"></apx-chart>
+        <div class="chart">
+            <apx-chart [series]="chartOptions_.series" [chart]="chartOptions_.chart"></apx-chart>
         </div>
 
         <div>

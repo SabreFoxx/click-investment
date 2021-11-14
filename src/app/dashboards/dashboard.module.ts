@@ -20,7 +20,8 @@ export const dashboardRoutes: Routes = [
   {
     path: 'payment',
     component: PaymentComponent,
-    resolve: { paymentMethods: PaymentMethodService }
+    resolve: { paymentMethods: PaymentMethodService },
+    data: { animation: 'Payment' }
   },
   {
     path: 'dashboard',
@@ -28,13 +29,21 @@ export const dashboardRoutes: Routes = [
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'HomePage' }
   },
-  { path: 'transactions', component: TransactionComponent },
+  {
+    path: 'transactions',
+    component: TransactionComponent,
+    data: { animation: 'Transactions' }
+  },
   {
     path: 'plans', component: PlanComponent,
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'AboutPage' }
   },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: { animation: 'Profile' }
+  },
   { path: 'settings', component: SettingComponent }
 ]
 

@@ -1,15 +1,9 @@
-<!-- <div class="top">
-    <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [plan]="plan">
-    </app-plan-card>
-</div> -->
-
-<swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
-    <ng-template swiperSlide *ngFor="let plan of plans | async">
-        <app-plan-card [plan]="plan">
-        </app-plan-card>
-    </ng-template>
-</swiper>
-
-<br>
-<div></div>
-
+<section class="plan-list">
+    <h2 class="sub-title">Investments</h2>
+    <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+        <ng-template swiperSlide *ngFor="let plan of plans | async">
+            <app-plan-card [plan]="plan">
+            </app-plan-card>
+        </ng-template>
+    </swiper>
+</section>

@@ -1,6 +1,13 @@
 @import "node_modules/swiper/swiper.scss";
+@import '/src/variables.scss';
 
 // uses ViewEncapsulation.None
+
+.plan {
+  &-list {
+    @include card();
+  }
+}
 
 .swiper-slide {
   width: 250px;
