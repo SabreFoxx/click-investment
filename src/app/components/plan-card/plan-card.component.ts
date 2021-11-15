@@ -65,9 +65,9 @@ export class PlanCardComponent implements OnInit {
       colors: ["#ffffff"],
       stroke: { curve: "straight", width: 3 },
       grid: {
-        borderColor: "#555",//
-        clipMarkers: false,//
-        yaxis: {//
+        borderColor: "#555",
+        clipMarkers: false,
+        yaxis: {
           lines: {
             show: false
           }
