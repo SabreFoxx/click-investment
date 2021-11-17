@@ -1,46 +1,63 @@
 <div class="border spc">
-    <form>
+    <form [formGroup]="form">
         <h2>Open and account</h2>
         <br>
         <div class="input-row">
             <div class="input-container">
                 <label #label for="surname" class="label">Surname</label>
-                <input #input class="input" id="surname" type="text">
+                <input #input class="input" [formControl]="form.controls['surname']" id="surname"
+                       type="text">
+                <span class="input-validation">Validation message</span>
             </div>
             <div class="input-container">
                 <label #label for="firstname" class="label">Firstname</label>
-                <input #input class="input" id="firstname" type="text">
+                <input #input class="input" [formControl]="form.controls['firstName']"
+                       id="firstname" type="text">
+                <span class="input-validation">Validation message</span>
             </div>
         </div>
         <div class="input-row">
             <div class="input-container">
                 <label #label for="othernames" class="label">Other names</label>
                 <input #input class="input" id="othernames" type="text">
+                <span class="input-validation">Validation message</span>
             </div>
             <div class="input-container"></div>
         </div>
-        <div class="input-container">
-            <label #label for="email" class="label">Email</label>
-            <input #input class="input" id="email" type="email">
+        <div class="input-row">
+            <div class="input-container">
+                <label #label for="email" class="label">Email</label>
+                <input #input class="input" [formControl]="email" id="email" type="email">
+                <span class="input-validation">Validation message</span>
+            </div>
         </div>
-        <div class="input-container">
-            <label #label for="phone" class="label">Phone number</label>
-            <input #input class="input" id="phone" type="tel">
+        <div class="input-row">
+            <div class="input-container">
+                <label #label for="phone" class="label">Phone number</label>
+                <input #input class="input" id="phone" type="tel">
+                <span class="input-validation">Validation message</span>
+            </div>
         </div>
         <div class="input-row">
             <div class="input-container">
                 <label #label for="password" class="label">Password</label>
-                <input #input class="input" id="password" type="text">
+                <input #input class="input" [formControl]="form.controls['password']" id="password"
+                       type="password">
+                <span class="input-validation">Validation message</span>
             </div>
             <div class="input-container">
                 <label #label for="repassword" class="label">Retype password</label>
-                <input #input class="input" id="repassword" type="text">
+                <input #input class="input" [formControl]="form.controls['retypePassword']"
+                       id="repassword" type="password">
+                <span class="input-validation">Validation message</span>
             </div>
         </div>
 
         <div class="input-row">
             <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
-            <button class="button is-rounded is-link" type="submit">Submit</button>
+            <button class="button is-rounded is-link" type="submit"
+                    [disabled]="!form.valid">Submit</button>
         </div>
     </form>
 </div>
+<pre>{{form.value | json}}</pre>

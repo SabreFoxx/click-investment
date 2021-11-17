@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { passwordValidation } from 'src/miscellaneous/validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,10 +10,25 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren }
 export class SignUpComponent implements OnInit, AfterViewInit {
   @ViewChildren('input') private inputBoxes: QueryList<ElementRef>;
   @ViewChildren('label') private labels: QueryList<ElementRef>;
+  form: FormGroup;
+  email: AbstractControl;
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      'firstName': ['', Validators.required],
+      'surname': ['', Validators.required],
+      'email': ['', Validators.email],
+      'password': ['', Validators.compose([Validators.minLength(6)])],
+      'retypePassword': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    });
+
+    this.email = this.form.controls['email'];
+  }
 
   ngOnInit(): void {
+    this.email.valueChanges.subscribe(value => {
+      console.log('email changed to ', value);
+    })
   }
 
   ngAfterViewInit(): void {
