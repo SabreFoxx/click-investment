@@ -193,8 +193,13 @@ img {
         }
     }
 
-    &-validation {
+    &-validation-msg {
         color: $info-color-red;
+    }
+
+    &-invalid {
+        background-color: lighten($info-color-red, 35%);
+        border-color: $info-color-red;
     }
 }
 
