@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SvgComponent } from './svg/svg.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SvgComponent } from './svg/svg.component';
     LandingComponent,
     NotFoundComponent,
     SvgComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

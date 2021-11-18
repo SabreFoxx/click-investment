@@ -1,5 +1,5 @@
 export enum ApiEndpoints {
-    USER_REGISTRATION = '/registration'
+    USER_REGISTRATION = '/register'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } =

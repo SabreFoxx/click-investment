@@ -2,6 +2,7 @@ import { SimplePostService } from './../../../services/simple-post.service';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidation } from 'src/adjectives/validators';
+import { Plan } from 'src/models/plan';
 
 @Component({
   selector: 'app-sign-up',
@@ -68,6 +69,9 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   submit(): void {
-    this.post.send();
+    this.post.send<Plan>(this.endpoint, this.form.value)
+    .subscribe(() => {
+      console.log('hi')
+    })
   }
 }
