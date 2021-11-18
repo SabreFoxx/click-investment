@@ -1,3 +1,4 @@
+import { ToastService } from './toast.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -33,9 +34,10 @@ export class ToastComponent implements OnInit {
     }
   }
   
-  constructor() { }
+  constructor(private toast: ToastService) { }
 
   ngOnInit(): void {
+    this.toast;
   }
 
 }
