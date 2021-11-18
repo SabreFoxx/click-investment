@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { SimplePostService } from './../../../services/simple-post.service';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordValidation } from 'src/miscellaneous/validators';
+import { passwordValidation } from 'src/adjectives/validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +20,9 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   password: AbstractControl;
   retypePassword: AbstractControl;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder,
+    @Inject('REGISTRATION_URL') private endpoint: string,
+    private post: SimplePostService) {
     this.form = fb.group({
       'firstName': ['', Validators.required],
       'surname': ['', Validators.required],
@@ -42,7 +45,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     this.retypePassword.valueChanges.subscribe(value => {
       setTimeout(() => {
         if (this.password.value != this.retypePassword.value)
-          this.retypePassword.setErrors({ "__": "Passwords do not match" });
+          this.retypePassword.setErrors({ "x!x": "Passwords do not match" });
       }, 1000);
       if (this.retypePassword.value != ''
         && (this.password.value == this.retypePassword.value))
@@ -65,6 +68,6 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   submit(): void {
-    alert('submitted')
+    this.post.send();
   }
 }

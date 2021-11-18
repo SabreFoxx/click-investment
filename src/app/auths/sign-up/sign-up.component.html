@@ -8,8 +8,9 @@
                 <input #input class="input"
                        [class.input-invalid]="surname.invalid && surname.touched"
                        [formControl]="surname" id="surname" type="text">
-                <span *ngIf="surname.invalid && surname.touched" class="input-validation-msg">Enter
-                    your surname</span>
+                <span *ngIf="surname.invalid && surname.touched" class="input-validation-msg">
+                    Enter your surname
+                </span>
             </div>
             <div class="input-container">
                 <label #label for="firstname" class="label">Firstname</label>
@@ -67,7 +68,7 @@
                         Retype entered password
                     </span>
                     <span *ngIf="retypePassword.hasError('__')">
-                        {{retypePassword.errors['__']}}
+                        {{retypePassword.errors['x!x']}}
                     </span>
                 </span>
             </div>
