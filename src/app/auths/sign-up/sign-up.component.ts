@@ -71,7 +71,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   submit(): void {
     this.post.send<Plan>(this.endpoint, this.form.value)
     .subscribe(() => {
-      console.log('hi')
+      
     })
   }
 }

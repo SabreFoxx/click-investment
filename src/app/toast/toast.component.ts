@@ -1,5 +1,6 @@
 import { ToastService } from './toast.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-toast',
@@ -7,37 +8,36 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit {
-  @Input() name: string;
-  @Input() text: string;
+  alert = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+    showConfirmButton: false
+  })
 
-  alertOptions = {
-    title: 'XRP',
-    html: `
-      The RippleNet payment platform is a real-time gross settlement 
-      (RTGS) system that aims to enable instant monetary transactions globally.`,
-    iconHtml: `
-      <svg class="svg-icon-for-sweet-alert" style="fill: #0cc078">
-        <use xlink:href="#circle-multiple-outline"></use>
-      </svg>`,
-    iconColor: '#0cc078',
-    confirmButtonText: 'Proceed with XRP',
-    confirmButtonAriaLabel: 'Use XRP',
-    footer: 'Select this payment method for use in funding your plan',
-    heightAuto: false,
-    showCancelButton: true,
-    cancelButtonAriaLabel: 'Abort',
-    focusCancel: true,
-    buttonsStyling: false,
-    customClass: {
-      confirmButton: 'button is-rounded is-link mgn',
-      cancelButton: 'button is-rounded mgn'
-    }
-  }
-  
   constructor(private toast: ToastService) { }
 
   ngOnInit(): void {
-    this.toast;
+    this.toast.message.subscribe(toast => {
+      this.alert.fire({
+        icon: 'success',
+        title: toast.title,
+        text: toast.text
+      })
+    });
+
+    ToastService.error.subscribe(toast => {
+      this.alert.fire({
+        icon: 'error',
+        title: toast.title,
+        text: toast.text
+      })
+    })
   }
 
 }
