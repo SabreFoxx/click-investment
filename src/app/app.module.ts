@@ -13,6 +13,7 @@ import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SvgComponent } from './svg/svg.component';
 import { ToastComponent } from './toast/toast.component';
+import { NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastComponent } from './toast/toast.component';
     DashboardModule,
     NgScrollbarModule,
     BrowserAnimationsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    NgProgressModule
   ],
   providers: [],
   bootstrap: [AppComponent]

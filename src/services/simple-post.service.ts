@@ -1,5 +1,5 @@
-import { ToastService, Toast } from './../app/toast/toast.service';
-import { SimpleError } from './../adjectives/error';
+import { FeedbackService } from 'src/services/feedback.service';
+import { SimpleError } from 'src/adjectives/error';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject, throwError } from 'rxjs';
@@ -10,13 +10,14 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class SimplePostService {
 
-  constructor(private http: HttpClient, private toast: ToastService) { }
+  constructor(private http: HttpClient, private feedback: FeedbackService) { }
 
   send<T>(url: string, data: any,
     toastSuccessMsg = true, toastErrorMsg = true, headers?: any): Subject<T> {
     let response = new Subject<T>();
     let errorHandler = toastErrorMsg ? this.toastError : this.handleError;
 
+    this.feedback.loading();
     this.http.post<T>(url, data, {
       headers: headers || null,
       observe: 'response',
@@ -26,10 +27,12 @@ export class SimplePostService {
       catchError(errorHandler)
     )
       .subscribe(res => {
+        this.feedback.doneLoading();
         response.next((res.body as any).data);
         if (toastSuccessMsg)
-          this.toast.show({ title: 'Success', text: res.body['message'] });
+          this.feedback.show({ title: 'Success', text: res.body['message'] });
       }, (error: HttpErrorResponse) => {
+        this.feedback.doneLoading();
         if (!toastErrorMsg)
           response.error(error.error.message);
       })
@@ -52,9 +55,9 @@ export class SimplePostService {
 
   private toastError(error: HttpErrorResponse) {
     if (error.status === 0)
-      ToastService.showError({ title: "An error occurred", text: error.error.message });
+      FeedbackService.showError({ title: "An error occurred", text: error.error.message });
     else
-      ToastService.showError({ title: "An error occurred", text: error.error.message });
+      FeedbackService.showError({ title: "An error occurred", text: error.error.message });
 
     // return an observable with a user-facing error message.
     return throwError(new SimpleError);

@@ -1,4 +1,4 @@
-import { ToastService } from './toast.service';
+import { FeedbackService } from 'src/services/feedback.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
@@ -20,10 +20,10 @@ export class ToastComponent implements OnInit {
     showConfirmButton: false
   })
 
-  constructor(private toast: ToastService) { }
+  constructor(private feedback: FeedbackService) { }
 
   ngOnInit(): void {
-    this.toast.message.subscribe(toast => {
+    this.feedback.message.subscribe(toast => {
       this.alert.fire({
         icon: 'success',
         title: toast.title,
@@ -31,7 +31,7 @@ export class ToastComponent implements OnInit {
       })
     });
 
-    ToastService.error.subscribe(toast => {
+    FeedbackService.error.subscribe(toast => {
       this.alert.fire({
         icon: 'error',
         title: toast.title,
