@@ -9,9 +9,21 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SimplePostService {
+  fullResponseBody: Subject<any>;
 
-  constructor(private http: HttpClient, private feedback: FeedbackService) { }
+  constructor(private http: HttpClient, private feedback: FeedbackService) {
+    this.fullResponseBody = new Subject();
+  }
 
+  /**
+   * Make an API call using POST
+   * @param url api endpoint
+   * @param data POST data to send
+   * @param toastSuccessMsg show UI toast on success
+   * @param toastErrorMsg show UI toast on error
+   * @param headers HTTP headers
+   * @returns a Subject of <T>. <T> is the model of the expected result.
+   */
   send<T>(url: string, data: any,
     toastSuccessMsg = true, toastErrorMsg = true, headers?: any): Subject<T> {
     let response = new Subject<T>();
@@ -29,6 +41,8 @@ export class SimplePostService {
       .subscribe(res => {
         this.feedback.doneLoading();
         response.next((res.body as any).data);
+        this.fullResponseBody.next(res.body);
+
         if (toastSuccessMsg)
           this.feedback.show({ title: 'Success', text: res.body['message'] });
       }, (error: HttpErrorResponse) => {

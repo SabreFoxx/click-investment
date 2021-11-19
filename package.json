@@ -24,6 +24,7 @@
     "apexcharts": "^3.29.0",
     "bulma": "^0.9.3",
     "csshake": "^1.5.3",
+    "jwt-decode": "^3.1.2",
     "ng-apexcharts": "^1.5.12",
     "ngx-progressbar": "^6.1.1",
     "ngx-scrollbar": "^8.0.0",

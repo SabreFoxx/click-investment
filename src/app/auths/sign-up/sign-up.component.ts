@@ -1,8 +1,9 @@
 import { SimplePostService } from './../../../services/simple-post.service';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordValidation } from 'src/adjectives/validators';
-import { Plan } from 'src/models/plan';
+import { passwordValidation } from 'src/adjectives/validators'; // TODO
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,9 +22,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   password: AbstractControl;
   retypePassword: AbstractControl;
 
-  constructor(fb: FormBuilder,
-    @Inject('REGISTRATION_URL') private endpoint: string,
-    private post: SimplePostService) {
+  disableSubmitButton: boolean = false;
+
+  constructor(fb: FormBuilder, @Inject('REGISTRATION_URL') private endpoint: string,
+    private auth: AuthService, private post: SimplePostService) {
     this.form = fb.group({
       'firstName': ['', Validators.required],
       'surname': ['', Validators.required],
@@ -69,9 +71,8 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   submit(): void {
-    this.post.send<Plan>(this.endpoint, this.form.value)
-    .subscribe(() => {
-      
-    })
+    this.disableSubmitButton = true;
+    setTimeout(() => this.disableSubmitButton = false, 7000);
+    this.auth.login(this.form.value, this.endpoint);
   }
 }

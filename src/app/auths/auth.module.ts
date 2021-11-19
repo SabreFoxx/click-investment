@@ -35,7 +35,21 @@ export const authRoutes: Routes = [
       provide: 'REGISTRATION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.USER_REGISTRATION}`
+        return `${prefix}${ApiEndpoints.REGISTRATION}`
+      }
+    },
+    {
+      provide: 'LOGIN_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.LOGIN}`
+      }
+    },
+    {
+      provide: 'LOGIN_REFRESH_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.REFRESH_LOGIN}`
       }
     }
   ]

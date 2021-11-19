@@ -11,7 +11,7 @@ export class ToastComponent implements OnInit {
   alert = Swal.mixin({
     toast: true,
     position: 'top-end',
-    timer: 2000,
+    timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
