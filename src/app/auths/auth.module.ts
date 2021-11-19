@@ -8,16 +8,19 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ApiEndpoints, apiPrefix } from 'src/adjectives/constants';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 export const authRoutes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'signup_', component: PreSignupComponent },
+  { path: 'login', component: LoginComponent }
 ]
 
 @NgModule({
   declarations: [
     PreSignupComponent,
     SignUpComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
         // don't load forever
         setTimeout(() => {
           this.progressBar.complete()
-        }, 30 * 60 * 1000);
+        }, 60 * 1000); // one minute
       }
       else
         this.progressBar.complete();

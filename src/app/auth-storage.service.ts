@@ -13,6 +13,7 @@ export class AuthStorageService {
 
   constructor() {
     this.httpHeader = new HttpHeaders;
+    this.currentUser = new BehaviorSubject(null);
   }
 
   /**
@@ -20,7 +21,7 @@ export class AuthStorageService {
    */
   get isLoggedIn(): boolean {
     // Check whether the token is expired and return true or false
-    return !this.isJwtTokenExpired(this.userJwtToken);
+    return !this.isJwtTokenExpired();
   }
 
   get userJwtToken() {
@@ -31,11 +32,14 @@ export class AuthStorageService {
     localStorage.setItem('auth-token', token);
   }
 
-  public isJwtTokenExpired(token: string): boolean {
-    const decodedToken = jwtDecode(token);
-    if (decodedToken['exp'])
-      return (Date.now() >= decodedToken['exp'] * 1000) ? true : false
-    return false
+  public isJwtTokenExpired(): boolean {
+    try {
+      const decodedToken = jwtDecode(this.userJwtToken);
+      if (decodedToken['exp'])
+        return (Date.now() >= decodedToken['exp'] * 1000) ? true : false;
+    } catch (e) {
+      return true;
+    }
   }
 
   get authorizationHeader() {

@@ -1,8 +1,14 @@
-import { SimplePostService } from './../../../services/simple-post.service';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidation } from 'src/adjectives/validators'; // TODO
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -25,7 +31,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   disableSubmitButton: boolean = false;
 
   constructor(fb: FormBuilder, @Inject('REGISTRATION_URL') private endpoint: string,
-    private auth: AuthService, private post: SimplePostService) {
+    private auth: AuthService) {
     this.form = fb.group({
       'firstName': ['', Validators.required],
       'surname': ['', Validators.required],

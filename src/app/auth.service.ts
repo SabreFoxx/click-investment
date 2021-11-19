@@ -10,31 +10,31 @@ import { SimplePostService } from 'src/services/simple-post.service';
 export class AuthService {
 
   constructor(private post: SimplePostService, private router: Router,
+    private authStorage: AuthStorageService,
     @Inject('LOGIN_URL') private loginEndpoint: string,
-    @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string,
-    private authStorage: AuthStorageService) {
+    @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) {
     this.refreshLogin();
   }
 
-  public login(credentials: { email: string, password: string },
-    endpoint = this.loginEndpoint) {
+  public login(credentials: { email: string, password: string }, endpoint = this.loginEndpoint) {
     this.post.fullResponseBody.subscribe(response => {
-      if (response['token'])
+      if (response?.token)
         this.authStorage.userJwtToken = response['token'];
     });
     this.post.send<User>(endpoint, credentials)
       .subscribe(user => {
         this.authStorage.currentUser.next(user);
-        this.router.navigate(['/api/dashboard']);
+        this.router.navigate(['/app/dashboard']);
       })
   }
 
   private refreshLogin() {
-    this.post.send<User>(this.loginRefreshEndpoint, null, false, false,
-      this.authStorage.authorizationHeader)
-      .subscribe(user => {
-        this.authStorage.currentUser.next(user);
-      }, () => this.router.navigate(['/login']));
+    if (this.authStorage.isLoggedIn)
+      this.post.send<User>(this.loginRefreshEndpoint, null, false, false,
+        this.authStorage.authorizationHeader)
+        .subscribe(user => {
+          this.authStorage.currentUser.next(user);
+        }, () => this.router.navigate(['/auth/login']));
   }
 
 }

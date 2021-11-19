@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NgProgressComponent } from 'ngx-progressbar';
 import { Subject } from 'rxjs';
 
 export interface Toast {
