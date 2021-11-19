@@ -25,6 +25,7 @@
     "bulma": "^0.9.3",
     "csshake": "^1.5.3",
     "ng-apexcharts": "^1.5.12",
+    "ngx-progressbar": "^6.1.1",
     "ngx-scrollbar": "^8.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
