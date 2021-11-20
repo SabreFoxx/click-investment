@@ -9,11 +9,14 @@ import { ApiEndpoints, apiPrefix } from 'src/adjectives/constants';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export const authRoutes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'signup_', component: PreSignupComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent }
 ]
 
 @NgModule({
@@ -21,12 +24,14 @@ export const authRoutes: Routes = [
     PreSignupComponent,
     SignUpComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module
   ],
   providers: [
     {

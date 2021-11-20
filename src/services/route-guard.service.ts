@@ -1,4 +1,4 @@
-import { AuthStorageService } from './../app/auth-storage.service';
+import { AuthStorageService } from 'src/services/auth-storage.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,

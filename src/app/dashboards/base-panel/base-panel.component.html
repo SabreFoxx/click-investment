@@ -11,7 +11,7 @@
 
         <nav class="app-nav">
             <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
-                <app-side-menu-item [link]="'dashboard'">
+                <app-side-menu-item [link]="['/app', 'dashboard']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#tablet-dashboard"></use>
@@ -19,7 +19,7 @@
                     </ng-container>
                     <ng-container class="name">Dashboard</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="'payment'">
+                <app-side-menu-item [link]="['/app', 'payment']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#cash-multiple"></use>
@@ -27,7 +27,7 @@
                     </ng-container>
                     <ng-container class="name">Payment</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="'transactions'">
+                <app-side-menu-item [link]="['/app', 'transactions']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#cards-variant"></use>
@@ -35,7 +35,7 @@
                     </ng-container>
                     <ng-container class="name">Transactions</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="'plans'">
+                <app-side-menu-item [link]="['/app', 'plans']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#handshake-outline"></use>
@@ -43,7 +43,7 @@
                     </ng-container>
                     <ng-container class="name">Plans</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="'profile'">
+                <app-side-menu-item [link]="['/app', 'profile']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#face-man"></use>
@@ -54,7 +54,7 @@
 
                 <hr class="line">
 
-                <app-side-menu-item [link]="'settings'">
+                <app-side-menu-item [link]="['/app', 'settings']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#cog-outline"></use>
@@ -62,7 +62,7 @@
                     </ng-container>
                     <ng-container class="name">Settings</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="'about'">
+                <app-side-menu-item [link]="['/app', 'about']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#information-outline"></use>
@@ -70,7 +70,7 @@
                     </ng-container>
                     <ng-container class="name">About</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item>
+                <app-side-menu-item [link]="['/auth', 'logout']">
                     <ng-container class="svg-icon">
                         <svg class="svg-icon">
                             <use xlink:href="#logout"></use>

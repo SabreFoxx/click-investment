@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidation } from 'src/adjectives/validators'; // TODO
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
