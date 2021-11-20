@@ -1,7 +1,8 @@
 export interface Plan {
-    name: string;
-    image: string;
-    icon: string;
-    currency: string;
-    amount: string;
+    name: string,
+    design: string,
+    description: string,
+    icon: string,
+    currency: string,
+    amount: string
 }

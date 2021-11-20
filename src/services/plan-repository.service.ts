@@ -13,43 +13,50 @@ export class PlanRepositoryService implements Resolve<any> {
     this.plans = [
       {
         name: "Platinum",
-        image: "card-platinum.svg",
+        design: "card-platinum.svg",
+        description: "A good plan",
         icon: "rhombus",
         currency: "USD",
         amount: "20,500"
       }, {
         name: "Gold",
-        image: "card-gold.svg",
+        design: "card-gold.svg",
+        description: "A good plan",
         icon: "gold",
         currency: "USD",
         amount: "15,732"
       }, {
         name: "Diamond",
-        image: "card-diamond.svg",
+        design: "card-diamond.svg",
+        description: "A good plan",
         icon: "diamond",
         currency: "USD",
         amount: "72,850"
       }, {
         name: "Emerald",
-        image: "card-emerald.svg",
+        design: "card-emerald.svg",
+        description: "A good plan",
         icon: "diamond-outline",
         currency: "USD",
         amount: "42,600"
       }, {
         name: "Gold plan",
-        image: "card-gold.svg",
+        design: "card-gold.svg",
+        description: "A good plan",
         icon: "gold",
         currency: "USD",
         amount: "15,732"
       }, {
         name: "Platinum",
-        image: "card-platinum.svg",
+        design: "card-platinum.svg",
+        description: "A good plan",
         icon: "rhombus",
         currency: "USD",
         amount: "20,500"
       }, {
         name: "Gold plan",
-        image: "card-gold.svg",
+        design: "card-gold.svg",
+        description: "A good plan",
         icon: "gold",
         currency: "USD",
         amount: "15,732"
