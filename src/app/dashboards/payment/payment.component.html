@@ -7,7 +7,7 @@
     <div class="payment-methods">
         <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
                           [css]="card.cssClass" [text]="'Payment Method'"
-                          (clicked)="alert.swalOptions = alertMixin; showAlert()">
+                          (selected)="alert.swalOptions = alertMixin; showAlert(card)">
         </app-payment-card>
     </div>
 </section>

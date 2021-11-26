@@ -11,12 +11,37 @@ export class PaymentMethodService implements Resolve<any> {
 
   constructor() {
     this.methods = [
-      { name: 'xrp', cssClass: 'xrp' },
-      { name: 'btc', cssClass: 'btc' },
-      { name: 'ltc', cssClass: 'ltc' },
-      { name: 'abc', cssClass: 'abc' },
-      { name: 'eth', cssClass: 'eth' },
-      { name: 'xrp', cssClass: 'xrp' },
+      {
+        name: 'xrp',
+        cssClass: 'xrp',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
+      {
+        name: 'btc', cssClass: 'btc',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
+      {
+        name: 'ltc', cssClass: 'ltc',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
+      {
+        name: 'abc', cssClass: 'abc',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
+      {
+        name: 'eth', cssClass: 'eth',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
+      {
+        name: 'xrp', cssClass: 'xrp',
+        description: "The RippleNet payment platform is a real-time gross settlement "
+          + "(RTGS) system that aims to enable instant monetary transactions globally."
+      },
     ]
   }
 

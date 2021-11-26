@@ -11,14 +11,14 @@ export class PaymentCardComponent implements OnInit {
   @Input() name: string;
   @Input() css: string;
   @Input() text: string;
-  @Output() clicked = new EventEmitter();
+  @Output() selected = new EventEmitter();
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  selected() {
-    this.clicked.emit();
+  clicked() {
+    this.selected.emit();
   }
 }

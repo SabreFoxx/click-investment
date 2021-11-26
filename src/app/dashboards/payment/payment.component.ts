@@ -16,17 +16,11 @@ export class PaymentComponent implements OnInit {
   @ViewChild(SwalComponent) alert: SwalComponent;
 
   alertMixin = Swal.mixin({
-    title: 'XRP',
-    html: `
-      The RippleNet payment platform is a real-time gross settlement 
-      (RTGS) system that aims to enable instant monetary transactions globally.`,
     iconHtml: `
       <svg class="svg-icon-for-sweet-alert" style="fill: #0cc078">
         <use xlink:href="#circle-multiple-outline"></use>
       </svg>`,
     iconColor: '#0cc078',
-    confirmButtonText: 'Proceed with XRP',
-    confirmButtonAriaLabel: 'Use XRP',
     footer: 'Select this payment method for use in funding your plan',
     heightAuto: false,
     showCancelButton: true,
@@ -45,8 +39,14 @@ export class PaymentComponent implements OnInit {
     this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));
   }
 
-  showAlert() {
-    this.alertMixin.fire();
+  showAlert(card: PaymentMethod) {
+    const cardName = card.name.toUpperCase();
+    this.alertMixin.fire({
+      title: cardName,
+      text: card.description,
+      confirmButtonText: `Proceed with ${cardName}`,
+      confirmButtonAriaLabel: `Use ${cardName}`,
+    });
   }
 
 }

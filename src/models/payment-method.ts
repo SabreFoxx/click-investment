@@ -1,4 +1,5 @@
 export interface PaymentMethod {
-    name: string;
-    cssClass: string;
+    name: string,
+    cssClass: string,
+    description: string,
 }
