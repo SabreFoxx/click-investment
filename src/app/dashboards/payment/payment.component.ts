@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { PaymentMethod } from 'src/models/payment-method';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -11,12 +13,40 @@ import { PaymentMethod } from 'src/models/payment-method';
 })
 export class PaymentComponent implements OnInit {
   paymentMethods: Observable<PaymentMethod[]>;
+  @ViewChild(SwalComponent) alert: SwalComponent;
+
+  alertMixin = Swal.mixin({
+    title: 'XRP',
+    html: `
+      The RippleNet payment platform is a real-time gross settlement 
+      (RTGS) system that aims to enable instant monetary transactions globally.`,
+    iconHtml: `
+      <svg class="svg-icon-for-sweet-alert" style="fill: #0cc078">
+        <use xlink:href="#circle-multiple-outline"></use>
+      </svg>`,
+    iconColor: '#0cc078',
+    confirmButtonText: 'Proceed with XRP',
+    confirmButtonAriaLabel: 'Use XRP',
+    footer: 'Select this payment method for use in funding your plan',
+    heightAuto: false,
+    showCancelButton: true,
+    cancelButtonAriaLabel: 'Abort',
+    focusCancel: true,
+    buttonsStyling: false,
+    customClass: {
+      confirmButton: 'button is-rounded is-link mgn',
+      cancelButton: 'button is-rounded mgn'
+    }
+  });
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.route)
     this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));
+  }
+
+  showAlert() {
+    this.alertMixin.fire();
   }
 
 }

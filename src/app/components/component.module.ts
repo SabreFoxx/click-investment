@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -39,7 +38,6 @@ import { ChartComponent } from './chart/chart.component';
     CommonModule,
     RouterModule,
     NgScrollbarModule,
-    SweetAlert2Module,
     NgApexchartsModule
   ],
   exports: [

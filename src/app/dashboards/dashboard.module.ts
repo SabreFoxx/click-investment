@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -62,7 +63,8 @@ export const dashboardRoutes: Routes = [
     NgScrollbarModule,
     ComponentModule,
     RouterModule,
-    SwiperModule
+    SwiperModule,
+    SweetAlert2Module
   ]
 })
 export class DashboardModule { }
