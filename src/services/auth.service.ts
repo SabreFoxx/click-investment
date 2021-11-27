@@ -24,7 +24,7 @@ export class AuthService {
     this.post.send<User>(endpoint, credentials)
       .subscribe(user => {
         this.authStorage.currentUser.next(user);
-        this.router.navigate(['/app/dashboard']);
+        this.router.navigate(['/app/stats']);
       })
   }
 

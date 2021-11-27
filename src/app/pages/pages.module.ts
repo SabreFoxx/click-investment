@@ -17,7 +17,7 @@ import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
 
-export const dashboardRoutes: Routes = [
+export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
   {
     path: 'payments',
@@ -75,4 +75,4 @@ export const dashboardRoutes: Routes = [
     SweetAlert2Module
   ]
 })
-export class DashboardModule { }
+export class PageModule { }

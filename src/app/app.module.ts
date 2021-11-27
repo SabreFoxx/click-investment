@@ -1,5 +1,5 @@
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { DashboardModule } from './dashboards/dashboard.module';
+import { PageModule } from './pages/pages.module';
 import { ComponentModule } from './components/component.module';
 import { AuthModule } from './auths/auth.module';
 import { NgModule } from '@angular/core';
@@ -28,7 +28,7 @@ import { NgProgressModule } from 'ngx-progressbar';
     AppRoutingModule,
     AuthModule,
     ComponentModule,
-    DashboardModule,
+    PageModule,
     NgScrollbarModule,
     BrowserAnimationsModule,
     SweetAlert2Module.forRoot(),
