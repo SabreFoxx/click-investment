@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
     }
   });
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));
@@ -46,7 +46,11 @@ export class PaymentComponent implements OnInit {
       text: card.description,
       confirmButtonText: `Proceed with ${cardName}`,
       confirmButtonAriaLabel: `Use ${cardName}`,
-    });
+    }).then(result => {
+      if (result.isConfirmed)
+        this.router.navigate(['deposit'],
+          { queryParams: { currency: card.name }, relativeTo: this.route })
+    })
   }
 
 }

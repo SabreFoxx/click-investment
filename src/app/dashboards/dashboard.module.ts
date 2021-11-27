@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
 
 import { PlanRepositoryService } from 'src/services/plan-repository.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { StatComponent } from './stat/stat.component';
 import { PlanComponent } from './plan/plan.component';
 import { BasePanelComponent } from './base-panel/base-panel.component';
 import { ComponentModule } from '../components/component.module';
@@ -15,18 +15,24 @@ import { SettingComponent } from './setting/setting.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { PaymentActionComponent } from './payment-action/payment-action.component';
 
 export const dashboardRoutes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'stats', pathMatch: 'full' },
   {
-    path: 'payment',
+    path: 'payments',
     component: PaymentComponent,
     resolve: { paymentMethods: PaymentMethodService },
     data: { animation: 'Payment' }
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'payments/:action',
+    component: PaymentActionComponent,
+    data: { animation: 'Payment' }
+  },
+  {
+    path: 'stats',
+    component: StatComponent,
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'HomePage' }
   },
@@ -50,13 +56,14 @@ export const dashboardRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    StatComponent,
     PlanComponent,
     BasePanelComponent,
     TransactionComponent,
     ProfileComponent,
     SettingComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaymentActionComponent
   ],
   imports: [
     CommonModule,

@@ -1,18 +1,36 @@
 <div class="top-bar">
-    <span class="main-title">Dashboard</span>
-    <div class="nav">
-        <div class="search">
-            <svg class="svg-icon search-icon">
-                <use xlink:href="#magnify"></use>
+    <div class="top">
+        <span class="main-title">Stats</span>
+        <div class="nav">
+            <div class="search">
+                <svg class="svg-icon search-icon">
+                    <use xlink:href="#magnify"></use>
+                </svg>
+                <label for="input">Search</label>
+                <input type="text" class="input" id="input">
+            </div>
+            <svg class="svg-icon">
+                <use xlink:href="#bell"></use>
             </svg>
-            <label for="input">Search</label>
-            <input type="text" class="input" id="input">
+            <svg class="svg-icon">
+                <use xlink:href="#message-outline"></use>
+            </svg>
         </div>
-        <svg class="svg-icon">
-            <use xlink:href="#bell"></use>
-        </svg>
-        <svg class="svg-icon">
-            <use xlink:href="#message-outline"></use>
-        </svg>
     </div>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon is-small">
+                        <svg class="svg-icon" aria-hidden="true">
+                            <use xlink:href="#diamond"></use>
+                        </svg>
+                    </span>
+                    <span>App</span>
+                </a>
+            </li>
+            <li><a href="#">Payments</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Select Plan</a></li>
+        </ul>
+    </nav>
 </div>
