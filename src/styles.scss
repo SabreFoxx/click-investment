@@ -12,8 +12,8 @@
 @import "bulma/sass/components/dropdown.sass";
 @import "bulma/sass/components/pagination.sass";
 @import "bulma/sass/components/breadcrumb.sass";
+@import "bulma/sass/components/message.sass";
 // @import "bulma/sass/components/media.sass";
-// @import "bulma/sass/components/message.sass";
 // @import "bulma/sass/components/modal.sass";
 // @import "bulma/sass/components/panel.sass";
 // @import "bulma/sass/components/tabs.sass";
@@ -208,6 +208,8 @@ img {
     justify-content: space-between;
     align-content: space-between;
     width: 100%;
+    border-radius: 2rem;
+    background-color: white;
 }
 
 .swiper {

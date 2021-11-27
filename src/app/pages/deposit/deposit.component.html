@@ -9,9 +9,3 @@
         Please select the <em>Plan</em> you wish to deposit money into.
     </div>
 </article>
-
-<div class="card-container">
-    <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [plan]="plan"
-                   (click)="selectPlan(plan)">
-    </app-plan-card>
-</div>

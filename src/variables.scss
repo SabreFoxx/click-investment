@@ -6,7 +6,7 @@
 
 @import "node_modules/bulma/sass/utilities/initial-variables",
 "node_modules/bulma/sass/utilities/functions";
-/* Override initial variables default here */
+/* Override bulma initial variables default here */
 // Add a serif family
 $family-serif: 'Pridi, serif',
 sans-serif;
@@ -16,8 +16,8 @@ $background-color: $white-ter;
 $input-radius: 6px;
 $input-border-color: $grey;
 $input-hover-border-color: $grey-dark;
+$message-background-color: white;
 /* End override initial variables */
-
 
 /* Import necessary to modify bulma derived variables */
 @import "node_modules/bulma/sass/utilities/derived-variables";

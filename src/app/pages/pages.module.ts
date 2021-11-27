@@ -16,6 +16,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { DepositComponent } from './deposit/deposit.component';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -29,6 +31,16 @@ export const pageRoutes: Routes = [
     path: 'payments/plan-selection',
     component: PlanSelectionComponent,
     resolve: { resolvePlans: PlanRepositoryService },
+    data: { animation: 'Payment' }
+  },
+  {
+    path: 'payments/deposit',
+    component: DepositComponent,
+    data: { animation: 'Payment' }
+  },
+  {
+    path: 'payments/withdraw',
+    component: WithdrawComponent,
     data: { animation: 'Payment' }
   },
   {
@@ -64,7 +76,9 @@ export const pageRoutes: Routes = [
     ProfileComponent,
     SettingComponent,
     PaymentComponent,
-    PlanSelectionComponent
+    PlanSelectionComponent,
+    WithdrawComponent,
+    DepositComponent
   ],
   imports: [
     CommonModule,
