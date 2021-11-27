@@ -48,12 +48,12 @@ export class PaymentComponent implements OnInit {
       confirmButtonText: `Proceed with ${cardName}`,
       confirmButtonAriaLabel: `Use ${cardName}`,
     }).then(result => {
-      const paymentDetails: DepositDetails = { method: card };
+      const paymentDetails: DepositDetails = { currency: card };
 
       if (result.isConfirmed)
         this.router.navigate(['plan-selection'], {
           relativeTo: this.route,
-          state: { paymentDetails }
+          state: { paymentDetails, to: 'deposit' }
         })
     })
   }
