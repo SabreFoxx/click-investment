@@ -21,11 +21,12 @@ export class SideMenuItemComponent implements OnInit {
   ngOnInit(): void {
     this.mySegment = new UrlSegment(this.link[1], {});
 
-    // we want to set active to true whenever our url corresponds to this nav item's name
+    // on init of BasePanelComponent, which also inits this component,
+    // we want to set active to true whenever our url corresponds to this nav item
     const urlStruct = this.router.parseUrl(this.router.url);
     this.active = this.isContainsUrlSegment(urlStruct.root.children['primary'].segments);
 
-    // this.router.url is not reactive, so subscribe to router event for other changes
+    // this.router.url is not reactive, so subscribe to router event for later navigations
     this.router.events.pipe(filter(event => {
       return (event instanceof NavigationEnd) ? true : false
     })).subscribe(navigationEndEvent => {

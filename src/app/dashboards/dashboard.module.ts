@@ -15,7 +15,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { PaymentActionComponent } from './payment-action/payment-action.component';
+import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
 
 export const dashboardRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -26,8 +26,9 @@ export const dashboardRoutes: Routes = [
     data: { animation: 'Payment' }
   },
   {
-    path: 'payments/:action',
-    component: PaymentActionComponent,
+    path: 'payments/plan-selection',
+    component: PlanSelectionComponent,
+    resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'Payment' }
   },
   {
@@ -63,7 +64,7 @@ export const dashboardRoutes: Routes = [
     ProfileComponent,
     SettingComponent,
     PaymentComponent,
-    PaymentActionComponent
+    PlanSelectionComponent
   ],
   imports: [
     CommonModule,
