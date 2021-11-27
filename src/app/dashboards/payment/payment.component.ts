@@ -1,3 +1,4 @@
+import { DepositDetails } from 'src/models/payment-details';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
@@ -47,9 +48,13 @@ export class PaymentComponent implements OnInit {
       confirmButtonText: `Proceed with ${cardName}`,
       confirmButtonAriaLabel: `Use ${cardName}`,
     }).then(result => {
+      const paymentDetails: DepositDetails = { method: card };
+
       if (result.isConfirmed)
-        this.router.navigate(['deposit'],
-          { queryParams: { currency: card.name }, relativeTo: this.route })
+        this.router.navigate(['plan-selection'], {
+          relativeTo: this.route,
+          state: { paymentDetails }
+        })
     })
   }
 
