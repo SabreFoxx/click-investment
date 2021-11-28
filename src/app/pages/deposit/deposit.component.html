@@ -10,33 +10,36 @@
     </div>
 </article>
 
-<form class="">
-    <div class="currency">
-        <div class="input-container">
-            <label #label for="username" class="label">XLM</label>
-            <input #input class="input" id="username" type="text">
+<section style="margin: 1em 0 2em 0">
+    <form class="">
+        <div class="currency">
+            <div class="input-container">
+                <label #label for="username" class="label">XLM</label>
+                <input #input class="input" id="username" type="text">
+            </div>
+            <div class="input-container">
+                <svg class="svg-icon">
+                    <use xlink:href="#swap-horizontal-bold"></use>
+                </svg>
+            </div>
+            <div class="input-container">
+                <label #label for="password" class="label">GBP</label>
+                <input #input class="input" id="password" type="text">
+            </div>
         </div>
-        <div class="input-container">
-            <svg class="svg-icon">
-                <use xlink:href="#swap-horizontal-bold"></use>
-            </svg>
+        <div class="currency input-container">
+            <button class="button is-rounded is-link" type="submit">Deposit 5.2375832 XLM</button>
         </div>
-        <div class="input-container">
-            <label #label for="password" class="label">GBP</label>
-            <input #input class="input" id="password" type="text">
-        </div>
-    </div>
-    <div class="currency input-container">
-        <button class="button is-rounded is-link" type="submit">Deposit 5.2375832 XLM</button>
-    </div>
-</form>
+    </form>
+</section>
 
-<br>
-
-<div class="message container-white">
+<section class="message container-white">
     <div class="">
         You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
         Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
         <em> (your local currency)</em>.
     </div>
-</div>
+    <div class="wallet-address">
+
+    </div>
+</section>

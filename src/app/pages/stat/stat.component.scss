@@ -3,10 +3,8 @@
 
 // uses ViewEncapsulation.None
 
-.plan {
-  &-list {
-    @include card();
-  }
+.plan-list {
+  padding-bottom: 0;  
 }
 
 .swiper-slide {

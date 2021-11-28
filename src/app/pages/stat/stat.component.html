@@ -1,4 +1,4 @@
-<section class="plan-list">
+<section class="plan-list container-white">
     <h2 class="sub-title">Investments</h2>
     <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
         <ng-template swiperSlide *ngFor="let plan of plans | async">
