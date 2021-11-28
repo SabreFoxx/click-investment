@@ -1,11 +1,42 @@
 <article class="message">
     <div class="message-header">
-        <p>Choose Plan to deposit money into</p>
+        <p>Make your payment</p>
         <button class="delete" aria-label="delete"></button>
     </div>
     <div class="message-body">
-        You are about to <strong>deposit money</strong> in a <em>Plan</em>.
-        You selected <a>XLM</a> as your currency.
-        Please select the <em>Plan</em> you wish to deposit money into.
+        You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
+        Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
+        <em> (your local currency)</em>.
     </div>
 </article>
+
+<form class="">
+    <div class="currency">
+        <div class="input-container">
+            <label #label for="username" class="label">XLM</label>
+            <input #input class="input" id="username" type="text">
+        </div>
+        <div class="input-container">
+            <svg class="svg-icon">
+                <use xlink:href="#swap-horizontal-bold"></use>
+            </svg>
+        </div>
+        <div class="input-container">
+            <label #label for="password" class="label">GBP</label>
+            <input #input class="input" id="password" type="text">
+        </div>
+    </div>
+    <div class="currency input-container">
+        <button class="button is-rounded is-link" type="submit">Deposit 5.2375832 XLM</button>
+    </div>
+</form>
+
+<br>
+
+<div class="message container-white">
+    <div class="">
+        You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
+        Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
+        <em> (your local currency)</em>.
+    </div>
+</div>

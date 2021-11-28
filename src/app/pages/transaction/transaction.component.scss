@@ -6,7 +6,6 @@
     font-size: 1.1em;
     color: $text-color;
     margin-bottom: 1em;
-    border-radius: 0 0 1em 1em;
 
     th,
     td {
@@ -22,6 +21,11 @@
         &.row:hover {
             background-color: $grey-lightest;
         }
+    }
+
+    &-adjust {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 }
 
@@ -72,7 +76,7 @@
 }
 
 .sub-title {
-    background-color: white;
-    border-radius: 1em 1em 0 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     padding-top: 0.4em;
 }

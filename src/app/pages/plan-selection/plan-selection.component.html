@@ -10,7 +10,7 @@
     </div>
 </article>
 
-<div class="card-container">
+<div class="container-card">
     <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [plan]="plan"
                    (click)="selectPlan(plan)">
     </app-plan-card>
