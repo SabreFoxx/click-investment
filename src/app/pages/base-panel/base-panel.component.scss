@@ -18,6 +18,40 @@ ng-scrollbar {
     --scrollbar-border-radius: 4px;
 }
 
+/* Based on our DOM setup, we have to set these to height: 100% 
+for these, so we'll have no problems. We set in order of appearance in DOM */
+.app {
+    height: 100vh;
+}
+
+.app-base {
+    height: 100%
+}
+
+.ng-scrollbar {
+    height: 100%;
+}
+
+.ng-scrollbar-wrapper {
+    height: 100%;
+}
+
+.ng-scroll-viewport-wrapper {
+    height: 100%;
+}
+
+.ng-scroll-viewport {
+    height: 100%;
+}
+
+.ng-scroll-content {
+    height: 100%;
+}
+
+.app-panel {
+    height: 100%;
+}
+
 .app {
     $top-height: 45%;
     $menu-width: 22vw;
@@ -40,16 +74,15 @@ ng-scrollbar {
             width: $side-menu-closed-width;
         }
 
-        background:
-            linear-gradient(173.89deg,
-                rgba(255, 0, 0, 0.09) 0%,
-                rgba(235, 255, 0, 0.0747) 15.56%,
-                rgba(0, 255, 41, 0.09) 32.09%,
-                rgba(0, 255, 224, 0.09) 49.74%,
-                rgba(5, 0, 255, 0.0585) 65.76%,
-                rgba(255, 0, 245, 0.0244958) 82.55%,
-                rgba(255, 0, 0, 0.09) 100%),
-            $primary;
+        background: linear-gradient(173.89deg,
+            rgba(255, 0, 0, 0.09) 0%,
+            rgba(235, 255, 0, 0.0747) 15.56%,
+            rgba(0, 255, 41, 0.09) 32.09%,
+            rgba(0, 255, 224, 0.09) 49.74%,
+            rgba(5, 0, 255, 0.0585) 65.76%,
+            rgba(255, 0, 245, 0.0244958) 82.55%,
+            rgba(255, 0, 0, 0.09) 100%),
+        $primary;
 
         &-top {
             display: flex;
@@ -78,7 +111,8 @@ ng-scrollbar {
     }
 
     &-panel {
-        $margin-here: 1.5vw;
+        $margin-here: 0.7vw;
+        display: flex;
         position: relative;
         margin: 0 $margin-here;
         width: 100vw - $menu-width - (2*$margin-here);
@@ -96,6 +130,18 @@ ng-scrollbar {
         &.side-menu-closed {
             height: 68%;
         }
+    }
+
+    &-main {
+        flex-basis: 0;
+        flex-grow: 1;
+        height: 85%;
+    }
+
+    &-drawer {
+        flex-basis: 25%;
+        flex-shrink: 1;
+        height: 85%;
     }
 
     .svg-icon {

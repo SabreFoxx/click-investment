@@ -1,9 +1,8 @@
 <div class="app">
     <aside #sideMenu class="app-menu">
         <div #top class="app-menu-top">
-            <div #menuButton class="menu-button" 
-            [class.menu-button--active]="!(isShowSideMenu | async)"
-                 (click)="toggleSideMenu()">
+            <div #menuButton class="menu-button"
+                 [class.menu-button--active]="!(isShowSideMenu | async)" (click)="toggleSideMenu()">
                 <div class="menu-button__slice"></div>
             </div>
             <img #profilePic class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture">
@@ -85,11 +84,20 @@
     </aside>
 
     <div #panelBase class="app-base">
-        <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
-            <app-top-bar></app-top-bar>
-            <main #displayPanel class="app-panel" [@fadeAnim]="prepareRoute(outlet)">
-                <router-outlet #outlet="outlet"></router-outlet>
+        <app-top-bar></app-top-bar>
+        <div #displayPanel class="app-panel">
+            <main class="app-main" [@fadeAnim]="prepareRoute(outlet)">
+                <ng-scrollbar track="all" visibility="hover" pointerEventsMethod="scrollbar">
+                    <router-outlet #outlet="outlet"></router-outlet>
+                </ng-scrollbar>
             </main>
-        </ng-scrollbar>
+            <div class="app-drawer">
+                <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
+                    <div style="height: 1200px; background-color: red;">Hello</div>
+                </ng-scrollbar>
+            </div>
+        </div>
+
     </div>
+
 </div>

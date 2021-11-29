@@ -24,6 +24,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BasePanelComponent implements OnInit {
   isShowSideMenu: BehaviorSubject<boolean>;
+
   @ViewChild('sideMenu') sideMenu: ElementRef;
   @ViewChild('top') top: ElementRef;
   @ViewChild('menuButton') menuButton: ElementRef;
