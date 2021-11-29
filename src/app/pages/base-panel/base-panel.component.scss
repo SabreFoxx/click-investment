@@ -21,6 +21,9 @@ ng-scrollbar {
 .app {
     $top-height: 45%;
     $menu-width: 22vw;
+    $side-menu-closed-width: 4.5vw;
+    $side-menu-closed-transition: width 200ms ease-out;
+
     height: 100vh;
     display: flex;
 
@@ -31,6 +34,11 @@ ng-scrollbar {
         height: 100%;
         display: flex;
         flex-direction: column;
+        transition: $side-menu-closed-transition;
+
+        &.side-menu-closed {
+            width: $side-menu-closed-width;
+        }
 
         background:
             linear-gradient(173.89deg,
@@ -46,9 +54,15 @@ ng-scrollbar {
         &-top {
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             min-height: $top-height;
             padding: 0 0 1.5em 0;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
+            &.side-menu-closed {
+                min-height: unset;
+                padding: 0;
+            }
         }
     }
 
@@ -56,6 +70,11 @@ ng-scrollbar {
         flex-grow: 1;
         width: 100vw - $menu-width;
         overflow-y: hidden;
+        transition: $side-menu-closed-transition;
+
+        &.side-menu-closed {
+            width: 100vw - $side-menu-closed-width;
+        }
     }
 
     &-panel {
@@ -64,15 +83,29 @@ ng-scrollbar {
         margin: 0 $margin-here;
         width: 100vw - $menu-width - (2*$margin-here);
         box-sizing: border-box;
+        transition: $side-menu-closed-transition;
+
+        &.side-menu-closed {
+            width: 100vw - $side-menu-closed-width - (2*$margin-here);
+        }
     }
 
     &-nav {
         height: 100% - $top-height - 1.5%;
+
+        &.side-menu-closed {
+            height: 68%;
+        }
     }
 
     .svg-icon {
         width: 2rem;
         height: 2rem;
+
+        &.side-menu-closed {
+            margin-left: -1em;
+            margin-right: 0.5em;
+        }
     }
 }
 
@@ -87,7 +120,6 @@ ng-scrollbar {
     cursor: pointer;
     margin-left: auto;
     padding: 0.5em;
-    height: 25%;
     min-height: 45px;
     max-height: 250px;
     transition: $nav-easing;
@@ -97,7 +129,11 @@ ng-scrollbar {
     }
 
     &:hover {
-        background: mix(black, $primary, 10);
+        background: mix(black, $primary, 20);
+    }
+
+    &.side-menu-closed {
+        margin: auto;
     }
 
     $slice-height: 3px;
@@ -138,8 +174,6 @@ ng-scrollbar {
 
     &--active {
         .menu-button__slice {
-            // transform: rotate(90deg);
-
             &:before {
                 transform: rotate(-47deg) translate(-7px, -7px) scaleX(0.7);
             }
@@ -173,4 +207,8 @@ ng-scrollbar {
     max-height: 200px;
     margin: 0.1em auto 1.5em auto;
     filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, 0.25));
+
+    &.side-menu-closed {
+        margin: 1em;
+    }
 }

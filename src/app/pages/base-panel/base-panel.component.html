@@ -1,20 +1,21 @@
 <div class="app">
-    <aside class="app-menu">
-        <div class="app-menu-top">
-            <div class="menu-button" [class.menu-button--active]="isShowSideMenu"
+    <aside #sideMenu class="app-menu">
+        <div #top class="app-menu-top">
+            <div #menuButton class="menu-button" 
+            [class.menu-button--active]="!(isShowSideMenu | async)"
                  (click)="toggleSideMenu()">
                 <div class="menu-button__slice"></div>
             </div>
-            <img class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture" srcset="">
-            <span class="text text-welcome">Welcome,</span>
-            <span class="text text-name">John Adams</span>
+            <img #profilePic class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture">
+            <span *ngIf="!(isShowSideMenu | async)" class="text text-welcome">Welcome,</span>
+            <span *ngIf="!(isShowSideMenu | async)" class="text text-name">John Adams</span>
         </div>
 
-        <nav class="app-nav">
-            <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
+        <nav #nav class="app-nav">
+            <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                 <app-side-menu-item [link]="['/app', 'stats']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#tablet-dashboard"></use>
                         </svg>
                     </ng-container>
@@ -22,7 +23,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'payments']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#cash-multiple"></use>
                         </svg>
                     </ng-container>
@@ -30,7 +31,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'transactions']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#cards-variant"></use>
                         </svg>
                     </ng-container>
@@ -38,7 +39,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'plans']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#handshake-outline"></use>
                         </svg>
                     </ng-container>
@@ -46,7 +47,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'profile']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#face-man"></use>
                         </svg>
                     </ng-container>
@@ -57,7 +58,7 @@
 
                 <app-side-menu-item [link]="['/app', 'settings']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#cog-outline"></use>
                         </svg>
                     </ng-container>
@@ -65,7 +66,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'about']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#information-outline"></use>
                         </svg>
                     </ng-container>
@@ -73,7 +74,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/auth', 'logout']">
                     <ng-container class="svg-icon">
-                        <svg class="svg-icon">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#logout"></use>
                         </svg>
                     </ng-container>
@@ -83,10 +84,10 @@
         </nav>
     </aside>
 
-    <div class="app-base">
+    <div #panelBase class="app-base">
         <ng-scrollbar track="all" pointerEventsMethod="scrollbar">
             <app-top-bar></app-top-bar>
-            <main class="app-panel" [@fadeAnim]="prepareRoute(outlet)">
+            <main #displayPanel class="app-panel" [@fadeAnim]="prepareRoute(outlet)">
                 <router-outlet #outlet="outlet"></router-outlet>
             </main>
         </ng-scrollbar>
