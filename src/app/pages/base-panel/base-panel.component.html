@@ -1,7 +1,8 @@
 <div class="app">
     <aside class="app-menu">
         <div class="app-menu-top">
-            <div class="menu-button">
+            <div class="menu-button" [class.menu-button--active]="isShowSideMenu"
+                 (click)="toggleSideMenu()">
                 <div class="menu-button__slice"></div>
             </div>
             <img class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture" srcset="">
