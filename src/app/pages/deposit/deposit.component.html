@@ -1,13 +1,13 @@
 <article class="message">
-    <div class="message-header">
+    <section class="message-header">
         <p>Make your payment</p>
         <button class="delete" aria-label="delete"></button>
-    </div>
-    <div class="message-body">
+    </section>
+    <section class="message-body">
         You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
         Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
         <em> (your local currency)</em>.
-    </div>
+    </section>
 </article>
 
 <section style="margin: 1em 0 2em 0">
@@ -34,12 +34,22 @@
 </section>
 
 <section class="message container-white">
-    <div class="">
-        You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
-        Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
-        <em> (your local currency)</em>.
-    </div>
     <div class="wallet-address">
-
+        <div class="qr">
+            <img src="assets/img/qr.png" alt="qr code" class="qr">
+            <p><em>Copy the wallet address, or scan this QR code with your wallet App</em></p>
+        </div>
+        <div class="details">
+            <p>Send exactly <strong>5.2375832 <a>XLM</a></strong> to the address below. </p>
+            <p class="amount">5.2375832 <a>XLM</a></p>
+            <p class="value">~400 USD</p>
+            <div class="input-container">
+                <input #input class="input" id="username" type="text" value="xxxxxxxxxxxxxxxxx">
+            </div>
+            <p class="footnote"><em>Afterwhich, proceed to 
+                <a [routerLink]="['/app', 'payments']">payment verification</a></em>.
+                <span>Please verify your payment within two days, or it may be lost.</span>
+            </p>
+        </div>
     </div>
 </section>

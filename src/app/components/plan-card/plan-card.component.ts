@@ -23,6 +23,7 @@ export type ChartOptions = {
 })
 export class PlanCardComponent implements OnInit {
   @Input() plan: Plan;
+  @Input() showStats?: boolean = false;
   icon: SafeHtml;
 
   @ViewChild("chart") chart: ChartComponent;

@@ -1,7 +1,55 @@
 <swal></swal>
 
+<article class="message">
+    <section class="message-header">
+        <p>Verify a payment</p>
+        <button class="delete" aria-label="delete"></button>
+    </section>
+
+    <section class="message-body">
+        <p>Select from the list below, a payment which you wish to <em>verify</em>.</p>
+
+        <div class="verification">
+            <div class="dropdown" [class.is-active]="isDepositListVisible"
+                 (click)="toggleDepositList()">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <span>Possible deposits</span>
+                        <span class="icon is-small">
+                            <svg class="svg-icon">
+                                <use xlink:href="#chevron-down"></use>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                        <a class="dropdown-item">
+                            5.2346 LTC on Aug 25, 2021
+                        </a>
+                        <a class="dropdown-item">
+                            3.0001 BTC on Aug 20, 2021
+                        </a>
+                        <a class="dropdown-item is-active">
+                            400 XRP on July 15, 2021
+                        </a>
+                        <a class="dropdown-item">
+                            25.75893932 ETH on Jun 3, 2021
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="button is-rounded is-link" type="submit">
+                Submit for verification
+            </button>
+        </div>
+
+    </section>
+</article>
+
 <section class="payment container-white">
-    <h2 class="sub-title deposit">Deposit</h2>
+    <h2 class="sub-title deposit">Deposit funds</h2>
     <p class="payment-desc">Choose the method by which you'll make payment</p>
 
     <div class="payment-methods">
@@ -13,7 +61,7 @@
 </section>
 
 <section class="payment container-white">
-    <h2 class="sub-title withdrawal">Withdrawal</h2>
+    <h2 class="sub-title withdrawal">Withdraw money</h2>
     <p class="payment-desc">Choose the method by which you'll withdraw your money</p>
 
     <div class="payment-methods" style="opacity: 0.8;">

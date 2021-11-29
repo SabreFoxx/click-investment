@@ -215,9 +215,10 @@ img {
     }
 
     &-white {
-        border-radius: 1rem;
+        border-radius: $border-radius;
         background-color: white;
         padding: 1rem;
+        margin-bottom: 1em;
     }
 }
 

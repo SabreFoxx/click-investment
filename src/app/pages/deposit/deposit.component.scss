@@ -1,3 +1,5 @@
+@import 'src/variables.scss';
+
 .currency {
     display: flex;
     justify-content: center;
@@ -6,4 +8,47 @@
 
 .wallet-address {
     display: flex;
+    justify-content: center;
+    margin: 1em 0;
+
+    .details {
+        margin-left: 1em;
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        >* {
+            margin: 0.2em 0;
+        }
+
+        .amount {
+            font-size: 2em;
+            font-family: $text-font;
+            text-align: center;
+        }
+
+        .value {
+            text-align: center;
+        }
+
+        .footnote {
+            margin-bottom: 3em;
+
+            span {
+                color: $pastel-color-red;
+            }
+        }
+    }
+
+}
+
+.qr {
+    margin-right: 1em;
+    flex-basis: 30%;
+    text-align: center;
+
+    img {
+        width: 300px;
+    }
 }

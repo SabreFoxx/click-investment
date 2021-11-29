@@ -6,7 +6,7 @@
             <span class="plan">{{plan.name}}</span>
         </div>
 
-        <div class="chart">
+        <div *ngIf="showStats" class="chart">
             <apx-chart [series]="chartOptions_.series" [chart]="chartOptions_.chart"></apx-chart>
         </div>
 

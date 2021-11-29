@@ -17,6 +17,9 @@ $input-radius: 6px;
 $input-border-color: $grey;
 $input-hover-border-color: $grey-dark;
 $message-background-color: white;
+$message-header-padding: 0.75em 1rem;
+$message-body-padding: 1.25em 1rem;
+$message-radius: 1rem;
 /* End override initial variables */
 
 /* Import necessary to modify bulma derived variables */
@@ -37,6 +40,7 @@ $page-padding: 2rem;
 $padding: $margin;
 $line-margin: 2em;
 $input-height: 3.5rem;
+$border-radius: 1rem;
 $nav-easing: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 @mixin pad-container {

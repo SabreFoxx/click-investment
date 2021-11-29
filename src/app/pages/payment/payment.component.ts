@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class PaymentComponent implements OnInit {
   paymentMethods: Observable<PaymentMethod[]>;
   @ViewChild(SwalComponent) alert: SwalComponent;
+  isDepositListVisible: boolean;
 
   alertMixin = Swal.mixin({
     iconHtml: `
@@ -56,6 +57,10 @@ export class PaymentComponent implements OnInit {
           state: { paymentDetails, to: 'deposit' }
         })
     })
+  }
+
+  toggleDepositList() {
+    this.isDepositListVisible = !this.isDepositListVisible;
   }
 
 }
