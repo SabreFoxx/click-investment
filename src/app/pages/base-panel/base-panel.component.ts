@@ -18,12 +18,11 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './base-panel.component.html',
   styleUrls: ['./base-panel.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: [
-    fadeAnimation
-  ]
+  animations: [fadeAnimation]
 })
 export class BasePanelComponent implements OnInit {
   isShowSideMenu: BehaviorSubject<boolean>;
+  isWhat: boolean = false
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
   @ViewChild('top') top: ElementRef;
@@ -36,6 +35,8 @@ export class BasePanelComponent implements OnInit {
 
   constructor(private globalStyle: StyleAdjustmentService, private r: Renderer2) {
     this.isShowSideMenu = globalStyle.isSideMenuVisible;
+    this.isWhat = true
+    setTimeout(() => this.isWhat = true, 2000)
   }
 
   ngOnInit(): void { }

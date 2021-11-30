@@ -46,6 +46,7 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
 
 .ng-scroll-content {
     height: 100%;
+    width: 100%;
 }
 
 .app-panel {
@@ -135,13 +136,25 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
     &-main {
         flex-basis: 0;
         flex-grow: 1;
+        // later, height of <app-top-bar> will be calculated and subtracted from window height
+        // the result will be applied to this height
         height: 85%;
+
+        .ng-scroll-viewport {
+            padding-right: 0.8rem; // for the bar not to be over content
+        }
     }
 
     &-drawer {
         flex-basis: 25%;
         flex-shrink: 1;
+        // later, height of <app-top-bar> will be calculated and subtracted from window height
+        // the result will be applied to this height
         height: 85%;
+
+        .ng-scrollbar-track {
+            margin-right: -1.39rem; // for the bar not to be over content
+        }
     }
 
     .svg-icon {

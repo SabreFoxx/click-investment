@@ -21,11 +21,6 @@
 @import "csshake/scss/csshake-slow.scss";
 @import "/src/animations.scss";
 
-@font-face {
-    font-family: 'Univers';
-    src: url('assets/font/Zurich__Light_BT.ttf');
-}
-
 body {
     color: $text-color;
     font-size: calc(1vw + 0.6em);
@@ -208,7 +203,6 @@ img {
         flex-wrap: wrap;
         justify-content: space-between;
         align-content: space-between;
-        width: 100%;
         border-radius: 2rem;
         background-color: white;
         padding-bottom: 0 !important;

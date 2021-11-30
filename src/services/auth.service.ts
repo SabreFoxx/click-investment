@@ -13,6 +13,7 @@ export class AuthService {
     private authStorage: AuthStorageService,
     @Inject('LOGIN_URL') private loginEndpoint: string,
     @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) {
+    // always refresh login when app starts
     this.refreshLogin();
   }
 
@@ -28,13 +29,12 @@ export class AuthService {
       })
   }
 
-  private refreshLogin() {
+  public refreshLogin() {
     if (this.authStorage.isLoggedIn)
       this.post.send<User>(this.loginRefreshEndpoint, null, false, false,
         this.authStorage.authorizationHeader)
-        .subscribe(user => {
-          this.authStorage.currentUser.next(user);
-        }, () => this.router.navigate(['/auth/login']));
+        .subscribe(user => this.authStorage.currentUser.next(user),
+          () => this.router.navigate(['/auth/login']));
   }
 
 }

@@ -48,7 +48,8 @@ export class SimplePostService {
       }, (error: HttpErrorResponse) => {
         this.feedback.doneLoading();
         if (!toastErrorMsg)
-          response.error(error.error['message']);
+          // if we don't toast error message, it will be printed in the console
+          response.error(error.error?.message);
       })
     return response;
   }

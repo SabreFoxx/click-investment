@@ -87,11 +87,11 @@
         <app-top-bar></app-top-bar>
         <div #displayPanel class="app-panel">
             <main class="app-main" [@fadeAnim]="prepareRoute(outlet)">
-                <ng-scrollbar track="all" visibility="hover" pointerEventsMethod="scrollbar">
+                <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                     <router-outlet #outlet="outlet"></router-outlet>
                 </ng-scrollbar>
             </main>
-            <div class="app-drawer">
+            <div *ngIf="isWhat" class="app-drawer">
                 <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                     <div style="height: 1200px; background-color: red;">Hello</div>
                 </ng-scrollbar>
