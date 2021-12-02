@@ -7,10 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 export class StyleAdjustmentService {
   headerHeight: number;
   isSideMenuVisible = new BehaviorSubject<boolean>(false);
+  isNotificationPaneVisible = new BehaviorSubject<boolean>(false);
 
-  constructor() {
-    this.isSideMenuVisible.next(false);
-  }
+  constructor() { }
 
   toggleSideMenu() {
     this.isSideMenuVisible.next(!this.isSideMenuVisible.getValue());

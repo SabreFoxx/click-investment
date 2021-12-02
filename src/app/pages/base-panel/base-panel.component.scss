@@ -34,6 +34,14 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
 
 .ng-scrollbar-wrapper {
     height: 100%;
+
+    // there is an inline style dynamically applied to <ng-scrollbar>
+    // which applies box-sizing: content-box to it
+    // because we're using minireset.sass' box-sizing: inherit on *,
+    // all descendant elements of <ng-scrollbar> will inherit
+    // box-sizing: content-box and we don't want this
+    // so we'll set box-sizing: border-box on <ng-scrollbar>'s first child
+    box-sizing: border-box;
 }
 
 .ng-scroll-viewport-wrapper {
@@ -117,7 +125,6 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         position: relative;
         margin: 0 $margin-here;
         width: 100vw - $menu-width - (2*$margin-here);
-        box-sizing: border-box;
         transition: $side-menu-closed-transition;
 
         &.side-menu-closed {
@@ -145,7 +152,7 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         }
     }
 
-    &-drawer {
+    &-notification-pane {
         flex-basis: 25%;
         flex-shrink: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
