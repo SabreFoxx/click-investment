@@ -12,4 +12,6 @@ export class TopBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showNotifications() {}
+
 }

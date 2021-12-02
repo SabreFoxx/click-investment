@@ -3,18 +3,22 @@
         <span class="main-title">Stats</span>
         <div class="nav">
             <div class="search">
+                <input type="text" class="input" id="input">
                 <svg class="svg-icon search-icon">
                     <use xlink:href="#magnify"></use>
                 </svg>
                 <label for="input">Search</label>
-                <input type="text" class="input" id="input">
             </div>
-            <svg class="svg-icon">
-                <use xlink:href="#bell"></use>
-            </svg>
-            <svg class="svg-icon">
-                <use xlink:href="#message-outline"></use>
-            </svg>
+            <button class="icon-button">
+                <svg class="svg-icon">
+                    <use xlink:href="#newspaper-variant-multiple-outline"></use>
+                </svg>
+            </button>
+            <button class="icon-button" (click)="showNotifications()">
+                <svg class="svg-icon">
+                    <use xlink:href="#bell"></use>
+                </svg>
+            </button>
         </div>
     </div>
     <nav class="breadcrumb" aria-label="breadcrumbs">
