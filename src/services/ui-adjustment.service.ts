@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StyleAdjustmentService {
+export class UIAdjustmentService {
   headerHeight: number;
   isSideMenuVisible = new BehaviorSubject<boolean>(false);
   isNotificationPaneVisible = new BehaviorSubject<boolean>(false);
@@ -14,4 +14,6 @@ export class StyleAdjustmentService {
   toggleSideMenu() {
     this.isSideMenuVisible.next(!this.isSideMenuVisible.getValue());
   }
+
+  
 }

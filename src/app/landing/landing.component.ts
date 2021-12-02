@@ -1,4 +1,4 @@
-import { StyleAdjustmentService } from './../../services/style-adjustment.service';
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { AfterViewInit, Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 
@@ -11,7 +11,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   @ViewChild('hero') hero: ElementRef;
   @ViewChild(HeaderComponent) header: HeaderComponent;
 
-  constructor(private styleAdjustment: StyleAdjustmentService) { }
+  constructor(private ui: UIAdjustmentService) { }
 
   @HostListener('window:resize', ['$event'])
   onScroll(event) {
@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.hero.nativeElement.style.height = `calc(100vh - ${this.styleAdjustment.headerHeight}px)`;
+    this.hero.nativeElement.style.height = `calc(100vh - ${this.ui.headerHeight}px)`;
     document.getElementsByTagName('body')[0].style.paddingTop =
       this.header.me.nativeElement.offsetHeight + 'px';
   }

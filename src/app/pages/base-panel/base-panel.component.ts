@@ -1,4 +1,4 @@
-import { StyleAdjustmentService } from 'src/services/style-adjustment.service';
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import {
   Component,
   OnInit,
@@ -33,7 +33,7 @@ export class BasePanelComponent implements OnInit {
   @ViewChild('displayPanel') displayPanel: ElementRef;
   @ViewChildren('templateVarUsedWhenIsShowSideMenu') pageSvgIcons: QueryList<ElementRef>;
 
-  constructor(private globalStyle: StyleAdjustmentService, private r: Renderer2) {
+  constructor(private globalStyle: UIAdjustmentService, private r: Renderer2) {
     this.isShowSideMenu = globalStyle.isSideMenuVisible;
     this.isWhat = true
     setTimeout(() => this.isWhat = true, 2000)
