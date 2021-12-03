@@ -1,5 +1,5 @@
 import { FeedbackService } from 'src/services/feedback.service';
-import { SimpleError } from 'src/adjectives/error';
+import { SimpleError } from 'src/adjectives/errors';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject, throwError } from 'rxjs';
