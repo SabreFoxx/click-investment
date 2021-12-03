@@ -1,6 +1,7 @@
 import { Subject } from 'rxjs';
 import { Component, OnInit, AfterViewInit, Input, Renderer2, OnDestroy } from '@angular/core';
-import { Notification, NotificationPaneService } from 'src/services/notification-pane.service';
+import { NotificationPaneService } from 'src/services/notification-pane.service';
+import { Notification } from 'src/models/notification';
 
 @Component({
   selector: 'app-notification-pane',
@@ -9,10 +10,10 @@ import { Notification, NotificationPaneService } from 'src/services/notification
 })
 export class NotificationPaneComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() myContainer: any;
-  content: Subject<Notification[]>;
+  notifications: Subject<Notification[]>;
 
   constructor(private notify: NotificationPaneService, private renderer: Renderer2) {
-    this.content = notify.activeDisplay;
+    this.notifications = notify.displayNotifications;
   }
 
   ngOnInit(): void {

@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Notification } from 'src/models/notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationPaneService {
-  news: BehaviorSubject<Array<Notification>>;
-  alerts: BehaviorSubject<Array<Notification>>;
-  activeDisplay: Subject<Notification[]>;
+  news: Array<Notification>;
+  alerts: Array<Notification>;
+  displayNotifications: BehaviorSubject<Array<Notification>>;
 
   constructor() {
-    this.news = new BehaviorSubject([
-      new Notification('New news', 'content'),
-      new Notification('New news', 'content'),
-      new Notification('New news', 'content')
-    ]);
-    this.activeDisplay = new Subject;
+    const news = new Notification('Primary', `
+      In publishing and graphic design, Lorem ipsum is a placeholder 
+      text commonly used to demonstrate the visual form of a document 
+      or a typeface without relying on meaningful content. Lorem ipsum 
+      may be used as a placeholder before the final copy is available.
+    `);
+    const alert = new Notification('Primary', `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Pellentesque risus mi, tempus quis placerat ut,
+      porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam
+      gravida purus diam, et dictum felis venenatis efficitur.
+      Aenean ac eleifend lacus, in mollis lectus. Donec sodales,
+      arcu et sollicitudin porttitor, tortor urna tempor ligula, id
+      porttitor mi magna a neque. Donec dui urna, vehicula et sem eget,
+      facilisis sodales sem.
+    `);
+    this.news = [news, news, news, news, news, news];
+    this.alerts = [alert, alert, alert, alert, alert, alert];
+    this.displayNotifications = new BehaviorSubject(this.news);
   }
-}
-
-export class Notification {
-  constructor(private title: string, private content: string, private isRead = false) { }
 }
