@@ -8,7 +8,7 @@ import { Notification } from 'src/models/notification';
 export class NotificationPaneService {
   news: Array<Notification>;
   alerts: Array<Notification>;
-  displayNotifications: BehaviorSubject<Array<Notification>>;
+  display: BehaviorSubject<Array<Notification>>;
 
   constructor() {
     const news = new Notification('Primary', `
@@ -29,6 +29,6 @@ export class NotificationPaneService {
     `);
     this.news = [news, news, news, news, news, news];
     this.alerts = [alert, alert, alert, alert, alert, alert];
-    this.displayNotifications = new BehaviorSubject(this.news);
+    this.display = new BehaviorSubject(this.news);
   }
 }

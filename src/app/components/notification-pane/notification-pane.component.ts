@@ -13,7 +13,7 @@ export class NotificationPaneComponent implements OnInit, AfterViewInit, OnDestr
   notifications: Subject<Notification[]>;
 
   constructor(private notify: NotificationPaneService, private renderer: Renderer2) {
-    this.notifications = notify.displayNotifications;
+    this.notifications = notify.display;
   }
 
   ngOnInit(): void {

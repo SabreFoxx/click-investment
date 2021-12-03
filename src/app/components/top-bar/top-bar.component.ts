@@ -19,14 +19,14 @@ export class TopBarComponent implements OnInit {
   }
 
   showNews() {
-    this.notify.displayNotifications.next(this.notify.news);
+    this.notify.display.next(this.notify.news);
     if (this.openedWith == OpenedWithIcon.NEWS || this.openedWith == OpenedWithIcon.NONE)
       this.ui.toggleNotificationPane();
     this.openedWith = OpenedWithIcon.NEWS
   }
 
   showAlert() {
-    this.notify.displayNotifications.next(this.notify.alerts);
+    this.notify.display.next(this.notify.alerts);
     if (this.openedWith == OpenedWithIcon.ALERT || this.openedWith == OpenedWithIcon.NONE)
       this.ui.toggleNotificationPane();
     this.openedWith = OpenedWithIcon.ALERT
