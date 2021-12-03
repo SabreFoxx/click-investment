@@ -3,6 +3,4 @@ export interface Plan {
     design: string,
     description: string,
     icon: string,
-    currency: string,
-    amount: string
 }

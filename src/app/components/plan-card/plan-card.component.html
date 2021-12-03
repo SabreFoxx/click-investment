@@ -7,12 +7,16 @@
         </div>
 
         <div *ngIf="showStats" class="chart">
-            <apx-chart [series]="chartOptions_.series" [chart]="chartOptions_.chart"></apx-chart>
+            <apx-chart [chart]="chartOptions.chart" [series]="chartOptions.series"
+                       [tooltip]="chartOptions.tooltip" [colors]="chartOptions.colors"
+                       [stroke]="chartOptions.stroke" [grid]="chartOptions.grid"
+                       [dataLabels]="chartOptions.dataLabels" [fill]="chartOptions.fill">
+            </apx-chart>
         </div>
 
         <div>
-            <span class="currency">{{plan.currency}}</span>
-            <span class="amount">${{plan.amount}}</span>
+            <span class="currency">USD</span>
+            <span class="amount">20,500</span>
         </div>
     </div>
 </div>

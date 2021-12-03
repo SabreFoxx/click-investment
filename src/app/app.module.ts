@@ -14,6 +14,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SvgComponent } from './svg/svg.component';
 import { ToastComponent } from './toast/toast.component';
 import { NgProgressModule } from 'ngx-progressbar';
+import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,20 @@ import { NgProgressModule } from 'ngx-progressbar';
     SweetAlert2Module.forRoot(),
     NgProgressModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_PREFIX', useFactory() {
+        return (environment.production) ? apiPrefix.prod : apiPrefix.dev
+      }
+    },
+    {
+      provide: 'DASHBOARD',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DASHBOARD}`
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

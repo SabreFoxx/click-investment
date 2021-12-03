@@ -1,4 +1,4 @@
-import { FeedbackService } from 'src/services/feedback.service';
+import { LoadingFeedbackService } from 'src/services/feedback.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgProgressComponent } from 'ngx-progressbar';
 
@@ -10,7 +10,7 @@ import { NgProgressComponent } from 'ngx-progressbar';
 export class AppComponent implements OnInit {
   @ViewChild(NgProgressComponent) progressBar: NgProgressComponent;
 
-  constructor(private fb: FeedbackService) { }
+  constructor(private fb: LoadingFeedbackService) { }
 
   ngOnInit(): void {
     this.fb.progressLoading.subscribe(loadProgress => {

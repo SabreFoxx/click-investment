@@ -31,8 +31,8 @@ export class AuthService {
 
   public refreshLogin() {
     if (this.authStorage.isLoggedIn)
-      this.post.send<User>(this.loginRefreshEndpoint, null, false, false,
-        this.authStorage.authorizationHeader)
+      this.post.send<User>(this.loginRefreshEndpoint, null,
+        this.authStorage.authorizationHeader, false, false)
         .subscribe(user => this.authStorage.currentUser.next(user),
           () => this.router.navigate(['/auth/login']));
   }

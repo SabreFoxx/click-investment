@@ -1,7 +1,9 @@
 export enum ApiEndpoints {
     REGISTRATION = '/register',
     LOGIN = '/login',
-    REFRESH_LOGIN ='/refresh-login'
+    REFRESH_LOGIN = '/refresh-login',
+
+    DASHBOARD = '/dashboard'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } =

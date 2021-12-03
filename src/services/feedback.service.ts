@@ -9,7 +9,7 @@ export interface Toast {
 @Injectable({
   providedIn: 'root'
 })
-export class FeedbackService {
+export class LoadingFeedbackService {
   private toastMessage: Subject<Toast>;
   public static error = new Subject<Toast>();
   progressLoading: Subject<boolean>;
@@ -24,7 +24,7 @@ export class FeedbackService {
   }
 
   static showError(toast: Toast): void {
-    FeedbackService.error.next(toast);
+    LoadingFeedbackService.error.next(toast);
   }
 
   get message() {

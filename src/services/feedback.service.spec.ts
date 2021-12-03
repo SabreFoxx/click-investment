@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FeedbackService } from './feedback.service';
+import { LoadingFeedbackService } from './feedback.service';
 
 describe('ToastService', () => {
-  let service: FeedbackService;
+  let service: LoadingFeedbackService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FeedbackService);
+    service = TestBed.inject(LoadingFeedbackService);
   });
 
   it('should be created', () => {

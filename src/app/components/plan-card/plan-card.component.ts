@@ -1,3 +1,4 @@
+import { SimplePostService } from './../../../services/simple-post.service';
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';
@@ -6,15 +7,46 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
-  ApexTitleSubtitle
+  ApexTitleSubtitle,
+  ApexAnnotations,
+  ApexDataLabels,
+  ApexFill,
+  ApexGrid,
+  ApexLegend,
+  ApexMarkers,
+  ApexNoData,
+  ApexNonAxisChartSeries,
+  ApexPlotOptions,
+  ApexResponsive,
+  ApexStates,
+  ApexStroke,
+  ApexTheme,
+  ApexTooltip,
+  ApexYAxis,
 } from "ng-apexcharts";
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  title: ApexTitleSubtitle;
-};
+export interface ChartOptions {
+  chart: ApexChart,
+  xaxis: ApexXAxis,
+  yaxis: ApexYAxis | ApexYAxis[],
+  title: ApexTitleSubtitle,
+  dataLabels: ApexDataLabels,
+  annotations: ApexAnnotations,
+  series: ApexAxisChartSeries | ApexNonAxisChartSeries,
+  stroke: ApexStroke,
+  labels: string[],
+  legend: ApexLegend,
+  markers: ApexMarkers,
+  noData: ApexNoData,
+  fill: ApexFill,
+  tooltip: ApexTooltip,
+  plotOptions: ApexPlotOptions,
+  responsive: ApexResponsive[],
+  grid: ApexGrid,
+  states: ApexStates,
+  subtitle: ApexTitleSubtitle,
+  theme: ApexTheme
+}
 
 @Component({
   selector: 'app-plan-card',
@@ -26,52 +58,32 @@ export class PlanCardComponent implements OnInit {
   @Input() showStats?: boolean = false;
   icon: SafeHtml;
 
-  @ViewChild("chart") chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
-  public chartOptions_: any;
+  @ViewChild(ChartComponent) chart: ChartComponent;
+  // public chartOptions: Partial<ChartOptions>;
+  public chartOptions: Partial<any>;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private post: SimplePostService, private sanitizer: DomSanitizer) {
     this.chartOptions = {
-      series: [
-        {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        }
-      ],
-      chart: {
-        height: "150px",
-        type: "bar",
-        foreColor: "#ffffff"
-      },
-      title: {
-        text: "My First Angular Chart"
-      },
-      xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-      }
-    };
-
-    this.chartOptions_ = {
       series: [{
         data: [[1, 11], [3, 24], [5, 30], [15, 43], [20, 55], [30, 60]]
       }],
       chart: {
-        type: "area",
-        height: "150px",
-        foreColor: "#ffffff",
+        type: 'area',
+        height: '150px',
+        foreColor: '#ffffff',
         toolbar: {
           show: false
         }
       },
-      colors: ["#ffffff"],
-      stroke: { curve: "straight", width: 3 },
+      colors: ['#ffffff'],
+      stroke: { curve: 'smooth', width: 3 },
       grid: {
-        borderColor: "#555",
-        clipMarkers: false,
+        borderColor: '#ababab',
+        clipMarkers: true,
         yaxis: {
-          lines: {
-            show: false
-          }
+          // lines: {
+          //   show: false
+          // }
         },
         padding: {
           top: 0,
@@ -81,16 +93,19 @@ export class PlanCardComponent implements OnInit {
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       fill: {
-        // type: 'gradient' / 'solid' / 'pattern' / 'image'
+        type: 'gradient',
         gradient: {
           enabled: true,
           opacityFrom: 0.55,
           opacityTo: 0
         }
       },
+      tooltip: {
+        enabled: false
+      }
     }
   }
 

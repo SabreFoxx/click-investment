@@ -1,4 +1,4 @@
-import { FeedbackService } from 'src/services/feedback.service';
+import { LoadingFeedbackService } from 'src/services/feedback.service';
 import { SimpleError } from 'src/adjectives/errors';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class SimplePostService {
   fullResponseBody: Subject<any>;
 
-  constructor(private http: HttpClient, private feedback: FeedbackService) {
+  constructor(private http: HttpClient, private feedback: LoadingFeedbackService) {
     this.fullResponseBody = new Subject();
   }
 
@@ -24,8 +24,8 @@ export class SimplePostService {
    * @param headers HTTP headers
    * @returns a Subject of <T>. <T> is the model of the expected result.
    */
-  send<T>(url: string, data: any,
-    toastSuccessMsg = true, toastErrorMsg = true, headers?: any): Subject<T> {
+  send<T>(url: string, data: any, headers?: any,
+    toastSuccessMsg = true, toastErrorMsg = true): Subject<T> {
     let response = new Subject<T>();
     let errorHandler = toastErrorMsg ? this.toastError : this.handleError;
 
@@ -70,9 +70,9 @@ export class SimplePostService {
 
   private toastError(error: HttpErrorResponse) {
     if (error.status === 0)
-      FeedbackService.showError({ title: "An error occurred", text: error.error.message });
+      LoadingFeedbackService.showError({ title: "An error occurred", text: error.error.message });
     else
-      FeedbackService.showError({ title: "An error occurred", text: error.error.message });
+      LoadingFeedbackService.showError({ title: "An error occurred", text: error.error.message });
 
     // return an observable with a user-facing error message.
     return throwError(new SimpleError);
