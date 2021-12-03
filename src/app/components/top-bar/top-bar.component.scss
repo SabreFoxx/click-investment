@@ -61,13 +61,15 @@
 .icon-button {
     border: 0;
     background-color: transparent;
+    color: $text-color;
 
     &:hover {
         scale: 2;
     }
 
-    &:active {
+    &:active, &:focus {
         background-color: $primary;
+        border: 0;
     }
 
     .svg-icon {

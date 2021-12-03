@@ -1,5 +1,6 @@
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit } from '@angular/core';
+import { NotificationPaneService } from 'src/services/notification-pane.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -8,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private ui: UIAdjustmentService) { 
-    
-  }
+  constructor(private ui: UIAdjustmentService, private notify: NotificationPaneService) { }
 
   ngOnInit(): void {
   }
 
-  showNotifications() {}
+  showNews() {
+    this.notify.activeDisplay.next(this.notify.news.getValue());
+    this.ui.toggleNotificationPane();
+  }
+
+  showAlert() {
+    this.notify.activeDisplay.next(this.notify.alerts.getValue());
+    this.ui.toggleNotificationPane();
+  }
 
 }

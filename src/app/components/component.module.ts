@@ -17,6 +17,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { PaymentCardComponent } from './payment-card/payment-card.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { ChartComponent } from './chart/chart.component';
+import { NotificationPaneComponent } from './notification-pane/notification-pane.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChartComponent } from './chart/chart.component';
     TopBarComponent,
     PaymentCardComponent,
     ProfileCardComponent,
-    ChartComponent
+    ChartComponent,
+    NotificationPaneComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { ChartComponent } from './chart/chart.component';
     PlanCardComponent,
     TopBarComponent,
     PaymentCardComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    NotificationPaneComponent
   ]
 })
 export class ComponentModule { }

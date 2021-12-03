@@ -15,5 +15,7 @@ export class UIAdjustmentService {
     this.isSideMenuVisible.next(!this.isSideMenuVisible.getValue());
   }
 
-  
+  toggleNotificationPane() {
+    this.isNotificationPaneVisible.next(!this.isNotificationPaneVisible.getValue());
+  }
 }

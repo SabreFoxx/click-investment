@@ -7,7 +7,8 @@ import {
   ElementRef,
   Renderer2,
   ViewChildren,
-  QueryList
+  QueryList,
+  AfterViewInit
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fadeAnimation } from 'src/app/animation';
@@ -20,9 +21,9 @@ import { BehaviorSubject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   animations: [fadeAnimation]
 })
-export class BasePanelComponent implements OnInit {
+export class BasePanelComponent implements OnInit, AfterViewInit {
   isShowSideMenu: BehaviorSubject<boolean>;
-  isWhat: boolean = false
+  isShowNotificationPane: boolean = false;
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
   @ViewChild('top') top: ElementRef;
@@ -32,21 +33,33 @@ export class BasePanelComponent implements OnInit {
   @ViewChild('panelBase') panelBase: ElementRef;
   @ViewChild('displayPanel') displayPanel: ElementRef;
   @ViewChildren('templateVarUsedWhenIsShowSideMenu') pageSvgIcons: QueryList<ElementRef>;
+  @ViewChild('appNotificationPaneContainer') appNotificationPaneContainer: ElementRef;
 
-  constructor(private globalStyle: UIAdjustmentService, private r: Renderer2) {
-    this.isShowSideMenu = globalStyle.isSideMenuVisible;
-    this.isWhat = true
-    setTimeout(() => this.isWhat = true, 2000)
+  constructor(private ui: UIAdjustmentService, private r: Renderer2) {
+    this.isShowSideMenu = ui.isSideMenuVisible;
   }
 
   ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
+    this.ui.isNotificationPaneVisible.subscribe(value => {
+      if (value == true)
+        this.isShowNotificationPane = true
+      else {
+        if (this?.appNotificationPaneContainer)
+          this.r.removeClass(this.appNotificationPaneContainer.nativeElement,
+            "app-notification-pane-show");
+        setTimeout(() => this.isShowNotificationPane = false, 151);
+      }
+    });
+  }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.animation;
   }
 
   toggleSideMenu() {
-    this.globalStyle.toggleSideMenu();
+    this.ui.toggleSideMenu();
     this.isShowSideMenu.value ? this.applySideMenuCloseActions()
       : this.unApplySideMenuCloseActions();
   }

@@ -13,7 +13,7 @@ body {
 
 ng-scrollbar {
     --scrollbar-size: 8px;
-    --scrollbar-thumb-color: #28df93 !important;
+    --scrollbar-thumb-color: #005F82 !important;
     --scrollbar-thumb-hover-color: rgb(231, 46, 46) !important;
     --scrollbar-border-radius: 4px;
 }
@@ -153,14 +153,23 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
     }
 
     &-notification-pane {
-        flex-basis: 25%;
+        // pretend our flex-basis for this is 25%
+        // we set it to 0.01% because we wish to animate it's growth
+        // to 25%. we add the class notification-pane-show to do this
+        flex-basis: 0.01%;
         flex-shrink: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
         height: 85%;
+        transition: flex-basis 150ms ease-out;
 
         .ng-scrollbar-track {
             margin-right: -1.39rem; // for the bar not to be over content
+        }
+
+        &-show {
+            // to 25%. we add the class notification-pane-show to do this
+            flex-basis: 25%;
         }
     }
 
