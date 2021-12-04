@@ -18,6 +18,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositComponent } from './deposit/deposit.component';
+import { AboutComponent } from './about/about.component';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -25,23 +26,23 @@ export const pageRoutes: Routes = [
     path: 'payments',
     component: PaymentComponent,
     resolve: { paymentMethods: PaymentMethodService },
-    data: { animation: 'Payment' }
+    data: { animation: 'Payments' }
   },
   {
     path: 'payments/plan-selection',
     component: PlanSelectionComponent,
     resolve: { resolvePlans: PlanRepositoryService },
-    data: { animation: 'Payment' }
+    data: { animation: 'Payments' }
   },
   {
     path: 'payments/deposit',
     component: DepositComponent,
-    data: { animation: 'Payment' }
+    data: { animation: 'Payments' }
   },
   {
     path: 'payments/withdraw',
     component: WithdrawComponent,
-    data: { animation: 'Payment' }
+    data: { animation: 'Payments' }
   },
   {
     path: 'stats',
@@ -57,14 +58,23 @@ export const pageRoutes: Routes = [
   {
     path: 'plans', component: PlanComponent,
     resolve: { resolvePlans: PlanRepositoryService },
-    data: { animation: 'AboutPage' }
+    data: { animation: 'Plans' }
   },
   {
     path: 'profile',
     component: ProfileComponent,
     data: { animation: 'Profile' }
   },
-  { path: 'settings', component: SettingComponent }
+  {
+    path: 'settings',
+    component: SettingComponent,
+    data: { animation: 'Settings' }
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    data: { animation: 'AboutPage' }
+  }
 ]
 
 @NgModule({
@@ -78,7 +88,8 @@ export const pageRoutes: Routes = [
     PaymentComponent,
     PlanSelectionComponent,
     WithdrawComponent,
-    DepositComponent
+    DepositComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
