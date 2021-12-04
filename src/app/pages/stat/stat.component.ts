@@ -34,15 +34,11 @@ export class StatComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.plans = this.route.data.pipe(pluck('resolvePlans'));
+    this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
   }
 
-  onSwiper(swiper) {
-    // console.log(swiper);
-  }
+  onSwiper(swiper) { }
 
-  onSlideChange() {
-    console.log('slide change');
-  }
+  onSlideChange() { }
 
 }

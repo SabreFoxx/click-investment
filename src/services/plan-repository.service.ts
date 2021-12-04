@@ -13,7 +13,7 @@ export class PlanRepositoryService implements Resolve<any> {
     private http: HttpClient, @Inject('DASHBOARD') private endpoint: string) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plan[]> {
-    return this.http.get<Plan[]>(this.endpoint, { headers: this.authStore.authorizationHeader })
+    return this.http.get<Plan[]>(this.endpoint, { headers: this.authStore.authorizationHeader });
   }
 
 }

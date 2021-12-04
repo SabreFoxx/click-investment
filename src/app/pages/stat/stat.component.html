@@ -2,7 +2,7 @@
     <h2 class="sub-title">Investments</h2>
     <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
         <ng-template swiperSlide *ngFor="let plan of plans | async">
-            <app-plan-card [plan]="plan">
+            <app-plan-card [plan]="plan" [showStats]="true">
             </app-plan-card>
         </ng-template>
     </swiper>

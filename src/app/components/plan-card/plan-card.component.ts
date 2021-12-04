@@ -1,4 +1,4 @@
-import { SimplePostService } from './../../../services/simple-post.service';
+import { SimplePostService } from 'src/services/simple-post.service';
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';
@@ -62,11 +62,24 @@ export class PlanCardComponent implements OnInit {
   // public chartOptions: Partial<ChartOptions>;
   public chartOptions: Partial<any>;
 
-  constructor(private post: SimplePostService, private sanitizer: DomSanitizer) {
+  constructor(private post: SimplePostService, private sanitizer: DomSanitizer) { }
+
+  ngOnInit(): void {
+    this.icon = this.sanitizer.bypassSecurityTrustHtml(`
+        <svg class="svg-icon">
+          <use xlink:href="#${this.plan.icon}"></use>
+        </svg>
+    `);
+
     this.chartOptions = {
       series: [{
-        data: [[1, 11], [3, 24], [5, 30], [15, 43], [20, 55], [30, 60]]
+        data: this.plan?.DailyInterests.map(d => {
+          return { x: d['createdAt'], y: d['gross'] }
+        })
       }],
+      xaxis: {
+        type: 'datetime'
+      },
       chart: {
         type: 'area',
         height: '150px',
@@ -80,11 +93,6 @@ export class PlanCardComponent implements OnInit {
       grid: {
         borderColor: '#ababab',
         clipMarkers: true,
-        yaxis: {
-          // lines: {
-          //   show: false
-          // }
-        },
         padding: {
           top: 0,
           right: 0,
@@ -107,14 +115,6 @@ export class PlanCardComponent implements OnInit {
         enabled: false
       }
     }
-  }
-
-  ngOnInit(): void {
-    this.icon = this.sanitizer.bypassSecurityTrustHtml(`
-        <svg class="svg-icon">
-          <use xlink:href="#${this.plan.icon}"></use>
-        </svg>
-    `);
   }
 
 }
