@@ -58,7 +58,6 @@ export class PlanCardComponent implements OnInit {
   @Input() showStats?: boolean = false;
   icon: SafeHtml;
 
-  @ViewChild(ChartComponent) chart: ChartComponent;
   // public chartOptions: Partial<ChartOptions>;
   public chartOptions: Partial<any>;
 

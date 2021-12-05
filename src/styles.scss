@@ -201,7 +201,7 @@ img {
     &-card {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         align-content: space-between;
         border-radius: 2rem;
         background-color: white;
@@ -214,15 +214,6 @@ img {
         padding: 1rem;
         margin-bottom: 1em;
     }
-}
-
-.swiper {
-    // for swiperjs.com
-    // for the sake of our Angular router animation and it brief 
-    // absolute positioning, we shouldn't have a margin-top
-    margin-top: 0;
-    caret-color: transparent;
-    width: 100%;
 }
 
 .border {
@@ -299,4 +290,13 @@ h5 {
 // multiplying by 1em is just to convert to the type
 h6 {
     font-size: $scale * 0.25 * 1em;
+}
+
+.swiper {
+    // for swiperjs.com
+    // for the sake of our Angular router animation and it brief 
+    // absolute positioning, we shouldn't have a margin-top
+    margin-top: 0;
+    caret-color: transparent;
+    width: 100%;
 }

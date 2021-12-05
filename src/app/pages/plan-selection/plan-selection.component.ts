@@ -23,7 +23,7 @@ export class PlanSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plans = this.route.data.pipe(pluck('resolvePlans'));
+    this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
   }
 
   selectPlan(plan: Plan) {

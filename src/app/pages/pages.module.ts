@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { PlanRepositoryService } from 'src/services/plan-repository.service';
 import { StatComponent } from './stat/stat.component';
@@ -97,7 +98,8 @@ export const pageRoutes: Routes = [
     ComponentModule,
     RouterModule,
     SwiperModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    NgApexchartsModule
   ]
 })
 export class PageModule { }

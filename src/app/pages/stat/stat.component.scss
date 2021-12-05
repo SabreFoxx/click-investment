@@ -4,10 +4,36 @@
 // uses ViewEncapsulation.None
 
 .plan-list {
-  padding-bottom: 0;  
+  padding-bottom: 0;
 }
 
 .swiper-slide {
   width: 250px;
-  height: 300px;
+}
+
+.stats {
+  $overview-width: 40%;
+  $margin: 1em;
+  display: flex;
+  justify-content: space-between;
+
+  &-overview {
+    // Apex charts doesn't respect flex-basis, so we'll be using width
+    width: $overview-width;
+    margin-right: $margin;
+    display: flex;
+    flex-direction: column;
+
+    >*:not(h2) {
+      align-self: center;
+      // it's in a column flex, so margin: auto will central it vertically
+      margin: auto;
+    }
+  }
+
+  &-plan {
+    // Apex charts doesn't respect flex-basis, so we'll be using width
+    width: calc(100% - #{$overview-width} - #{2 * $margin});
+    margin-left: $margin;
+  }
 }

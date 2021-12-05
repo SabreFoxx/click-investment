@@ -1,5 +1,4 @@
-<div class="container-card container-white">
-    <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [showStats]="true"
-                   [plan]="plan">
+<section class="container-card container-white">
+    <app-plan-card *ngFor="let plan of plans | async" [plan]="plan">
     </app-plan-card>
-</div>
+</section>

@@ -11,6 +11,6 @@
 
 <div class="container-card container-white">
     <app-plan-card class="shake-slow" *ngFor="let plan of plans | async" [plan]="plan"
-                   (click)="selectPlan(plan)">
+                   [showStats]="true" (click)="selectPlan(plan)">
     </app-plan-card>
 </div>
