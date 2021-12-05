@@ -12,7 +12,6 @@ import { BasePanelComponent } from './base-panel/base-panel.component';
 import { ComponentModule } from '../components/component.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SettingComponent } from './setting/setting.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -67,11 +66,6 @@ export const pageRoutes: Routes = [
     data: { animation: 'Profile' }
   },
   {
-    path: 'settings',
-    component: SettingComponent,
-    data: { animation: 'Settings' }
-  },
-  {
     path: 'about',
     component: AboutComponent,
     data: { animation: 'AboutPage' }
@@ -85,7 +79,6 @@ export const pageRoutes: Routes = [
     BasePanelComponent,
     TransactionComponent,
     ProfileComponent,
-    SettingComponent,
     PaymentComponent,
     PlanSelectionComponent,
     WithdrawComponent,
