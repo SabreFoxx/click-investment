@@ -10,30 +10,30 @@
 </article>
 
 <section style="margin: 1em 0 2em 0">
-    <form class="">
-        <div class="currency">
-            <div class="input-container">
-                <label #label for="username" class="label">XLM</label>
-                <input #input class="input" id="username" type="text">
-            </div>
-            <div class="input-container">
-                <svg class="svg-icon">
-                    <use xlink:href="#swap-horizontal-bold"></use>
-                </svg>
-            </div>
-            <div class="input-container">
-                <label #label for="password" class="label">GBP</label>
-                <input #input class="input" id="password" type="text">
-            </div>
+    <div class="currency">
+        <div class="input-container">
+            <label #label for="username" class="label">XLM</label>
+            <input #input class="input" id="username" type="text">
         </div>
-        <div class="currency input-container">
-            <button class="button is-rounded is-link" type="submit">Deposit 5.2375832 XLM</button>
+        <div class="input-container">
+            <svg class="svg-icon">
+                <use xlink:href="#swap-horizontal-bold"></use>
+            </svg>
         </div>
-    </form>
+        <div class="input-container">
+            <label #label for="password" class="label">GBP</label>
+            <input #input class="input" id="password" type="text">
+        </div>
+    </div>
+    <div class="currency input-container">
+        <button class="button is-rounded is-link" (click)="deposit()" type="submit">
+            Deposit 5.2375832 XLM
+        </button>
+    </div>
 </section>
 
 <section class="message container-white">
-    <div class="wallet-address">
+    <div #addr class="wallet-address">
         <div class="qr">
             <img src="assets/img/qr.png" alt="qr code" class="qr">
             <p><em>Copy the wallet address, or scan this QR code with your wallet App</em></p>
@@ -45,8 +45,8 @@
             <div class="input-container">
                 <input #input class="input" id="username" type="text" value="xxxxxxxxxxxxxxxxx">
             </div>
-            <p class="footnote"><em>Afterwhich, proceed to 
-                <a [routerLink]="['/app', 'payments']">payment verification</a></em>.
+            <p class="footnote"><em>Afterwhich, proceed to
+                    <a [routerLink]="['/app', 'payments']">payment verification</a></em>.
                 <span>Please verify your payment within two days, or it may be lost.</span>
             </p>
         </div>

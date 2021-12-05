@@ -10,6 +10,8 @@
     display: flex;
     justify-content: center;
     margin: 1em 0;
+    opacity: 0;
+    transition: opacity 250ms linear;
 
     .details {
         margin-left: 1em;

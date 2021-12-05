@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-deposit',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deposit.component.scss']
 })
 export class DepositComponent implements OnInit {
+  @ViewChild('addr') addr: ElementRef;
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
+  }
+
+  deposit() {
+    this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
   }
 
 }

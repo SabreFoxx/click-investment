@@ -155,7 +155,7 @@ export class StatComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.plans.subscribe(plans => {
-      this.display(plans[0]) // initial stats
+      // initial stats
       setTimeout(() => { // fixes a ui bug
         this.display(plans[0])
       }, 800);
@@ -169,7 +169,6 @@ export class StatComponent implements OnInit {
     this.planStatBrushOptions.series = [{
       data: loadPlanDataForApexChartSeries(plan)
     }]
-    console.log(loadPlanDataForApexChartSeries(plan))
   }
 
   onSwiper(swiper) { }

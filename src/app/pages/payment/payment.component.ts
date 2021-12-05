@@ -1,5 +1,5 @@
 import { DepositDetails } from 'src/models/payment-details';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
@@ -12,10 +12,12 @@ import Swal from 'sweetalert2';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, AfterViewInit {
   paymentMethods: Observable<PaymentMethod[]>;
   @ViewChild(SwalComponent) alert: SwalComponent;
   isDepositListVisible: boolean;
+  // we need this to get back to start of page when user navigates
+  @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
 
   alertMixin = Swal.mixin({
     iconHtml: `
@@ -39,6 +41,10 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));
+  }
+
+  ngAfterViewInit(): void {
+    this.anchor.nativeElement.scrollIntoView(0);
   }
 
   showAlert(card: PaymentMethod) {
