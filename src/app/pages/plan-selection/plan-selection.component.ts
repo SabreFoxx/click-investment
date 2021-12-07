@@ -1,9 +1,11 @@
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { DepositDetails } from 'src/models/payment-details';
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-plan-selection',
@@ -16,6 +18,22 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   navData: any;
   // we need this to get back to start of page when user navigates
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
+  @ViewChild('alertForWithdrawalLimitInfo') swal: SwalComponent;
+
+  alertMixin = Swal.mixin({
+    icon: 'info',
+    iconColor: '#0cc078',
+    footer: 'Select this payment method for use in funding your plan',
+    heightAuto: false,
+    showCancelButton: true,
+    cancelButtonAriaLabel: 'Abort',
+    focusCancel: true,
+    buttonsStyling: false,
+    customClass: {
+      confirmButton: 'button is-rounded is-link mgn',
+      cancelButton: 'button is-rounded mgn'
+    }
+  });
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.navData = router.getCurrentNavigation().extras.state;
@@ -33,13 +51,26 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   }
 
   selectPlan(plan: Plan) {
-    this.router.navigate(['../', this.navData?.to], {
-      relativeTo: this.route,
-      queryParams: {
-        currency: this.paymentInfo.currency.name,
-        plan: plan.name
-      }
-    });
+    if (this.navData?.to == 'deposit')
+      this.router.navigate(['../', this.navData?.to], {
+        relativeTo: this.route,
+        queryParams: {
+          currency: this.paymentInfo.currency.name,
+          plan: plan.name
+        }
+      })
+    else if (this.navData?.to == 'withdraw') {
+      const planName = plan.name.toUpperCase();
+      this.alertMixin.fire({
+        title: planName,
+        text: plan.description,
+        confirmButtonText: `Withdraw from ${planName}`,
+        confirmButtonAriaLabel: `Use ${planName}`,
+      }).then(result => {
+        if (result.isConfirmed)
+          return true;
+      });
+    }
   }
 
 }

@@ -47,7 +47,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.anchor.nativeElement.scrollIntoView(0);
   }
 
-  showAlert(card: PaymentMethod) {
+  showAlert(card: PaymentMethod, muchLaterNavigateTo: string) {
     const cardName = card.name.toUpperCase();
     this.alertMixin.fire({
       title: cardName,
@@ -60,9 +60,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       if (result.isConfirmed)
         this.router.navigate(['plan-selection'], {
           relativeTo: this.route,
-          state: { paymentDetails, to: 'deposit' }
+          state: { paymentDetails, to: muchLaterNavigateTo }
         })
-    })
+    });
   }
 
   toggleDepositList() {

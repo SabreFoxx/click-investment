@@ -55,7 +55,7 @@
     <div class="payment-methods">
         <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
                           [css]="card.cssClass" [text]="'Payment Method'"
-                          (selected)="alert.swalOptions = alertMixin; showAlert(card)">
+                          (selected)="alert.swalOptions = alertMixin; showAlert(card, 'deposit')">
         </app-payment-card>
     </div>
 </section>
@@ -66,7 +66,8 @@
 
     <div class="payment-methods" style="opacity: 0.8;">
         <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
-                          [css]="card.cssClass" [text]="'Withdrawal Method'">
+                          [css]="card.cssClass" [text]="'Withdrawal Method'"
+                          (selected)="alert.swalOptions = alertMixin; showAlert(card, 'withdraw')">
         </app-payment-card>
     </div>
 </section>

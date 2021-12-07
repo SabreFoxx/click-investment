@@ -2,12 +2,20 @@
 
 <article #useAsScrollToTopAnchor class="message">
     <section class="message-header">
-        <p>Choose Plan to deposit money into</p>
+        <p *ngIf="navData?.to == 'deposit'">Choose Plan to deposit money into</p>
+        <p *ngIf="navData?.to == 'withdraw'">Choose Plan to withdraw money from</p>
     </section>
     <section class="message-body">
-        You are about to <strong>deposit money</strong> in a <em>Plan</em>.
-        You selected <a>XLM</a> as your currency.
-        Please select the <em>Plan</em> you wish to deposit money into.
+        <p *ngIf="navData?.to == 'deposit'">You are about to <strong>deposit money</strong>
+            in a <em>Plan</em>. You selected
+            <a style="text-transform: uppercase;">{{navData?.paymentDetails?.currency?.name}}</a>
+            as your currency. Please select the <em>Plan</em> you wish to deposit money into.
+        </p>
+        <p *ngIf="navData?.to == 'withdraw'">You are about to <strong>withdraw money</strong>
+            from a <em>Plan</em>. You selected
+            <a style="text-transform: uppercase;">{{navData?.paymentDetails?.currency?.name}}</a>
+            as your currency. Please select the <em>Plan</em> you wish to withdraw money from.
+        </p>
     </section>
 </article>
 
@@ -16,3 +24,5 @@
                    [showStats]="true" (click)="selectPlan(plan)">
     </app-plan-card>
 </div>
+
+<swal #alertForWithdrawalLimitInfo [swalOptions]="alertMixin"></swal>
