@@ -1,26 +1,46 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 @Component({
-  selector: 'app-input-box',
+  selector: 'input-box',
   templateUrl: './input-box.component.html',
   styleUrls: ['./input-box.component.scss']
 })
-export class InputBoxComponent implements OnInit {
-  @ViewChildren('input') private inputBox: ElementRef;
-  @ViewChildren('label') private boxLabel: ElementRef;
+export class InputBoxComponent implements AfterViewInit, OnDestroy {
+  @Input() placeholder?: string;
+  @Input() errorMsg?: string;
+  @Input() type: string = 'text';
+  @Input() validationFailed = false;
+  @ViewChild('input') private inputBox: ElementRef;
+  @ViewChild('label') private boxLabel: ElementRef;
+  destroyListeners = new Array(2);
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private renderer: Renderer2) { }
 
   ngAfterViewInit(): void {
-    this.inputBox.nativeElement.addEventListener('focus', () => {
-      this.boxLabel.nativeElement.classList.add('move-label');
-    });
-    this.inputBox.nativeElement.addEventListener('blur', () => {
-      this.boxLabel.nativeElement.classList.remove('move-label');
-    });
+    this.destroyListeners[0] = this.renderer.listen(this.inputBox.nativeElement, 'focus',
+      event => {
+        this.renderer.addClass(this.boxLabel.nativeElement, 'move-label');
+        // $text-color: #5a5a5a; in variables.scss
+        this.renderer.setStyle(this.boxLabel.nativeElement, 'color', '#5a5a5a');
+      });
+    this.destroyListeners[1] = this.renderer.listen(this.inputBox.nativeElement, 'blur',
+      event => {
+        this.renderer.removeClass(this.boxLabel.nativeElement, 'move-label');
+        if (<HTMLInputElement>(this.inputBox.nativeElement).value.length)
+          this.renderer.setStyle(this.boxLabel.nativeElement, 'color', 'transparent');
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyListeners.forEach(f => f());
   }
 
 }

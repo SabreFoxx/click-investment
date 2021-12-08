@@ -1,4 +1,8 @@
-<div class="input-container">
-    <label #label for="username" class="label">Username</label>
-    <input #input class="input" id="username" type="text">
+<div class="input-box">
+    <label #label [for]="placeholder" class="label">{{placeholder}}</label>
+    <input #input class="input" [id]="placeholder" [type]="type"
+           [class.validation-failed]="validationFailed">
+    <span *ngIf="validationFailed" class="validation-failed">
+        {{errorMsg}}
+    </span>
 </div>
