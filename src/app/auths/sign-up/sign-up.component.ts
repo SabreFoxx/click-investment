@@ -1,11 +1,7 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
   Inject,
-  OnInit,
-  QueryList,
-  ViewChildren
+  OnInit
 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidation } from 'src/adjectives/validators'; // TODO
@@ -16,10 +12,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, AfterViewInit {
-  @ViewChildren('input') private inputBoxes: QueryList<ElementRef>;
-  @ViewChildren('label') private labels: QueryList<ElementRef>;
-
+export class SignUpComponent implements OnInit {
   form: FormGroup;
   firstName: AbstractControl;
   surname: AbstractControl;
@@ -59,20 +52,6 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       if (this.retypePassword.value != ''
         && (this.password.value == this.retypePassword.value))
         this.retypePassword.setErrors(null);
-    })
-  }
-
-  ngAfterViewInit(): void {
-    this.inputBoxes.forEach(box => {
-      let boxLabel = this.labels.find(item => {
-        return item.nativeElement.htmlFor == box.nativeElement.id
-      })
-      box.nativeElement.addEventListener('focus', () => {
-        boxLabel.nativeElement.classList.add('move-label');
-      });
-      box.nativeElement.addEventListener('blur', () => {
-        boxLabel.nativeElement.classList.remove('move-label');
-      });
     })
   }
 

@@ -1,8 +1,11 @@
 <div class="input-box">
-    <label #label [for]="placeholder" class="label">{{placeholder}}</label>
-    <input #input class="input" [formControl]="control" [id]="placeholder" [type]="type"
-           [class.validation-failed]="validationFailed">
+    <label #label [for]="placeholder.split(' ').join('-')" class="label">{{placeholder}}</label>
+    <input #input class="input" [formControl]="control" [id]="placeholder.split(' ').join('-')"
+           [type]="type" [class.validation-failed]="validationFailed">
     <span *ngIf="validationFailed" class="validation-failed">
         {{errorMsg}}
     </span>
 </div>
+
+<!-- .split(' ').join('-') converts any space between strings to dash, by 
+first converting to array and joining array -->

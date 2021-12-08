@@ -7,10 +7,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
-  @ViewChildren('input') private inputBoxes: QueryList<ElementRef>;
-  @ViewChildren('label') private labels: QueryList<ElementRef>;
-
+export class LoginComponent implements OnInit {
   form: FormGroup;
   email: AbstractControl;
   password: AbstractControl;
@@ -29,20 +26,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void { }
-
-  ngAfterViewInit(): void {
-    this.inputBoxes.forEach(box => {
-      let boxLabel = this.labels.find(item => {
-        return item.nativeElement.htmlFor == box.nativeElement.id
-      })
-      box.nativeElement.addEventListener('focus', () => {
-        boxLabel.nativeElement.classList.add('move-label');
-      });
-      box.nativeElement.addEventListener('blur', () => {
-        boxLabel.nativeElement.classList.remove('move-label');
-      });
-    })
-  }
 
   submit(): void {
     this.disableSubmitButton = true;

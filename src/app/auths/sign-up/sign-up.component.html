@@ -3,65 +3,45 @@
         <h2>Open and account</h2>
         <br>
         <div class="input-row">
-            <div class="input-container">
-                <label #label for="surname" class="label">Surname</label>
-                <input #input class="input"
-                       [class.input-invalid]="surname.invalid && surname.touched"
-                       [formControl]="surname" id="surname" type="text">
-                <span *ngIf="surname.invalid && surname.touched" class="input-validation-msg">
-                    Enter your surname
-                </span>
+            <div>
+                <input-box placeholder="Surname" errorMsg="Enter your surname" [control]="surname"
+                           [validationFailed]="surname.invalid && surname.touched">
+                </input-box>
             </div>
-            <div class="input-container">
-                <label #label for="firstname" class="label">Firstname</label>
-                <input #input class="input"
-                       [class.input-invalid]="firstName.invalid && firstName.touched"
-                       [formControl]="firstName" id="firstname" type="text">
-                <span *ngIf="firstName.invalid && firstName.touched"
-                      class="input-validation-msg">Enter your name</span>
+            <div>
+                <input-box placeholder="Firstname" errorMsg="Enter your name" [control]="firstName"
+                           [validationFailed]="firstName.invalid && firstName.touched">
+                </input-box>
             </div>
         </div>
-        <!-- <div class="input-row">
-            <div class="input-container">
-                <label #label for="othernames" class="label">Other names</label>
-                <input #input class="input" id="othernames" type="text">
-                <span class="input-validation-msg">Validation message</span>
-            </div>
-            <div class="input-container"></div>
-        </div> -->
+
+        <br>
         <div class="input-row">
-            <div class="input-container">
-                <label #label for="email" class="label">Email</label>
-                <input #input class="input" [class.input-invalid]="email.invalid && email.touched"
-                       [formControl]="email" id="email" type="email">
-                <span *ngIf="email.invalid && email.touched" class="input-validation-msg">
-                    Enter your email
-                </span>
+            <div>
+                <input-box placeholder="Email" errorMsg="Enter your email" [control]="email"
+                           type="email" [validationFailed]="email.invalid && email.touched">
+                </input-box>
             </div>
-            <div class="input-container">
-                <label #label for="phone" class="label">Phone number</label>
-                <input #input class="input" [class.input-invalid]="phone.invalid && phone.touched"
-                       [formControl]="phone" id="phone" type="tel">
-                <span *ngIf="phone.invalid && phone.touched" class="input-validation-msg">
-                    Enter a correct phone number or none
-                </span>
+            <div>
+                <input-box placeholder="Phone number"
+                           errorMsg="Enter a correct phone number or none" [control]="phone"
+                           type="tel" [validationFailed]="phone.invalid && phone.touched">
+                </input-box>
             </div>
         </div>
+
+        <br>
         <div class="input-row">
-            <div class="input-container">
-                <label #label for="password" class="label">Password</label>
-                <input #input class="input"
-                       [class.input-invalid]="password.invalid && password.touched"
-                       [formControl]="password" id="password" type="password">
-                <span *ngIf="password.invalid && password.touched" class="input-validation-msg">
-                    Enter your password
-                </span>
+            <div>
+                <input-box placeholder="Password" errorMsg="Enter your password"
+                           [control]="password" type="password"
+                           [validationFailed]="password.invalid && password.touched">
+                </input-box>
             </div>
-            <div class="input-container">
-                <label #label for="repassword" class="label">Retype password</label>
-                <input #input class="input"
-                       [class.input-invalid]="retypePassword.invalid && retypePassword.touched"
-                       [formControl]="retypePassword" id="repassword" type="password">
+            <div>
+                <input-box placeholder="Retype password" [control]="retypePassword" type="password"
+                           [validationFailed]="retypePassword.invalid && retypePassword.touched">
+                </input-box>
                 <span *ngIf="retypePassword.invalid && retypePassword.touched"
                       class="input-validation-msg">
                     <span *ngIf="retypePassword.hasError('required')">
@@ -74,6 +54,7 @@
             </div>
         </div>
 
+        <br>
         <div class="input-row">
             <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
             <button class="button is-rounded is-link" type="submit"
