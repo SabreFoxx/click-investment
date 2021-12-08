@@ -18,6 +18,7 @@ import { PaymentCardComponent } from './payment-card/payment-card.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { ChartComponent } from './chart/chart.component';
 import { NotificationPaneComponent } from './notification-pane/notification-pane.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NotificationPaneComponent } from './notification-pane/notification-pane
     CommonModule,
     RouterModule,
     NgScrollbarModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

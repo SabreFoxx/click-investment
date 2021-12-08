@@ -14,18 +14,6 @@ export class SigninFormComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-    this.inputBoxes.forEach(box => {
-      let boxLabel = this.labels.find(item => {
-        return item.nativeElement.htmlFor == box.nativeElement.id
-      })
-      box.nativeElement.addEventListener('focus', () => {
-        boxLabel.nativeElement.classList.add('move-label');
-      });
-      box.nativeElement.addEventListener('blur', () => {
-        boxLabel.nativeElement.classList.remove('move-label');
-      });
-    })
-  }
+  ngAfterViewInit(): void { }
 
 }

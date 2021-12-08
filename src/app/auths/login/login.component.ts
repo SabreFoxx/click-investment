@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   submit(): void {
     this.disableSubmitButton = true;
-    setTimeout(() => this.disableSubmitButton = false, 7000);
+    setTimeout(() => this.disableSubmitButton = false, 5000);
     this.auth.login(this.form.value, this.endpoint);
   }
 }

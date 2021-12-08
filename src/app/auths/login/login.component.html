@@ -1,30 +1,27 @@
 <div class="border spc">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <h2>Login</h2>
+
         <br>
         <div class="input-row">
-            <div class="input-container">
-                <label #label for="email" class="label">Email</label>
-                <input #input class="input" [class.input-invalid]="email.invalid && email.touched"
-                       [formControl]="email" id="email" type="email">
-                <span *ngIf="email.invalid && email.touched" class="input-validation-msg">
-                    Enter your email
-                </span>
+            <div>
+                <input-box placeholder="Email" errorMsg="Enter your email" type="email"
+                           [control]="email" [validationFailed]="email.invalid && email.touched">
+                </input-box>
             </div>
-            <div class="input-container">
-                <label #label for="password" class="label">Password</label>
-                <input #input class="input"
-                       [class.input-invalid]="password.invalid && password.touched"
-                       [formControl]="password" id="password" type="password">
-                <span *ngIf="password.invalid && password.touched" class="input-validation-msg">
-                    Enter your password
-                </span>
+            <div>
+                <input-box placeholder="Password" errorMsg="Enter your password" type="password"
+                           [control]="password"
+                           [validationFailed]="password.invalid && password.touched">
+                </input-box>
             </div>
         </div>
 
+        <br>
         <div class="input-row">
-            <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
-            <button class="button is-rounded is-link" type="submit"
+            <a [routerLink]="['/auth/signup_']" class="button is-rounded"
+               style="flex-basis: 42%;">Back</a>
+            <button class="button is-rounded is-link" type="submit" style="flex-basis: 42%;"
                     [disabled]="!form.valid || disableSubmitButton">Submit</button>
         </div>
     </form>

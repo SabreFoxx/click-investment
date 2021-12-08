@@ -90,7 +90,7 @@ img {
         background-color: transparent;
         border: 1px solid $link;
         box-sizing: content-box;
-        margin: 1em auto;
+        margin: 1em 0;
         color: $link;
         font-weight: bold;
         transition: box-shadow 200ms ease-in-out;
@@ -120,80 +120,13 @@ img {
     }
 }
 
-.input {
-    &-row {
-        display: flex;
-        align-items: center;
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        >* {
-            flex-basis: 50%;
-        }
-    }
-
-    &-container {
-        $font-size: 1rem;
-        $padding: 0.3rem; // allowance for shadow hover effect to show
-
-        position: relative;
-        padding: $padding 0;
-        max-height: $input-height + $padding;
-        margin: 0.5em 0 1em 0;
-
-        .input {
-            position: static;
-            height: $input-height;
-            font-family: $text-font;
-            font-weight: 200;
-
-            &:hover {
-                border-width: 2px;
-            }
-        }
-
-        .label {
-            display: block;
-            line-height: 0;
-            font-family: $text-font;
-            font-weight: 200;
-            font-size: $font-size;
-            transform: translate(1rem, calc(#{$font-size} + #{$input-height * 0.25}));
-            transform-origin: left;
-            transition: transform 0.2s ease, font-size 0.2s ease;
-        }
-
-        .move-label {
-            transform: translate(0.9rem, $input-height * 0.25);
-            font-size: math.div($font-size, 1.5);
-        }
-
-        .fixed-icon {
-            display: block;
-            position: absolute;
-            top: 50%;
-            height: $input-height;
-
-            svg {
-                position: relative;
-                top: calc(-1 * #{math.div($input-height, 6)});
-            }
-
-            &.is-right {
-                right: 1rem;
-            }
-
-            &.is-left {
-                left: 1rem;
-            }
-        }
-    }
-
-    &-validation-msg {
-        color: $info-color-red;
-    }
-
-    &-invalid {
-        background-color: lighten($info-color-red, 35%);
-        border-color: $info-color-red;
+    >* {
+        flex-basis: 48%;
     }
 }
 

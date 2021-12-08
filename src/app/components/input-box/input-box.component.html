@@ -1,6 +1,6 @@
 <div class="input-box">
     <label #label [for]="placeholder" class="label">{{placeholder}}</label>
-    <input #input class="input" [id]="placeholder" [type]="type"
+    <input #input class="input" [formControl]="control" [id]="placeholder" [type]="type"
            [class.validation-failed]="validationFailed">
     <span *ngIf="validationFailed" class="validation-failed">
         {{errorMsg}}

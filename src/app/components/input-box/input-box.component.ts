@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import {
   AfterViewInit,
   Component,
@@ -18,6 +19,8 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
   @Input() errorMsg?: string;
   @Input() type: string = 'text';
   @Input() validationFailed = false;
+  // funny enough, I cannot use formControl as the input's name so I use control
+  @Input() control?: FormControl;
   @ViewChild('input') private inputBox: ElementRef;
   @ViewChild('label') private boxLabel: ElementRef;
   destroyListeners = new Array(2);
