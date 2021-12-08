@@ -69,6 +69,15 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
       }).then(result => {
         if (result.isConfirmed)
           return true;
+        else if (result.isDismissed && result.dismiss == Swal.DismissReason.cancel)
+          this.alertMixin.fire({
+            title: 'Cancelled',
+            icon: 'error',
+            iconHtml: null,
+            iconColor: '#fb6962',
+            footer: null,
+            showCancelButton: false
+          });
       });
     }
   }

@@ -62,6 +62,15 @@ export class PaymentComponent implements OnInit, AfterViewInit {
           relativeTo: this.route,
           state: { paymentDetails, to: muchLaterNavigateTo }
         })
+      else if (result.isDismissed && result.dismiss == Swal.DismissReason.cancel)
+        this.alertMixin.fire({
+          title: 'Cancelled',
+          icon: 'error',
+          iconHtml: null,
+          iconColor: '#fb6962',
+          footer: null,
+          showCancelButton: false
+        });
     });
   }
 
