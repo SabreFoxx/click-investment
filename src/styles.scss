@@ -120,13 +120,83 @@ img {
     }
 }
 
-.input-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.input {
+    &-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    >* {
-        flex-basis: 48%;
+        >* {
+            flex-basis: 48%;
+        }
+    }
+
+    &-box {
+        $font-size: 1rem;
+        $padding: 0.3rem; // allowance for shadow hover effect to show
+
+        position: relative;
+        padding: $padding 0;
+        max-height: $input-height + $padding;
+        width: 100%;
+
+        .input {
+            position: static;
+            height: $input-height;
+            font-family: $text-font;
+            font-weight: 200;
+            width: 100%;
+
+            &:hover {
+                box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1) inset;
+                ;
+            }
+
+            &.validation-failed {
+                background-color: lighten($info-color-red, 35%);
+                border-color: $info-color-red;
+            }
+        }
+
+        .label {
+            display: block;
+            line-height: 0;
+            font-family: $text-font;
+            font-weight: 200;
+            font-size: $font-size;
+            transform: translate(1rem, calc(#{$font-size} + #{$input-height * 0.25}));
+            transform-origin: left;
+            transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s linear;
+        }
+
+        .move-label {
+            transform: translate(0.9rem, $input-height * 0.25);
+            font-size: math.div($font-size, 1.5);
+        }
+
+        .fixed-icon {
+            display: block;
+            position: absolute;
+            top: 50%;
+            height: $input-height;
+
+            svg {
+                position: relative;
+                top: calc(-1 * #{math.div($input-height, 6)});
+            }
+
+            &.is-right {
+                right: 1rem;
+            }
+
+            &.is-left {
+                left: 1rem;
+            }
+        }
+
+        >.validation-failed {
+            color: $info-color-red;
+        }
     }
 }
 

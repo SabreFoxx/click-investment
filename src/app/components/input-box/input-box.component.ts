@@ -20,7 +20,7 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
   @Input() type: string = 'text';
   @Input() validationFailed = false;
   // funny enough, I cannot use formControl as the input's name so I use control
-  @Input() control?: FormControl;
+  @Input() control?: FormControl = null;
   @ViewChild('input') private inputBox: ElementRef;
   @ViewChild('label') private boxLabel: ElementRef;
   destroyListeners = new Array(2);
