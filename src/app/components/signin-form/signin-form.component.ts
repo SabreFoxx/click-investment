@@ -6,8 +6,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren }
   styleUrls: ['./signin-form.component.scss']
 })
 export class SigninFormComponent implements OnInit, AfterViewInit {
-  @ViewChildren('input') private inputBoxes: QueryList<ElementRef>;
-  @ViewChildren('label') private labels: QueryList<ElementRef>;
 
   constructor() { }
 
