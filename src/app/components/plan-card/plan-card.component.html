@@ -6,7 +6,7 @@
             <span class="plan">{{plan.name}}</span>
         </div>
 
-        <div *ngIf="showStats" class="chart">
+        <div *ngIf="showStats; else description" class="description">
             <apx-chart [chart]="chartOptions.chart" [series]="chartOptions.series"
                        [tooltip]="chartOptions.tooltip" [colors]="chartOptions.colors"
                        [stroke]="chartOptions.stroke" [grid]="chartOptions.grid"
@@ -14,6 +14,10 @@
                        [xaxis]="chartOptions.xaxis">
             </apx-chart>
         </div>
+
+        <ng-template #description>
+            <p>{{plan.description}}</p>
+        </ng-template>
 
         <div>
             <span class="amount">$ 20,500</span>

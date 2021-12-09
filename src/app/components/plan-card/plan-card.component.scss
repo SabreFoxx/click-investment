@@ -4,7 +4,7 @@
     position: relative;
     width: 200px;
     height: 260px;
-    cursor: drag;
+    cursor: pointer;
     margin: 0.4rem 0.02em;
 
     // prevent text selection
@@ -34,7 +34,7 @@
     height: 85%;
     color: $white-ter;
 
-    .chart {
+    .description {
         flex-grow: 2;
         margin: 0;
         padding: 0;
