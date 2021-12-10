@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { DepositDetails } from 'src/models/payment-details';
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,10 +15,10 @@ import Swal from 'sweetalert2';
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
   paymentMethods: Observable<PaymentMethod[]>;
-  @ViewChild(SwalComponent) alert: SwalComponent;
   isDepositListVisible: boolean;
   // we need this to get back to start of page when user navigates
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
+  @ViewChild(SwalComponent) alert: SwalComponent;
 
   alertMixin = Swal.mixin({
     iconHtml: `
@@ -37,7 +38,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private ui: UIAdjustmentService) {
+    ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' }]);
+  }
 
   ngOnInit(): void {
     this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));

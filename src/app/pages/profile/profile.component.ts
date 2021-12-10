@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ui: UIAdjustmentService) {
+    ui.setBreadcrumbs([{ url: '/app/profile', title: 'Profile' }]);
+  }
 
   ngOnInit(): void {
   }

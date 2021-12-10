@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
@@ -8,9 +9,11 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 export class DepositComponent implements OnInit {
   @ViewChild('addr') addr: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private ui: UIAdjustmentService) { }
 
   ngOnInit(): void {
+    this.ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' },
+    { url: '/app/payments/deposit', title: 'Deposit', forceActive: true }]);
   }
 
   deposit() {

@@ -1,13 +1,12 @@
 <div class="top-bar">
     <div class="top">
-        <span class="main-title">Stats</span>
+        <span class="main-title">{{title}}</span>
         <div class="nav">
             <div class="search">
-                <input type="text" class="input" id="input">
+                <input-box placeholder="Search"></input-box>
                 <svg class="svg-icon search-icon">
                     <use xlink:href="#magnify"></use>
                 </svg>
-                <label for="input">Search</label>
             </div>
             <button class="icon-button" (click)="showNews()">
                 <svg class="svg-icon">
@@ -33,8 +32,11 @@
                     <span>App</span>
                 </a>
             </li>
-            <li><a href="#">Payments</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Select Plan</a></li>
+            <li *ngFor="let crumb of breadcrumbs | async" [routerLink]="[crumb.url]"
+                routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}"
+                [class.is-active]="crumb.forceActive">
+                <a [routerLink]="[crumb.url]">{{crumb.title}}</a>
+            </li>
         </ul>
     </nav>
 </div>

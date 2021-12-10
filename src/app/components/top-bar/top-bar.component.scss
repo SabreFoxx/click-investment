@@ -18,15 +18,6 @@
         align-items: center;
     }
 
-    .input {
-        border: 0;
-        background-color: white;
-        width: 250px;
-        max-height: 25px;
-        box-sizing: content-box;
-        box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
-    }
-
     .search {
         position: relative;
         display: inline-flex;
@@ -35,25 +26,11 @@
 
         &-icon {
             position: absolute;
-            left: 0;
+            right: 0.5rem;
+            top: 1.15rem;
             z-index: 1;
             margin: 0;
-        }
-
-        label {
-            position: absolute;
-            left: 2rem;
-            z-index: 1;
-            font-size: 1.5em;
-            font-size: $text-font;
-        }
-
-        .input {
-            text-indent: 1.5rem;
-
-            &:focus {
-                background-color: $primary;
-            }
+            fill: $grey-light;
         }
     }
 }
@@ -62,14 +39,16 @@
     border: 0;
     background-color: transparent;
     color: $text-color;
+    cursor: pointer;
 
     &:hover {
         scale: 2;
     }
 
     &:active, &:focus {
-        background-color: $primary;
+        background-color: rgba(0, 0, 0, 0.10);
         border: 0;
+        border-radius: 0.5em;
     }
 
     .svg-icon {

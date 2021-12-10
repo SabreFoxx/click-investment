@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { DepositDetails } from 'src/models/payment-details';
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
@@ -6,6 +7,7 @@ import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swal from 'sweetalert2';
+import { capitalizeFirstLetter } from 'src/adjectives/functions';
 
 @Component({
   selector: 'app-plan-selection',
@@ -35,11 +37,16 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private ui: UIAdjustmentService) {
     this.navData = router.getCurrentNavigation().extras.state;
     this.paymentInfo = this.navData?.paymentDetails
       ?? router.navigate(['../'], { relativeTo: this.route });
     this.navData?.to ?? router.navigate(['../'], { relativeTo: this.route });
+
+    this.ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' }, {
+      url: `/app/payments/${this.navData?.to}`,
+      title: `${capitalizeFirstLetter(this.navData?.to)}`, forceActive: true
+    }]);
   }
 
   ngOnInit(): void {

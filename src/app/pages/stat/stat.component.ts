@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
@@ -23,7 +24,9 @@ export class StatComponent implements OnInit {
   planStatBrushOptions: any;
   @ViewChild(ChartComponent) chart: ChartComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, ui: UIAdjustmentService) {
+    ui.setBreadcrumbs([{ url: '/app/stats', title: 'Stats' }]);
+
     this.swiperConfig = {
       effect: 'coverflow',
       grabCursor: true,
