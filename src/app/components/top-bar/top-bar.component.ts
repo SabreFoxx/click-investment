@@ -1,9 +1,11 @@
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit } from '@angular/core';
 import { NotificationPaneService } from 'src/services/notification-pane.service';
 import { BehaviorSubject } from 'rxjs';
 import { Breadcrumb } from 'src/models/breadcrumb';
 import { capitalizeFirstLetter } from 'src/adjectives/functions';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-top-bar',
@@ -13,18 +15,25 @@ import { capitalizeFirstLetter } from 'src/adjectives/functions';
 export class TopBarComponent implements OnInit {
   openedWith: OpenedWithIcon;
   breadcrumbs: BehaviorSubject<Breadcrumb[]>;
-  title: string = null;
+  title: string = 'null';
 
-  constructor(private ui: UIAdjustmentService,
+  searchForm: FormGroup;
+  search: AbstractControl;
+
+  constructor(private ui: UIAdjustmentService, private pageTitle: Title,
     private notify: NotificationPaneService) {
     this.openedWith = OpenedWithIcon.NONE;
     this.breadcrumbs = ui.breadcrumbs;
-    ui.breadcrumbs.subscribe(b => {
-      this.title = capitalizeFirstLetter(b[b.length - 1]['title'])
-    });
+
+    this.searchForm = new FormGroup({ 'search': new FormControl() });
+    this.search = this.searchForm.controls['search'];
   }
 
   ngOnInit(): void {
+    this.ui.breadcrumbs.subscribe((b) => {
+      this.title = capitalizeFirstLetter(b[b.length - 1]['title']);
+      this.pageTitle.setTitle(`${this.title} - Click Investment`);
+    });
   }
 
   showNews() {
@@ -40,7 +49,6 @@ export class TopBarComponent implements OnInit {
       this.ui.toggleNotificationPane()
     this.openedWith = OpenedWithIcon.ALERT
   }
-
 }
 
 enum OpenedWithIcon {

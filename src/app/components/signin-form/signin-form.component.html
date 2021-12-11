@@ -1,10 +1,10 @@
 <form class="signin-form spc">
     <div>
-        <input-box placeholder="Email" errorMsg="Enter your email" type="email">
+        <input-box placeholder="Email" [control]="email" errorMsg="Enter your email" type="email">
         </input-box>
     </div>
     <div>
-        <input-box placeholder="Password" errorMsg="Enter your password" type="password">
+        <input-box placeholder="Password" [control]="password" errorMsg="Enter your password" type="password">
         </input-box>
     </div>
     <button class="button is-rounded is-link" type="submit">Log on</button>

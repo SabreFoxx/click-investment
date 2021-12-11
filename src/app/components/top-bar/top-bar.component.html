@@ -3,7 +3,9 @@
         <span class="main-title">{{title}}</span>
         <div class="nav">
             <div class="search">
-                <input-box placeholder="Search"></input-box>
+                <form>
+                    <input-box placeholder="Search" [control]="search"></input-box>
+                </form>
                 <svg class="svg-icon search-icon">
                     <use xlink:href="#magnify"></use>
                 </svg>
