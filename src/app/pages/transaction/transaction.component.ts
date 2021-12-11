@@ -13,6 +13,6 @@ export class TransactionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ui.setBreadcrumbs([{ url: '/app/transactions', title: 'Transactions' }]);
   }
-
 }
