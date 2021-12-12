@@ -242,11 +242,10 @@ hr.line {
     flex-grow: 1;
     flex-basis: 50%;
     margin: auto;
-    margin-right: auto;
     font-size: 3em;
     font-family: $display-font;
     font-weight: 600;
-    line-height: 1.125;
+    line-height: 0;
     color: $text-color;
 }
 
