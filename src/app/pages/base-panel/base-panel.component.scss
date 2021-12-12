@@ -126,6 +126,7 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         margin: 0 $margin-here;
         width: 100vw - $menu-width - (2*$margin-here);
         transition: $side-menu-closed-transition;
+        padding-bottom: 1em;
 
         &.side-menu-closed {
             width: 100vw - $side-menu-closed-width - (2*$margin-here);
@@ -178,8 +179,9 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         height: 2rem;
 
         &.side-menu-closed {
-            margin-left: -1em;
+            margin-left: -2em;
             margin-right: 0.5em;
+            width: $side-menu-closed-width;
         }
     }
 }
