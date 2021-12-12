@@ -16,7 +16,6 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentMethodService } from 'src/services/payment-method.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
-import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AboutComponent } from './about/about.component';
 
@@ -37,11 +36,6 @@ export const pageRoutes: Routes = [
   {
     path: 'payments/deposit',
     component: DepositComponent,
-    data: { animation: 'Payments' }
-  },
-  {
-    path: 'payments/withdraw',
-    component: WithdrawComponent,
     data: { animation: 'Payments' }
   },
   {
@@ -81,7 +75,6 @@ export const pageRoutes: Routes = [
     ProfileComponent,
     PaymentComponent,
     PlanSelectionComponent,
-    WithdrawComponent,
     DepositComponent,
     AboutComponent
   ],
