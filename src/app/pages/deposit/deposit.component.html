@@ -1,34 +1,33 @@
 <article class="message">
-    <section class="message-header">
+    <header class="message-header">
         <p>Make your payment</p>
-    </section>
+    </header>
     <section class="message-body">
         You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
         Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
         <em> (your local currency)</em>.
     </section>
+    <section>
+        <div class="currency">
+            <div>
+                <input-box placeholder="XLM"></input-box>
+            </div>
+            <div class="input-container" style="flex-basis: 0%; margin: 1em">
+                <svg class="svg-icon">
+                    <use xlink:href="#swap-horizontal-bold"></use>
+                </svg>
+            </div>
+            <div>
+                <input-box aria-readonly="true" readOnly="true"></input-box>
+            </div>
+        </div>
+        <div class="currency input-container">
+            <button class="button is-rounded is-link" (click)="deposit()" type="submit">
+                Deposit 5.2375832 XLM dsbl untl convrt
+            </button>
+        </div>
+    </section>
 </article>
-
-<section style="margin: 1em 0 2em 0">
-    <div class="currency">
-        <div>
-            <input-box placeholder="XLM"></input-box>
-        </div>
-        <div class="input-container" style="flex-basis: 0%; margin: 1em">
-            <svg class="svg-icon">
-                <use xlink:href="#swap-horizontal-bold"></use>
-            </svg>
-        </div>
-        <div>
-            <input-box placeholder="GBP"></input-box>
-        </div>
-    </div>
-    <div class="currency input-container">
-        <button class="button is-rounded is-link" (click)="deposit()" type="submit">
-            Deposit 5.2375832 XLM
-        </button>
-    </div>
-</section>
 
 <section class="message container-white">
     <div #addr class="wallet-address">
