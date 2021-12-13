@@ -18,6 +18,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AboutComponent } from './about/about.component';
+import { NewsComponent } from './news/news.component';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -60,6 +61,11 @@ export const pageRoutes: Routes = [
     data: { animation: 'Profile' }
   },
   {
+    path: 'news',
+    component: NewsComponent,
+    data: { animation: 'News' }
+  },
+  {
     path: 'about',
     component: AboutComponent,
     data: { animation: 'AboutPage' }
@@ -76,7 +82,8 @@ export const pageRoutes: Routes = [
     PaymentComponent,
     PlanSelectionComponent,
     DepositComponent,
-    AboutComponent
+    AboutComponent,
+    NewsComponent
   ],
   imports: [
     CommonModule,
