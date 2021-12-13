@@ -1,10 +1,10 @@
 <div #useAsScrollToTopAnchor></div>
 
 <article #useAsScrollToTopAnchor class="message">
-    <section class="message-header">
+    <header class="message-header">
         <p *ngIf="navData?.to == 'deposit'">Choose Plan to deposit money into</p>
         <p *ngIf="navData?.to == 'withdraw'">Choose Plan to withdraw money from</p>
-    </section>
+    </header>
     <section class="message-body">
         <p *ngIf="navData?.to == 'deposit'">You are about to <strong>deposit money</strong>
             in a <em>Plan</em>. You selected

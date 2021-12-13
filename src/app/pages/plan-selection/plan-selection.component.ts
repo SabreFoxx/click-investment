@@ -100,7 +100,7 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
 
             <div class="input-row">
               <div class="input-box">
-                <input class="input" placeholder="${currency}" type="type">
+                <input class="input" id="withdraw-amount" placeholder="${currency}" type="type">
               </div>
               <div class="input-container" style="flex-basis: 0%; margin: 1em">
                 <svg class="svg-icon">
@@ -109,7 +109,7 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
               </div>
               <div class="control">
                 <div class="select" style="width: 100%; height: 100%">
-                  <select style="width: 100%">
+                  <select style="width: 100%" id="select-currency">
                     <option>XLM</option>
                     <option>XRP</option>
                   </select>
@@ -123,12 +123,19 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
                 <em>Enter the wallet address to transfer money to.</em>
               </p>
               <div class="input-box">
-                <input class="input" placeholder="Your wallet address" type="type">
+                <input class="input" id="wallet-address" placeholder="Your wallet address" type="type">
               </div>
             </div>
           </article>`,
         confirmButtonText: `Withdraw from ${planName}`,
         confirmButtonAriaLabel: `Use ${planName}`,
+        preConfirm: () => {
+          return [
+            (document.getElementById('withdraw-amount') as any).value,
+            (document.getElementById('select-currency') as any).value,
+            (document.getElementById('wallet-address') as any).value
+          ]
+        },
         footer: 'After you click the Withdraw button, wait a couple of minutes '
           + 'for us to verify the transaction on our end.'
       }).then(result => {
@@ -141,7 +148,7 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
             footer: 'Check your transaction log for the status.',
             showCancelButton: false
           });
-          return true;
+          console.log(result.value);
         } else if (result.isDismissed && result.dismiss == Swal.DismissReason.cancel)
           this.alertMixin.fire({
             title: 'Cancelled',
