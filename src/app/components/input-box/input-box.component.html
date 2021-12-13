@@ -1,7 +1,7 @@
 <div class="input-box">
     <label #label [for]="placeholder.split(' ').join('-')" class="label">{{placeholder}}</label>
     <input #input class="input" [formControl]="control" [id]="placeholder.split(' ').join('-')"
-           [type]="type" [class.validation-failed]="validationFailed">
+           [type]="type" [class.validation-failed]="validationFailed" [readonly]="readOnly">
     <span *ngIf="validationFailed" class="validation-failed">
         {{errorMsg}}
     </span>
