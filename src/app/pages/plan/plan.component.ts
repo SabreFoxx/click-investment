@@ -2,7 +2,7 @@ import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, pluck } from 'rxjs/operators';
+import { pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 
 @Component({
