@@ -1,5 +1,5 @@
 pipeline {
-	agent { label 'angular-docker-label' }
+	agent { label 'angular-docker' }
 	options { timeout (time: 20) }
 	stages {
 		stage('install') {
@@ -7,7 +7,7 @@ pipeline {
 				sh 'npm clean-install'
 			}
 		}
-		stage('Compile') {
+		stage('compile') {
 			steps {
 				sh 'ng build'
 			}
