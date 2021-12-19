@@ -1,5 +1,5 @@
 pipeline {
-	agent { label 'angular-docker' }
+	agent { label 'angular-docker-label' }
 	options { timeout (time: 20) }
 	stages {
 		stage('install') {
