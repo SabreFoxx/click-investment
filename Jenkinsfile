@@ -13,12 +13,19 @@ pipeline {
 			}
 		}
 		stage('upload to S3 bucket') {
-              steps {
-                  withAWS(region:'eu-west-3',credentials:'deployment-user') {
-                  sh 'echo "uploading dist to S3 bucket"'
-                      s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'dist/click-investment', bucket:'click-investment')
-                  }
-              }
-         }
+            steps {
+                withAWS(region:'eu-west-3',credentials:'deployment-user') {
+					sh 'echo "uploading output to S3 bucket"'
+					s3Upload(
+						profileName: 'deployment-user'
+						sourceFile:'dist/click-investment/*',
+						selectedRegion: 'eu-west-3',
+						uploadFromSlave: true,
+						useServerSideEncryption: true,
+						bucket:'click-investment'
+					)
+				}
+            }
+        }
 	}
 }
