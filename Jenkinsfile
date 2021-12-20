@@ -18,7 +18,7 @@ pipeline {
 					sh 'echo "uploading output to S3 bucket"'
 					s3Upload(
 						profileName: 'deployment-user'
-						includePathPattern: 'dist/**',
+						file: 'dist',
 						selectedRegion: 'eu-west-3',
 						uploadFromSlave: true,
 						useServerSideEncryption: true,
