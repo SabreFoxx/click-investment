@@ -1,7 +1,7 @@
 export enum ApiEndpoints {
     REGISTRATION = '/register',
     LOGIN = '/login',
-    REFRESH_LOGIN = '/refresh-login',
+    REFRESH_LOGIN = '/refresh-user-data',
 
     DASHBOARD = '/dashboard'
 }
