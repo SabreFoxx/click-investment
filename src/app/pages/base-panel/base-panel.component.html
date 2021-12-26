@@ -7,7 +7,8 @@
             </div>
             <img #profilePic class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture">
             <span *ngIf="!(isShowSideMenu | async)" class="text text-welcome">Welcome,</span>
-            <span *ngIf="!(isShowSideMenu | async)" class="text text-name">John Adams</span>
+            <span *ngIf="!(isShowSideMenu | async)" class="text text-name">{{user.firstName}}
+                {{user.lastName}}</span>
         </div>
 
         <nav #nav class="app-nav">

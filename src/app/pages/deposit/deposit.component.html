@@ -3,14 +3,17 @@
         <p>Make your payment</p>
     </header>
     <section class="message-body">
-        You are <strong>depositing <a>XLM</a></strong> to the <em>Platinum Plan</em>.
-        Set the amount of <a>XLM</a> you wish to deposit, to see its value in <a>GBP</a>
-        <em> (your local currency)</em>.
+        You are <strong>depositing
+            <a>{{depositDetails.currency.name.toUpperCase()}}</a>
+        </strong> to the <em>{{depositDetails.plan.name}} Plan</em>.
+        Set the amount of <a>{{user.currency}}</a>
+        <em> (your local currency) </em> you wish to deposit, to see its value in
+        <a>{{depositDetails.currency.name.toUpperCase()}}</a>
     </section>
     <section>
         <div class="currency">
             <div>
-                <input-box placeholder="XLM"></input-box>
+                <input-box placeholder="{{user.currency}}"></input-box>
             </div>
             <div class="input-container" style="flex-basis: 0%; margin: 1em">
                 <svg class="svg-icon">

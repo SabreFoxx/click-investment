@@ -1,3 +1,5 @@
+import { User } from 'src/models/user';
+import { AuthStorageService } from 'src/services/auth-storage.service';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import {
   Component,
@@ -24,6 +26,7 @@ import { BehaviorSubject } from 'rxjs';
 export class BasePanelComponent implements OnInit, AfterViewInit {
   isShowSideMenu: BehaviorSubject<boolean>;
   isShowNotificationPane: boolean = false;
+  user: User;
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
   @ViewChild('top') top: ElementRef;
@@ -35,11 +38,14 @@ export class BasePanelComponent implements OnInit, AfterViewInit {
   @ViewChildren('templateVarUsedWhenIsShowSideMenu') pageSvgIcons: QueryList<ElementRef>;
   @ViewChild('appNotificationPaneContainer') appNotificationPaneContainer: ElementRef;
 
-  constructor(private ui: UIAdjustmentService, private r: Renderer2) {
+  constructor(private ui: UIAdjustmentService,
+    private authStorage: AuthStorageService, private r: Renderer2) {
     this.isShowSideMenu = ui.isSideMenuVisible;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.authStorage.currentUser.subscribe(u => this.user = u);
+  }
 
   ngAfterViewInit(): void {
     this.ui.isNotificationPaneVisible.subscribe(value => {
