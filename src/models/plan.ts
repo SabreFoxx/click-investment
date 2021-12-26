@@ -4,5 +4,6 @@ export interface Plan {
     design: string,
     description: string,
     icon: string,
+    profileColor?: string;
     DailyInterests?: any[]
 }

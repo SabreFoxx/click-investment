@@ -38,7 +38,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private route: ActivatedRoute, private router: Router, private ui: UIAdjustmentService) {
+  constructor(private route: ActivatedRoute,
+    private router: Router, private ui: UIAdjustmentService) {
     ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' }]);
   }
 

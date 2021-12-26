@@ -20,7 +20,9 @@
         </ng-template>
 
         <div>
-            <span class="amount">$ 20,500</span>
+            <span class="amount">
+                $ {{plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross}}
+            </span>
         </div>
     </div>
 </div>

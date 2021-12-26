@@ -37,7 +37,8 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private router: Router, private route: ActivatedRoute, private ui: UIAdjustmentService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    private ui: UIAdjustmentService) {
     this.navData = router.getCurrentNavigation().extras.state;
     this.paymentInfo = this.navData?.paymentDetails
       ?? router.navigate(['../'], { relativeTo: this.route });
@@ -58,16 +59,20 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   }
 
   selectPlan(plan: Plan) {
-    if (this.navData?.to == 'deposit')
+    if (this.navData?.to == 'deposit') {
+      const paymentDetails: DepositDetails = this.navData?.paymentDetails;
+      paymentDetails.plan = plan;
       this.router.navigate(['../', this.navData?.to], {
         relativeTo: this.route,
-        queryParams: {
+        queryParams: { // we won't use this data later; we'll use state instead
           currency: this.paymentInfo.currency.name,
           plan: plan.name
-        }
+        },
+        state: { paymentDetails }
       })
+    }
     else if (this.navData?.to == 'withdraw') {
-      const currency = 'GBP'.toUpperCase(); // TODO
+      const currency = 'GBP'.toUpperCase(); // TODO remove static
       const planName = plan.name.toUpperCase();
       this.alertMixin.fire({
         title: `Selected: ${plan.name} Plan`,
@@ -123,7 +128,8 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
                 <em>Enter the wallet address to transfer money to.</em>
               </p>
               <div class="input-box">
-                <input class="input" id="wallet-address" placeholder="Your wallet address" type="type">
+                <input class="input" id="wallet-address"
+                  placeholder="Your wallet address" type="type">
               </div>
             </div>
           </article>`,
