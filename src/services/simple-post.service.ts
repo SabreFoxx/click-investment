@@ -59,12 +59,11 @@ export class SimplePostService {
       console.error('An error occurred:', error.error, 'possibly bad internet connection');
     else
       // return an observable with a user-facing error message.
-      // it is sent to the block: 
+      // it is sent to this code block (which is above): 
       // (error: HttpErrorResponse) => {
       //   if (!toastErrorMsg)
       //     response.error(error);
       // })
-      // above
       return throwError(error);
   }
 

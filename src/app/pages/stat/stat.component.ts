@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
 import { loadPlanDataForApexChartSeries } from 'src/adjectives/functions'
@@ -43,13 +43,15 @@ export class StatComponent implements OnInit {
     };
 
     this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
+      series: [],
       chart: {
         type: "donut",
         height: '400px',
         width: '400px'
       },
-      labels: ["Platinum", "Gold", "Diamond", "Emerald", "Gold"],
+      labels: [],
+      fill: {},
+      lagend: {}
     };
 
     this.planStatOptions = {
@@ -154,24 +156,60 @@ export class StatComponent implements OnInit {
 
   ngOnInit(): void {
     this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
+
+    // setup pie chart
+    this.plans.pipe(map(plans => {
+      const planNames = plans.map(plan => plan.name)
+      const planAmounts = plans.map(plan => {
+        return parseInt(plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross)
+      })
+      const profileColors = plans.map(plan => plan.profileColor)
+      return [planNames, planAmounts, profileColors]
+    })).subscribe(attributes => {
+      const [planNames, planAmounts, profileColors] = attributes;
+      this.pieChartOptions = {
+        series: planAmounts,
+        chart: {
+          type: "donut",
+          height: '400px',
+          width: '400px'
+        },
+        labels: planNames,
+        legend: {
+          markers: {
+            fillColors: profileColors
+          }
+        },
+        fill: {
+          colors: profileColors
+        }
+      };
+    });
   }
 
   ngAfterViewInit(): void {
+    // set initial stat to display in larger pane
     this.plans.subscribe(plans => {
-      // initial stats
       setTimeout(() => { // fixes a ui bug
         this.display(plans[0])
       }, 800);
-    })
+    });
   }
 
   display(plan: Plan) {
     this.planStatOptions.series = [{
       data: loadPlanDataForApexChartSeries(plan)
-    }]
+    }];
+    this.planStatOptions.colors = [plan?.profileColor]
+
     this.planStatBrushOptions.series = [{
       data: loadPlanDataForApexChartSeries(plan)
-    }]
+    }];
+    this.planStatBrushOptions.colors = [plan?.profileColor]
+  }
+
+  private buildPieChart(): void {
+
   }
 
   onSwiper(swiper) { }

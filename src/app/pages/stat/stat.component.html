@@ -12,20 +12,21 @@
     <article class="stats-overview container-white">
         <h2 class="sub-title">Overview</h2>
         <apx-chart [chart]="pieChartOptions.chart" [series]="pieChartOptions.series"
-                   [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive">
+                   [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
+                   [fill]="pieChartOptions.fill" [legend]="pieChartOptions.legend">
         </apx-chart>
     </article>
 
     <article class="stats-plan container-white">
         <h2 class="sub-title">Platinum Plan</h2>
-            <apx-chart [chart]="planStatOptions.chart" [series]="planStatOptions.series"
-                       [colors]="planStatOptions.colors" [stroke]="planStatOptions.stroke"
-                       [grid]="planStatOptions.grid" [labels]="planStatOptions.labels"
-                       [dataLabels]="planStatOptions.dataLabels" [fill]="planStatOptions.fill"
-                       [tooltip]="planStatOptions.tooltip" [xaxis]="planStatOptions.xaxis"
-                       [yaxis]="planStatOptions.yaxis" [markers]="planStatOptions.markers"
-                       [responsive]="planStatOptions.responsive">
-            </apx-chart>
+        <apx-chart [chart]="planStatOptions.chart" [series]="planStatOptions.series"
+                   [colors]="planStatOptions.colors" [stroke]="planStatOptions.stroke"
+                   [grid]="planStatOptions.grid" [labels]="planStatOptions.labels"
+                   [dataLabels]="planStatOptions.dataLabels" [fill]="planStatOptions.fill"
+                   [tooltip]="planStatOptions.tooltip" [xaxis]="planStatOptions.xaxis"
+                   [yaxis]="planStatOptions.yaxis" [markers]="planStatOptions.markers"
+                   [responsive]="planStatOptions.responsive">
+        </apx-chart>
         <apx-chart [chart]="planStatBrushOptions.chart" [series]="planStatBrushOptions.series"
                    [colors]="planStatBrushOptions.colors" [stroke]="planStatBrushOptions.stroke"
                    [grid]="planStatBrushOptions.grid" [xaxis]="planStatBrushOptions.xaxis"
