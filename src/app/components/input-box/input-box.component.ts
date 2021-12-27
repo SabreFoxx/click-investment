@@ -3,8 +3,10 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
+  Output,
   Renderer2,
   ViewChild
 } from '@angular/core';
@@ -21,6 +23,7 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
   @Input() validationFailed = false;
   @Input() readOnly?: boolean = false;
   @Input() control?: FormControl = null; // Couldn't use formControl as Input name
+  @Output() changed = new EventEmitter();
   @ViewChild('input') private inputBox: ElementRef;
   @ViewChild('label') private boxLabel: ElementRef;
   destroyListeners = new Array(2);
@@ -50,6 +53,10 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyListeners.forEach(f => f());
+  }
+
+  inputChanged(event): void {
+    this.changed.emit(event);
   }
 
 }
