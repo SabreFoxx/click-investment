@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SimplePostService } from './simple-post.service';
+import { SimpleHttpService } from './simple-post.service';
 
 describe('SimplePostService', () => {
-  let service: SimplePostService;
+  let service: SimpleHttpService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SimplePostService);
+    service = TestBed.inject(SimpleHttpService);
   });
 
   it('should be created', () => {

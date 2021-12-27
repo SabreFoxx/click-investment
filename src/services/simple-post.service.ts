@@ -1,14 +1,14 @@
 import { LoadingFeedbackService } from 'src/services/feedback.service';
 import { SimpleError } from 'src/adjectives/errors';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Subject, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SimplePostService {
+export class SimpleHttpService {
   fullResponseBody: Subject<any>;
 
   constructor(private http: HttpClient, private feedback: LoadingFeedbackService) {
@@ -24,7 +24,7 @@ export class SimplePostService {
    * @param headers HTTP headers
    * @returns a Subject of <T>. <T> is the model of the expected result.
    */
-  send<T>(url: string, data: any, headers?: any,
+  public send<T>(url: string, data: any, headers?: HttpHeaders,
     toastSuccessMsg = true, toastErrorMsg = true): Subject<T> {
     let response = new Subject<T>();
     let errorHandler = toastErrorMsg ? this.toastError : this.handleError;
@@ -37,20 +37,39 @@ export class SimplePostService {
     }).pipe(
       retry(2),
       catchError(errorHandler)
-    )
-      .subscribe(res => {
-        this.feedback.doneLoading();
-        response.next((res.body as any).data);
-        this.fullResponseBody.next(res.body);
+    ).subscribe(res => {
+      this.feedback.doneLoading();
+      response.next((res.body as any).data);
+      this.fullResponseBody.next(res.body);
 
-        if (toastSuccessMsg)
-          this.feedback.show({ title: 'Success', text: res.body['message'] });
-      }, (error: HttpErrorResponse) => {
-        this.feedback.doneLoading();
-        if (!toastErrorMsg)
-          // if we don't toast error message, it will be printed in the console
-          response.error(error.error?.message);
-      })
+      if (toastSuccessMsg)
+        this.feedback.show({ title: 'Success', text: res.body['message'] });
+    }, (error: HttpErrorResponse) => {
+      this.feedback.doneLoading();
+      if (!toastErrorMsg)
+        // if we don't toast error message, it will be printed in the console
+        response.error(error.error?.message);
+    })
+    return response;
+  }
+
+  public receive<T>(url: string, headers?: HttpHeaders): Subject<T> {
+    let response = new Subject<T>();
+    this.feedback.loading();
+
+    this.http.get(url, {
+      headers: headers || null,
+      observe: 'response',
+      responseType: 'json'
+    }).subscribe(res => {
+      this.feedback.doneLoading();
+      response.next(res.body as any);
+      this.fullResponseBody.next(res.body);
+    }, (error: HttpErrorResponse) => {
+      this.feedback.doneLoading();
+      response.error(error.error?.message);
+    })
+
     return response;
   }
 

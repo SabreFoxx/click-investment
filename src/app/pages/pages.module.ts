@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -92,7 +93,8 @@ export const pageRoutes: Routes = [
     RouterModule,
     SwiperModule,
     SweetAlert2Module,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ReactiveFormsModule
   ]
 })
 export class PageModule { }
