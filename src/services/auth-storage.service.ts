@@ -9,11 +9,16 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AuthStorageService {
   currentUser: BehaviorSubject<User>;
+  userCurrency: BehaviorSubject<string>;
   private httpHeader: HttpHeaders;
 
   constructor() {
     this.httpHeader = new HttpHeaders;
     this.currentUser = new BehaviorSubject(null);
+    this.userCurrency = new BehaviorSubject('');
+    this.currentUser.subscribe(user => {
+      this.userCurrency.next(user.currency);
+    })
   }
 
   /**
