@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { User } from 'src/models/user';
 import { BehaviorSubject } from 'rxjs';
@@ -16,7 +17,7 @@ export class AuthStorageService {
     this.httpHeader = new HttpHeaders;
     this.currentUser = new BehaviorSubject(null);
     this.userCurrency = new BehaviorSubject('');
-    this.currentUser.subscribe(user => {
+    this.currentUser.pipe(filter(x => x != null)).subscribe(user => {
       this.userCurrency.next(user.currency);
     })
   }
