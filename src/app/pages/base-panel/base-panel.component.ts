@@ -41,11 +41,11 @@ export class BasePanelComponent implements OnInit, AfterViewInit {
   constructor(private ui: UIAdjustmentService,
     private authStorage: AuthStorageService, private r: Renderer2) {
     this.isShowSideMenu = ui.isSideMenuVisible;
-  }
 
-  ngOnInit(): void {
     this.authStorage.currentUser.subscribe(u => this.user = u);
   }
+
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.ui.isNotificationPaneVisible.subscribe(value => {
