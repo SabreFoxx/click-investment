@@ -1,4 +1,5 @@
-import { SimplePostService } from 'src/services/simple-post.service';
+import { AuthStorageService } from 'src/services/auth-storage.service';
+import { SimpleHttpService } from 'src/services/simple-post.service';
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';
@@ -57,11 +58,15 @@ export class PlanCardComponent implements OnInit {
   @Input() plan: Plan;
   @Input() showStats?: boolean = false;
   icon: SafeHtml;
+  userCurrency: string;
 
   // public chartOptions: Partial<ChartOptions>;
   public chartOptions: Partial<any>;
 
-  constructor(private post: SimplePostService, private sanitizer: DomSanitizer) { }
+  constructor(private post: SimpleHttpService, public authStore: AuthStorageService,
+    private sanitizer: DomSanitizer) {
+    authStore.userCurrency.subscribe(c => this.userCurrency = c)
+  }
 
   ngOnInit(): void {
     this.icon = this.sanitizer.bypassSecurityTrustHtml(`
