@@ -2,14 +2,14 @@ import { AuthStorageService } from './auth-storage.service';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
-import { SimplePostService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-post.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private post: SimplePostService, private router: Router,
+  constructor(private post: SimpleHttpService, private router: Router,
     private authStorage: AuthStorageService,
     @Inject('LOGIN_URL') private loginEndpoint: string,
     @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) {
