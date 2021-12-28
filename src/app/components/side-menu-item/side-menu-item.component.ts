@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-side-menu-item',
   templateUrl: './side-menu-item.component.html',
   styleUrls: ['./side-menu-item.component.scss']
 })
-export class SideMenuItemComponent implements OnInit {
+export class SideMenuItemComponent implements OnInit, OnDestroy {
   active: boolean;
   @Input() link: string[] = [];
   mySegment: UrlSegment;
+
+  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(private router: Router) { }
 
@@ -29,11 +32,17 @@ export class SideMenuItemComponent implements OnInit {
     // this.router.url is not reactive, so subscribe to router event for later navigations
     this.router.events.pipe(filter(event => {
       return (event instanceof NavigationEnd) ? true : false
-    })).subscribe(navigationEndEvent => {
-      const urlStruct = this.router.parseUrl((<any>navigationEndEvent).url);
-      this.active = this.isContainsUrlSegment(urlStruct.root.children['primary'].segments) ?
-        true : false;
-    });
+    })).pipe(takeUntil(this.subscriptions))
+      .subscribe(navigationEndEvent => {
+        const urlStruct = this.router.parseUrl((<any>navigationEndEvent).url);
+        this.active = this.isContainsUrlSegment(urlStruct.root.children['primary'].segments) ?
+          true : false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.next(true);
+    this.subscriptions.complete();
   }
 
 }

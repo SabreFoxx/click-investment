@@ -1,8 +1,8 @@
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
@@ -16,13 +16,15 @@ Swiper.use([EffectCoverflow, Pagination]);
   styleUrls: ['./stat.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StatComponent implements OnInit {
+export class StatComponent implements OnInit, OnDestroy {
   plans: Observable<Plan[]>;
   swiperConfig: SwiperOptions;
   pieChartOptions: any;
   planStatOptions: any;
   planStatBrushOptions: any;
   @ViewChild(ChartComponent) chart: ChartComponent;
+
+  private subscriptions = new Array<Subscription>();
 
   constructor(private route: ActivatedRoute, ui: UIAdjustmentService) {
     ui.setBreadcrumbs([{ url: '/app/stats', title: 'Stats' }]);
@@ -158,42 +160,50 @@ export class StatComponent implements OnInit {
     this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
 
     // setup pie chart
-    this.plans.pipe(map(plans => {
-      const planNames = plans.map(plan => plan.name)
-      const planAmounts = plans.map(plan => {
-        return parseInt(plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross)
-      })
-      const profileColors = plans.map(plan => plan.profileColor)
-      return [planNames, planAmounts, profileColors]
-    })).subscribe(attributes => {
-      const [planNames, planAmounts, profileColors] = attributes;
-      this.pieChartOptions = {
-        series: planAmounts,
-        chart: {
-          type: "donut",
-          height: '400px',
-          width: '400px'
-        },
-        labels: planNames,
-        legend: {
-          markers: {
-            fillColors: profileColors
+    this.subscriptions.push(
+      this.plans.pipe(map(plans => {
+        const planNames = plans.map(plan => plan.name)
+        const planAmounts = plans.map(plan => {
+          return parseInt(plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross)
+        })
+        const profileColors = plans.map(plan => plan.profileColor)
+        return [planNames, planAmounts, profileColors]
+      })).subscribe(attributes => {
+        const [planNames, planAmounts, profileColors] = attributes;
+        this.pieChartOptions = {
+          series: planAmounts,
+          chart: {
+            type: "donut",
+            height: '400px',
+            width: '400px'
+          },
+          labels: planNames,
+          legend: {
+            markers: {
+              fillColors: profileColors
+            }
+          },
+          fill: {
+            colors: profileColors
           }
-        },
-        fill: {
-          colors: profileColors
-        }
-      };
-    });
+        };
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   ngAfterViewInit(): void {
     // set initial stat to display in larger pane
-    this.plans.subscribe(plans => {
-      setTimeout(() => { // fixes a ui bug
-        this.display(plans[0])
-      }, 800);
-    });
+    this.subscriptions.push(
+      this.plans.subscribe(plans => {
+        setTimeout(() => { // fixes a ui bug
+          this.display(plans[0])
+        }, 800);
+      })
+    );
   }
 
   display(plan: Plan) {

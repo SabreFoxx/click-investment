@@ -1,6 +1,6 @@
 import { AuthStorageService } from 'src/services/auth-storage.service';
 import { SimpleHttpService } from 'src/services/simple-post.service';
-import { Component, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';
 import {
@@ -25,6 +25,9 @@ import {
   ApexTooltip,
   ApexYAxis,
 } from "ng-apexcharts";
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { User } from 'src/models/user';
 
 export interface ChartOptions {
   chart: ApexChart,
@@ -54,18 +57,19 @@ export interface ChartOptions {
   templateUrl: './plan-card.component.html',
   styleUrls: ['./plan-card.component.scss']
 })
-export class PlanCardComponent implements OnInit {
+export class PlanCardComponent implements OnInit, OnDestroy {
   @Input() plan: Plan;
   @Input() showStats?: boolean = false;
   icon: SafeHtml;
-  userCurrency: string;
+  user: BehaviorSubject<User>;
 
   // public chartOptions: Partial<ChartOptions>;
   public chartOptions: Partial<any>;
 
+  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
+
   constructor(private post: SimpleHttpService, public authStore: AuthStorageService,
     private sanitizer: DomSanitizer) {
-    authStore.userCurrency.subscribe(c => this.userCurrency = c)
   }
 
   ngOnInit(): void {
@@ -119,6 +123,15 @@ export class PlanCardComponent implements OnInit {
         enabled: false
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.next(true);
+    this.subscriptions.complete();
+  }
+
+  get userCurrency() {
+    return this.user.getValue().currency;
   }
 
 }

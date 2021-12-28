@@ -23,6 +23,7 @@ export class SimpleHttpService {
    * @param toastErrorMsg show UI toast on error
    * @param headers HTTP headers
    * @returns a Subject of <T>. <T> is the model of the expected result.
+   * send<T> unsubscribes observers automaticall, after we've gotten a response
    */
   public send<T>(url: string, data: any, headers?: HttpHeaders,
     toastSuccessMsg = true, toastErrorMsg = true): Subject<T> {
@@ -36,7 +37,7 @@ export class SimpleHttpService {
       responseType: 'json'
     }).pipe(
       retry(2),
-      catchError(errorHandler)
+      catchError(errorHandler) // if error is caught, we won't have a subscription
     ).subscribe(res => {
       this.feedback.doneLoading();
       response.next((res.body as any).data);
@@ -44,8 +45,11 @@ export class SimpleHttpService {
 
       if (toastSuccessMsg)
         this.feedback.show({ title: 'Success', text: res.body['message'] });
+
+      response.complete(); // unsubscribe observers
     }, (error: HttpErrorResponse) => {
       this.feedback.doneLoading();
+
       if (!toastErrorMsg)
         // if we don't toast error message, it will be printed in the console
         response.error(error.error?.message);
@@ -63,8 +67,12 @@ export class SimpleHttpService {
       responseType: 'json'
     }).subscribe(res => {
       this.feedback.doneLoading();
+
       response.next(res.body as any);
       this.fullResponseBody.next(res.body);
+
+      response.complete(); // unsubscribe observers
+      this.fullResponseBody.complete();
     }, (error: HttpErrorResponse) => {
       this.feedback.doneLoading();
       response.error(error.error?.message);

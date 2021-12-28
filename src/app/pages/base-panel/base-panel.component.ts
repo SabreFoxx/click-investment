@@ -10,11 +10,13 @@ import {
   Renderer2,
   ViewChildren,
   QueryList,
-  AfterViewInit
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fadeAnimation } from 'src/app/animation';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-base-panel',
@@ -23,10 +25,10 @@ import { BehaviorSubject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   animations: [fadeAnimation]
 })
-export class BasePanelComponent implements OnInit, AfterViewInit {
+export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
   isShowSideMenu: BehaviorSubject<boolean>;
   isShowNotificationPane: boolean = false;
-  user: User;
+  user: BehaviorSubject<User>;
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
   @ViewChild('top') top: ElementRef;
@@ -38,26 +40,34 @@ export class BasePanelComponent implements OnInit, AfterViewInit {
   @ViewChildren('templateVarUsedWhenIsShowSideMenu') pageSvgIcons: QueryList<ElementRef>;
   @ViewChild('appNotificationPaneContainer') appNotificationPaneContainer: ElementRef;
 
+  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
+
   constructor(private ui: UIAdjustmentService,
     private authStorage: AuthStorageService, private r: Renderer2) {
     this.isShowSideMenu = ui.isSideMenuVisible;
-
-    this.authStorage.currentUser.subscribe(u => this.user = u);
+    this.user = this.authStorage.currentUser;
   }
 
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    this.ui.isNotificationPaneVisible.subscribe(value => {
-      if (value == true)
-        this.isShowNotificationPane = true
-      else {
-        if (this?.appNotificationPaneContainer)
-          this.r.removeClass(this.appNotificationPaneContainer.nativeElement,
-            "app-notification-pane-show");
-        setTimeout(() => this.isShowNotificationPane = false, 151);
-      }
-    });
+    this.ui.isNotificationPaneVisible
+      .pipe(takeUntil(this.subscriptions))
+      .subscribe(value => {
+        if (value == true)
+          this.isShowNotificationPane = true
+        else {
+          if (this?.appNotificationPaneContainer)
+            this.r.removeClass(this.appNotificationPaneContainer.nativeElement,
+              "app-notification-pane-show");
+          setTimeout(() => this.isShowNotificationPane = false, 151);
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.next(true);
+    this.subscriptions.complete();
   }
 
   prepareRoute(outlet: RouterOutlet) {
