@@ -3,10 +3,10 @@ import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { AuthStorageService } from 'src/services/auth-storage.service';
 import { DepositDetails } from 'src/models/payment-details';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/models/user';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { getCurrencySymbol } from '@angular/common';
 
@@ -18,20 +18,23 @@ import { getCurrencySymbol } from '@angular/common';
 export class DepositComponent implements OnInit {
   @ViewChild('addr') addr: ElementRef;
   depositDetails: DepositDetails;
-  user: User;
+  user: BehaviorSubject<User>;
+  disableDepositSubmitButton: boolean = true;
 
   form: FormGroup;
   fiatField: AbstractControl;
+  private rxjsDebouncedFiatAmount: number;
   cryptoField: AbstractControl;
   computedCryptoValue = 0;
   formTextChanged = new Subject<InputEvent>();
-  get isOkayToDepositMoney() {
-    return this.computedCryptoValue > 0
+  get isOkayToDepositMoney(): boolean {
+    return this.computedCryptoValue > 0 && !this.disableDepositSubmitButton
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private renderer: Renderer2,
-    private ui: UIAdjustmentService, private authStore: AuthStorageService,
-    private http: SimpleHttpService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    private renderer: Renderer2, private http: SimpleHttpService,
+    @Inject('CREATE_DEPOSIT_TRANSACTION_URL') private endpoint: string,
+    private ui: UIAdjustmentService, private authStore: AuthStorageService) {
     this.depositDetails = this.router.getCurrentNavigation().extras.state?.paymentDetails;
     this.depositDetails ?? router.navigate(['../'], { relativeTo: this.route });
 
@@ -45,7 +48,7 @@ export class DepositComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authStore.currentUser.subscribe(user => this.user = user);
+    this.user = this.authStore.currentUser;
 
     // debounce pattern to prevent calling api for each input change
     this.formTextChanged.pipe(
@@ -54,24 +57,46 @@ export class DepositComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       // http.receive returns a Subject, so switchMap allows us subscribe to that Subject instead
-      switchMap(textValue => {
+      switchMap(formValue => {
+        this.rxjsDebouncedFiatAmount = parseFloat(formValue);
+
         return this.http.receive<any>(
           'https://min-api.cryptocompare.com/data/price?fsym='
           + `${this.depositDetails.currency.name.toUpperCase()}`
-          + `&tsyms=${this.user.currency.toUpperCase()}`
+          + `&tsyms=${this.userCurrency.toUpperCase()}`
         )
       })
     ).subscribe(data => {
-      this.computedCryptoValue = parseFloat(data[this.user.currency.toUpperCase()]);
+      // no need to unsubscribe bcos complete() is called in receive<T>
+      this.disableDepositSubmitButton = false;
+      this.computedCryptoValue = parseFloat(data[this.userCurrency.toUpperCase()])
+        * this.rxjsDebouncedFiatAmount;
     });
   }
 
   deposit() {
-    this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
+    this.disableDepositSubmitButton = true;
+
+    this.http.send<any>(this.endpoint, {
+      planId: this.depositDetails.plan.id,
+      fiatAmount: this.form.get('fiat').value,
+      cryptoAmount: this.computedCryptoValue,
+      cryptoCurrency: this.depositDetails.currency.name.toUpperCase()
+    }, this.authStore.authorizationHeader)
+      .subscribe(res => {
+        // no need to unsubscribe bcos complete() is called in send<T>
+        this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
+      }, error => {
+        this.disableDepositSubmitButton = false;
+      });
   }
 
   get moneySymbol() {
-    return getCurrencySymbol(this.user.currency.toUpperCase(), 'wide')
+    return getCurrencySymbol(this.userCurrency.toUpperCase(), 'wide')
+  }
+
+  get userCurrency() {
+    return this.user.getValue().currency;
   }
 
   inputChanged(inputChangeEvent: InputEvent) {

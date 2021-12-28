@@ -20,6 +20,8 @@ import { PlanSelectionComponent } from './plan-selection/plan-selection.componen
 import { DepositComponent } from './deposit/deposit.component';
 import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
+import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
+import { environment } from 'src/environments/environment';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -95,6 +97,20 @@ export const pageRoutes: Routes = [
     SweetAlert2Module,
     NgApexchartsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: 'API_PREFIX', useFactory() {
+        return (environment.production) ? apiPrefix.prod : apiPrefix.dev
+      }
+    },
+    {
+      provide: 'CREATE_DEPOSIT_TRANSACTION_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.CREATE_DEPOSIT_TRANSACTION}`
+      }
+    }
   ]
 })
 export class PageModule { }
