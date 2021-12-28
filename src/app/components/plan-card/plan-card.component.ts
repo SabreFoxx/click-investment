@@ -26,7 +26,6 @@ import {
   ApexYAxis,
 } from "ng-apexcharts";
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { User } from 'src/models/user';
 
 export interface ChartOptions {
@@ -63,13 +62,14 @@ export class PlanCardComponent implements OnInit, OnDestroy {
   icon: SafeHtml;
   user: BehaviorSubject<User>;
 
+  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
+
   // public chartOptions: Partial<ChartOptions>;
   public chartOptions: Partial<any>;
 
-  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
-
   constructor(private post: SimpleHttpService, public authStore: AuthStorageService,
     private sanitizer: DomSanitizer) {
+    this.user = authStore.currentUser;
   }
 
   ngOnInit(): void {

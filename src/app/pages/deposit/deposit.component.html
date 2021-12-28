@@ -6,15 +6,15 @@
         You are <strong>depositing
             <a>{{depositDetails.currency.name | uppercase}}</a>
         </strong> to the <em>{{depositDetails.plan.name}} Plan</em>.
-        Set the amount of <a>{{user.currency}}</a>
+        Set the amount of <a>{{userCurrency}}</a>
         <em> (your local currency) </em> you wish to deposit, to see its value in
         <a>{{depositDetails.currency.name | uppercase}}</a>
     </section>
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="deposit()">
         <div class="currency">
             <div>
                 <input-box placeholder="{{moneySymbol}}" [control]="fiatField"
-                           (changed)="inputChanged($event)"></input-box>
+                           (changed)="inputChanged($event)" type="number"></input-box>
             </div>
             <div class="input-container" style="flex-basis: 0%; margin: 1em">
                 <svg class="svg-icon">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="currency input-container">
-            <button class="button is-rounded is-link" (click)="deposit()" type="submit"
+            <button class="button is-rounded is-link" type="submit"
                     [disabled]="!isOkayToDepositMoney">
                 Deposit
             </button>

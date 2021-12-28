@@ -12,7 +12,6 @@ export class AboutComponent implements OnInit {
     ui.setBreadcrumbs([{ url: '/app/about', title: 'About' }]);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
