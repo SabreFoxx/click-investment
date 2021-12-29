@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef } from '@angular/core';
 import { WithdrawalBlock } from 'src/models/withdrawal-block';
 
 @Component({
@@ -9,9 +9,18 @@ import { WithdrawalBlock } from 'src/models/withdrawal-block';
 export class WithdrawBlockComponent implements OnInit {
   @Input() block: WithdrawalBlock;
 
-  constructor() { }
+  constructor(public hostElement: ElementRef) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  selectRadio(): void {
+    const radio = (this.hostElement.nativeElement as HTMLElement).querySelector('input');
+    radio.click();
+    radio.checked = true;
+  }
+
+  get depositIdToUse(): number {
+    return this.block.depositId;
   }
 
 }

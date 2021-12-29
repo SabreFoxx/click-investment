@@ -1,6 +1,8 @@
 export interface WithdrawalBlock {
-    description: 'string',
+    depositId: number,
+    description: string,
     amount: number,
-    status: 'string',
-    statusMessage: 'string'
+    status: 'available' | 'unavailable' | 'withdrawn',
+    statusMessage: string,
+    cssClass: 'success' | 'pending' | 'failure'
 }

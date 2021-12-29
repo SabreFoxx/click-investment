@@ -117,6 +117,13 @@ export const pageRoutes: Routes = [
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.CREATE_DEPOSIT_TRANSACTION}`
       }
+    },
+    {
+      provide: 'CREATE_WITHDRAWAL_TRANSACTION_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.CREATE_WITHDRAWAL_TRANSACTION}`
+      }
     }
   ]
 })

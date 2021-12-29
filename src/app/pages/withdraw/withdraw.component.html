@@ -18,84 +18,46 @@
     <h2 class="sub-title container-white">Withdrawal availability blocks</h2>
 
     <div class="container-white table-adjust">
-        <form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th> </th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    <tr class="row">
-                        <td><input type="radio" name="withdraw-form" value="profit"></td>
-                        <td>Profit</td>
-                        <td>Profit made in Diamond plan</td>
-                        <td>$ 4000</td>
-                        <td class="status">
-                            <div class="flex">
-                                <span>Always available</span>
-                                <span class="status-icon success"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td><input type="radio" name="withdraw-form" value="1"
-                                   comment="value is depositId"></td>
-                        <td>Deposit</td>
-                        <td>Deposit made on Aug 27, 2020 4:53pm</td>
-                        <td>$ 1000</td>
-                        <td class="status">
-                            <div class="flex">
-                                <span>Available</span>
-                                <span class="status-icon success"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td><input type="radio" name="withdraw-form" value="1"
-                                   comment="value is depositId"></td>
-                        <td>Deposit</td>
-                        <td>Deposit made on Aug 27, 2020 4:53pm</td>
-                        <td>$ 1000</td>
-                        <td class="status">
-                            <div class="flex">
-                                <span>Unavailable till Aug 27, 2020 4:53pm</span>
-                                <span class="status-icon failure"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td><input type="radio" name="withdraw-form" value="1"
-                                   comment="value is depositId"></td>
-                        <td>Deposit</td>
-                        <td>Deposit made on Aug 27, 2020 4:53pm</td>
-                        <td>$ 1000</td>
-                        <td class="status">
-                            <div class="flex">
-                                <span>Withdrawn</span>
-                                <span class="status-icon pending"></span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr *ngFor="let block of blocks" class="row" app-withdraw-block></tr>
-                </tbody>
-            </table>
-        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th> </th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr class="row" (click)="withdrawFromProfit()">
+                    <td> <input type="radio" name="withdrawFromThisBlock" #profitRadio
+                               value="profit" style="cursor: pointer"> </td>
+                    <td>Profit</td>
+                    <td>Profit made in Diamond plan</td>
+                    <td>$ 4000</td>
+                    <td class="status">
+                        <div class="flex">
+                            <span>Always available</span>
+                            <span class="status-icon success"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr #blockComponent *ngFor="let block of blocks" [block]="block"
+                    (click)="setSelection(blockComponent)" class="row" app-withdraw-block>
+                </tr>
+            </tbody>
+        </table>
 
-        <button class="button is-rounded is-link" type="submit"
+        <button (click)="withdraw()" class="button is-rounded is-link" type="submit"
                 style="float: right; margin: 0">Proceed with withdrawal</button>
         <div style="clear: right"></div>
 

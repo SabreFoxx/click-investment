@@ -6,7 +6,8 @@ export enum ApiEndpoints {
     REFRESH_LOGIN = '/refresh-user-data',
 
     DASHBOARD = '/dashboard',
-    CREATE_DEPOSIT_TRANSACTION = '/deposit'
+    CREATE_DEPOSIT_TRANSACTION = '/deposit',
+    CREATE_WITHDRAWAL_TRANSACTION = '/deposit'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } =

@@ -1,10 +1,13 @@
-<td><input type="radio" name="withdraw-form" value="1" comment="value is depositId"></td>
+<td>
+    <input type="radio" name="withdrawFromThisBlock" (click)="selectRadio()"
+           [value]="block.depositId">
+</td>
 <td>Deposit</td>
-<td>Deposit made on Aug 27, 2020 4:53pm</td>
-<td>$ 1000</td>
+<td>{{block.description}}</td>
+<td>$ {{block.amount}}</td>
 <td class="status">
     <div class="flex">
-        <span>Withdrawn</span>
-        <span class="status-icon pending"></span>
+        <span>{{block.statusMessage}}</span>
+        <span class="status-icon {{block.cssClass}}"></span>
     </div>
 </td>

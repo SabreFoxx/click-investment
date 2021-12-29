@@ -1,0 +1,15 @@
+@import 'src/variables.scss';
+
+.status {
+    .pending {
+        background-color: $grey-light;
+    }
+
+    .failure {
+        background-color: $pastel-color-orange;
+    }
+}
+
+input {
+    cursor: pointer;
+}
