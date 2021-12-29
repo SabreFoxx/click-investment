@@ -1,0 +1,20 @@
+@import 'src/variables.scss';
+
+.sub-title {
+    color: $link;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+}
+
+.status .failure {
+    background-color: $grey-light;
+}
+
+.table {
+    margin-bottom: 0;
+
+    tr {
+        cursor: pointer;
+    }
+}

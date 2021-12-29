@@ -22,6 +22,7 @@ import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
 import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
 import { environment } from 'src/environments/environment';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -40,6 +41,11 @@ export const pageRoutes: Routes = [
   {
     path: 'payments/deposit',
     component: DepositComponent,
+    data: { animation: 'Payments' }
+  },
+  {
+    path: 'payments/withdraw',
+    component: WithdrawComponent,
     data: { animation: 'Payments' }
   },
   {
@@ -86,7 +92,8 @@ export const pageRoutes: Routes = [
     PlanSelectionComponent,
     DepositComponent,
     AboutComponent,
-    NewsComponent
+    NewsComponent,
+    WithdrawComponent
   ],
   imports: [
     CommonModule,
