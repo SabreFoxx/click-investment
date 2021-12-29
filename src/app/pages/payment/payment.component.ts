@@ -1,5 +1,5 @@
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
-import { DepositDetails } from 'src/models/payment-details';
+import { PaymentTools } from 'src/models/payment-details';
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
@@ -26,7 +26,6 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         <use xlink:href="#circle-multiple-outline"></use>
       </svg>`,
     iconColor: '#0cc078',
-    footer: 'Select this payment method for use in funding your plan',
     heightAuto: false,
     showCancelButton: true,
     cancelButtonAriaLabel: 'Abort',
@@ -51,15 +50,20 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.anchor.nativeElement.scrollIntoView(0);
   }
 
-  showAlert(card: PaymentMethod, muchLaterNavigateTo: string) {
+  showAlert(card: PaymentMethod, muchLaterNavigateTo: 'withdraw' | 'deposit') {
+    const footer = muchLaterNavigateTo == 'deposit' ?
+      'Select this payment method for use in funding your plan'
+      : 'Receive your funds using this payment method';
+
     const cardName = card.name.toUpperCase();
     this.alertMixin.fire({
       title: cardName,
       text: card.description,
       confirmButtonText: `Proceed with ${cardName}`,
       confirmButtonAriaLabel: `Use ${cardName}`,
+      footer
     }).then(result => {
-      const paymentDetails: DepositDetails = { currency: card };
+      const paymentDetails: PaymentTools = { currency: card };
 
       if (result.isConfirmed)
         this.router.navigate(['plan-selection'], {

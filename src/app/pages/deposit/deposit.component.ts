@@ -1,7 +1,7 @@
 import { SimpleHttpService } from 'src/services/simple-post.service';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { DepositDetails } from 'src/models/payment-details';
+import { PaymentTools } from 'src/models/payment-details';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { User } from 'src/models/user';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { getCurrencySymbol } from '@angular/common';
+import { storageWalletAddr } from 'src/adjectives/constants';
 
 @Component({
   selector: 'app-deposit',
@@ -17,7 +18,7 @@ import { getCurrencySymbol } from '@angular/common';
 })
 export class DepositComponent implements OnInit {
   @ViewChild('addr') addr: ElementRef;
-  depositDetails: DepositDetails;
+  depositDetails: PaymentTools;
   user: BehaviorSubject<User>;
   disableDepositSubmitButton: boolean = true;
 
@@ -81,7 +82,8 @@ export class DepositComponent implements OnInit {
       planId: this.depositDetails.plan.id,
       fiatAmount: this.form.get('fiat').value,
       cryptoAmount: this.computedCryptoValue,
-      cryptoCurrency: this.depositDetails.currency.name.toUpperCase()
+      cryptoCurrency: this.depositDetails.currency.name.toUpperCase(),
+      storageWalletAddr: this.storageWalletAddr
     }, this.authStore.authorizationHeader)
       .subscribe(res => {
         // no need to unsubscribe bcos complete() is called in send<T>
@@ -101,6 +103,10 @@ export class DepositComponent implements OnInit {
 
   inputChanged(inputChangeEvent: InputEvent) {
     this.formTextChanged.next(inputChangeEvent);
+  }
+
+  get storageWalletAddr() {
+    return storageWalletAddr;
   }
 
 }

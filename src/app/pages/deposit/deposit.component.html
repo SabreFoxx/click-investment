@@ -46,8 +46,7 @@
             <p class="amount">5.2375832 <a>XLM</a></p>
             <p class="value">~400 USD</p>
             <div class="input-container">
-                <input #input class="input" id="username" type="text"
-                       value="0xc207B49306d5324c22B3c10827AF03E5875B99C7">
+                <input #input class="input" id="username" type="text" [value]="storageWalletAddr">
             </div>
             <p class="footnote"><em>Afterwhich, proceed to
                     <a [routerLink]="['/app', 'payments']">payment verification</a></em>.
