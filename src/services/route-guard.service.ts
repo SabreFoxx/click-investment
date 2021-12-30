@@ -16,8 +16,9 @@ export class RouteGuardService implements CanActivate, CanActivateChild {
 
   constructor(private authStore: AuthStorageService,
     private router: Router, private auth: AuthService) {
-    // injecting AuthService here, makes sure AuthService starts
+    // injecting AuthService here, and making sure AuthService starts
     // so we can refresh our login, and user cannot use app with a network connection
+    auth.refreshLogin();
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

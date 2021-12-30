@@ -12,10 +12,7 @@ export class AuthService {
   constructor(private post: SimpleHttpService, private router: Router,
     private authStorage: AuthStorageService,
     @Inject('LOGIN_URL') private loginEndpoint: string,
-    @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) {
-    // always refresh login when app starts
-    this.refreshLogin();
-  }
+    @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) { }
 
   public login(credentials: { email: string, password: string }, endpoint = this.loginEndpoint) {
     this.post.fullResponseBody.subscribe(response => {
