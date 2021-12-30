@@ -7,7 +7,7 @@ export enum ApiEndpoints {
 
     DASHBOARD = '/dashboard',
     CREATE_DEPOSIT_TRANSACTION = '/deposit',
-    CREATE_WITHDRAWAL_TRANSACTION = '/deposit'
+    CREATE_WITHDRAWAL_TRANSACTION = '/withdrawal'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } =
