@@ -1,6 +1,6 @@
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { PaymentTools } from 'src/models/payment-details';
+import { PaymentTool } from 'src/models/payment-tool';
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -49,7 +49,7 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
+    this.plans = this.route.data.pipe(pluck('resolvePlans'));
   }
 
   ngAfterViewInit(): void {
@@ -57,13 +57,13 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   }
 
   selectPlan(plan: Plan) {
-    const paymentDetails: PaymentTools = this.navData.paymentDetails;
+    const paymentDetails: PaymentTool = this.navData.paymentDetails;
     paymentDetails.plan = plan;
 
     const navigationOptions = {
       relativeTo: this.route,
       queryParams: { // we won't use this data later; we'll use "state" instead
-        currency: paymentDetails.currency.name,
+        currency: paymentDetails.medium.name,
         plan: plan.name
       },
       "state": { paymentDetails }

@@ -1,7 +1,8 @@
+import { CryptoWallet } from 'src/models/crypto-wallet';
 import { SimpleHttpService } from 'src/services/simple-post.service';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { PaymentTools } from 'src/models/payment-details';
+import { PaymentTool } from 'src/models/payment-tool';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { User } from 'src/models/user';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { getCurrencySymbol } from '@angular/common';
-import { storageWalletAddr } from 'src/adjectives/constants';
+import { cryptoWallets } from 'src/adjectives/constants';
 
 @Component({
   selector: 'app-deposit',
@@ -18,14 +19,15 @@ import { storageWalletAddr } from 'src/adjectives/constants';
 })
 export class DepositComponent implements OnInit {
   @ViewChild('addr') addr: ElementRef;
-  depositDetails: PaymentTools;
+  depositDetails: PaymentTool;
   user: BehaviorSubject<User>;
   disableDepositSubmitButton: boolean = true;
+  cryptoWalletToDepositMoney: CryptoWallet;
 
   form: FormGroup;
   fiatField: AbstractControl;
-  private rxjsDebouncedFiatAmount: number;
   cryptoField: AbstractControl;
+  rxjsDebouncedFiatAmount = 0;
   computedCryptoValue = 0;
   formTextChanged = new Subject<InputEvent>();
   get isOkayToDepositMoney(): boolean {
@@ -61,11 +63,12 @@ export class DepositComponent implements OnInit {
       switchMap(formValue => {
         this.rxjsDebouncedFiatAmount = parseFloat(formValue);
 
-        return this.http.receive<any>(
+        this.http.receive<any>(
           'https://min-api.cryptocompare.com/data/price?fsym='
-          + `${this.depositDetails.currency.name.toUpperCase()}`
+          + `${this.depositDetails.medium.name.toUpperCase()}`
           + `&tsyms=${this.userCurrency.toUpperCase()}`
         )
+        return this.http.fullResponseBody;
       })
     ).subscribe(data => {
       // no need to unsubscribe bcos complete() is called in receive<T>
@@ -77,16 +80,19 @@ export class DepositComponent implements OnInit {
 
   deposit() {
     this.disableDepositSubmitButton = true;
+    const cryptoCurrency = this.depositDetails.medium.name.toUpperCase()
 
-    this.http.send<any>(this.endpoint, {
+    this.http.send<any>(this.endpoint, { // TODO it's currently only crypto focused
       planId: this.depositDetails.plan.id,
       fiatAmount: this.form.get('fiat').value,
       cryptoAmount: this.computedCryptoValue,
-      cryptoCurrency: this.depositDetails.currency.name.toUpperCase(),
-      storageWalletAddr: this.storageWalletAddr
+      cryptoCurrency,
+      paymentMedium: cryptoCurrency, // TODO allow for fiat also
+      storageWalletAddr: cryptoWallets[cryptoCurrency].walletAddress
     }, this.authStore.authorizationHeader)
       .subscribe(res => {
         // no need to unsubscribe bcos complete() is called in send<T>
+        this.cryptoWalletToDepositMoney = cryptoWallets[cryptoCurrency];
         this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
       }, error => {
         this.disableDepositSubmitButton = false;
@@ -103,10 +109,6 @@ export class DepositComponent implements OnInit {
 
   inputChanged(inputChangeEvent: InputEvent) {
     this.formTextChanged.next(inputChangeEvent);
-  }
-
-  get storageWalletAddr() {
-    return storageWalletAddr;
   }
 
 }

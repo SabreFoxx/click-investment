@@ -3,7 +3,7 @@ import { AuthStorageService } from './../../../services/auth-storage.service';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WithdrawBlockComponent } from 'src/app/components/withdraw-block/withdraw-block.component';
-import { PaymentTools } from 'src/models/payment-details';
+import { PaymentTool } from 'src/models/payment-tool';
 import { WithdrawalBlock } from 'src/models/withdrawal-block';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import Swal from 'sweetalert2';
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./withdraw.component.scss']
 })
 export class WithdrawComponent implements OnInit, AfterViewInit {
-  withdrawDetails: PaymentTools;
+  withdrawDetails: PaymentTool;
   blocks: WithdrawalBlock[];
   // withdrawals are made from deposits or profits
   // that's why we have "deposit" allover the place
@@ -84,7 +84,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   }
 
   withdraw(): void {
-    const paymentDetails: PaymentTools = this.withdrawDetails;
+    const paymentDetails: PaymentTool = this.withdrawDetails;
     const currency = this.authStorage.currentUser.getValue().currency.toUpperCase();
     const planName = paymentDetails.plan.name.toUpperCase();
 

@@ -1,12 +1,14 @@
+import { PaymentMethodService } from 'src/services/payment-method.service';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
-import { PaymentTools } from 'src/models/payment-details';
+import { PaymentTool } from 'src/models/payment-tool';
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { PaymentMethod } from 'src/models/payment-method';
 import Swal from 'sweetalert2';
+import { Deposit } from 'src/models/deposit';
 
 @Component({
   selector: 'app-payment',
@@ -14,7 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-  paymentMethods: Observable<PaymentMethod[]>;
+  paymentMethods: BehaviorSubject<PaymentMethod[]>;
+  unverifiedDeposits: Observable<Deposit[]>;
   isDepositListVisible: boolean;
   // we need this to get back to start of page when user navigates
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
@@ -37,13 +40,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private payMthServ: PaymentMethodService,
     private router: Router, private ui: UIAdjustmentService) {
     ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' }]);
   }
 
   ngOnInit(): void {
-    this.paymentMethods = this.route.data.pipe(pluck('paymentMethods'));
+    this.paymentMethods = this.payMthServ.methods;
+    this.unverifiedDeposits = this.route.data.pipe(pluck('unverifiedPayments'));
   }
 
   ngAfterViewInit(): void {
@@ -63,7 +67,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       confirmButtonAriaLabel: `Use ${cardName}`,
       footer
     }).then(result => {
-      const paymentDetails: PaymentTools = { currency: card };
+      const paymentDetails: PaymentTool = { medium: card };
 
       if (result.isConfirmed)
         this.router.navigate(['plan-selection'], {
@@ -85,5 +89,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   toggleDepositList() {
     this.isDepositListVisible = !this.isDepositListVisible;
   }
+
+  selectForVerification(deposit: Deposit) { }
+
+  removeFromListOfUnverified(deposit: Deposit) { }
 
 }

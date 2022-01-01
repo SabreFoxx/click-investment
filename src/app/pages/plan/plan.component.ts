@@ -18,7 +18,7 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
+    this.plans = this.route.data.pipe(pluck('resolvePlans'));
   }
 
 }

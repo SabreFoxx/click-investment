@@ -157,7 +157,7 @@ export class StatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.plans = this.route.data.pipe(pluck('resolvePlans'), pluck('plans'));
+    this.plans = this.route.data.pipe(pluck('resolvePlans'));
 
     // setup pie chart
     this.subscriptions.push(
