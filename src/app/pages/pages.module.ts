@@ -29,7 +29,7 @@ export const pageRoutes: Routes = [
   {
     path: 'payments',
     component: PaymentComponent,
-    resolve: { paymentMethods: PaymentMethodService },
+    resolve: { 'unverifiedPayments': PaymentMethodService },
     data: { animation: 'Payments' }
   },
   {
@@ -123,6 +123,13 @@ export const pageRoutes: Routes = [
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.CREATE_WITHDRAWAL_TRANSACTION}`
+      }
+    },
+    {
+      provide: 'FETCH_UNVERIFIED_DEPOSITS_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.FETCH_UNVERIFIED_DEPOSITS}`
       }
     }
   ]

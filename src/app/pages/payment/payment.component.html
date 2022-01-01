@@ -24,17 +24,14 @@
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
-                        <a class="dropdown-item">
-                            5.2346 LTC on Aug 25, 2021
-                        </a>
-                        <a class="dropdown-item">
-                            3.0001 BTC on Aug 20, 2021
-                        </a>
-                        <a class="dropdown-item is-active">
-                            400 XRP on July 15, 2021
-                        </a>
-                        <a class="dropdown-item">
-                            25.75893932 ETH on Jun 3, 2021
+                        <a *ngFor="let deposit of unverifiedDeposits | async"
+                           (click)="selectForVerification(deposit)" class="dropdown-item">
+                            <span class="tag">{{deposit.fiatAmount
+                                | currency:deposit.fiatCurrency:'symbol'}}
+                                on {{deposit.createdAt | date:'medium'}}
+                                <button (click)="removeFromListOfUnverified(deposit)"
+                                        class="delete is-small"></button>
+                            </span>
                         </a>
                     </div>
                 </div>
