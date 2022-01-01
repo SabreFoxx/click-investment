@@ -9,6 +9,10 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SimpleHttpService {
+  /**
+   * subscribe to this to listen to full response json payload,
+   * instead of the object set in parameter <T>
+   */
   fullResponseBody: Subject<any>;
 
   constructor(private http: HttpClient, private feedback: LoadingFeedbackService) {
@@ -28,9 +32,14 @@ export class SimpleHttpService {
   public send<T>(url: string, data: any, headers?: HttpHeaders,
     toastSuccessMsg = true, toastErrorMsg = true): Subject<T> {
     let response = new Subject<T>();
+    this.feedback.loading();
+    
+    // reset fullResponseBody
+    this.fullResponseBody.complete();
+    this.fullResponseBody = new Subject();
+
     let errorHandler = toastErrorMsg ? this.toastError : this.handleError;
 
-    this.feedback.loading();
     this.http.post<T>(url, data, {
       headers: headers || null,
       observe: 'response',
@@ -61,6 +70,10 @@ export class SimpleHttpService {
     let response = new Subject<T>();
     this.feedback.loading();
 
+    // reset fullResponseBody
+    this.fullResponseBody.complete();
+    this.fullResponseBody = new Subject();
+
     this.http.get(url, {
       headers: headers || null,
       observe: 'response',
@@ -68,7 +81,7 @@ export class SimpleHttpService {
     }).subscribe(res => {
       this.feedback.doneLoading();
 
-      response.next(res.body as any);
+      response.next((res.body as any).data);
       this.fullResponseBody.next(res.body);
 
       response.complete(); // unsubscribe observers
