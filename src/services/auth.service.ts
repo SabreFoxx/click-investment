@@ -15,15 +15,15 @@ export class AuthService {
     @Inject('LOGIN_REFRESH_URL') private loginRefreshEndpoint: string) { }
 
   public login(credentials: { email: string, password: string }, endpoint = this.loginEndpoint) {
-    this.post.fullResponseBody.subscribe(response => {
-      if (response?.token)
-        this.authStorage.userJwtToken = response['token'];
-    });
     this.post.send<User>(endpoint, credentials)
       .subscribe(user => {
         this.authStorage.currentUser.next(user);
         this.router.navigate(['/app/stats']);
       })
+    this.post.fullResponseBody.subscribe(response => {
+      if (response?.token)
+        this.authStorage.userJwtToken = response['token'];
+    });
   }
 
   public refreshLogin() {
