@@ -13,7 +13,7 @@ export class PlanRepositoryService implements Resolve<any> {
     private http: SimpleHttpService, @Inject('DASHBOARD') private endpoint: string) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plan[]> {
-    return this.http.receive<Plan[]>(this.endpoint, this.authStore.authorizationHeader);
+    return this.http.loadPageData<Plan[]>(this.endpoint, this.authStore.authorizationHeader);
   }
 
 }

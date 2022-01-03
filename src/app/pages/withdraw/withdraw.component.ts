@@ -21,7 +21,6 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   depositIdToUse: number;
 
   @ViewChild('profitRadio') profitRadioButton: ElementRef;
-  // we need this to get back to start of page when user navigates
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
 
   alertMixin = Swal.mixin({

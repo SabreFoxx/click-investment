@@ -9,7 +9,7 @@ import { Deposit } from 'src/models/deposit';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentMethodService implements Resolve<any> {
+export class PaymentService implements Resolve<any> {
   methods: BehaviorSubject<PaymentMethod[]>;
 
   constructor(@Inject('FETCH_UNVERIFIED_DEPOSITS_URL') private endpoint: string,
@@ -48,7 +48,6 @@ export class PaymentMethodService implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Deposit[]> {
-    console.log(this.endpoint)
-    return this.http.receive<Deposit[]>(this.endpoint, this.authStore.authorizationHeader);
+    return this.http.loadPageData<Deposit[]>(this.endpoint, this.authStore.authorizationHeader);
   }
 }
