@@ -254,6 +254,13 @@ hr.line {
     line-height: 1;
 }
 
+.table-title {
+    color: $link;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+}
+
 .table {
     width: 100%;
     font-family: $text-font;

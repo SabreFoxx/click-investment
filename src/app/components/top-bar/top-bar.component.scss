@@ -45,7 +45,8 @@
         scale: 2;
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
         background-color: rgba(0, 0, 0, 0.10);
         border: 0;
         border-radius: 0.5em;
@@ -56,6 +57,10 @@
     }
 
     &:not(:last-child) {
-        margin: 0 1.5em;
+        margin: 0 1em;
+    }
+
+    &:last-child {
+        margin-left: 1em;
     }
 }
