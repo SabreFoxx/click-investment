@@ -1,8 +1,9 @@
+import { DepositValidationService } from './../../services/deposit-validation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -14,22 +15,22 @@ import { ComponentModule } from '../components/component.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentComponent } from './payment/payment.component';
-import { PaymentMethodService } from 'src/services/payment-method.service';
+import { PaymentService } from 'src/services/payment.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PlanSelectionComponent } from './plan-selection/plan-selection.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AboutComponent } from './about/about.component';
-import { NewsComponent } from './news/news.component';
 import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
 import { environment } from 'src/environments/environment';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { ValidationComponent } from './validation/validation.component';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
   {
     path: 'payments',
     component: PaymentComponent,
-    resolve: { 'unverifiedPayments': PaymentMethodService },
+    resolve: { 'unverifiedPayments': PaymentService },
     data: { animation: 'Payments' }
   },
   {
@@ -65,14 +66,14 @@ export const pageRoutes: Routes = [
     data: { animation: 'Plans' }
   },
   {
+    path: 'validations', component: ValidationComponent,
+    resolve: { resolveDepositsForValidation: DepositValidationService },
+    data: { animation: 'Validations' }
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     data: { animation: 'Profile' }
-  },
-  {
-    path: 'news',
-    component: NewsComponent,
-    data: { animation: 'News' }
   },
   {
     path: 'about',
@@ -92,8 +93,8 @@ export const pageRoutes: Routes = [
     PlanSelectionComponent,
     DepositComponent,
     AboutComponent,
-    NewsComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    ValidationComponent
   ],
   imports: [
     CommonModule,
@@ -106,6 +107,7 @@ export const pageRoutes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
+    DatePipe, // DatePipe was 
     {
       provide: 'API_PREFIX', useFactory() {
         return (environment.production) ? apiPrefix.prod : apiPrefix.dev
@@ -115,7 +117,7 @@ export const pageRoutes: Routes = [
       provide: 'CREATE_DEPOSIT_TRANSACTION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.CREATE_DEPOSIT_TRANSACTION}`
+        return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
     },
     {
@@ -126,12 +128,26 @@ export const pageRoutes: Routes = [
       }
     },
     {
+      provide: 'SEND_DEPOSIT_FOR_VERIFICATION_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
+      }
+    },
+    {
       provide: 'FETCH_UNVERIFIED_DEPOSITS_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.FETCH_UNVERIFIED_DEPOSITS}`
+        return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
-    }
+    },
+    {
+      provide: 'ADMIN_FETCH_DEPOSITS_FOR_VERIFICATION_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.FETCH_DEPOSITS_FOR_VERIFICATION}`
+      }
+    },
   ]
 })
 export class PageModule { }
