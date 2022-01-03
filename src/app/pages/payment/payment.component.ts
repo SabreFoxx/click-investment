@@ -1,14 +1,16 @@
-import { PaymentMethodService } from 'src/services/payment-method.service';
+import { AuthStorageService } from 'src/services/auth-storage.service';
+import { SimpleHttpService } from 'src/services/simple-post.service';
+import { PaymentService } from 'src/services/payment.service';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { PaymentTool } from 'src/models/payment-tool';
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { PaymentMethod } from 'src/models/payment-method';
-import Swal from 'sweetalert2';
 import { Deposit } from 'src/models/deposit';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -18,8 +20,9 @@ import { Deposit } from 'src/models/deposit';
 export class PaymentComponent implements OnInit, AfterViewInit {
   paymentMethods: BehaviorSubject<PaymentMethod[]>;
   unverifiedDeposits: Observable<Deposit[]>;
+  selectedDepositForVerification: Deposit;
+
   isDepositListVisible: boolean;
-  // we need this to get back to start of page when user navigates
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
   @ViewChild(SwalComponent) alert: SwalComponent;
 
@@ -40,8 +43,10 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     }
   });
 
-  constructor(private route: ActivatedRoute, private payMthServ: PaymentMethodService,
-    private router: Router, private ui: UIAdjustmentService) {
+  constructor(private route: ActivatedRoute, private payMthServ: PaymentService,
+    private router: Router, private ui: UIAdjustmentService, private http: SimpleHttpService,
+    @Inject('SEND_DEPOSIT_FOR_VERIFICATION_URL') private endpoint: string,
+    private authStore: AuthStorageService) {
     ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' }]);
   }
 
@@ -90,8 +95,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.isDepositListVisible = !this.isDepositListVisible;
   }
 
-  selectForVerification(deposit: Deposit) { }
+  selectForVerification(deposit: Deposit) {
+    this.selectedDepositForVerification = deposit;
+  }
 
   removeFromListOfUnverified(deposit: Deposit) { }
+
+  submitForVerification() {
+    this.http.update<Deposit>(this.endpoint,{
+      depositId: this.selectedDepositForVerification.id
+    }, this.authStore.authorizationHeader);
+  }
 
 }

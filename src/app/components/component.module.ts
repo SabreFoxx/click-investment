@@ -20,6 +20,7 @@ import { ChartComponent } from './chart/chart.component';
 import { NotificationPaneComponent } from './notification-pane/notification-pane.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WithdrawBlockComponent } from './withdraw-block/withdraw-block.component';
+import { VerifyBlockComponent } from './verify-block/verify-block.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { WithdrawBlockComponent } from './withdraw-block/withdraw-block.componen
     ProfileCardComponent,
     ChartComponent,
     NotificationPaneComponent,
-    WithdrawBlockComponent
+    WithdrawBlockComponent,
+    VerifyBlockComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { WithdrawBlockComponent } from './withdraw-block/withdraw-block.componen
     PaymentCardComponent,
     ProfileCardComponent,
     NotificationPaneComponent,
-    WithdrawBlockComponent
+    WithdrawBlockComponent,
+    VerifyBlockComponent
   ]
 })
 export class ComponentModule { }

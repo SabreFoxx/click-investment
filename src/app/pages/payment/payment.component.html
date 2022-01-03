@@ -1,4 +1,6 @@
 <div #useAsScrollToTopAnchor></div>
+<!-- normally, we don't require <swal> for it to work, but here we
+    have children <app-payment-card>s that need a reference to it -->
 <swal></swal>
 
 <article #useAsScrollToTopAnchor class="message">
@@ -14,7 +16,12 @@
                  (click)="toggleDepositList()">
                 <div class="dropdown-trigger">
                     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Possible deposits</span>
+                        <span>
+                            {{selectedDepositForVerification?.fiatAmount
+                            | currency:selectedDepositForVerification?.fiatCurrency:'symbol'}}
+                            {{selectedDepositForVerification?.createdAt | date:'medium'}}
+                            {{selectedDepositForVerification?.status ?? 'Possible deposits'}}
+                        </span>
                         <span class="icon is-small">
                             <svg class="svg-icon">
                                 <use xlink:href="#chevron-down"></use>
@@ -37,7 +44,9 @@
                 </div>
             </div>
 
-            <button class="button is-rounded is-link" type="submit">
+            <button class="button is-rounded is-link" type="submit"
+                    (click)="submitForVerification()"
+                    [disabled]="selectedDepositForVerification?.status ? false : true">
                 Submit for verification
             </button>
         </div>
