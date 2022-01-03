@@ -33,7 +33,7 @@ export class SimpleHttpService {
     toastSuccessMsg = true, toastErrorMsg = true): Subject<T> {
     let response = new Subject<T>();
     this.feedback.loading();
-    
+
     // reset fullResponseBody
     this.fullResponseBody.complete();
     this.fullResponseBody = new Subject();
@@ -49,7 +49,7 @@ export class SimpleHttpService {
       catchError(errorHandler) // if error is caught, we won't have a subscription
     ).subscribe(res => {
       this.feedback.doneLoading();
-      response.next((res.body as any).data);
+      response.next((res.body as any)?.data);
       this.fullResponseBody.next(res.body);
 
       if (toastSuccessMsg)
@@ -66,6 +66,26 @@ export class SimpleHttpService {
     return response;
   }
 
+  public update<T>(url: string, data: any, headers?: HttpHeaders): Subject<T> {
+    let response = new Subject<T>();
+    this.feedback.loading();
+
+    this.http.put<T>(url, data, {
+      headers: headers || null,
+      observe: 'response',
+      responseType: 'json'
+    }).pipe(catchError(this.toastError))
+      .subscribe(res => {
+        this.feedback.doneLoading();
+        response.next((res.body as any)?.data);
+        this.feedback.show({ title: 'Success', text: res.body['message'] });
+        response.complete();
+      }, (error: HttpErrorResponse) => {
+        this.feedback.doneLoading();
+      })
+    return response;
+  }
+
   public receive<T>(url: string, headers?: HttpHeaders): Subject<T> {
     let response = new Subject<T>();
     this.feedback.loading();
@@ -78,17 +98,41 @@ export class SimpleHttpService {
       headers: headers || null,
       observe: 'response',
       responseType: 'json'
+    }).pipe(catchError(this.handleError))
+      .subscribe(res => {
+        this.feedback.doneLoading();
+
+        response.next((res.body as any)?.data);
+        this.fullResponseBody.next(res.body);
+
+        response.complete(); // unsubscribe observers
+        this.fullResponseBody.complete();
+      }, (error: HttpErrorResponse) => {
+        this.feedback.doneLoading();
+        response.error(error.error?.message)
+      })
+
+    return response;
+  }
+
+  public loadPageData<T>(url: string, headers?: HttpHeaders): Subject<T> {
+    let response = new Subject<T>();
+    this.feedback.loading();
+
+    this.http.get(url, {
+      headers: headers || null,
+      observe: 'response',
+      responseType: 'json'
     }).subscribe(res => {
       this.feedback.doneLoading();
-
-      response.next((res.body as any).data);
-      this.fullResponseBody.next(res.body);
-
-      response.complete(); // unsubscribe observers
-      this.fullResponseBody.complete();
-    }, (error: HttpErrorResponse) => {
+      response.next((res.body as any)?.data);
+      response.complete();
+    }, () => {
       this.feedback.doneLoading();
-      response.error(error.error?.message);
+      // we still need our router resolver to resolve whether
+      // there is an error or not, so our page will load
+      (response as any).next([]);
+      response.complete();
     })
 
     return response;
@@ -111,7 +155,7 @@ export class SimpleHttpService {
     if (error.status === 0)
       LoadingFeedbackService.showError({ title: "An error occurred", text: error.error.message });
     else
-      LoadingFeedbackService.showError({ title: "An error occurred", text: error.error.message });
+      LoadingFeedbackService.showError({ title: "Oops!", text: error.error.message });
 
     // return an observable with a user-facing error message.
     return throwError(new SimpleError);
