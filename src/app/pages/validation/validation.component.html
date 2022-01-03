@@ -1,0 +1,57 @@
+<div #useAsScrollToTopAnchor></div>
+
+<article #useAsScrollToTopAnchor class="message">
+    <header class="message-header">
+        <p>Select withdrawal block</p>
+    </header>
+    <section class="message-body">
+        <p>You can either <strong>withdraw money from your total profit</strong>, or withdraw
+            money you deposited <strong><em>after it's due for withdrawal</em></strong>.
+        </p>
+        <p>From the list below, select the available deposits you made earlier,
+            which is now ready for withdrawal, or select to withdraw from your profit.
+        </p>
+    </section>
+</article>
+
+<article>
+    <h2 class="sub-title table-title container-white">Withdrawal availability blocks</h2>
+
+    <div class="container-white table-adjust">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Account Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                    <th>Means</th>
+                    <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
+                    </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Account Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                    <th>Means</th>
+                    <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
+                    </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr *ngFor="let deposit of depositsForValidation | async" [block]="deposit"
+                    class="row" app-verify-block>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</article>

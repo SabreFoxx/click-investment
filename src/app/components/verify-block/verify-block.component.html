@@ -1,0 +1,13 @@
+<td>
+    <abbr [title]="block['User.firstName'] + ' ' + block['User.lastName']">
+        {{trimLength(block['User.firstName'])}} {{trimLength(block['User.lastName'])}}</abbr>
+</td>
+<td>{{block?.createdAt | date:'mediumDate'}}</td>
+<td>{{block?.createdAt | date:'shortTime'}}</td>
+<td>{{block.fiatAmount | currency:block.fiatCurrency:'symbol'}}</td>
+<td>{{block.paymentMedium}}</td>
+<td><abbr [title]="block['storageWalletAddr']">{{block['storageWalletAddr'].substring(0, 7)}}</abbr>
+</td>
+<td><button class="button is-rounded is-link" (click)="accept()">Accept</button>
+</td>
+<td><button class="button is-rounded" (click)="reject()">Reject</button></td>

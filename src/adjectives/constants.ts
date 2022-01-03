@@ -19,9 +19,10 @@ export enum ApiEndpoints {
     REFRESH_LOGIN = '/refresh-user-data',
 
     DASHBOARD = '/dashboard',
-    CREATE_DEPOSIT_TRANSACTION = '/deposit',
+    DEPOSIT_TRANSACTION = '/deposit',
     CREATE_WITHDRAWAL_TRANSACTION = '/withdrawal',
-    FETCH_UNVERIFIED_DEPOSITS = '/deposit'
+
+    FETCH_DEPOSITS_FOR_VERIFICATION = '/admin/deposit'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } =
