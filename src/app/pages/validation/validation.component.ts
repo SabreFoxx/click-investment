@@ -1,5 +1,5 @@
 import { pluck } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Observable } from 'rxjs';
@@ -14,7 +14,8 @@ export class ValidationComponent implements OnInit, AfterViewInit {
   depositsForValidation: Observable<Deposit[]>;
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
 
-  constructor(private route: ActivatedRoute, private ui: UIAdjustmentService) {
+  constructor(private route: ActivatedRoute, private ui: UIAdjustmentService,
+    private router: Router,) {
     ui.setBreadcrumbs([{ url: '/app/validations', title: 'Validations' }]);
   }
 
@@ -24,5 +25,13 @@ export class ValidationComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.anchor.nativeElement.scrollIntoView(0);
+  }
+
+  /**
+   * Reload our view, and thus its data
+   */
+  reloadView(): void {
+    this.router.navigated = false;
+    this.router.navigate(['./'], { relativeTo: this.route });
   }
 }

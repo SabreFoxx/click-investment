@@ -68,6 +68,8 @@ export const pageRoutes: Routes = [
   {
     path: 'validations', component: ValidationComponent,
     resolve: { resolveDepositsForValidation: DepositValidationService },
+    // helps me reload data when I call validationComponent.reloadView. See reloadView
+    runGuardsAndResolvers: 'always',
     data: { animation: 'Validations' }
   },
   {
@@ -107,7 +109,7 @@ export const pageRoutes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    DatePipe, // DatePipe was 
+    DatePipe, // DatePipe provider was provided here for use in TypeScript
     {
       provide: 'API_PREFIX', useFactory() {
         return (environment.production) ? apiPrefix.prod : apiPrefix.dev
@@ -145,7 +147,21 @@ export const pageRoutes: Routes = [
       provide: 'ADMIN_FETCH_DEPOSITS_FOR_VERIFICATION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.FETCH_DEPOSITS_FOR_VERIFICATION}`
+        return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
+      }
+    },
+    {
+      provide: 'ADMIN_VERIFY_DEPOSIT_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
+      }
+    },
+    {
+      provide: 'ADMIN_HIDE_DEPOSIT_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
       }
     },
   ]
