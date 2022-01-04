@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 export interface Toast {
   title: string,
-  text: string
+  text?: string
 }
 
 @Injectable({

@@ -102,9 +102,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   removeFromListOfUnverified(deposit: Deposit) { }
 
   submitForVerification() {
-    this.http.update<Deposit>(this.endpoint,{
+    this.http.update<Deposit>(this.endpoint, {
       depositId: this.selectedDepositForVerification.id
     }, this.authStore.authorizationHeader);
   }
-
 }
