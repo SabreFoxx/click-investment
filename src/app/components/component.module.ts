@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
+import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
+import { environment } from 'src/environments/environment';
+
 import { NavComponent } from './header/nav/nav.component';
 import { SigninFormComponent } from './signin-form/signin-form.component';
 import { InputBoxComponent } from './input-box/input-box.component';
@@ -21,6 +24,7 @@ import { NotificationPaneComponent } from './notification-pane/notification-pane
 import { ReactiveFormsModule } from '@angular/forms';
 import { WithdrawBlockComponent } from './withdraw-block/withdraw-block.component';
 import { VerifyBlockComponent } from './verify-block/verify-block.component';
+import { SettingsCardComponent } from './settings-card/settings-card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { VerifyBlockComponent } from './verify-block/verify-block.component';
     ChartComponent,
     NotificationPaneComponent,
     WithdrawBlockComponent,
-    VerifyBlockComponent
+    VerifyBlockComponent,
+    SettingsCardComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +66,22 @@ import { VerifyBlockComponent } from './verify-block/verify-block.component';
     ProfileCardComponent,
     NotificationPaneComponent,
     WithdrawBlockComponent,
-    VerifyBlockComponent
+    VerifyBlockComponent,
+    SettingsCardComponent
+  ],
+  providers: [
+    {
+      provide: 'API_PREFIX', useFactory() {
+        return (environment.production) ? apiPrefix.prod : apiPrefix.dev
+      }
+    },
+    {
+      provide: 'CREATE_DEPOSIT_TRANSACTION_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
+      }
+    }
   ]
 })
 export class ComponentModule { }
