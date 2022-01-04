@@ -115,6 +115,26 @@ export class SimpleHttpService {
     return response;
   }
 
+  public discard(url: string, headers?: HttpHeaders): Subject<any> {
+    let response = new Subject();
+    this.feedback.loading();
+
+    this.http.delete(url, {
+      headers: headers || null,
+      observe: 'response',
+      responseType: 'json'
+    }).pipe(catchError(this.toastError))
+      .subscribe(res => {
+        this.feedback.doneLoading();
+        response.next();
+        this.feedback.show({ title: 'Success' });
+        response.complete();
+      }, (error: HttpErrorResponse) => {
+        this.feedback.doneLoading();
+      })
+    return response;
+  }
+
   public loadPageData<T>(url: string, headers?: HttpHeaders): Subject<T> {
     let response = new Subject<T>();
     this.feedback.loading();
