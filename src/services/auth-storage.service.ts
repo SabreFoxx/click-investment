@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { User } from 'src/models/user';
 import { BehaviorSubject } from 'rxjs';
@@ -14,7 +13,13 @@ export class AuthStorageService {
 
   constructor() {
     this.httpHeader = new HttpHeaders;
-    this.currentUser = new BehaviorSubject(null);
+    const emptyUser: User = {
+      firstName: null,
+      lastName: null,
+      email: null,
+      currency: null
+    }
+    this.currentUser = new BehaviorSubject(emptyUser);
   }
 
   /**
