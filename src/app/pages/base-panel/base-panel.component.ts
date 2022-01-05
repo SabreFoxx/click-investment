@@ -26,7 +26,7 @@ import { takeUntil } from 'rxjs/operators';
   animations: [fadeAnimation]
 })
 export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
-  isShowSideMenu: BehaviorSubject<boolean>;
+  isSideMenuVisible: BehaviorSubject<boolean>;
   isShowNotificationPane: boolean = false;
   user: BehaviorSubject<User>;
 
@@ -44,7 +44,7 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private ui: UIAdjustmentService,
     private authStorage: AuthStorageService, private r: Renderer2) {
-    this.isShowSideMenu = ui.isSideMenuVisible;
+    this.isSideMenuVisible = ui.isSideMenuVisible;
     this.user = this.authStorage.currentUser;
   }
 
@@ -76,7 +76,7 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   toggleSideMenu() {
     this.ui.toggleSideMenu();
-    this.isShowSideMenu.value ? this.applySideMenuCloseActions()
+    !this.isSideMenuVisible.value ? this.applySideMenuCloseActions()
       : this.unApplySideMenuCloseActions();
   }
 

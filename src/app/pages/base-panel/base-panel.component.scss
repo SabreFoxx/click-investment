@@ -64,23 +64,36 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
 .app {
     $top-height: 45%;
     $menu-width: 22vw;
+    $menu-width-mobile: 70vw;
     $side-menu-closed-width: 4.5vw;
     $side-menu-closed-transition: width 200ms ease-out;
 
     height: 100vh;
-    display: flex;
+
+    @media (min-width: 48em) {
+        display: flex;
+    }
 
     &-menu {
         flex-shrink: 1;
-        width: $menu-width;
-        max-width: 500px;
         height: 100%;
         display: flex;
         flex-direction: column;
-        transition: $side-menu-closed-transition;
+        // transition: $side-menu-closed-transition;
 
-        &.side-menu-closed {
-            width: $side-menu-closed-width;
+        width: $menu-width-mobile;
+        position: absolute;
+        z-index: 3;
+        transform: translate(- $menu-width-mobile);
+
+        @media (min-width: 48em) {
+            width: $menu-width;
+            transform: none;
+            position: static;
+
+            &.side-menu-closed {
+                width: $side-menu-closed-width;
+            }
         }
 
         background: linear-gradient(173.89deg,
@@ -110,26 +123,36 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
 
     &-base {
         flex-grow: 1;
-        width: 100vw - $menu-width;
-        overflow-y: hidden;
-        transition: $side-menu-closed-transition;
+        width: 100vw;
+        overflow: hidden;
+        // transition: $side-menu-closed-transition;
 
-        &.side-menu-closed {
-            width: 100vw - $side-menu-closed-width;
+        @media (min-width: 48em) {
+            width: 100vw - $menu-width;
+            transform: none;
+
+            &.side-menu-closed {
+                width: 100vw - $side-menu-closed-width;
+            }
         }
     }
 
     &-panel {
         $margin-here: 0.7vw;
+
         display: flex;
         position: relative;
         margin: 0 $margin-here;
-        width: 100vw - $menu-width - (2*$margin-here);
-        transition: $side-menu-closed-transition;
+        width: 100vw - (2 * $margin-here);
+        // transition: $side-menu-closed-transition;
         padding-bottom: 1em;
 
+        @media (min-width: 48em) {
+            width: 100vw - $menu-width - (2 * $margin-here);
+        }
+
         &.side-menu-closed {
-            width: 100vw - $side-menu-closed-width - (2*$margin-here);
+            width: 100vw - $side-menu-closed-width - (2 * $margin-here);
         }
     }
 
