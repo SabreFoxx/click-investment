@@ -7,7 +7,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './signin-form.component.html',
   styleUrls: ['./signin-form.component.scss']
 })
-export class SigninFormComponent implements OnInit, AfterViewInit {
+export class SigninFormComponent implements OnInit {
   form: FormGroup;
   email: AbstractControl;
   password: AbstractControl;
@@ -25,9 +25,12 @@ export class SigninFormComponent implements OnInit, AfterViewInit {
     this.password = this.form.controls['password'];
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  ngAfterViewInit(): void { }
+  submit(): void {
+    this.disableSubmitButton = true;
+    setTimeout(() => this.disableSubmitButton = false, 5000);
+    this.auth.login(this.form.value, this.endpoint);
+  }
 
 }
