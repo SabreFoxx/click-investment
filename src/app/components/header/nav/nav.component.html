@@ -1,19 +1,28 @@
-<img src="assets/img/logo.svg" class="logo nav-item" alt="Logo" srcset="">
-<ul class="nav-items">
+<div class="navbar-brand">
+    <a class="navbar-item" href="/">
+        <img src="assets/img/logo.svg" alt="Logo" srcset="">
+    </a>
+    <a #button (click)="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu"
+       aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+<div #menu class="navbar-menu">
+    <div class="navbar-end">
+        <a class="navbar-item">My Account</a>
+        <a class="navbar-item">Investing</a>
+        <a class="navbar-item">Advice & Retirement</a>
+        <a class="navbar-item">News & Perspective</a>
+        <a class="navbar-item">Benefits & Costs</a>
+    </div>
+</div>
+<!-- <ul class="nav-items">
     <li>My Account</li>
     <li>Investing</li>
-    <li>Advice & Retirement
-        <svg class="svg-icon">
-            <use xlink:href="#icon-chevron-down"></use>
-        </svg>
-    </li>
+    <li>Advice & Retirement </li>
     <li>News & Perspective</li>
     <li>Benefits & Costs</li>
-</ul>
-<!-- search box -->
-<div class="nav-item" style="margin-left: auto;">
-    <!-- <input type="text"> -->
-    <svg class="svg-icon">
-        <use xlink:href="#icon-magnify"></use>
-    </svg>
-</div>
+</ul> -->

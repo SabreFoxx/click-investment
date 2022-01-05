@@ -1,9 +1,18 @@
-@import 'src/variables.scss';
+@use "sass:math";
+
+@import "src/variables";
+@import "bulma/sass/utilities/_all";
+@import "bulma/sass/base/_all";
+@import "bulma/sass/components/navbar.sass";
 
 .wrapper {
     display: flex;
     width: 100%;
     letter-spacing: 1.5px;
+
+    .dropdown-menu {
+        z-index: 35;
+    }
 }
 
 .button {
@@ -30,10 +39,4 @@
 
 .dropdown-trigger {
     line-height: 0;
-}
-
-.nav {
-    display: flex;
-    font-size: 0.77em;
-    align-items: center;
 }

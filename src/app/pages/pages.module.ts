@@ -65,7 +65,7 @@ export const pageRoutes: Routes = [
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'Plans' }
   },
-  {
+  { // TODO only admin should see certain pages
     path: 'validations', component: ValidationComponent,
     resolve: { resolveDepositsForValidation: DepositValidationService },
     // helps me reload data when I call validationComponent.reloadView. See reloadView

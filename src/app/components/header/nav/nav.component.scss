@@ -1,12 +1,14 @@
-.logo {
-    margin-right: 3em;
+@use "sass:math";
+
+@import "src/variables";
+@import "bulma/sass/utilities/_all";
+@import "bulma/sass/base/_all";
+@import "bulma/sass/components/navbar.sass";
+
+.navbar-brand .navbar-item {
+    padding-left: 0;
 }
 
-.nav-items {
-    display: flex;
-    font-size: 1.4em;
-
-    > * {
-        padding: 1.8em 1.5em;
-    }
+.navbar-item:last-child {
+    padding-right: 0;
 }

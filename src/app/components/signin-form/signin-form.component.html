@@ -4,9 +4,12 @@
         </input-box>
     </div>
     <div>
-        <input-box placeholder="Password" [control]="password" errorMsg="Enter your password" type="password">
+        <input-box placeholder="Password" [control]="password" errorMsg="Enter your password"
+                   type="password">
         </input-box>
     </div>
-    <button class="button is-rounded is-link" type="submit">Log on</button>
-    <a [routerLink]="['/auth/signup_']" class="button is-rounded">Open an account</a>
+    <div class="signin-form-buttons">
+        <button class="button is-rounded is-link" type="submit">Log on</button>
+        <a [routerLink]="['/auth/signup_']" class="button is-rounded">Open an account</a>
+    </div>
 </form>
