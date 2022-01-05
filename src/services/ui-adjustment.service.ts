@@ -10,8 +10,10 @@ export class UIAdjustmentService {
   isSideMenuVisible = new BehaviorSubject<boolean>(false);
   isNotificationPaneVisible = new BehaviorSubject<boolean>(false);
   breadcrumbs: BehaviorSubject<Breadcrumb[]>;
+  appHasLoadedBefore = false;
 
   constructor() {
+    setTimeout(() => this.appHasLoadedBefore = true, 1000); // let it be known we've loaded our app
     this.breadcrumbs = new BehaviorSubject(null);
   }
 

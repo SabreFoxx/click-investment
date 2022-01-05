@@ -11,7 +11,13 @@ export class LandingComponent implements OnInit, AfterViewInit {
   @ViewChild('hero') hero: ElementRef;
   @ViewChild(HeaderComponent) header: HeaderComponent;
 
-  constructor(private ui: UIAdjustmentService) { }
+  constructor(private ui: UIAdjustmentService) {
+    // <ng-scrollbar> won't allow our non <ng-scrollbar> landing page scroll anytime we leave
+    // an <ng-scrollbar> page. So we just have to reload the whole app if our appHasLoadedBefore
+    // don't worry, the browser has cached our resource files and scripts
+    // we do this here instead of ngOnInit() because we need it before all else
+    if (ui.appHasLoadedBefore) location.reload();
+  }
 
   @HostListener('window:resize', ['$event'])
   onScroll(event) {
@@ -24,7 +30,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
       this.header.me.nativeElement.offsetHeight + 'px';
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
