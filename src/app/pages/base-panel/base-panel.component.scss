@@ -18,8 +18,8 @@ ng-scrollbar {
     --scrollbar-border-radius: 4px;
 }
 
-/* Based on our DOM setup, we have to set these to height: 100% 
-for these, so we'll have no problems. We set in order of appearance in DOM */
+/* Based on our DOM setup, we have to set these to height: 100% so we'll have 
+no problems with height and visibility. We set in order of appearance in DOM */
 .app {
     height: 100vh;
 }
@@ -149,18 +149,22 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
 
         @media (min-width: 48em) {
             width: 100vw - $menu-width - (2 * $margin-here);
-        }
 
-        &.side-menu-closed {
-            width: 100vw - $side-menu-closed-width - (2 * $margin-here);
+            &.side-menu-closed {
+                width: 100vw - $side-menu-closed-width - (2 * $margin-here);
+            }
         }
     }
 
     &-nav {
-        height: 100% - $top-height - 1.5%;
+        height: 100%;
 
-        &.side-menu-closed {
-            height: 68%;
+        @media (min-width: 48em) {
+            height: 100% - $top-height - 1.5%;
+
+            &.side-menu-closed {
+                height: 68%;
+            }
         }
     }
 
@@ -169,10 +173,17 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         flex-grow: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 85%;
+        height: 90%;
 
-        .ng-scroll-viewport {
-            padding-right: 0.8rem; // for the bar not to be over content
+        // for the ngscrollbar bar not to be atop our content
+        .scrollbar-control {
+            right: -5px !important;
+        }
+
+        @media (min-width: 48em) {
+            .scrollbar-control {
+                right: -12px !important; // for the ngscrollbar bar not to be atop our content
+            }
         }
     }
 
@@ -201,10 +212,12 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         width: 2rem;
         height: 2rem;
 
-        &.side-menu-closed {
-            margin-left: -2em;
-            margin-right: 0.5em;
-            width: $side-menu-closed-width;
+        @media (min-width: 48em) {
+            &.side-menu-closed {
+                margin-left: -2em;
+                margin-right: 0.5em;
+                width: $side-menu-closed-width;
+            }
         }
     }
 }
@@ -224,16 +237,24 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
     max-height: 250px;
     transition: $nav-easing;
 
+    position: absolute;
+    right: -100vw;
+
     @media (min-width: 48em) {
-        // display: none;
+        position: static;
+        right: unset;
+
+        &.side-menu-closed {
+            margin: auto;
+        }
     }
 
     &:hover {
-        background: mix(black, $primary, 20);
-    }
+        background: white;
 
-    &.side-menu-closed {
-        margin: auto;
+        @media (min-width: 48em) {
+            background: mix(black, $primary, 20);
+        }
     }
 
     $slice-height: 3px;
@@ -242,7 +263,11 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
         position: relative;
         height: $slice-height;
         width: 40px;
-        background: white;
+        background: $primary;
+
+        @media (min-width: 48em) {
+            background: white;
+        }
 
         &:before {
             content: "";
@@ -251,7 +276,11 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
             left: 0;
             height: $slice-height;
             width: 100%;
-            background: white;
+            background: $primary;
+
+            @media (min-width: 48em) {
+                background: white;
+            }
         }
 
         &:after {
@@ -261,7 +290,11 @@ for these, so we'll have no problems. We set in order of appearance in DOM */
             left: 0;
             height: $slice-height;
             width: 100%;
-            background: white;
+            background: $primary;
+
+            @media (min-width: 48em) {
+                background: white;
+            }
         }
     }
 

@@ -1,7 +1,29 @@
 <div class="top-bar">
     <div class="top">
-        <span class="main-title">{{title}}</span>
-        <div class="nav">
+        <div>
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon is-small">
+                                <svg class="svg-icon" aria-hidden="true">
+                                    <use xlink:href="#diamond"></use>
+                                </svg>
+                            </span>
+                            <span>App</span>
+                        </a>
+                    </li>
+                    <li *ngFor="let crumb of breadcrumbs | async" [routerLink]="[crumb.url]"
+                        routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}"
+                        [class.is-active]="crumb.forceActive">
+                        <a [routerLink]="[crumb.url]">{{crumb.title}}</a>
+                    </li>
+                </ul>
+            </nav>
+            <span class="main-title">{{title}}</span>
+        </div>
+
+        <div class="actions">
             <div class="search">
                 <form>
                     <input-box placeholder="Search" [control]="search"></input-box>
@@ -10,9 +32,9 @@
                     <use xlink:href="#magnify"></use>
                 </svg>
             </div>
-            <button class="icon-button" (click)="showNews()">
+            <button class="icon-button fullscreen">
                 <svg class="svg-icon">
-                    <use xlink:href="#newspaper-variant-multiple-outline"></use>
+                    <use xlink:href="#fullscreen"></use>
                 </svg>
             </button>
             <button class="icon-button" (click)="showAlert()">
@@ -20,30 +42,12 @@
                     <use xlink:href="#bell"></use>
                 </svg>
             </button>
-            <button class="icon-button">
+            <button class="icon-button" (click)="showNews()">
                 <svg class="svg-icon">
-                    <use xlink:href="#fullscreen"></use>
+                    <use xlink:href="#newspaper-variant-multiple-outline"></use>
                 </svg>
             </button>
         </div>
+
     </div>
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon is-small">
-                        <svg class="svg-icon" aria-hidden="true">
-                            <use xlink:href="#diamond"></use>
-                        </svg>
-                    </span>
-                    <span>App</span>
-                </a>
-            </li>
-            <li *ngFor="let crumb of breadcrumbs | async" [routerLink]="[crumb.url]"
-                routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}"
-                [class.is-active]="crumb.forceActive">
-                <a [routerLink]="[crumb.url]">{{crumb.title}}</a>
-            </li>
-        </ul>
-    </nav>
 </div>
