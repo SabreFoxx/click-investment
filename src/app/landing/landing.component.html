@@ -5,13 +5,15 @@
         <h1>A plan built to get you where you want to go</h1>
         <br>
         <h2>Investment Personal Advisor Services®. For today's world or anytime.</h2>
-        <button class="button is-rounded" style="font-size: 0.8em;">Let's make it happen</button>
+        <button class="button is-rounded" style="font-size: 0.8em; width: min-content">
+            Let's make it happen
+        </button>
     </header>
 </section>
 
 <section class="root-container">
     <app-signin-form></app-signin-form>
-    <div class="middle-text">
+    <div class="middle-text forgot-password">
         <a [routerLink]="['/auth/forgot-password']" class="middle-text">Forgot your username or
             password?</a>
         <a [routerLink]="['/auth/signup']" class="middle-text">Sign up for online account access</a>
@@ -20,7 +22,7 @@
 
 <br>
 <div class="middle-text spc">
-    <span>
+    <span style="display: inline;">
         <svg class="svg-icon">
             <use xlink:href="#information"></use>
         </svg>
@@ -124,7 +126,6 @@
     <div class="board-container">
         <div class="left" style="flex-basis: 60%">
             <section>
-                <h2 style="visibility: hidden">Money Market</h2>
                 <b>100</b><span>%</span>
                 <p>Investment funds outperformed their peer averages</p>
             </section>
@@ -134,7 +135,7 @@
                 <li>Money Market</li>
                 <li>Bond</li>
                 <li>Balanced</li>
-                <li>Stock</li>
+                <li>Crypto</li>
             </ul>
         </div>
     </div>
@@ -143,7 +144,8 @@
 <section class="root-container spc inv">
     <div>
         <h2>Investment has been helping investors reach their goals</h2>
-        <p style="line-height: 3.5">Our unique, investor-owned structure keeps us focused on your needs first.</p>
+        <p style="line-height: 3.5">Our unique, investor-owned structure keeps us focused on your
+            needs first.</p>
         <p>Your goals are always our goals.</p>
     </div>
     <div>
@@ -213,7 +215,7 @@
     </div>
 </section>
 
-<section class="root-container top spc">
+<section class="root-container top-footer spc">
     <div class="my-account">
         <h3>My Accounts</h3>
         <ul>
