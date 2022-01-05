@@ -1,1 +1,74 @@
-<p>settings-card works!</p>
+<section class="container-white settings-card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Update details</h2>
+        <br>
+        <div class="input-row">
+            <div>
+                <input-box placeholder="Surname" errorMsg="Enter your surname" [control]="surname"
+                           [validationFailed]="surname.invalid && surname.touched">
+                </input-box>
+            </div>
+            <div>
+                <input-box placeholder="Firstname" errorMsg="Enter your name" [control]="firstName"
+                           [validationFailed]="firstName.invalid && firstName.touched">
+                </input-box>
+            </div>
+        </div>
+
+        <br>
+        <div class="input-row">
+            <div>
+                <input-box placeholder="Email" errorMsg="Enter your email" [control]="email"
+                           type="email" [validationFailed]="email.invalid && email.touched">
+                </input-box>
+            </div>
+            <div>
+                <input-box placeholder="Phone number"
+                           errorMsg="Enter a correct phone number or none" [control]="phone"
+                           type="tel" [validationFailed]="phone.invalid && phone.touched">
+                </input-box>
+            </div>
+        </div>
+        <br>
+        <div class="input-row">
+            <div>
+                <button class="button is-rounded is-link" type="submit"
+                        [disabled]="!form.valid || disableSubmitButton">Update</button>
+            </div>
+        </div>
+    </form>
+
+    <hr class="line">
+
+    <h2>Change password</h2>
+    <br>
+    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+        <div class="input-row">
+            <div>
+                <input-box placeholder="Password" errorMsg="Enter your password"
+                           [control]="password" type="password"
+                           [validationFailed]="password.invalid && password.touched">
+                </input-box>
+            </div>
+            <div>
+                <input-box placeholder="Retype password" [control]="retypePassword" type="password"
+                           [validationFailed]="retypePassword.invalid && retypePassword.touched">
+                </input-box>
+                <span *ngIf="retypePassword.invalid && retypePassword.touched"
+                      class="input-validation-msg">
+                    <span *ngIf="retypePassword.hasError('__')">
+                        {{retypePassword.errors['x!x']}}
+                    </span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="input-row">
+            <div>
+                <button class="button is-rounded is-link"
+                        [disabled]="!form.valid || disableSubmitButton">Change</button>
+            </div>
+        </div>
+    </form>
+
+</section>
