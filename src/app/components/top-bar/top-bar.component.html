@@ -32,7 +32,8 @@
                     <use xlink:href="#magnify"></use>
                 </svg>
             </div>
-            <button class="icon-button fullscreen">
+            <button #useToUnfocusAfterClick class="icon-button fullscreen"
+                    (click)="toggleFullScreen(useToUnfocusAfterClick)">
                 <svg class="svg-icon">
                     <use xlink:href="#fullscreen"></use>
                 </svg>

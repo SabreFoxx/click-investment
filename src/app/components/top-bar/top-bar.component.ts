@@ -7,6 +7,7 @@ import { Breadcrumb } from 'src/models/breadcrumb';
 import { capitalizeFirstLetter } from 'src/adjectives/functions';
 import { Title } from '@angular/platform-browser';
 import { takeUntil } from 'rxjs/operators';
+import screenfull from 'screenfull';
 
 @Component({
   selector: 'app-top-bar',
@@ -58,6 +59,12 @@ export class TopBarComponent implements OnInit, OnDestroy {
     if (this.openedWith == OpenedWithIcon.ALERT || this.openedWith == OpenedWithIcon.NONE)
       this.ui.toggleNotificationPane()
     this.openedWith = OpenedWithIcon.ALERT
+  }
+
+  toggleFullScreen(button: HTMLElement): void {
+    if (screenfull.isEnabled)
+      screenfull.toggle();
+    button.blur()
   }
 }
 
