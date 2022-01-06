@@ -9,14 +9,6 @@
 </section>
 
 <section class="stats">
-    <article class="stats-overview container-white">
-        <h2 class="sub-title">Overview</h2>
-        <apx-chart [chart]="pieChartOptions.chart" [series]="pieChartOptions.series"
-                   [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
-                   [fill]="pieChartOptions.fill" [legend]="pieChartOptions.legend">
-        </apx-chart>
-    </article>
-
     <article class="stats-plan container-white">
         <h2 class="sub-title">Platinum Plan</h2>
         <apx-chart [chart]="planStatOptions.chart" [series]="planStatOptions.series"
@@ -31,6 +23,14 @@
                    [colors]="planStatBrushOptions.colors" [stroke]="planStatBrushOptions.stroke"
                    [grid]="planStatBrushOptions.grid" [xaxis]="planStatBrushOptions.xaxis"
                    [yaxis]="planStatBrushOptions.yaxis" [markers]="planStatBrushOptions.markers">
+        </apx-chart>
+    </article>
+
+    <article class="stats-overview container-white">
+        <h2 class="sub-title">Overview</h2>
+        <apx-chart [chart]="pieChartOptions.chart" [series]="pieChartOptions.series"
+                   [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
+                   [fill]="pieChartOptions.fill" [legend]="pieChartOptions.legend">
         </apx-chart>
     </article>
 </section>

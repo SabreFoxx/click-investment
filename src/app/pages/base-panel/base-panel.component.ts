@@ -17,6 +17,8 @@ import { RouterOutlet } from '@angular/router';
 import { fadeAnimation } from 'src/app/animation';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-base-panel',
@@ -42,7 +44,7 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private ui: UIAdjustmentService,
+  constructor(private ui: UIAdjustmentService, private deviceService: DeviceDetectorService,
     private authStorage: AuthStorageService, private r: Renderer2) {
     this.isSideMenuVisible = ui.isSideMenuVisible;
     this.user = this.authStorage.currentUser;
@@ -51,6 +53,10 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
+    // expand sidemenu by default, if we're using a desktop device
+    if (environment.production && this.deviceService.isDesktop)
+      this.unApplySideMenuCloseActions();
+
     this.ui.isNotificationPaneVisible
       .pipe(takeUntil(this.subscriptions))
       .subscribe(value => {

@@ -12,17 +12,23 @@
 }
 
 .stats {
-  $overview-width: 40%;
+  $overview-width: 50%;
   $margin: 1em;
-  display: flex;
-  justify-content: space-between;
+
+  @media (min-width: 48em) {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &-overview {
-    // Apex charts doesn't respect flex-basis, so we'll be using width
-    width: $overview-width;
-    margin-right: $margin;
     display: flex;
     flex-direction: column;
+
+    @media (min-wdith: 48em) {
+      // Apex charts doesn't respect flex-basis, so we'll be using width
+      width: calc(100% - #{$overview-width} - #{2 * $margin});
+      margin-left: $margin;
+    }
 
     >*:not(h2) {
       align-self: center;
@@ -32,8 +38,13 @@
   }
 
   &-plan {
-    // Apex charts doesn't respect flex-basis, so we'll be using width
-    width: calc(100% - #{$overview-width} - #{2 * $margin});
-    margin-left: $margin;
+    overflow: hidden;
+    
+    @media (min-width: 48em) {
+      // Apex charts doesn't respect flex-basis, so we'll be using width
+      width: $overview-width;
+      margin-right: $margin;
+      flex-grow: 1;
+    }
   }
 }

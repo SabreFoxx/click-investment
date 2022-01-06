@@ -23,10 +23,11 @@ export class StatComponent implements OnInit, OnDestroy {
   planStatOptions: any;
   planStatBrushOptions: any;
   @ViewChild(ChartComponent) chart: ChartComponent;
+  private currentlyDetailedPlan: Plan;
 
   private subscriptions = new Array<Subscription>();
 
-  constructor(private route: ActivatedRoute, ui: UIAdjustmentService) {
+  constructor(private route: ActivatedRoute, private ui: UIAdjustmentService) {
     ui.setBreadcrumbs([{ url: '/app/stats', title: 'Stats' }]);
 
     this.swiperConfig = {
@@ -173,9 +174,9 @@ export class StatComponent implements OnInit, OnDestroy {
         this.pieChartOptions = {
           series: planAmounts,
           chart: {
-            type: "donut",
-            height: '400px',
-            width: '400px'
+            type: 'donut',
+            width: '400px',
+            height: '400px'
           },
           labels: planNames,
           legend: {
@@ -201,12 +202,21 @@ export class StatComponent implements OnInit, OnDestroy {
       this.plans.subscribe(plans => {
         setTimeout(() => { // fixes a ui bug
           this.display(plans[0])
-        }, 800);
+        }, 700);
+      }),
+
+      // each time we toggle side menu, redraw our plan graph
+      this.ui.isSideMenuVisible.subscribe(() => {
+        setTimeout(() => { // fixes a ui bug
+          this.display(this.currentlyDetailedPlan) // changing data causes a redraw
+        }, 701);
       })
     );
   }
 
   display(plan: Plan) {
+    this.currentlyDetailedPlan = plan;
+
     this.planStatOptions.series = [{
       data: loadPlanDataForApexChartSeries(plan)
     }];
@@ -216,10 +226,6 @@ export class StatComponent implements OnInit, OnDestroy {
       data: loadPlanDataForApexChartSeries(plan)
     }];
     this.planStatBrushOptions.colors = [plan?.profileColor]
-  }
-
-  private buildPieChart(): void {
-
   }
 
   onSwiper(swiper) { }

@@ -17,17 +17,18 @@
         display: flex;
         align-items: center;
         margin-left: auto;
-        margin-top: -0.5rem; // helps to align with the burger button on mobile
+        margin-top: -0.2rem; // helps to align with the burger button on mobile
     }
 
     .search {
         position: relative;
-        display: inline-flex;
+        display: none;
         align-items: center;
         justify-content: flex-start;
         width: 10em;
 
         @media (min-width: 48em) {
+            display: inline-flex;
             width: unset;
         }
 
@@ -93,4 +94,9 @@
 
 .breadcrumb {
     margin-bottom: 1.2rem;
+    font-size: 0.7em;
+
+    @media (min-width: 48em) {
+        font-size: 1em;
+    }
 }

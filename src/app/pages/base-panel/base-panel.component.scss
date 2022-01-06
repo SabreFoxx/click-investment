@@ -61,14 +61,14 @@ no problems with height and visibility. We set in order of appearance in DOM */
     height: 100%;
 }
 
-.app {
-    $top-height: 45%;
-    $menu-width: 22vw;
-    $menu-width-mobile: 70vw;
-    $side-menu-closed-width: 4.5vw;
-    $side-menu-closed-transition: width 200ms ease-out;
-    $side-menu-closed-transition-mobile: transform 200ms ease-out;
+$top-height: 45%;
+$menu-width: 22vw;
+$menu-width-mobile: 70vw;
+$side-menu-closed-width: 4.5vw;
+$side-menu-closed-transition: width 200ms ease-out;
+$side-menu-closed-transition-mobile: transform 200ms ease-out;
 
+.app {
     height: 100vh;
 
     @media (min-width: 48em) {
@@ -85,9 +85,10 @@ no problems with height and visibility. We set in order of appearance in DOM */
         width: $menu-width-mobile;
         position: absolute;
         z-index: 3;
-        box-shadow: 1000px 0px 0px 1000px rgba(0,0,0,0.15);
+        box-shadow: 1000px 0px 0px 1000px rgba(0, 0, 0, 0.15);
 
-        &.side-menu-closed { // mobile only because @media (min-width: 48em) overrides
+        &.side-menu-closed {
+            // mobile only because @media (min-width: 48em) overrides
             transform: translate(- $menu-width-mobile);
             box-shadow: none;
         }
@@ -180,7 +181,11 @@ no problems with height and visibility. We set in order of appearance in DOM */
         flex-grow: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 90%;
+        height: 87%;
+
+        @media (min-width: 48em) {
+            height: 90%;
+        }
 
         // for the ngscrollbar bar not to be atop our content
         .scrollbar-control {
@@ -200,10 +205,14 @@ no problems with height and visibility. We set in order of appearance in DOM */
         // and 25% for desktop. we add the class notification-pane-show to do this
         flex-basis: 0.01%;
         flex-shrink: 1;
+        transition: flex-basis 150ms ease-out;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 90%;
-        transition: flex-basis 150ms ease-out;
+        height: 87%;
+
+        @media (min-width: 48em) {
+            height: 90%;
+        }
 
         .ng-scrollbar-track {
             margin-right: -1.39rem; // for the bar not to be over content
@@ -213,8 +222,9 @@ no problems with height and visibility. We set in order of appearance in DOM */
             // to 100%. we add the class notification-pane-show to do this
             flex-basis: 100%;
 
+            // to 25%. we add the class notification-pane-show to do this
             @media (min-width: 48em) {
-                flex-basis: 100%;
+                flex-basis: 25%;
             }
         }
     }
@@ -246,6 +256,8 @@ no problems with height and visibility. We set in order of appearance in DOM */
     padding: 0.5em;
     min-height: 45px;
     max-height: 250px;
+    max-width: $side-menu-closed-width - 2vw;
+    overflow-x: hidden;
     transition: $nav-easing;
 
     position: absolute;
