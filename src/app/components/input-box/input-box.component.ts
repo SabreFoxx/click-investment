@@ -2,6 +2,7 @@ import { FormControl } from '@angular/forms';
 import {
   AfterViewInit,
   Component,
+  DoCheck,
   ElementRef,
   EventEmitter,
   Input,
@@ -16,7 +17,7 @@ import {
   templateUrl: './input-box.component.html',
   styleUrls: ['./input-box.component.scss']
 })
-export class InputBoxComponent implements AfterViewInit, OnDestroy {
+export class InputBoxComponent implements AfterViewInit, DoCheck, OnDestroy {
   @Input() placeholder?: string;
   @Input() errorMsg?: string;
   @Input() type: string = 'text';
@@ -27,6 +28,8 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
   @ViewChild('input') private inputBox: ElementRef;
   @ViewChild('label') private boxLabel: ElementRef;
   destroyListeners = new Array(2);
+
+  canNowCheckForOnChanges = false;
 
   constructor(private renderer: Renderer2) {
     this.placeholder = '';
@@ -41,14 +44,25 @@ export class InputBoxComponent implements AfterViewInit, OnDestroy {
           this.renderer.setStyle(this.boxLabel.nativeElement, 'color', '#5a5a5a');
         }
       });
+
     this.destroyListeners[1] = this.renderer.listen(this.inputBox.nativeElement, 'blur',
       event => {
         if (!this.readOnly) {
           this.renderer.removeClass(this.boxLabel.nativeElement, 'move-label');
           if (<HTMLInputElement>(this.inputBox.nativeElement).value.length)
             this.renderer.setStyle(this.boxLabel.nativeElement, 'color', 'transparent');
+          else
+            this.renderer.setStyle(this.boxLabel.nativeElement, 'color', '#5a5a5a');
         }
       });
+
+    this.canNowCheckForOnChanges = true;
+  }
+
+  ngDoCheck(): void {
+    if (this.canNowCheckForOnChanges
+      && <HTMLInputElement>(this.inputBox.nativeElement).value.length)
+      this.renderer.setStyle(this.boxLabel.nativeElement, 'color', 'transparent');
   }
 
   ngOnDestroy(): void {
