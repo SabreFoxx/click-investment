@@ -242,11 +242,15 @@ hr.line {
     flex-grow: 1;
     flex-basis: 50%;
     margin: auto;
-    font-size: 3em;
+    font-size: 2em;
     font-family: $display-font;
     font-weight: 600;
     line-height: 0;
     color: $text-color;
+
+    @media (min-width: 48em) {
+        font-size: 3em;
+    }
 }
 
 .sub-title {

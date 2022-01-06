@@ -67,6 +67,7 @@ no problems with height and visibility. We set in order of appearance in DOM */
     $menu-width-mobile: 70vw;
     $side-menu-closed-width: 4.5vw;
     $side-menu-closed-transition: width 200ms ease-out;
+    $side-menu-closed-transition-mobile: transform 200ms ease-out;
 
     height: 100vh;
 
@@ -79,20 +80,26 @@ no problems with height and visibility. We set in order of appearance in DOM */
         height: 100%;
         display: flex;
         flex-direction: column;
-        // transition: $side-menu-closed-transition;
+        transition: $side-menu-closed-transition, $side-menu-closed-transition-mobile;
 
         width: $menu-width-mobile;
         position: absolute;
         z-index: 3;
-        transform: translate(- $menu-width-mobile);
+        box-shadow: 1000px 0px 0px 1000px rgba(0,0,0,0.15);
+
+        &.side-menu-closed { // mobile only because @media (min-width: 48em) overrides
+            transform: translate(- $menu-width-mobile);
+            box-shadow: none;
+        }
 
         @media (min-width: 48em) {
             width: $menu-width;
-            transform: none;
             position: static;
+            box-shadow: none;
 
             &.side-menu-closed {
                 width: $side-menu-closed-width;
+                transform: none;
             }
         }
 
@@ -125,7 +132,7 @@ no problems with height and visibility. We set in order of appearance in DOM */
         flex-grow: 1;
         width: 100vw;
         overflow: hidden;
-        // transition: $side-menu-closed-transition;
+        transition: $side-menu-closed-transition;
 
         @media (min-width: 48em) {
             width: 100vw - $menu-width;
@@ -144,7 +151,7 @@ no problems with height and visibility. We set in order of appearance in DOM */
         position: relative;
         margin: 0 $margin-here;
         width: 100vw - (2 * $margin-here);
-        // transition: $side-menu-closed-transition;
+        transition: $side-menu-closed-transition;
         padding-bottom: 1em;
 
         @media (min-width: 48em) {
@@ -189,13 +196,13 @@ no problems with height and visibility. We set in order of appearance in DOM */
 
     &-notification-pane {
         // pretend our flex-basis for this is 25%
-        // we set it to 0.01% because we wish to animate it's growth
-        // to 25%. we add the class notification-pane-show to do this
+        // we set it to 0.01% because we wish to animate it's growth to 100% for mobile 
+        // and 25% for desktop. we add the class notification-pane-show to do this
         flex-basis: 0.01%;
         flex-shrink: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 85%;
+        height: 90%;
         transition: flex-basis 150ms ease-out;
 
         .ng-scrollbar-track {
@@ -203,8 +210,12 @@ no problems with height and visibility. We set in order of appearance in DOM */
         }
 
         &-show {
-            // to 25%. we add the class notification-pane-show to do this
-            flex-basis: 25%;
+            // to 100%. we add the class notification-pane-show to do this
+            flex-basis: 100%;
+
+            @media (min-width: 48em) {
+                flex-basis: 100%;
+            }
         }
     }
 
@@ -238,7 +249,11 @@ no problems with height and visibility. We set in order of appearance in DOM */
     transition: $nav-easing;
 
     position: absolute;
-    right: -100vw;
+    right: -30vw;
+
+    &.side-menu-closed {
+        right: -100vw;
+    }
 
     @media (min-width: 48em) {
         position: static;
@@ -324,12 +339,12 @@ no problems with height and visibility. We set in order of appearance in DOM */
     color: $white-ter;
 
     &-welcome {
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: 200;
     }
 
     &-name {
-        font-size: 2.4em;
+        font-size: 2em;
         font-weight: 400;
         line-height: 0.8;
     }
@@ -338,10 +353,14 @@ no problems with height and visibility. We set in order of appearance in DOM */
 .profile-pic {
     max-width: 55% !important;
     max-height: 200px;
-    margin: 0.1em auto 1.5em auto;
+    margin: 0.3em auto 1.5em auto;
     filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, 0.25));
 
     &.side-menu-closed {
         margin: 1em;
+    }
+
+    @media (min-width: 48em) {
+        margin-top: 0.1em;
     }
 }
