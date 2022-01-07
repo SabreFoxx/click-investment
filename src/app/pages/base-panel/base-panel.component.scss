@@ -256,7 +256,6 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     padding: 0.5em;
     min-height: 45px;
     max-height: 250px;
-    max-width: $side-menu-closed-width - 2vw;
     overflow-x: hidden;
     transition: $nav-easing;
 
@@ -268,6 +267,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     }
 
     @media (min-width: 48em) {
+        max-width: $side-menu-closed-width - 2vw;
         position: static;
         right: unset;
 

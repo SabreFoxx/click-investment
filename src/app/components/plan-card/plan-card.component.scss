@@ -5,7 +5,11 @@
     width: 200px;
     height: 260px;
     cursor: drag;
-    margin: 0.4rem 0.02em;
+    margin: 0.4rem 0.1em;
+
+    @media (min-width: 48em) {
+        margin: 0.4rem 0.2em;
+    }
 
     // prevent text selection
     caret-color: transparent;
