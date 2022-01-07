@@ -1,3 +1,4 @@
+@use "sass:math";
 @import '/src/variables.scss';
 
 .pay-card {
@@ -6,7 +7,7 @@
     position: relative;
     padding: 0;
     width: 300px;
-    padding-bottom: (3/4.6) * 100%; // For example 75% is for ratio 4:3, so we do (3 / 4) * 100%
+    padding-bottom: math.div(3, 4.6) * 100%; // e.g 75% is for ratio 4:3, so we do (3 / 4) * 100%
     border-radius: 1em;
     font-family: $text-font;
     margin: 0.5em 0;
