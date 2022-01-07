@@ -1,118 +1,18 @@
 <article>
-    <h2 class="sub-title container-white">Cashflow history</h2>
+    <div class="sub-title container-white" style="display: flex;">
+        <h2>Cashflow history</h2>
+        <div class="tabs is-right" style="margin-left: auto;">
+            <ul>
+                <li class="is-active"><a (click)="showDeposits()">Deposits</a></li>
+                <li><a (click)="showWithdrawals()">Withdrawals</a></li>
+            </ul>
+        </div>
+    </div>
 
     <div class="container-white table-adjust">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th><abbr title="What did you do?">Action</abbr></th>
-                    <th><abbr title="Did you pay through card or crypto?">Channel</abbr></th>
-                    <th><abbr title="Description of what happened">Objective</abbr></th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th><abbr title="What did you do?">Action</abbr></th>
-                    <th><abbr title="Did you pay through card or crypto?">Channel</abbr></th>
-                    <th><abbr title="Description of what happened">Objective</abbr></th>
-                    <th>Status</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Success</span>
-                            <span class="status-icon success"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Success</span>
-                            <span class="status-icon success"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Success</span>
-                            <span class="status-icon success"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Pending</span>
-                            <span class="status-icon pending"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Failed</span>
-                            <span class="status-icon failure"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td>07-12-2020</td>
-                    <td>3:15 am</td>
-                    <td>XRP</td>
-                    <td>Moonshine</td>
-                    <td>jeromes@gmail.com</td>
-                    <td>Made payment to the Platinum plan</td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Success</span>
-                            <span class="status-icon success"></span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div #hostComponent></div>
 
+        <!--
         <div class="paging">
             <div class="position">Showing <b>6</b> of <b>230</b></div>
             <nav class="pagination" role="navigation" aria-label="pagination">
@@ -144,5 +44,6 @@
                 </ul>
             </nav>
         </div>
+        -->
     </div>
 </article>
