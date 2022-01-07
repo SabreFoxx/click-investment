@@ -27,7 +27,7 @@ import {
 } from "ng-apexcharts";
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { User } from 'src/models/user';
-import { calculateCurrentProfit } from 'src/adjectives/functions';
+import { calculateCurrentGross } from 'src/adjectives/functions';
 
 export interface ChartOptions {
   chart: ApexChart,
@@ -135,8 +135,8 @@ export class PlanCardComponent implements OnInit, OnDestroy {
     return this.user.getValue().currency;
   }
 
-  get currentProfit() {
-    return calculateCurrentProfit(this.plan);
+  get currentGross() {
+    return calculateCurrentGross(this.plan);
   }
 
 }

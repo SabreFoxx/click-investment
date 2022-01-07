@@ -16,7 +16,12 @@ export function getMaxLetters(string, maxLength) {
         string;
 }
 
-export function calculateCurrentProfit(plan: Plan) {
+export function calculateCurrentGross(plan: Plan) {
     if (plan == null) return null;
     return plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross;
+}
+
+export function calculateCurrentAmount(plan: Plan) {
+    if (plan == null) return null;
+    return plan.DailyInterests[plan.DailyInterests?.length - 1]?.amount;
 }
