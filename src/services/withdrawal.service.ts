@@ -8,7 +8,7 @@ import { Deposit } from 'src/models/deposit';
 @Injectable({
   providedIn: 'root'
 })
-export class WithdrawalService implements Resolve<any> {
+export class WithdrawalService implements Resolve<Deposit[]> {
   constructor(private authStore: AuthStorageService,
     private http: SimpleHttpService,
     @Inject('FETCH_WITHDRAWAL_AVAILABILITY_URL') private endpoint: string) { }

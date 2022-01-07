@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlanRepositoryService implements Resolve<any> {
+export class PlanRepositoryService implements Resolve<Plan[]> {
   constructor(private authStore: AuthStorageService,
     private http: SimpleHttpService, @Inject('DASHBOARD') private endpoint: string) { }
 

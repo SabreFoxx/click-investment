@@ -9,7 +9,7 @@ import { Deposit } from 'src/models/deposit';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService implements Resolve<any> {
+export class PaymentService implements Resolve<Deposit[]> {
   methods: BehaviorSubject<PaymentMethod[]>;
 
   constructor(@Inject('FETCH_UNVERIFIED_DEPOSITS_URL') private endpoint: string,

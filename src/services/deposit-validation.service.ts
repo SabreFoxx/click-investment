@@ -8,7 +8,7 @@ import { Deposit } from 'src/models/deposit';
 @Injectable({
   providedIn: 'root'
 })
-export class DepositValidationService implements Resolve<any> {
+export class DepositValidationService implements Resolve<Deposit[]> {
 
   constructor(private http: SimpleHttpService, private authStore: AuthStorageService,
     @Inject('ADMIN_FETCH_DEPOSITS_FOR_VERIFICATION_URL') private endpoint: string) { }
