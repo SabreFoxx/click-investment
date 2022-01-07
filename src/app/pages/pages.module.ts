@@ -1,4 +1,3 @@
-import { DepositValidationService } from './../../services/deposit-validation.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,6 +6,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
+import { WithdrawalService } from 'src/services/withdrawal.service';
+import { DepositValidationService } from 'src/services/deposit-validation.service';
 import { PlanRepositoryService } from 'src/services/plan-repository.service';
 import { StatComponent } from './stat/stat.component';
 import { PlanComponent } from './plan/plan.component';
@@ -47,6 +48,7 @@ export const pageRoutes: Routes = [
   {
     path: 'payments/withdraw',
     component: WithdrawComponent,
+    resolve: { withdrawalAvailabilityBlocks: WithdrawalService },
     data: { animation: 'Payments' }
   },
   {
@@ -114,56 +116,55 @@ export const pageRoutes: Routes = [
       provide: 'API_PREFIX', useFactory() {
         return (environment.production) ? apiPrefix.prod : apiPrefix.dev
       }
-    },
-    {
+    }, {
       provide: 'CREATE_DEPOSIT_TRANSACTION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
-    },
-    {
+    }, {
+      provide: 'FETCH_WITHDRAWAL_AVAILABILITY_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.WITHDRAWAL_TRANSACTION}`
+      }
+    }, {
       provide: 'CREATE_WITHDRAWAL_TRANSACTION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.CREATE_WITHDRAWAL_TRANSACTION}`
+        return `${prefix}${ApiEndpoints.WITHDRAWAL_TRANSACTION}`
       }
-    },
-    {
+    }, {
       provide: 'SEND_DEPOSIT_FOR_VERIFICATION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
-    },
-    {
+    }, {
       provide: 'FETCH_UNVERIFIED_DEPOSITS_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
-    },
-    {
+    }, {
       provide: 'ADMIN_FETCH_DEPOSITS_FOR_VERIFICATION_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
       }
-    },
-    {
+    }, {
       provide: 'ADMIN_VERIFY_DEPOSIT_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
       }
-    },
-    {
+    }, {
       provide: 'ADMIN_HIDE_DEPOSIT_URL',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
       }
-    },
+    }
   ]
 })
 export class PageModule { }
