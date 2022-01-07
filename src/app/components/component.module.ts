@@ -25,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WithdrawBlockComponent } from './withdraw-block/withdraw-block.component';
 import { VerifyBlockComponent } from './verify-block/verify-block.component';
 import { SettingsCardComponent } from './settings-card/settings-card.component';
+import { DepositTransactionComponent } from './deposit-transaction/deposit-transaction.component';
+import { WithdrawTransactionComponent } from './withdraw-transaction/withdraw-transaction.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { SettingsCardComponent } from './settings-card/settings-card.component';
     NotificationPaneComponent,
     WithdrawBlockComponent,
     VerifyBlockComponent,
-    SettingsCardComponent
+    SettingsCardComponent,
+    DepositTransactionComponent,
+    WithdrawTransactionComponent
   ],
   imports: [
     CommonModule,

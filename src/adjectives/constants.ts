@@ -19,6 +19,9 @@ export enum ApiEndpoints {
     REFRESH_LOGIN = '/refresh-user-data',
 
     DASHBOARD = '/dashboard',
+    DEPOSITS = '/dashboard/deposits',
+    WITHDRAWALS = '/dashboard/withdrawals',
+    
     DEPOSIT_TRANSACTION = '/deposit',
     WITHDRAWAL_TRANSACTION = '/withdrawal',
 

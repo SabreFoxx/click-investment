@@ -25,6 +25,7 @@ import { apiPrefix, ApiEndpoints } from 'src/adjectives/constants';
 import { environment } from 'src/environments/environment';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ValidationComponent } from './validation/validation.component';
+import { TransactionService } from 'src/services/transaction.service';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -60,6 +61,7 @@ export const pageRoutes: Routes = [
   {
     path: 'transactions',
     component: TransactionComponent,
+    resolve: { resolveTransactions: TransactionService },
     data: { animation: 'Transactions' }
   },
   {
@@ -116,6 +118,18 @@ export const pageRoutes: Routes = [
     {
       provide: 'API_PREFIX', useFactory() {
         return (environment.production) ? apiPrefix.prod : apiPrefix.dev
+      }
+    }, {
+      provide: 'FETCH_DEPOSIT_HISTORY_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.DEPOSITS}`
+      }
+    }, {
+      provide: 'FETCH_WITHDRAWAL_HISTORY_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.WITHDRAWALS}`
       }
     }, {
       provide: 'CREATE_DEPOSIT_TRANSACTION_URL',
