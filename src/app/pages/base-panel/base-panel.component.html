@@ -15,7 +15,7 @@
 
         <nav #nav class="app-nav side-menu-closed">
             <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
-                <app-side-menu-item [link]="['/app', 'stats']">
+                <app-side-menu-item [link]="['/app', 'stats']" toolTip="Stats">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#tablet-dashboard"></use>
@@ -23,7 +23,7 @@
                     </ng-container>
                     <ng-container class="name">Stats</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'payments']">
+                <app-side-menu-item [link]="['/app', 'payments']" toolTip="Payments">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#cash-multiple"></use>
@@ -31,7 +31,7 @@
                     </ng-container>
                     <ng-container class="name">Payments</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'transactions']">
+                <app-side-menu-item [link]="['/app', 'transactions']" toolTip="Transactions">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#cards-variant"></use>
@@ -39,7 +39,7 @@
                     </ng-container>
                     <ng-container class="name">Transactions</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'plans']">
+                <app-side-menu-item [link]="['/app', 'plans']" toolTip="Plans">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#handshake-outline"></use>
@@ -47,7 +47,7 @@
                     </ng-container>
                     <ng-container class="name">Plans</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'validations']">
+                <app-side-menu-item [link]="['/app', 'validations']" toolTip="Validations">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#hand-okay"></use>
@@ -55,7 +55,7 @@
                     </ng-container>
                     <ng-container class="name">Validations</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'profile']">
+                <app-side-menu-item [link]="['/app', 'profile']" toolTip="Profile">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#face-man"></use>
@@ -66,7 +66,7 @@
 
                 <hr class="line">
 
-                <app-side-menu-item [link]="['/app', 'about']">
+                <app-side-menu-item [link]="['/app', 'about']" toolTip="About">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#information-outline"></use>
@@ -74,7 +74,7 @@
                     </ng-container>
                     <ng-container class="name">About</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/auth', 'logout']">
+                <app-side-menu-item [link]="['/auth', 'logout']" toolTip="Logout">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenisSideMenuVisible class="svg-icon side-menu-closed">
                             <use xlink:href="#logout"></use>

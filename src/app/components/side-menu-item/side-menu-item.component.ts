@@ -1,3 +1,4 @@
+import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
@@ -11,11 +12,13 @@ import { filter, takeUntil } from 'rxjs/operators';
 export class SideMenuItemComponent implements OnInit, OnDestroy {
   active: boolean;
   @Input() link: string[] = [];
+  @Input() toolTip: string;
+  toolTip_: string;
   mySegment: UrlSegment;
 
   private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ui: UIAdjustmentService) { }
 
   isContainsUrlSegment(segments: UrlSegment[]): boolean {
     return segments.some(s => s.path == this.mySegment.path) ? true : false;
@@ -38,6 +41,13 @@ export class SideMenuItemComponent implements OnInit, OnDestroy {
         this.active = this.isContainsUrlSegment(urlStruct.root.children['primary'].segments) ?
           true : false;
       });
+
+
+    this.ui.isSideMenuVisible
+      .pipe(takeUntil(this.subscriptions))
+      .subscribe(answer => {
+        this.toolTip_ = answer ? '' : this.toolTip;
+      })
   }
 
   ngOnDestroy(): void {
