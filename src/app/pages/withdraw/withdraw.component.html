@@ -46,7 +46,8 @@
                     </td>
                     <td>Profit</td>
                     <td>Current profit in {{withdrawDetails?.plan.name}} plan</td>
-                    <td>{{ currentProfit | currency:userCurrency:'symbol'}}</td>
+                    <td>{{ planCurrentGross - planCurrentAmount | currency:userCurrency:'symbol'}}
+                    </td>
                     <td class="status">
                         <div class="flex">
                             <span>Always available</span>

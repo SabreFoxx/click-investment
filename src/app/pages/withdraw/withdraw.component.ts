@@ -1,18 +1,18 @@
 import { SimpleHttpService } from 'src/services/simple-post.service';
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WithdrawBlockComponent } from 'src/app/components/withdraw-block/withdraw-block.component';
 import { PaymentTool } from 'src/models/payment-tool';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
-import Swal from 'sweetalert2';
 import { pluck, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { calculateCurrentProfit } from 'src/adjectives/functions';
+import { calculateCurrentAmount, calculateCurrentGross } from 'src/adjectives/functions';
 import { Deposit } from 'src/models/deposit';
 import { WithdrawalBlock } from 'src/models/withdrawal-block';
-import { DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { DateTime } from 'luxon';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-withdraw',
@@ -24,7 +24,8 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   blocks: Observable<WithdrawalBlock[]>;
   // withdrawals are made from deposits or profits
   // that's why we have "deposit" allover the place
-  depositIdToUse: number;
+  withdrawalBlockToUse: WithdrawalBlock;
+  isToDepositFromProfit = false;
   userCurrency: string;
 
   @ViewChild('profitRadio') profitRadioButton: ElementRef;
@@ -48,14 +49,15 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private route: ActivatedRoute,
     private ui: UIAdjustmentService, private datePipe: DatePipe,
     private authStorage: AuthStorageService, private http: SimpleHttpService,
-    @Inject('CREATE_WITHDRAWAL_TRANSACTION_URL') private endpoint: string) {
+    @Inject('CREATE_WITHDRAWAL_TRANSACTION_URL') private endpoint: string,
+    private currencyPipe: CurrencyPipe) {
     this.withdrawDetails = this.router.getCurrentNavigation().extras.state?.paymentDetails;
     this.withdrawDetails ?? router.navigate(['../'], { relativeTo: this.route });
 
     this.ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' },
     { url: '/app/payments/deposit', title: 'Withdraw', forceActive: true }]);
 
-    this.depositIdToUse = null;
+    this.withdrawalBlockToUse = null;
   }
 
   ngOnInit(): void {
@@ -98,7 +100,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   }
 
   withdraw(): void {
-    if (!this.depositIdToUse) {
+    if (!this.isToDepositFromProfit && this.withdrawalBlockToUse == null) {
       this.alertMixin.fire({
         title: 'Please choose a block to withdraw from',
         icon: 'warning',
@@ -117,16 +119,20 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
       title: `Selected: ${paymentDetails.plan.name} Plan`,
       html: `<article class="withdraw-info" style="text-align: left">
           <div style="font-size: 1em">
-            <p>Total Value: <span style="font-weight: bold">$1, 080</span></p>
-            <p>Current Deposit: <span style="font-weight: bold">$1, 000</span></p>
-            <p>Total Profit: <span style="font-weight: bold">$950</span></p>
-            <p>Withdrawal from Deposit available from: 
-              <span style="font-weight: bold">27th Nov, 2018</span></p>
-            <br>
+            <p>Total Value: <span style="font-weight: bold">
+              ${this.currencyPipe.transform(this.planCurrentGross, this.userCurrency)}
+            </span></p>
+            <p>Total Profit: <span style="font-weight: bold">
+              ${this.currencyPipe.transform(this.planCurrentGross - this.planCurrentAmount,
+        this.userCurrency)}
+            </span></p>
+            <p>Withdrawing from: <span style="font-weight: bold">
+              ${this.withdrawalBlockToUse?.description ?? 'Profit'}
+            </span></p>
             <p style="font-size: 0.9em">
               You can withdraw from your <em>Profit</em> at anytime, but you can only withdraw
               from your <em>Deposit</em> after a certain period of timeframe as specified in
-              the Plan you deposited into.
+              its availability.
             </p>
             <br>
             <h3>Request for Withdrawal</h3>
@@ -136,9 +142,13 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
             </p>
             <br>
             <p style="font-size: 0.9em; font-weight: bold">
-              <em>Enter value to withdraw in your local currency, GBP, and
-              we'll convert to your selected crypto currency.</em>
+              Enter value to withdraw in your local currency, ${this.userCurrency}, and
+              we'll payout in your selected crypto currency below.
             </p>
+            <p style="font-size: 0.9em; font-weight: bold"><em>
+              <span style="color: #fb6962">Ensure you select the right crypto currency, and provide
+                the correct wallet address for that currency, or you might lose your funds</span>
+            </em></p>
           </div>
 
 
@@ -192,7 +202,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
           paymentMedium,
           userWalletAddr,
           planId: this.withdrawDetails.plan.id,
-          depositId: this.depositIdToUse
+          depositId: this.withdrawalBlockToUse
         }, this.authStorage.authorizationHeader)
           .subscribe(res => {
             this.alertMixin.fire({
@@ -218,20 +228,26 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
 
   setSelection(blockComponent: WithdrawBlockComponent): void {
     if (blockComponent.block.status != 'unavailable') {
+      this.isToDepositFromProfit = false;
       blockComponent.selectRadio();
-      this.depositIdToUse = blockComponent.depositIdToUse;
+      this.withdrawalBlockToUse = blockComponent.block;
     }
   }
 
   setToWithdrawFromProfit(): void {
-    this.depositIdToUse = null;
+    this.isToDepositFromProfit = true;
+    this.withdrawalBlockToUse = null;
     const radio = this.profitRadioButton.nativeElement;
     radio.click();
     radio.checked = true;
   }
 
-  get currentProfit() {
-    return calculateCurrentProfit(this.withdrawDetails?.plan);
+  get planCurrentGross(): number {
+    return calculateCurrentGross(this.withdrawDetails?.plan);
+  }
+
+  get planCurrentAmount(): number {
+    return calculateCurrentAmount(this.withdrawDetails?.plan);
   }
 
 }

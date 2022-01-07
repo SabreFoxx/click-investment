@@ -2,7 +2,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { SwiperModule } from 'swiper/angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -112,6 +112,7 @@ export const pageRoutes: Routes = [
   ],
   providers: [
     DatePipe, // DatePipe provider was provided here for use in TypeScript
+    CurrencyPipe, // CurrencyPipe provider was provided here for use in TypeScript
     {
       provide: 'API_PREFIX', useFactory() {
         return (environment.production) ? apiPrefix.prod : apiPrefix.dev
