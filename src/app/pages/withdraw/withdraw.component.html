@@ -39,14 +39,14 @@
                 </tr>
             </tfoot>
             <tbody>
-                <tr class="row" (click)="withdrawFromProfit()">
+                <tr class="row" (click)="setToWithdrawFromProfit()">
                     <td>
                         <input type="radio" name="withdrawFromThisBlock" #profitRadio value="profit"
                                style="cursor: pointer">
                     </td>
                     <td>Profit</td>
-                    <td>Profit made in Diamond plan</td>
-                    <td>$ 4000</td>
+                    <td>Current profit in {{withdrawDetails?.plan.name}} plan</td>
+                    <td>{{ currentProfit | currency:userCurrency:'symbol'}}</td>
                     <td class="status">
                         <div class="flex">
                             <span>Always available</span>
@@ -54,7 +54,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr #blockComponent *ngFor="let block of blocks" [block]="block"
+                <tr #blockComponent *ngFor="let block of blocks | async" [block]="block"
                     (click)="setSelection(blockComponent)" class="row" app-withdraw-block>
                 </tr>
             </tbody>

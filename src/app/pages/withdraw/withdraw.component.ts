@@ -1,12 +1,18 @@
 import { SimpleHttpService } from 'src/services/simple-post.service';
-import { AuthStorageService } from './../../../services/auth-storage.service';
+import { AuthStorageService } from 'src/services/auth-storage.service';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WithdrawBlockComponent } from 'src/app/components/withdraw-block/withdraw-block.component';
 import { PaymentTool } from 'src/models/payment-tool';
-import { WithdrawalBlock } from 'src/models/withdrawal-block';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import Swal from 'sweetalert2';
+import { pluck, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { calculateCurrentProfit } from 'src/adjectives/functions';
+import { Deposit } from 'src/models/deposit';
+import { WithdrawalBlock } from 'src/models/withdrawal-block';
+import { DatePipe } from '@angular/common';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-withdraw',
@@ -15,10 +21,11 @@ import Swal from 'sweetalert2';
 })
 export class WithdrawComponent implements OnInit, AfterViewInit {
   withdrawDetails: PaymentTool;
-  blocks: WithdrawalBlock[];
+  blocks: Observable<WithdrawalBlock[]>;
   // withdrawals are made from deposits or profits
   // that's why we have "deposit" allover the place
   depositIdToUse: number;
+  userCurrency: string;
 
   @ViewChild('profitRadio') profitRadioButton: ElementRef;
   @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
@@ -39,7 +46,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   });
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private ui: UIAdjustmentService,
+    private ui: UIAdjustmentService, private datePipe: DatePipe,
     private authStorage: AuthStorageService, private http: SimpleHttpService,
     @Inject('CREATE_WITHDRAWAL_TRANSACTION_URL') private endpoint: string) {
     this.withdrawDetails = this.router.getCurrentNavigation().extras.state?.paymentDetails;
@@ -48,43 +55,62 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
     this.ui.setBreadcrumbs([{ url: '/app/payments', title: 'Payments' },
     { url: '/app/payments/deposit', title: 'Withdraw', forceActive: true }]);
 
-    this.blocks = [
-      {
-        depositId: 1,
-        description: 'Deposit made on Aug 27, 2020 4:53pm',
-        amount: 1000,
-        status: 'available',
-        statusMessage: 'Available',
-        cssClass: 'success'
-      },
-      {
-        depositId: 2,
-        description: 'Deposit made on Aug 27, 2020 4:53pm',
-        amount: 1000,
-        status: 'unavailable',
-        statusMessage: 'Unavailable till Aug 27, 2020 4:53pm',
-        cssClass: 'pending'
-      },
-      {
-        depositId: 3,
-        description: 'Deposit made on Aug 27, 2020 4:53pm',
-        amount: 1000,
-        status: 'withdrawn',
-        statusMessage: 'Withdrawn on Aug 27, 2020 4:53pm',
-        cssClass: 'failure'
-      }
-    ]
+    this.depositIdToUse = null;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.blocks = this.route.data.pipe(
+      pluck('withdrawalAvailabilityBlocks'),
+      map((deposits: Deposit[]): WithdrawalBlock[] => {
+        return deposits.map((deposit: Deposit | any) => {
+          let status = 'available'
+          let statusMessage = 'Available'
+          let cssClass = 'available'
+          if (DateTime.fromISO(deposit.lockedTill) > DateTime.local()) {
+            status = 'unavailable'
+            statusMessage = `Unavailable till ${this.datePipe.transform(deposit.lockedTill, 'medium')}`
+            cssClass = 'pending'
+          }
+          if (deposit['Withdrawals.id']) {
+            status = 'withdrawn'
+            statusMessage = 'Withdrawn on '
+              + `${this.datePipe.transform(deposit['Withdrawals.createdAt'], 'medium')}`
+            cssClass = 'failure'
+          }
+
+          return {
+            depositId: deposit.id,
+            description: `Deposit made on ${this.datePipe.transform(deposit.createdAt, 'medium')}`,
+            amount: deposit.fiatAmount,
+            status,
+            statusMessage,
+            cssClass
+          }
+        })
+      })
+    );
+
+    this.userCurrency = this.authStorage.currentUser.getValue().currency.toUpperCase();
+  }
 
   ngAfterViewInit(): void {
     this.anchor.nativeElement.scrollIntoView(0);
   }
 
   withdraw(): void {
+    if (!this.depositIdToUse) {
+      this.alertMixin.fire({
+        title: 'Please choose a block to withdraw from',
+        icon: 'warning',
+        iconHtml: null,
+        iconColor: '#f7b654',
+        footer: null,
+        showCancelButton: false
+      })
+      return;
+    }
+
     const paymentDetails: PaymentTool = this.withdrawDetails;
-    const currency = this.authStorage.currentUser.getValue().currency.toUpperCase();
     const planName = paymentDetails.plan.name.toUpperCase();
 
     this.alertMixin.fire({
@@ -118,7 +144,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
 
           <div class="input-row">
             <div class="input-box">
-              <input class="input" id="withdraw-amount" placeholder="${currency}" type="type">
+              <input class="input" id="withdraw-amount" placeholder="${this.userCurrency}" type="type">
             </div>
             <div class="input-container" style="flex-basis: 0%; margin: 1em">
               <svg class="svg-icon">
@@ -156,7 +182,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
         ]
       },
       footer: 'After you click the Withdraw button, wait a couple of minutes '
-        + 'for us to verify the transaction on our end.'
+        + "for us to verify the transaction on our end. We'll credit your wallet soon "
     }).then(result => {
       if (result.isConfirmed) {
         const [fiatAmount, paymentMedium, userWalletAddr] = result.value;
@@ -191,15 +217,21 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   }
 
   setSelection(blockComponent: WithdrawBlockComponent): void {
-    blockComponent.selectRadio();
-    this.depositIdToUse = blockComponent.depositIdToUse;
+    if (blockComponent.block.status != 'unavailable') {
+      blockComponent.selectRadio();
+      this.depositIdToUse = blockComponent.depositIdToUse;
+    }
   }
 
-  withdrawFromProfit(): void {
+  setToWithdrawFromProfit(): void {
     this.depositIdToUse = null;
     const radio = this.profitRadioButton.nativeElement;
     radio.click();
     radio.checked = true;
+  }
+
+  get currentProfit() {
+    return calculateCurrentProfit(this.withdrawDetails?.plan);
   }
 
 }
