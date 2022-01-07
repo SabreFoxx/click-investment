@@ -100,7 +100,7 @@ export class DepositComponent implements OnInit {
   }
 
   get moneySymbol() {
-    return getCurrencySymbol(this.userCurrency.toUpperCase(), 'wide')
+    return getCurrencySymbol(this.userCurrency?.toUpperCase(), 'wide')
   }
 
   get userCurrency() {

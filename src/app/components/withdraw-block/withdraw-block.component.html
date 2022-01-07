@@ -1,10 +1,10 @@
 <td>
     <input type="radio" name="withdrawFromThisBlock" (click)="selectRadio()"
-           [value]="block.depositId">
+           [value]="block.depositId" [disabled]="block.status == 'unavailable'">
 </td>
 <td>Deposit</td>
 <td>{{block.description}}</td>
-<td>$ {{block.amount}}</td>
+<td>{{ block.amount | currency:userCurrency:'symbol'}}</td>
 <td class="status">
     <div class="flex">
         <span>{{block.statusMessage}}</span>

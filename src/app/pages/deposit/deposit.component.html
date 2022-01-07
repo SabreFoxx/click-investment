@@ -4,11 +4,11 @@
     </header>
     <section class="message-body">
         You are <strong>depositing
-            <a>{{depositDetails.medium.name | uppercase}}</a>
-        </strong> to the <em>{{depositDetails.plan.name}} Plan</em>.
+            <a>{{depositDetails?.medium.name | uppercase}}</a>
+        </strong> to the <em>{{depositDetails?.plan.name}} Plan</em>.
         Set the amount of <a>{{userCurrency}}</a>
         <em> (your local currency) </em> you wish to deposit, to see its value in
-        <a>{{depositDetails.medium.name | uppercase}}</a>
+        <a>{{depositDetails?.medium.name | uppercase}}</a>
     </section>
     <form [formGroup]="form" (ngSubmit)="deposit()">
         <div class="currency">
@@ -23,7 +23,7 @@
             </div>
             <div class="input-box">
                 <input class="input" type="text" readonly
-                       value="{{computedCryptoValue}} {{depositDetails.medium.name | uppercase}}">
+                       value="{{computedCryptoValue}} {{depositDetails?.medium.name | uppercase}}">
             </div>
         </div>
         <div class="currency input-container">

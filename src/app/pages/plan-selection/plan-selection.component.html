@@ -12,9 +12,9 @@
             as your currency. Please select the <em>Plan</em> you wish to deposit money into.
         </p>
         <p *ngIf="navData?.to == 'withdraw'">You are about to <strong>withdraw money</strong>
-            from a <em>Plan</em>. You selected
-            <a style="text-transform: uppercase;">{{navData?.paymentDetails?.medium?.name}}</a>
-            as your currency. Please select the <em>Plan</em> you wish to withdraw money from.
+            from a <em>Plan</em>. You chose to withdraw through
+            <a style="text-transform: uppercase;">{{navData?.paymentDetails?.medium?.name}}</a>.
+            Please select the <em>Plan</em> you wish to withdraw money from.
         </p>
     </section>
 </article>

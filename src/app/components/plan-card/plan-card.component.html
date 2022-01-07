@@ -21,8 +21,7 @@
 
         <div>
             <span class="amount">
-                {{(plan.DailyInterests[plan.DailyInterests?.length - 1]?.gross)
-                | currency:userCurrency:'symbol'}}
+                {{ currentProfit | currency:userCurrency:'symbol'}}
             </span>
         </div>
     </div>

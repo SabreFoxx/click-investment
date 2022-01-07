@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ElementRef } from '@angular/core';
 import { WithdrawalBlock } from 'src/models/withdrawal-block';
+import { AuthStorageService } from 'src/services/auth-storage.service';
+import { Component, Input, OnInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'tr[app-withdraw-block]',
@@ -7,9 +8,10 @@ import { WithdrawalBlock } from 'src/models/withdrawal-block';
   styleUrls: ['./withdraw-block.component.scss']
 })
 export class WithdrawBlockComponent implements OnInit {
+  // withdrawals are made on profits, and deposits we've already made
   @Input() block: WithdrawalBlock;
 
-  constructor(public hostElement: ElementRef) { }
+  constructor(public hostElement: ElementRef, private authStore: AuthStorageService) { }
 
   ngOnInit(): void { }
 
@@ -21,6 +23,10 @@ export class WithdrawBlockComponent implements OnInit {
 
   get depositIdToUse(): number {
     return this.block.depositId;
+  }
+
+  get userCurrency() {
+    return this.authStore.currentUser.getValue().currency;
   }
 
 }
