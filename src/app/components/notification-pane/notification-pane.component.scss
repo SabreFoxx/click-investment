@@ -1,0 +1,11 @@
+@import "src/variables";
+
+.container-white {
+    @media (min-width: 48em) {
+        margin-left: 1em;
+    }
+}
+
+.colored {
+    color: $link;
+}

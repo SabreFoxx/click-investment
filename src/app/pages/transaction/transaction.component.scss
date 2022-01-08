@@ -7,6 +7,15 @@
     margin-bottom: 0;
 }
 
-.tabs ul {
-    border: 0;
+.tabs {
+    overflow-x: hidden;
+    font-size: 0.7em;
+
+    @media (min-wdith: 48em) {
+        font-size: 1em;
+    }
+
+    ul {
+        border: 0;
+    }
 }

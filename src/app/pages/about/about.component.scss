@@ -2,13 +2,34 @@
 
 .about {
     @include card();
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: auto;
-    height: 100%;
     max-width: 700px;
     text-align: left;
+
+    @media (max-width: 48em) {
+        // to match footer
+        @include pad-container();
+        max-width: $control-width - 150px !important;
+    }
+
+    @media (min-width: 48em) {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    img {
+        width: 100%;
+        text-align: center;
+
+        @media (min-width: 48em) {
+            width: inherit;
+        }
+    }
 
     p {
         font-family: $display-font;

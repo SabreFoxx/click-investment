@@ -6,7 +6,6 @@
     &-methods {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-content: space-around;
     }
 
@@ -25,15 +24,17 @@
 }
 
 .verification {
-    display: inline-flex;
-    align-items: center;
+    @media (min-width: 48em) {
+        display: inline-flex;
+        align-items: center;
 
-    > :nth-child(1) {
-        margin-right: 0.5em;
-    }
+        > :nth-child(1) {
+            margin-right: 0.5em;
+        }
 
-    > :last-child {
-        margin-left: 0.5em;
+        > :last-child {
+            margin-left: 0.5em;
+        }
     }
 }
 

@@ -62,6 +62,7 @@ no problems with height and visibility. We set in order of appearance in DOM */
 }
 
 $top-height: 45%;
+$top-height-mobile: 27%;
 $menu-width: 22vw;
 $menu-width-mobile: 70vw;
 $side-menu-closed-width: 4.5vw;
@@ -77,7 +78,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
 
     &-menu {
         flex-shrink: 1;
-        height: 100%;
+        height: 100vh; // or 100%; but 100vh is better on mobile
         display: flex;
         flex-direction: column;
         transition: $side-menu-closed-transition, $side-menu-closed-transition-mobile;
@@ -118,9 +119,13 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            min-height: $top-height;
+            min-height: $top-height-mobile;
             padding: 0 0 1.5em 0;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
+            @media (min-width: 48em) {
+                min-height: $top-height;
+            }
 
             &.side-menu-closed {
                 min-height: unset;
@@ -147,15 +152,17 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
 
     &-panel {
         $margin-here: 0.7vw;
+        $margin-here-mobile: $margin-here * 2;
 
         display: flex;
         position: relative;
-        margin: 0 $margin-here;
-        width: 100vw - (2 * $margin-here);
+        margin: 0 $margin-here-mobile;
+        width: 100vw - (2 * $margin-here-mobile);
         transition: $side-menu-closed-transition;
         padding-bottom: 1em;
 
         @media (min-width: 48em) {
+            margin: 0 $margin-here;
             width: 100vw - $menu-width - (2 * $margin-here);
 
             &.side-menu-closed {
@@ -181,7 +188,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
         flex-grow: 1;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 87%;
+        height: 91%;
 
         @media (min-width: 48em) {
             height: 90%;
@@ -208,14 +215,14 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
         transition: flex-basis 150ms ease-out;
         // later, height of <app-top-bar> will be calculated and subtracted from window height
         // the result will be applied to this height
-        height: 87%;
+        height: 91%;
 
         @media (min-width: 48em) {
             height: 90%;
-        }
 
-        .ng-scrollbar-track {
-            margin-right: -1.39rem; // for the bar not to be over content
+            .ng-scrollbar-track {
+                margin-right: -1.39rem; // for the bar not to be over content
+            }
         }
 
         &-show {
@@ -351,21 +358,21 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     color: $white-ter;
 
     &-welcome {
-        font-size: 1.2em;
+        font-size: 1em;
         font-weight: 200;
     }
 
     &-name {
-        font-size: 2em;
+        font-size: 1.5em;
         font-weight: 400;
         line-height: 0.8;
     }
 }
 
 .profile-pic {
-    max-width: 55% !important;
+    max-width: 45% !important;
     max-height: 200px;
-    margin: 0.3em auto 1.5em auto;
+    margin: auto auto 1em auto;
     filter: drop-shadow(2px 6px 4px rgba(0, 0, 0, 0.25));
 
     &.side-menu-closed {
@@ -373,6 +380,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     }
 
     @media (min-width: 48em) {
+        max-width: 55% !important;
         margin-top: 0.1em;
     }
 }

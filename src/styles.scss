@@ -25,6 +25,7 @@ body {
     color: $text-color;
     font-size: calc(1vw + 0.6em);
     font-family: $display-font;
+    overflow-x: hidden;
 
     @media (min-width: 48em) {
         font-size: calc(1vw + 0.4em);
@@ -122,12 +123,14 @@ img {
 
 .input {
     &-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @media (min-width: 48em) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-        >* {
-            flex-basis: 48%;
+            >* {
+                flex-basis: 48%;
+            }
         }
     }
 
@@ -219,6 +222,11 @@ img {
     }
 }
 
+.message>* {
+    // edit to bulma .message, to fit with our .container-white padding
+    padding: 1rem
+}
+
 .border {
     border: 1px solid black;
     padding: 0.5em $page-padding;
@@ -254,8 +262,12 @@ hr.line {
 }
 
 .sub-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
     line-height: 1;
+
+    @media (min-width: 48em) {
+        font-size: 1.5em;
+    }
 }
 
 .table-title {
