@@ -15,42 +15,42 @@
     <h2 class="sub-title table-title container-white">Verification claims</h2>
 
     <div class="container-white table-adjust">
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Account Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th>Means</th>
-                    <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
-                    </th>
-                    <th> </th>
-                    <th>Actions</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Account Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th>Means</th>
-                    <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
-                    </th>
-                    <th> </th>
-                    <th>Actions</th>
-                    <th> </th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr *ngFor="let deposit of depositsForValidation | async" [block]="deposit"
-                    (reloadList)="reloadView()" class="row" app-verify-block>
-                </tr>
-            </tbody>
-        </table>
-
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Amount</th>
+                        <th>Means</th>
+                        <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
+                        </th>
+                        <th> </th>
+                        <th>Actions</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Amount</th>
+                        <th>Means</th>
+                        <th><abbr title="System wallet address money was paid to">Rcv Addr</abbr>
+                        </th>
+                        <th> </th>
+                        <th>Actions</th>
+                        <th> </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr *ngFor="let deposit of depositsForValidation | async" [block]="deposit"
+                        (reloadList)="reloadView()" class="row" app-verify-block>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </article>
