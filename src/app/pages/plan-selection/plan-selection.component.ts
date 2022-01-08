@@ -53,7 +53,7 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.anchor.nativeElement.scrollIntoView(0);
+    // this.anchor.nativeElement.scrollIntoView(0); // TODO for all such occurence
   }
 
   selectPlan(plan: Plan) {
@@ -64,7 +64,8 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
       relativeTo: this.route,
       queryParams: { // we won't use this data later; we'll use "state" instead
         currency: paymentDetails.medium.name,
-        plan: plan.name
+        plan: plan.name,
+        planId: plan.id // however, we'll use this in our router config
       },
       "state": { paymentDetails }
     }

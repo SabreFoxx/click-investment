@@ -59,7 +59,7 @@
     <p class="payment-desc">Choose the method by which you'll make payment</p>
 
     <div class="payment-methods">
-        <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
+        <app-payment-card *ngFor="let card of depositPaymentMethods | async" [name]="card.name"
                           [css]="card.cssClass" [text]="'Payment Method'"
                           (selected)="alert.swalOptions = alertMixin; showAlert(card, 'deposit')">
         </app-payment-card>
@@ -71,7 +71,7 @@
     <p class="payment-desc">Choose the method by which you'll withdraw your money</p>
 
     <div class="payment-methods" style="opacity: 0.8;">
-        <app-payment-card *ngFor="let card of paymentMethods | async" [name]="card.name"
+        <app-payment-card *ngFor="let card of withdrawalPaymentMethods | async" [name]="card.name"
                           [css]="card.cssClass" [text]="'Withdrawal Method'"
                           (selected)="alert.swalOptions = alertMixin; showAlert(card, 'withdraw')">
         </app-payment-card>

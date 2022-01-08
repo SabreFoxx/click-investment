@@ -6,8 +6,8 @@ import { PaymentTool } from 'src/models/payment-tool';
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, pluck } from 'rxjs/operators';
 import { PaymentMethod } from 'src/models/payment-method';
 import { Deposit } from 'src/models/deposit';
 import Swal from 'sweetalert2';
@@ -18,7 +18,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-  paymentMethods: BehaviorSubject<PaymentMethod[]>;
+  depositPaymentMethods: Observable<PaymentMethod[]>;
+  withdrawalPaymentMethods: Observable<PaymentMethod[]>;
   unverifiedDeposits: Observable<Deposit[]>;
   selectedDepositForVerification: Deposit;
 
@@ -51,7 +52,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.paymentMethods = this.payMthServ.methods;
+    this.depositPaymentMethods = this.payMthServ.methods
+      .pipe(map(methods => {
+        return methods.filter(m => m.name != 'Bank wire')
+      }));
+    this.withdrawalPaymentMethods = this.payMthServ.methods
+      .pipe(map(methods => {
+        return methods.filter(m => m.name != 'Credit/Debit')
+      }));
     this.unverifiedDeposits = this.route.data.pipe(pluck('unverifiedPayments'));
   }
 
@@ -60,6 +68,9 @@ export class PaymentComponent implements OnInit, AfterViewInit {
   }
 
   showAlert(card: PaymentMethod, muchLaterNavigateTo: 'withdraw' | 'deposit') {
+    if (card.name == 'Credit/Debit')
+      return this.creditCardDepositsAreComingSoon();
+
     const footer = muchLaterNavigateTo == 'deposit' ?
       'Select this payment method for use in funding your plan'
       : 'Receive your funds using this payment method';
@@ -105,5 +116,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     this.http.update<Deposit>(this.endpoint, {
       depositId: this.selectedDepositForVerification.id
     }, this.authStore.authorizationHeader);
+  }
+
+  creditCardDepositsAreComingSoon(): void {
+    this.alertMixin.fire({
+      title: 'Coming soon',
+      icon: 'warning',
+      iconColor: '#f7b654',
+      text: 'Credit/Debit card payments are not yet available!',
+      footer: 'Please choose another payment method',
+      showCancelButton: false
+    });
   }
 }
