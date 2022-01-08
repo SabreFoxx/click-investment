@@ -1,6 +1,6 @@
 import { SimpleHttpService } from 'src/services/simple-post.service';
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WithdrawBlockComponent } from 'src/app/components/withdraw-block/withdraw-block.component';
 import { PaymentTool } from 'src/models/payment-tool';
@@ -67,7 +67,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
         return deposits.map((deposit: Deposit | any) => {
           let status = 'available'
           let statusMessage = 'Available'
-          let cssClass = 'available'
+          let cssClass = 'success'
           if (DateTime.fromISO(deposit.lockedTill) > DateTime.local()) {
             status = 'unavailable'
             statusMessage = `Unavailable till ${this.datePipe.transform(deposit.lockedTill, 'medium')}`
@@ -114,6 +114,8 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
 
     const paymentDetails: PaymentTool = this.withdrawDetails;
     const planName = paymentDetails.plan.name.toUpperCase();
+    const fixedWithdrawAmount = this.withdrawalBlockToUse?.amount ?? '';
+    const disabled = +fixedWithdrawAmount > 0 ? 'disabled' : '';
 
     this.alertMixin.fire({
       title: `Selected: ${paymentDetails.plan.name} Plan`,
@@ -151,10 +153,10 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
             </em></p>
           </div>
 
-
           <div class="input-row">
             <div class="input-box">
-              <input class="input" id="withdraw-amount" placeholder="${this.userCurrency}" type="type">
+              <input class="input" id="withdraw-amount" value="${fixedWithdrawAmount}"
+                placeholder="${this.userCurrency}" type="text" ${disabled}>
             </div>
             <div class="input-container" style="flex-basis: 0%; margin: 1em">
               <svg class="svg-icon">
@@ -178,7 +180,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
             </p>
             <div class="input-box">
               <input class="input" id="wallet-address"
-                placeholder="Your wallet address" type="type">
+                placeholder="Your wallet address" type="text">
             </div>
           </div>
         </article>`,
@@ -202,7 +204,7 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
           paymentMedium,
           userWalletAddr,
           planId: this.withdrawDetails.plan.id,
-          depositId: this.withdrawalBlockToUse
+          depositId: this.withdrawalBlockToUse.depositId
         }, this.authStorage.authorizationHeader)
           .subscribe(res => {
             this.alertMixin.fire({

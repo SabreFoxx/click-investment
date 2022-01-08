@@ -18,52 +18,53 @@
     <h2 class="sub-title table-title container-white">Withdrawal availability blocks</h2>
 
     <div class="container-white table-adjust">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th> </th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr class="row" (click)="setToWithdrawFromProfit()">
+                        <td>
+                            <input type="radio" name="withdrawFromThisBlock" #profitRadio
+                                   value="profit" style="cursor: pointer">
+                        </td>
+                        <td>Profit</td>
+                        <td>Current profit in {{withdrawDetails?.plan.name}} plan</td>
+                        <td>{{ planCurrentGross - planCurrentAmount |
+                            currency:userCurrency:'symbol'}}
+                        </td>
+                        <td class="status">
+                            <div class="flex">
+                                <span>Always available</span>
+                                <span class="status-icon success"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr #blockComponent *ngFor="let block of blocks | async" [block]="block"
+                        (click)="setSelection(blockComponent)" class="row" app-withdraw-block>
+                    </tr>
+                </tbody>
+            </table>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> </th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th> </th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr class="row" (click)="setToWithdrawFromProfit()">
-                    <td>
-                        <input type="radio" name="withdrawFromThisBlock" #profitRadio value="profit"
-                               style="cursor: pointer">
-                    </td>
-                    <td>Profit</td>
-                    <td>Current profit in {{withdrawDetails?.plan.name}} plan</td>
-                    <td>{{ planCurrentGross - planCurrentAmount | currency:userCurrency:'symbol'}}
-                    </td>
-                    <td class="status">
-                        <div class="flex">
-                            <span>Always available</span>
-                            <span class="status-icon success"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr #blockComponent *ngFor="let block of blocks | async" [block]="block"
-                    (click)="setSelection(blockComponent)" class="row" app-withdraw-block>
-                </tr>
-            </tbody>
-        </table>
-
-        <button (click)="withdraw()" class="button is-rounded is-link" type="submit"
-                style="float: right; margin: 0">Proceed with withdrawal</button>
-        <div style="clear: right"></div>
-
+            <button (click)="withdraw()" class="button is-rounded is-link" type="submit"
+                    style="float: right; margin: 0">Proceed with withdrawal</button>
+            <div style="clear: right"></div>
+        </div>
     </div>
 </article>

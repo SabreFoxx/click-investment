@@ -11,10 +11,12 @@ import { Deposit } from 'src/models/deposit';
 export class WithdrawalService implements Resolve<Deposit[]> {
   constructor(private authStore: AuthStorageService,
     private http: SimpleHttpService,
-    @Inject('FETCH_WITHDRAWAL_AVAILABILITY_URL') private endpoint: string) { }
+    @Inject('FETCH_DEPOSITS_FROM_PLAN_URL_PREFIX') private endpoint: string) { }
 
   // Deposit is here because we typically withdraw from profits and deposits
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Deposit[]> {
-    return this.http.loadPageData<Deposit[]>(this.endpoint, this.authStore.authorizationHeader);
+    return this.http.loadPageData<Deposit[]>(this.endpoint
+      + `/${route.queryParamMap.get('planId')}`,
+      this.authStore.authorizationHeader);
   }
 }
