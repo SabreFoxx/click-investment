@@ -1,4 +1,4 @@
-<section class="border spc">
+<section class="border spc" style="margin-bottom: 6em">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <h2>Open and account</h2>
         <br>
@@ -57,8 +57,11 @@
         <br>
         <div class="input-row">
             <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
-            <button class="button is-rounded is-link" type="submit"
-                    [disabled]="!form.valid || disableSubmitButton">Submit</button>
+            <!-- <button class="button is-rounded is-link" type="submit"
+                    [disabled]="!form.valid || disableSubmitButton">Submit</button> -->
+            <button class="button is-rounded is-link" type="submit" disabled>Submit</button>
         </div>
     </form>
 </section>
+
+<footer app-footer></footer>

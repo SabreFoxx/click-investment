@@ -1,5 +1,10 @@
 <section class="plan-list container-white">
-    <h2 class="sub-title">Investments</h2>
+    <div class="sub-title" style="display: flex;">
+        <h2>Investments</h2>
+        <div style="margin-left: auto">
+            <span style="font-weight: bold">←</span> drag
+        </div>
+    </div>
     <swiper [config]="swiperConfig" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
         <ng-template swiperSlide *ngFor="let plan of plans | async">
             <app-plan-card [plan]="plan" (click)="display(plan)" [showStats]="true">
