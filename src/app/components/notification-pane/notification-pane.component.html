@@ -5,7 +5,11 @@
             <button class="delete" aria-label="delete"></button>
         </div>
         <div class="message-body">
-            {{notification.content}}
+            <p>{{notification.content}}</p>
+            <p class="colored">On {{notification.createdAt | date:'fullDate'}}</p>
+            <span *ngIf="notification.link != null" class="colored">
+                <a [href]="notification.link">Read more...</a>
+            </span>
         </div>
     </article>
 </div>
