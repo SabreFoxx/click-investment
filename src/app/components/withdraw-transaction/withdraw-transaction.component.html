@@ -1,1 +1,41 @@
-<p>withdraw-transaction works!</p>
+<article class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th><abbr title="Crypto currency or bank wire for receiving funds">Channel</abbr>
+                </th>
+                <th><abbr title="Description of what was achieved">Objective</abbr></th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Amount</th>
+                <th><abbr title="Crypto currency or bank wire for receiving funds">Channel</abbr>
+                </th>
+                <th><abbr title="Description of what was achieved">Objective</abbr></th>
+                <th>Status</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr class="row" *ngFor="let withdrawal of data">
+                <td>{{withdrawal.createdAt | date:'mediumDate'}}</td>
+                <td>{{withdrawal.createdAt | date:'shortTime'}}</td>
+                <td>{{withdrawal.fiatAmount | currency:withdrawal.fiatCurrency:'symbol'}}</td>
+                <td>{{withdrawal.paymentMedium}}</td>
+                <td>Made payment to the {{withdrawal['Plan.name']}} plan</td>
+                <td class="status">
+                    <div class="flex">
+                        <span>{{withdrawal.status | titlecase}}</span>
+                        <span class="status-icon {{withdrawal.status | statusToCssClass}}"></span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</article>

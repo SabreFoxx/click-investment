@@ -1,10 +1,12 @@
 <article>
-    <div class="sub-title container-white" style="display: flex;">
+    <div class="sub-title container-white" style="display: flex">
         <h2>Cashflow history</h2>
-        <div class="tabs is-right" style="margin-left: auto;">
+        <div class="tabs is-right" style="margin-left: auto">
             <ul>
-                <li class="is-active"><a (click)="showDeposits()">Deposits</a></li>
-                <li><a (click)="showWithdrawals()">Withdrawals</a></li>
+                <li [class.is-active]="currentView == components['deposit']"><a
+                       (click)="showDeposits()">Deposits</a></li>
+                <li [class.is-active]="currentView == components['withdraw']"><a
+                       (click)="showWithdrawals()">Withdrawals</a></li>
             </ul>
         </div>
     </div>
