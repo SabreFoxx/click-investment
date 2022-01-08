@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
     LandingComponent,
     NotFoundComponent,
     SvgComponent,
-    ToastComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
