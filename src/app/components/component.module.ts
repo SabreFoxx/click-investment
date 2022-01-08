@@ -27,6 +27,7 @@ import { VerifyBlockComponent } from './verify-block/verify-block.component';
 import { SettingsCardComponent } from './settings-card/settings-card.component';
 import { DepositTransactionComponent } from './deposit-transaction/deposit-transaction.component';
 import { WithdrawTransactionComponent } from './withdraw-transaction/withdraw-transaction.component';
+import { StatusToCssClassPipe } from 'src/pipes/status-to-css-class.pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { WithdrawTransactionComponent } from './withdraw-transaction/withdraw-tr
     VerifyBlockComponent,
     SettingsCardComponent,
     DepositTransactionComponent,
-    WithdrawTransactionComponent
+    WithdrawTransactionComponent,
+    StatusToCssClassPipe
   ],
   imports: [
     CommonModule,

@@ -47,18 +47,46 @@ export class TopBarComponent implements OnInit, OnDestroy {
     this.subscriptions.complete();
   }
 
-  showNews() {
-    this.notify.display.next(this.notify.news)
-    if (this.openedWith == OpenedWithIcon.NEWS || this.openedWith == OpenedWithIcon.NONE)
+  newsHeadlineNotificationViewing(): void {
+    // if it's opened with me, close it
+    if (this.ui.isNotificationPaneVisible.getValue()
+      && this.openedWith == OpenedWithIcon.NEWS_HEADLINE)
       this.ui.toggleNotificationPane()
-    this.openedWith = OpenedWithIcon.NEWS
+    // if it's opened and has notifications showing, switch to me
+    else if (this.ui.isNotificationPaneVisible.getValue()
+      && this.openedWith == OpenedWithIcon.NOTIFICATION) {
+      this.openedWith = OpenedWithIcon.NEWS_HEADLINE
+      this.notify.display.next(this.notify.newsHeadlines)
+    }
+    // if it's closed switch to me and open it
+    else if (!this.ui.isNotificationPaneVisible.getValue()) {
+      this.openedWith = OpenedWithIcon.NEWS_HEADLINE
+      this.notify.display.next(this.notify.newsHeadlines)
+      this.ui.toggleNotificationPane()
+    }
+
+    this.openedWith = OpenedWithIcon.NEWS_HEADLINE
   }
 
-  showAlert() {
-    this.notify.display.next(this.notify.alerts)
-    if (this.openedWith == OpenedWithIcon.ALERT || this.openedWith == OpenedWithIcon.NONE)
+  notificationViewing(): void {
+    // if it's opened with me, close it
+    if (this.ui.isNotificationPaneVisible.getValue()
+      && this.openedWith == OpenedWithIcon.NOTIFICATION)
       this.ui.toggleNotificationPane()
-    this.openedWith = OpenedWithIcon.ALERT
+    // if it's opened and has newsHeadlines showing, switch to me
+    else if (this.ui.isNotificationPaneVisible.getValue()
+      && this.openedWith == OpenedWithIcon.NEWS_HEADLINE) {
+      this.openedWith = OpenedWithIcon.NOTIFICATION
+      this.notify.display.next(this.notify.notifications)
+    }
+    // if it's closed switch to me and open it
+    else if (!this.ui.isNotificationPaneVisible.getValue()) {
+      this.openedWith = OpenedWithIcon.NOTIFICATION
+      this.notify.display.next(this.notify.notifications)
+      this.ui.toggleNotificationPane()
+    }
+
+    this.openedWith = OpenedWithIcon.NOTIFICATION
   }
 
   toggleFullScreen(button: HTMLElement): void {
@@ -70,6 +98,6 @@ export class TopBarComponent implements OnInit, OnDestroy {
 
 enum OpenedWithIcon {
   NONE,
-  NEWS,
-  ALERT
+  NEWS_HEADLINE,
+  NOTIFICATION
 }
