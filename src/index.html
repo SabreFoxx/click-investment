@@ -39,9 +39,16 @@
     }
 
     .loading-container {
+      position: relative;
       height: 100vh;
       margin: auto;
       max-width: 60px;
+    }
+
+    .loading-positioning {
+      position: absolute;
+      top: 50%;
+      width: 100%
     }
 
   </style>
@@ -50,7 +57,9 @@
 <body>
   <app-root>
     <div class="loading-container">
-      <img class="loading" src="/assets/img/bitcoin.svg">
+      <div class="loading-positioning">
+        <img class="loading" src="/assets/img/bitcoin.svg">
+      </div>
     </div>
   </app-root>
 </body>
