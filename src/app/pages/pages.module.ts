@@ -138,10 +138,10 @@ export const pageRoutes: Routes = [
         return `${prefix}${ApiEndpoints.DEPOSIT_TRANSACTION}`
       }
     }, {
-      provide: 'FETCH_WITHDRAWAL_AVAILABILITY_URL',
+      provide: 'FETCH_DEPOSITS_FROM_PLAN_URL_PREFIX',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
-        return `${prefix}${ApiEndpoints.WITHDRAWAL_TRANSACTION}`
+        return `${prefix}${ApiEndpoints.DEPOSITS}`
       }
     }, {
       provide: 'CREATE_WITHDRAWAL_TRANSACTION_URL',
@@ -174,7 +174,7 @@ export const pageRoutes: Routes = [
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
       }
     }, {
-      provide: 'ADMIN_HIDE_DEPOSIT_URL',
+      provide: 'ADMIN_HIDE_DEPOSIT_URL_PREFIX',
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`

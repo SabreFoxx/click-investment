@@ -21,7 +21,7 @@ export enum ApiEndpoints {
     DASHBOARD = '/dashboard',
     DEPOSITS = '/dashboard/deposits',
     WITHDRAWALS = '/dashboard/withdrawals',
-    
+
     DEPOSIT_TRANSACTION = '/deposit',
     WITHDRAWAL_TRANSACTION = '/withdrawal',
 

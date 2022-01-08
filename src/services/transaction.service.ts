@@ -19,7 +19,8 @@ export class TransactionService implements Resolve<[Deposit[], Withdrawal[]]>{
     return Promise.all([
       this.http.loadPageData<Deposit[]>(this.depositEndpoint, this.authStore.authorizationHeader)
         .toPromise(),
-      this.http.loadPageData<Withdrawal[]>(this.withdrawalEndpoint, this.authStore.authorizationHeader)
+      this.http.loadPageData<Withdrawal[]>(this.withdrawalEndpoint,
+        this.authStore.authorizationHeader)
         .toPromise()]);
   }
 }

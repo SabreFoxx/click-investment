@@ -56,7 +56,7 @@ export class DepositComponent implements OnInit {
     // debounce pattern to prevent calling api for each input change
     this.formTextChanged.pipe(
       map(e => (e.target as HTMLInputElement).value),
-      filter(text => text.length > 2),
+      filter(text => text.length > 1),
       debounceTime(300),
       distinctUntilChanged(),
       // http.receive returns a Subject, so switchMap allows us subscribe to that Subject instead

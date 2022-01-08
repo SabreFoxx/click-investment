@@ -32,7 +32,7 @@ export class VerifyBlockComponent implements OnInit {
   constructor(private datePipe: DatePipe, private http: SimpleHttpService,
     private authStore: AuthStorageService,
     @Inject('ADMIN_VERIFY_DEPOSIT_URL') private acceptPayment: string,
-    @Inject('ADMIN_HIDE_DEPOSIT_URL') private hidePayment: string) { }
+    @Inject('ADMIN_HIDE_DEPOSIT_URL_PREFIX') private hidePayment: string) { }
 
   ngOnInit(): void {
   }
