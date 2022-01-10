@@ -29,7 +29,7 @@
                 <td>Made payment to the {{deposit['Plan.name']}} plan</td>
                 <td class="status">
                     <div class="flex">
-                        <span>{{deposit.status | titlecase}}</span>
+                        <span class="status-text">{{deposit.status | titlecase}}</span>
                         <span class="status-icon {{deposit.status | statusToCssClass}}"></span>
                     </div>
                 </td>

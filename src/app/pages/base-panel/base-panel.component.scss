@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: $background-color;
 }
 
@@ -86,12 +86,13 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
         width: $menu-width-mobile;
         position: absolute;
         z-index: 3;
-        box-shadow: 1000px 0px 0px 1000px rgba(0, 0, 0, 0.15);
+        box-shadow: 1000px 0px 0px 1000px rgba(0, 0, 0, 0.25);
 
         &.side-menu-closed {
             // mobile only because @media (min-width: 48em) overrides
             transform: translate(- $menu-width-mobile);
             box-shadow: none;
+            width: 0px; // without this, our view will briefly overflow on mobile
         }
 
         @media (min-width: 48em) {
@@ -102,6 +103,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
             &.side-menu-closed {
                 width: $side-menu-closed-width;
                 transform: none;
+                display: flex;
             }
         }
 
@@ -138,6 +140,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
         flex-grow: 1;
         width: 100vw;
         overflow: hidden;
+        position: relative;
         transition: $side-menu-closed-transition;
 
         @media (min-width: 48em) {
@@ -270,7 +273,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     right: -30vw;
 
     &.side-menu-closed {
-        right: -100vw;
+        right: -170vw;
     }
 
     @media (min-width: 48em) {
@@ -336,7 +339,11 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
     &__slice:before,
     &__slice:after {
         will-change: transform;
-        transition: $nav-easing;
+
+        // transition only on desktop. mobile is slow
+        @media (min-width: 48em) {
+            transition: $nav-easing;
+        }
     }
 
     &--active {

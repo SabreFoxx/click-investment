@@ -60,6 +60,11 @@ $nav-easing: transform .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 2em 1em;
 }
 
+.message>* {
+    // edit to bulma's .message, to fit with our .container-white padding
+    padding: 1rem;
+}
+
 .font-size-bigger {
     font-size: 1.1em;
 }

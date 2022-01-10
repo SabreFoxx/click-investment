@@ -25,7 +25,7 @@
 
 .verification {
     @media (min-width: 48em) {
-        display: inline-flex;
+        display: flex;
         align-items: center;
 
         > :nth-child(1) {
@@ -36,6 +36,23 @@
             margin-left: 0.5em;
         }
     }
+}
+
+// edit to bulma
+.dropdown {
+    display: block;
+
+    .button {
+        font-size: 0.65em;
+
+        @media (min-width: 20em) {
+            font-size: 0.9em;
+        }
+    }
+}
+
+.button.is-rounded {
+    margin: 0.5em 0;
 }
 
 a.dropdown-item {
