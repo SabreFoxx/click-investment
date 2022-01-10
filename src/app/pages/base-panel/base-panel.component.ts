@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fadeAnimation } from 'src/app/animation';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { environment } from 'src/environments/environment';
@@ -28,7 +28,7 @@ import { environment } from 'src/environments/environment';
   animations: [fadeAnimation]
 })
 export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
-  isSideMenuVisible: BehaviorSubject<boolean>;
+  isSideMenuVisible: Subject<boolean>;
   isShowNotificationPane: boolean = false;
   user: BehaviorSubject<User>;
 
@@ -54,8 +54,8 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     // expand sidemenu by default, if we're using a desktop device
-    if (environment.production && this.deviceService.isDesktop)
-      this.unApplySideMenuCloseActions();
+    if (environment.production && this.deviceService.isDesktop())
+      this.toggleSideMenu();
 
     this.ui.isNotificationPaneVisible
       .pipe(takeUntil(this.subscriptions))
@@ -68,6 +68,13 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
               "app-notification-pane-show");
           setTimeout(() => this.isShowNotificationPane = false, 151);
         }
+      });
+
+    this.ui.isSideMenuVisible
+      .pipe(takeUntil(this.subscriptions))
+      .subscribe(answer => {
+        answer ? this.unApplySideMenuCloseActions()
+          : this.applySideMenuCloseActions();
       });
   }
 
@@ -82,8 +89,6 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
 
   toggleSideMenu() {
     this.ui.toggleSideMenu();
-    !this.isSideMenuVisible.value ? this.applySideMenuCloseActions()
-      : this.unApplySideMenuCloseActions();
   }
 
   applySideMenuCloseActions() {

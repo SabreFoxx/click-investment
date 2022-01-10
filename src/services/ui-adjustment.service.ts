@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Breadcrumb } from 'src/models/breadcrumb';
 
 @Injectable({
@@ -7,7 +7,8 @@ import { Breadcrumb } from 'src/models/breadcrumb';
 })
 export class UIAdjustmentService {
   headerHeight: number;
-  isSideMenuVisible = new BehaviorSubject<boolean>(false);
+  isSideMenuVisible = new Subject<boolean>();
+  private isSideMenuVisible_ = false;
   isNotificationPaneVisible = new BehaviorSubject<boolean>(false);
   breadcrumbs: BehaviorSubject<Breadcrumb[]>;
   appHasLoadedBefore = false;
@@ -18,7 +19,8 @@ export class UIAdjustmentService {
   }
 
   toggleSideMenu(): void {
-    this.isSideMenuVisible.next(!this.isSideMenuVisible.getValue());
+    this.isSideMenuVisible_ = !this.isSideMenuVisible_;
+    this.isSideMenuVisible.next(this.isSideMenuVisible_);
   }
 
   toggleNotificationPane(): void {

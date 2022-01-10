@@ -1,4 +1,5 @@
-<a class="side-menu" [title]="toolTip_" [routerLink]="link" [class.highlight]="active">
+<a class="side-menu" [title]="toolTip_" [routerLink]="link" [class.highlight]="active"
+   (click)="clicked()">
     <div [class.vert]="active"></div>
     <div class="content">
         <ng-content select=".svg-icon"></ng-content>

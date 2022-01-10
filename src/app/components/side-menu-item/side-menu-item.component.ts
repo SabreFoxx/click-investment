@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-side-menu-item',
@@ -18,7 +19,8 @@ export class SideMenuItemComponent implements OnInit, OnDestroy {
 
   private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private router: Router, private ui: UIAdjustmentService) { }
+  constructor(private router: Router, private ui: UIAdjustmentService,
+    private deviceService: DeviceDetectorService) { }
 
   isContainsUrlSegment(segments: UrlSegment[]): boolean {
     return segments.some(s => s.path == this.mySegment.path) ? true : false;
@@ -48,6 +50,11 @@ export class SideMenuItemComponent implements OnInit, OnDestroy {
       .subscribe(answer => {
         this.toolTip_ = answer ? '' : this.toolTip;
       })
+  }
+
+  clicked() {
+    if (this.deviceService.isMobile())
+      this.ui.toggleSideMenu();
   }
 
   ngOnDestroy(): void {
