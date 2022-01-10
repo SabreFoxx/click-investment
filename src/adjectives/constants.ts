@@ -28,5 +28,8 @@ export enum ApiEndpoints {
     DEPOSIT_FOR_VERIFICATION = '/admin/deposit'
 }
 
-export const apiPrefix: { prod: string, dev: string, test: string } =
-    { prod: 'https://', dev: 'http://localhost:3000/api', test: 'https://' }
+export const apiPrefix: { prod: string, dev: string, test: string } = {
+    prod: 'http://13.37.162.149:3000/api',
+    dev: 'http://localhost:3000/api',
+    test: 'https://'
+}
