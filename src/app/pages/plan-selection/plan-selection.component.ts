@@ -14,11 +14,9 @@ import { capitalizeFirstLetter } from 'src/adjectives/functions';
   templateUrl: './plan-selection.component.html',
   styleUrls: ['./plan-selection.component.scss']
 })
-export class PlanSelectionComponent implements OnInit, AfterViewInit {
+export class PlanSelectionComponent implements OnInit {
   plans: Observable<Plan[]>;
   navData: any;
-  // we need this to get back to start of page when user navigates
-  @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
   @ViewChild('alertForWithdrawalLimitInfo') swal: SwalComponent;
 
   alertMixin = Swal.mixin({
@@ -50,10 +48,6 @@ export class PlanSelectionComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.plans = this.route.data.pipe(pluck('resolvePlans'));
-  }
-
-  ngAfterViewInit(): void {
-    // this.anchor.nativeElement.scrollIntoView(0); // TODO for all such occurence
   }
 
   selectPlan(plan: Plan) {

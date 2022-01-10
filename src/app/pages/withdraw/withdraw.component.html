@@ -1,6 +1,4 @@
-<div #useAsScrollToTopAnchor></div>
-
-<article #useAsScrollToTopAnchor class="message">
+<article class="message">
     <header class="message-header">
         <p>Select withdrawal block</p>
     </header>
@@ -18,6 +16,7 @@
     <h2 class="sub-title table-title container-white">Withdrawal availability blocks</h2>
 
     <div class="container-white table-adjust">
+
         <div class="table-container">
             <table class="table">
                 <thead>
@@ -51,7 +50,7 @@
                         </td>
                         <td class="status">
                             <div class="flex">
-                                <span>Always available</span>
+                                <span class="status-text">Always available</span>
                                 <span class="status-icon success"></span>
                             </div>
                         </td>
@@ -61,10 +60,10 @@
                     </tr>
                 </tbody>
             </table>
-
-            <button (click)="withdraw()" class="button is-rounded is-link" type="submit"
-                    style="float: right; margin: 0">Proceed with withdrawal</button>
-            <div style="clear: right"></div>
         </div>
+
+        <button (click)="withdraw()" class="button is-rounded is-link" type="submit"
+                style="float: right; margin: 0">Proceed with withdrawal</button>
+        <div style="clear: right"></div>
     </div>
 </article>

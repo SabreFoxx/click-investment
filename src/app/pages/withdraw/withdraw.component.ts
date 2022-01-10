@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
   templateUrl: './withdraw.component.html',
   styleUrls: ['./withdraw.component.scss']
 })
-export class WithdrawComponent implements OnInit, AfterViewInit {
+export class WithdrawComponent implements OnInit {
   withdrawDetails: PaymentTool;
   blocks: Observable<WithdrawalBlock[]>;
   // withdrawals are made from deposits or profits
@@ -29,7 +29,6 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
   userCurrency: string;
 
   @ViewChild('profitRadio') profitRadioButton: ElementRef;
-  @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
 
   alertMixin = Swal.mixin({
     icon: 'info',
@@ -93,10 +92,6 @@ export class WithdrawComponent implements OnInit, AfterViewInit {
     );
 
     this.userCurrency = this.authStorage.currentUser.getValue().currency.toUpperCase();
-  }
-
-  ngAfterViewInit(): void {
-    this.anchor.nativeElement.scrollIntoView(0);
   }
 
   withdraw(): void {

@@ -17,14 +17,13 @@ import Swal from 'sweetalert2';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit, AfterViewInit {
+export class PaymentComponent implements OnInit {
   depositPaymentMethods: Observable<PaymentMethod[]>;
   withdrawalPaymentMethods: Observable<PaymentMethod[]>;
   unverifiedDeposits: Observable<Deposit[]>;
   selectedDepositForVerification: Deposit;
 
   isDepositListVisible: boolean;
-  @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
   @ViewChild(SwalComponent) alert: SwalComponent;
 
   alertMixin = Swal.mixin({
@@ -61,10 +60,6 @@ export class PaymentComponent implements OnInit, AfterViewInit {
         return methods.filter(m => m.name != 'Credit/Debit')
       }));
     this.unverifiedDeposits = this.route.data.pipe(pluck('unverifiedPayments'));
-  }
-
-  ngAfterViewInit(): void {
-    this.anchor.nativeElement.scrollIntoView(0);
   }
 
   showAlert(card: PaymentMethod, muchLaterNavigateTo: 'withdraw' | 'deposit') {

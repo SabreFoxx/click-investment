@@ -10,9 +10,8 @@ import { Deposit } from 'src/models/deposit';
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.scss']
 })
-export class ValidationComponent implements OnInit, AfterViewInit {
+export class ValidationComponent implements OnInit {
   depositsForValidation: Observable<Deposit[]>;
-  @ViewChild('useAsScrollToTopAnchor') anchor: ElementRef;
 
   constructor(private route: ActivatedRoute, private ui: UIAdjustmentService,
     private router: Router,) {
@@ -21,10 +20,6 @@ export class ValidationComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.depositsForValidation = this.route.data.pipe(pluck('resolveDepositsForValidation'));
-  }
-
-  ngAfterViewInit(): void {
-    this.anchor.nativeElement.scrollIntoView(0);
   }
 
   /**
