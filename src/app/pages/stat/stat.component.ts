@@ -21,9 +21,7 @@ export class StatComponent implements OnInit, OnDestroy {
   swiperConfig: SwiperOptions;
   pieChartOptions: any;
   planStatOptions: any;
-  planStatBrushOptions: any;
   @ViewChild(ChartComponent) chart: ChartComponent;
-  private currentlyDetailedPlan: Plan;
 
   private subscriptions = new Array<Subscription>();
 
@@ -108,53 +106,6 @@ export class StatComponent implements OnInit, OnDestroy {
         tickAmount: 4
       }
     };
-
-    this.planStatBrushOptions = {
-      chart: {
-        id: "planStatBrush",
-        height: 110,
-        type: "bar",
-        foreColor: "#5a5a5a",
-        brush: {
-          target: "planStat",
-          enabled: true,
-          autoScaleYaxis: false
-        },
-        selection: {
-          enabled: true,
-          fill: {
-            color: "#5a5a5a",
-            opacity: 0.4
-          },
-          xaxis: {
-            min: new Date('2021-11-15T12:48:30.739Z').getTime(),
-            max: new Date('2021-11-16T12:48:30.739Z').getTime()
-          }
-        }
-      },
-      colors: ["#5b9571"],
-      series: [{
-        data: []
-      }],
-      stroke: {
-        width: 2
-      },
-      grid: {
-        borderColor: "#5a5a5a"
-      },
-      markers: {
-        size: 0
-      },
-      xaxis: {
-        type: "datetime",
-        tooltip: {
-          enabled: false
-        }
-      },
-      yaxis: {
-        tickAmount: 2
-      }
-    };
   }
 
   ngOnInit(): void {
@@ -175,8 +126,8 @@ export class StatComponent implements OnInit, OnDestroy {
           series: planAmounts,
           chart: {
             type: 'donut',
-            width: '400px',
-            height: '400px'
+            width: '350px',
+            height: '350px'
           },
           labels: planNames,
           legend: {
@@ -187,9 +138,8 @@ export class StatComponent implements OnInit, OnDestroy {
           fill: {
             colors: profileColors
           }
-        };
-      })
-    );
+        }
+      }));
   }
 
   ngOnDestroy(): void {
@@ -202,30 +152,16 @@ export class StatComponent implements OnInit, OnDestroy {
       this.plans.subscribe(plans => {
         setTimeout(() => { // fixes a ui bug
           this.display(plans[0])
-        }, 700);
-      }),
-
-      // each time we toggle side menu, redraw our plan graph
-      this.ui.isSideMenuVisible.subscribe(() => {
-        setTimeout(() => { // fixes a ui bug
-          this.display(this.currentlyDetailedPlan) // changing data causes a redraw
-        }, 701);
+        }, 900);
       })
     );
   }
 
   display(plan: Plan) {
-    this.currentlyDetailedPlan = plan;
-
     this.planStatOptions.series = [{
       data: loadPlanDataForApexChartSeries(plan)
     }];
     this.planStatOptions.colors = [plan?.profileColor]
-
-    this.planStatBrushOptions.series = [{
-      data: loadPlanDataForApexChartSeries(plan)
-    }];
-    this.planStatBrushOptions.colors = [plan?.profileColor]
   }
 
   onSwiper(swiper) { }
