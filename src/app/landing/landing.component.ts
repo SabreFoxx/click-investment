@@ -7,7 +7,7 @@ import { HeaderComponent } from '../components/header/header.component';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit, AfterViewInit {
+export class LandingComponent implements OnInit {
   @ViewChild('hero') hero: ElementRef;
   @ViewChild(HeaderComponent) header: HeaderComponent;
 
@@ -20,15 +20,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onScroll(event) {
-    this.ngAfterViewInit();
-  }
-
-  ngAfterViewInit(): void {
-    this.hero.nativeElement.style.height = `calc(100vh - ${this.ui.headerHeight}px)`;
-    document.getElementsByTagName('body')[0].style.paddingTop =
-      this.header.me.nativeElement.offsetHeight + 'px';
-  }
+  onScroll(event) { }
 
   ngOnInit(): void { }
 
