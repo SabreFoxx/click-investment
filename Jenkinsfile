@@ -20,8 +20,8 @@ pipeline {
 					s3Upload(
                         pathStyleAccessEnabled: true,
                         payloadSigningEnabled: true,
-                        file:'dist/Chilbeth',
-                        bucket:'chinyere-odinukwe'
+                        file:'dist/click-investment',
+                        bucket:'click-investment'
                     )
 				}
             }
