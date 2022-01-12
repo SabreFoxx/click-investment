@@ -29,7 +29,7 @@ export enum ApiEndpoints {
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } = {
-    prod: 'http://13.37.162.149:3000/click-inv',
+    prod: 'https://13.37.162.149:3000/click-inv',
     dev: 'http://localhost:3000/click-inv',
     test: 'https://'
 }
