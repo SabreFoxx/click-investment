@@ -23,6 +23,11 @@ export class UIAdjustmentService {
     this.isSideMenuVisible.next(this.isSideMenuVisible_);
   }
 
+  closeSideMenu(): void {
+    if (this.isSideMenuVisible_)
+      this.toggleSideMenu();
+  }
+
   toggleNotificationPane(): void {
     this.isNotificationPaneVisible.next(!this.isNotificationPaneVisible.getValue());
   }

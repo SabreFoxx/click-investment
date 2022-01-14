@@ -8,6 +8,7 @@ import { capitalizeFirstLetter } from 'src/adjectives/functions';
 import { Title } from '@angular/platform-browser';
 import { takeUntil } from 'rxjs/operators';
 import screenfull from 'screenfull';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-top-bar',
@@ -25,7 +26,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
   private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(private ui: UIAdjustmentService, private pageTitle: Title,
-    private notify: NotificationPaneService) {
+    private notify: NotificationPaneService, private deviceService: DeviceDetectorService) {
     this.openedWith = OpenedWithIcon.NONE;
     this.breadcrumbs = ui.breadcrumbs;
 
@@ -48,6 +49,8 @@ export class TopBarComponent implements OnInit, OnDestroy {
   }
 
   newsHeadlineNotificationViewing(): void {
+    this.closeSideMenuOnMobile();
+
     // if it's opened with me, close it
     if (this.ui.isNotificationPaneVisible.getValue()
       && this.openedWith == OpenedWithIcon.NEWS_HEADLINE)
@@ -69,6 +72,8 @@ export class TopBarComponent implements OnInit, OnDestroy {
   }
 
   notificationViewing(): void {
+    this.closeSideMenuOnMobile();
+
     // if it's opened with me, close it
     if (this.ui.isNotificationPaneVisible.getValue()
       && this.openedWith == OpenedWithIcon.NOTIFICATION)
@@ -93,6 +98,11 @@ export class TopBarComponent implements OnInit, OnDestroy {
     if (screenfull.isEnabled)
       screenfull.toggle();
     button.blur()
+  }
+
+  private closeSideMenuOnMobile(): void {
+    if (this.deviceService.isMobile())
+      this.ui.closeSideMenu();
   }
 }
 

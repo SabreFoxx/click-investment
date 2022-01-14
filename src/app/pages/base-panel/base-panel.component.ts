@@ -53,10 +53,6 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    // expand sidemenu by default, if we're using a desktop device
-    if (environment.production && this.deviceService.isDesktop())
-      this.toggleSideMenu();
-
     this.ui.isNotificationPaneVisible
       .pipe(takeUntil(this.subscriptions))
       .subscribe(value => {
