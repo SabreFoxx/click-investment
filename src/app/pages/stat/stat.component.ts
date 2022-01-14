@@ -155,6 +155,9 @@ export class StatComponent implements OnInit, OnDestroy {
         }, 900);
       })
     );
+
+    // fixes a bug whereby <top-bar> isn't visible on login, on mobile
+    document.documentElement.scrollTop = 0;
   }
 
   display(plan: Plan) {
