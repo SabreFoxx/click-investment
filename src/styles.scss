@@ -225,7 +225,7 @@ img {
 .border {
     border: 1px solid black;
     @include pad-container();
-    max-width: $control-width - 150px !important;
+    max-width: $control-width - 150px;
     margin: $margin;
 
     @media (min-width: 48em) {

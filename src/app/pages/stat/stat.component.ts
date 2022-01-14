@@ -152,7 +152,7 @@ export class StatComponent implements OnInit, OnDestroy {
       this.plans.subscribe(plans => {
         setTimeout(() => { // fixes a ui bug
           this.display(plans[0])
-        }, 900);
+        }, 1000);
       })
     );
 
