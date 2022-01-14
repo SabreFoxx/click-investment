@@ -234,7 +234,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
 
             // to 25%. we add the class notification-pane-show to do this
             @media (min-width: 48em) {
-                flex-basis: 25%;
+                flex-basis: 30%;
             }
         }
     }

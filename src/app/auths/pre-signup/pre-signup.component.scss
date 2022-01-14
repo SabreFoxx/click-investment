@@ -1,7 +1,9 @@
 @import '/src/variables.scss';
 
 .flex {
-    display: flex;
+    @media (min-width: 48em) {
+        display: flex;
+    }
 
     .shadow-border {
         flex-basis: 40%;

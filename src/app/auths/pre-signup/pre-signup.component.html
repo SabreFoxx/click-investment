@@ -1,62 +1,60 @@
-<section class="root-container">
+<article class="border spc">
+    <h1 style="margin-bottom: 0.5em">Open an account</h1>
+    <div class="flex">
+        <section class="shadow-border">
+            <h2>Things you'll need</h2>
+            <ul>
+                <li>
+                    <span class="item-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#check"></use>
+                        </svg>
+                    </span>
+                    <p>Your bank account number and/or crypto waller (to fund your account)</p>
+                </li>
+                <li>
+                    <span class="item-icon">
+                        <svg class="svg-icon">
+                            <use xlink:href="#check"></use>
+                        </svg>
+                    </span>
+                    <p>Your current employer's name and address (if applicable)</p>
+                </li>
+            </ul>
+        </section>
+        <section class="side">
+            <h2>New account process</h2>
+            <ol class="style-counter">
+                <li class="blue">
+                    <strong>Choose an account type</strong>
+                    <p>
+                        Select an account type for your goals (retirement, general ivesting,
+                        education, etc.). You can open one account at a time.
+                    </p>
+                </li>
+                <li class="orange">
+                    <strong>Fill details form</strong>
+                    <p>
+                        Fillin accurate details form as needed
+                    </p>
+                </li>
+                <li class="purple">
+                    <strong>Start investing</strong>
+                    <p>
+                        Once your account is funded, you can choose investments such as
+                        mutual
+                        funds,
+                        ETFs (exchange-traded funds), and individual stocks or bonds.
+                    </p>
+                </li>
+            </ol>
+        </section>
+    </div>
+    <div class="flex">
+        <a routerLink="/" class="button is-rounded is-link">Back</a>
+        <a [routerLink]="['/auth/signup']" class="button is-rounded"
+           style="margin-left: auto">Continue</a>
+    </div>
+</article>
 
-    <article class="border spc">
-        <h1>Open an account</h1>
-        <div class="flex">
-            <section class="shadow-border">
-                <h2>Things you'll need</h2>
-                <ul>
-                    <li>
-                        <span class="item-icon">
-                            <svg class="svg-icon">
-                                <use xlink:href="#check"></use>
-                            </svg>
-                        </span>
-                        <p>Your bank account number and/or crypto waller (to fund your account)</p>
-                    </li>
-                    <li>
-                        <span class="item-icon">
-                            <svg class="svg-icon">
-                                <use xlink:href="#check"></use>
-                            </svg>
-                        </span>
-                        <p>Your current employer's name and address (if applicable)</p>
-                    </li>
-                </ul>
-            </section>
-            <section class="side">
-                <h2>New account process</h2>
-                <ol class="style-counter">
-                    <li class="blue">
-                        <strong>Choose an account type</strong>
-                        <p>
-                            Select an account type for your goals (retirement, general ivesting,
-                            education, etc.). You can open one account at a time.
-                        </p>
-                    </li>
-                    <li class="orange">
-                        <strong>Fill details form</strong>
-                        <p>
-                            Fillin accurate details form as needed
-                        </p>
-                    </li>
-                    <li class="purple">
-                        <strong>Start investing</strong>
-                        <p>
-                            Once your account is funded, you can choose investments such as
-                            mutual
-                            funds,
-                            ETFs (exchange-traded funds), and individual stocks or bonds.
-                        </p>
-                    </li>
-                </ol>
-            </section>
-        </div>
-        <div class="flex">
-            <a routerLink="/" class="button is-rounded is-link">Back</a>
-            <a [routerLink]="['/auth/signup']" class="button is-rounded"
-               style="margin-left: auto">Continue</a>
-        </div>
-    </article>
-
-</section>
+<footer app-footer></footer>
