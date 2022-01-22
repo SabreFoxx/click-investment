@@ -121,9 +121,11 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: center;
             min-height: $top-height-mobile;
             padding: 0 0 1.5em 0;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+            width: 100%;
 
             @media (min-width: 48em) {
                 min-height: $top-height;

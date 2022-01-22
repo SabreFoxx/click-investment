@@ -18,7 +18,6 @@ import { fadeAnimation } from 'src/app/animation';
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-base-panel',
