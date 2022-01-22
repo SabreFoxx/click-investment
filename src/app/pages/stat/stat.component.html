@@ -15,7 +15,7 @@
 
 <section class="stats">
     <article class="stats-plan container-white">
-        <h2 class="sub-title">Platinum Plan</h2>
+        <h2 class="sub-title">{{(currentlyDisplayedPlan | async)?.name}} Plan</h2>
         <apx-chart [chart]="planStatOptions.chart" [series]="planStatOptions.series"
                    [colors]="planStatOptions.colors" [stroke]="planStatOptions.stroke"
                    [grid]="planStatOptions.grid" [labels]="planStatOptions.labels"

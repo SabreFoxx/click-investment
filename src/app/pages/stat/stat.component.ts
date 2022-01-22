@@ -2,7 +2,7 @@ import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
@@ -21,6 +21,7 @@ export class StatComponent implements OnInit, OnDestroy {
   swiperConfig: SwiperOptions;
   pieChartOptions: any;
   planStatOptions: any;
+  currentlyDisplayedPlan = new Subject<Plan>();
   @ViewChild(ChartComponent) chart: ChartComponent;
 
   private subscriptions = new Array<Subscription>();
@@ -147,12 +148,19 @@ export class StatComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    this.subscriptions.push(
+      this.currentlyDisplayedPlan.subscribe(plan => {
+        this.planStatOptions.series = [{
+          data: loadPlanDataForApexChartSeries(plan)
+        }];
+        this.planStatOptions.colors = [plan?.profileColor]
+      })
+    );
+
     // set initial stat to display in larger pane
     this.subscriptions.push(
       this.plans.subscribe(plans => {
-        setTimeout(() => { // fixes a ui bug
-          this.display(plans[0])
-        }, 1000);
+        this.currentlyDisplayedPlan.next(plans[0]);
       })
     );
 
@@ -161,10 +169,7 @@ export class StatComponent implements OnInit, OnDestroy {
   }
 
   display(plan: Plan) {
-    this.planStatOptions.series = [{
-      data: loadPlanDataForApexChartSeries(plan)
-    }];
-    this.planStatOptions.colors = [plan?.profileColor]
+    this.currentlyDisplayedPlan.next(plan);
   }
 
   onSwiper(swiper) { }
