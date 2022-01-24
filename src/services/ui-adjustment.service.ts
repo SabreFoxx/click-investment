@@ -29,7 +29,7 @@ export class UIAdjustmentService {
   }
 
   toggleNotificationPane(): void {
-    this.isNotificationPaneVisible.next(!this.isNotificationPaneVisible.getValue());
+    this.isNotificationPaneVisible.next(!this.isNotificationPaneVisible.value);
   }
 
   setBreadcrumbs(crumbs: Breadcrumb[]): void {

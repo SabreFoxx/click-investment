@@ -2,7 +2,7 @@ import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
-import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, ReplaySubject, zip } from 'rxjs';
 import { delay, map, pluck, takeUntil } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
@@ -140,6 +140,12 @@ export class StatComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    // set initial stat to display in larger pane
+    this.plans.pipe(takeUntil(this.subscriptions))
+      .subscribe(plans => {
+        this.currentlyDisplayedPlan.next(plans[0]);
+      });
   }
 
   ngOnDestroy(): void {
@@ -150,7 +156,7 @@ export class StatComponent implements OnInit, OnDestroy {
   ngAfterViewInit(): void {
     // draw graph
     this.currentlyDisplayedPlan
-      .pipe(delay(700), takeUntil(this.subscriptions)) // delay() fixes a bug
+      .pipe(delay(300), takeUntil(this.subscriptions)) // delay() fixes a bug
       .subscribe(plan => {
         this.planStatOptions.series = [{
           data: loadPlanDataForApexChartSeries(plan)
@@ -158,12 +164,13 @@ export class StatComponent implements OnInit, OnDestroy {
         this.planStatOptions.colors = [plan?.profileColor]
       });
 
-    // set initial stat to display in larger pane
-    this.plans.pipe(takeUntil(this.subscriptions))
-      .subscribe(plans => {
-        this.currentlyDisplayedPlan.next(plans[0]);
-      });
+    this.ui.isSideMenuVisible
+      .pipe(takeUntil(this.subscriptions))
+      .subscribe(v => this.currentlyDisplayedPlan.next(this.currentlyDisplayedPlan.value));
 
+    this.ui.isNotificationPaneVisible
+      .pipe(takeUntil(this.subscriptions))
+      .subscribe(v => this.currentlyDisplayedPlan.next(this.currentlyDisplayedPlan.value));
 
     // fixes a bug whereby <top-bar> isn't visible on login, on mobile
     document.documentElement.scrollTop = 0;
