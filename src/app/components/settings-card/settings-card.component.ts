@@ -1,10 +1,9 @@
 import { AuthStorageService } from './../../../services/auth-storage.service';
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/services/auth.service';
-import { User } from 'src/models/user';
 
 @Component({
   selector: 'app-settings-card',
