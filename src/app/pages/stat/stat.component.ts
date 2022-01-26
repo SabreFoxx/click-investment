@@ -2,11 +2,11 @@ import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from 'ng-apexcharts';
-import { BehaviorSubject, combineLatest, Observable, ReplaySubject, zip } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { delay, map, pluck, takeUntil } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
-import { loadPlanDataForApexChartSeries } from 'src/adjectives/functions'
+import { loadPlanDataForApexChartSeries } from 'src/adjectives/functions';
 
 Swiper.use([EffectCoverflow, Pagination]);
 
@@ -156,7 +156,7 @@ export class StatComponent implements OnInit, OnDestroy {
   ngAfterViewInit(): void {
     // draw graph
     this.currentlyDisplayedPlan
-      .pipe(delay(300), takeUntil(this.subscriptions)) // delay() fixes a bug
+      .pipe(delay(500), takeUntil(this.subscriptions)) // delay() fixes a bug
       .subscribe(plan => {
         this.planStatOptions.series = [{
           data: loadPlanDataForApexChartSeries(plan)
