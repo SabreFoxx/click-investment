@@ -1,5 +1,5 @@
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 import { PaymentService } from 'src/services/payment.service';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { PaymentTool } from 'src/models/payment-tool';

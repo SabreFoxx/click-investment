@@ -2,7 +2,7 @@ import { AuthStorageService } from './auth-storage.service';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 
 @Injectable({
   providedIn: 'root'

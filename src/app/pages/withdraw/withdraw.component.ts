@@ -1,4 +1,4 @@
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 import { AuthStorageService } from 'src/services/auth-storage.service';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';

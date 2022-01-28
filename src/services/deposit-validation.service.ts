@@ -1,5 +1,5 @@
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

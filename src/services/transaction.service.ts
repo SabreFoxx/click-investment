@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 import { Deposit } from 'src/models/deposit';
 import { Withdrawal } from 'src/models/withdrawal';
 import { AuthStorageService } from './auth-storage.service';
-import { SimpleHttpService } from './simple-post.service';
+import { SimpleHttpService } from './simple-http.service';
 
 @Injectable({
   providedIn: 'root'

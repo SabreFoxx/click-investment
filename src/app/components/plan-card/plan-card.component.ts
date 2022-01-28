@@ -1,5 +1,5 @@
 import { AuthStorageService } from 'src/services/auth-storage.service';
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Plan } from 'src/models/plan';

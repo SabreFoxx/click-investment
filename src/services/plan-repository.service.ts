@@ -1,4 +1,4 @@
-import { SimpleHttpService } from './simple-post.service';
+import { SimpleHttpService } from './simple-http.service';
 import { AuthStorageService } from './auth-storage.service';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Plan } from 'src/models/plan';

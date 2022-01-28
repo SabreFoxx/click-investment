@@ -2,7 +2,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthStorageService } from './auth-storage.service';
-import { SimpleHttpService } from './simple-post.service';
+import { SimpleHttpService } from './simple-http.service';
 import { Deposit } from 'src/models/deposit';
 
 @Injectable({

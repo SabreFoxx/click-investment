@@ -1,5 +1,5 @@
 import { AuthStorageService } from './auth-storage.service';
-import { SimpleHttpService } from './simple-post.service';
+import { SimpleHttpService } from './simple-http.service';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Inject, Injectable } from '@angular/core';
 import { PaymentMethod } from 'src/models/payment-method';

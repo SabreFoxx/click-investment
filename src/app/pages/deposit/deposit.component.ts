@@ -1,5 +1,5 @@
 import { CryptoWallet } from 'src/models/crypto-wallet';
-import { SimpleHttpService } from 'src/services/simple-post.service';
+import { SimpleHttpService } from 'src/services/simple-http.service';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { AuthStorageService } from 'src/services/auth-storage.service';
 import { PaymentTool } from 'src/models/payment-tool';
