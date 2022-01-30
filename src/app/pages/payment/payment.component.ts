@@ -63,9 +63,6 @@ export class PaymentComponent implements OnInit {
   }
 
   showAlert(card: PaymentMethod, muchLaterNavigateTo: 'withdraw' | 'deposit') {
-    if (card.name == 'Credit/Debit')
-      return this.creditCardDepositsAreComingSoon();
-
     const footer = muchLaterNavigateTo == 'deposit' ?
       'Select this payment method for use in funding your plan'
       : 'Receive your funds using this payment method';
@@ -111,16 +108,5 @@ export class PaymentComponent implements OnInit {
     this.http.update<Deposit>(this.endpoint, {
       depositId: this.selectedDepositForVerification.id
     }, this.authStore.authorizationHeader);
-  }
-
-  creditCardDepositsAreComingSoon(): void {
-    this.alertMixin.fire({
-      title: 'Coming soon',
-      icon: 'warning',
-      iconColor: '#f7b654',
-      text: 'Credit/Debit card payments are not yet available!',
-      footer: 'Please choose another payment method',
-      showCancelButton: false
-    });
   }
 }
