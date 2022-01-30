@@ -44,11 +44,11 @@ export class SideMenuItemComponent implements OnInit, OnDestroy {
           true : false;
       });
 
-
+    this.toolTip_ = this.toolTip;
     this.ui.isSideMenuVisible
       .pipe(takeUntil(this.subscriptions))
       .subscribe(answer => {
-        this.toolTip_ = answer ? '' : this.toolTip;
+        this.toolTip_ = answer ? this.toolTip : '';
       })
   }
 
