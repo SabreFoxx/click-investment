@@ -15,7 +15,6 @@ describe('SimpleHttpService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [
-                SimpleHttpService,
                 { provide: LoadingFeedbackService, useValue: feedbackAnimationSpy }
             ]
         })
