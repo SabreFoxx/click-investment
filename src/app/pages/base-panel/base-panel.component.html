@@ -1,24 +1,23 @@
 <div class="app">
-    <aside #sideMenu class="app-menu side-menu-closed">
-        <div #top class="app-menu-top side-menu-closed">
-            <div #menuButton class="menu-button side-menu-closed"
-                 [class.menu-button--active]="isSideMenuVisible | async" (click)="toggleSideMenu()">
+    <aside #sideMenu class="app-menu">
+        <div #top class="app-menu-top">
+            <div #menuButton class="menu-button"
+                 [class.menu-button--active]="(isSideMenuVisible | async) ?? true"
+                 (click)="toggleSideMenu()">
                 <div class="menu-button__slice"></div>
             </div>
-            <img #profilePic class="profile-pic side-menu-closed" src="/assets/img/avatar.png"
-                 alt="profile-picture">
+            <img #profilePic class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture">
             <span *ngIf="isSideMenuVisible | async" class="text text-welcome">Welcome,</span>
             <span *ngIf="isSideMenuVisible | async" class="text text-name">
                 {{(user | async)?.firstName}} {{(user | async)?.lastName}}
             </span>
         </div>
 
-        <nav #nav class="app-nav side-menu-closed">
+        <nav #nav class="app-nav">
             <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                 <app-side-menu-item [link]="['/app', 'stats']" toolTip="Stats">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#tablet-dashboard"></use>
                         </svg>
                     </ng-container>
@@ -26,8 +25,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'payments']" toolTip="Payments">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#cash-multiple"></use>
                         </svg>
                     </ng-container>
@@ -35,8 +33,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'transactions']" toolTip="Transactions">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#cards-variant"></use>
                         </svg>
                     </ng-container>
@@ -44,8 +41,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'plans']" toolTip="Plans">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#handshake-outline"></use>
                         </svg>
                     </ng-container>
@@ -53,8 +49,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'validations']" toolTip="Validations">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#hand-okay"></use>
                         </svg>
                     </ng-container>
@@ -62,8 +57,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/app', 'profile']" toolTip="Profile">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#face-man"></use>
                         </svg>
                     </ng-container>
@@ -74,8 +68,7 @@
 
                 <app-side-menu-item [link]="['/app', 'about']" toolTip="About">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#information-outline"></use>
                         </svg>
                     </ng-container>
@@ -83,8 +76,7 @@
                 </app-side-menu-item>
                 <app-side-menu-item [link]="['/auth', 'logout']" toolTip="Logout">
                     <ng-container class="svg-icon">
-                        <svg #templateVarUsedWhenisSideMenuVisible
-                             class="svg-icon side-menu-closed">
+                        <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#logout"></use>
                         </svg>
                     </ng-container>
@@ -94,16 +86,16 @@
         </nav>
     </aside>
 
-    <div #panelBase class="app-base side-menu-closed">
+    <div #panelBase class="app-base">
         <app-top-bar></app-top-bar>
-        <div #displayPanel class="app-panel side-menu-closed" id="display-panel">
+        <div #displayPanel class="app-panel" id="display-panel">
             <main class="app-main" [@fadeAnim]="prepareRoute(outlet)">
                 <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                     <router-outlet #outlet="outlet"></router-outlet>
                 </ng-scrollbar>
             </main>
             <aside #appNotificationPaneContainer *ngIf="isShowNotificationPane"
-                   class="app-notification-pane side-menu-closed">
+                   class="app-notification-pane">
                 <ng-scrollbar track="vertical" visibility="hover" pointerEventsMethod="scrollbar">
                     <app-notification-pane [myContainer]="appNotificationPaneContainer">
                     </app-notification-pane>
