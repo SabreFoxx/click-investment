@@ -2,7 +2,7 @@
     <header class="message-header is-link">
         <p>Make your payment</p>
     </header>
-    <section class="message-body">
+    <section *ngIf="depositDetails.medium.type == 'CRYPTO'" class="message-body">
         You are <strong>depositing
             <a>{{depositDetails?.medium.name | uppercase}}</a>
         </strong> to the <em>{{depositDetails?.plan.name}} Plan</em>.
@@ -10,7 +10,15 @@
         <em> (your local currency) </em> you wish to deposit, to see its value in
         <a>{{depositDetails?.medium.name | uppercase}}</a>
     </section>
-    <form [formGroup]="form" (ngSubmit)="deposit()">
+    <section *ngIf="depositDetails.medium.type == 'CARD'" class="message-body">
+        You are <strong>depositing money </strong>
+        to the <em>{{depositDetails?.plan.name}} Plan</em>.
+        Enter the amount you wish to deposit, afterwhich deposit the
+        <strong>exact amount</strong>
+        to the Ramp network you'll be redirected to. Once done, proceed to payment
+        verification in the Payments section.
+    </section>
+    <form *ngIf="depositDetails.medium.type == 'CRYPTO'" [formGroup]="form" (ngSubmit)="deposit()">
         <div class="currency">
             <div>
                 <input-box placeholder="{{moneySymbol}}" [control]="fiatField"
@@ -28,15 +36,23 @@
         </div>
         <div class="currency input-container">
             <button class="button is-rounded is-link" type="submit"
-                    [disabled]="!isOkayToDepositMoney">
-                Deposit
-            </button>
+                    [disabled]="!isOkayToDepositMoney">Deposit</button>
+        </div>
+    </form>
+
+    <form *ngIf="depositDetails.medium.type == 'CARD'" [formGroup]="form" (ngSubmit)="deposit()">
+        <div class="currency">
+            <input-box placeholder="{{moneySymbol}}" [control]="fiatField" type="number">
+            </input-box>
+        </div>
+        <div class="currency input-container">
+            <button class="button is-rounded is-link" type="submit">Deposit</button>
         </div>
     </form>
 </article>
 
-<section class="message container-white">
-    <div #addr class="wallet-address">
+<section class="instruction container-white">
+    <div #addr class="wallet">
         <div class="qr">
             <img [src]="cryptoWalletToDepositMoney?.barcodeImagePath" alt="qr code" class="qr">
             <p><em>Copy the wallet address, or scan this QR code with your wallet App</em></p>

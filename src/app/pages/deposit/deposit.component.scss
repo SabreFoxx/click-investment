@@ -10,10 +10,13 @@
     }
 }
 
-.wallet-address {
-    margin: 1em 0;
+.instruction {
     opacity: 0;
     transition: opacity 250ms linear;
+}
+
+.wallet {
+    margin: 1em 0;
 
     @media (min-width: 48em) {
         display: flex;
