@@ -10,6 +10,11 @@ export const cryptoWallets: { [name: string]: CryptoWallet } = {
         currencyName: 'XRP',
         barcodeImagePath: '/assets/img/qr.jpeg',
         walletAddress: '0xc207B49306d5324c22B3c10827AF03E5875B99C7'
+    },
+    ON_RAMP_WALLET: {
+        currencyName: 'XRP',
+        barcodeImagePath: '/assets/img/qr.jpeg',
+        walletAddress: '0xc207B49306d5324c22B3c10827AF03E5875B99C7'
     }
 };
 

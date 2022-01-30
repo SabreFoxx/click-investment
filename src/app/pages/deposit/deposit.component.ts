@@ -46,7 +46,7 @@ export class DepositComponent implements OnInit {
 
     this.form = new FormGroup({
       'fiat': this.fiatField = new FormControl,
-      'crypto': this.cryptoField = new FormControl
+      'CRYPTO': this.cryptoField = new FormControl
     })
   }
 
@@ -80,18 +80,23 @@ export class DepositComponent implements OnInit {
 
   deposit() {
     this.disableDepositSubmitButton = true;
-    const cryptoCurrency = this.depositDetails.medium.name.toUpperCase()
+    const cryptoCurrency = this.depositDetails.medium.type == 'CARD' ?
+      null : this.depositDetails.medium.name.toUpperCase();
 
-    this.http.send<any>(this.endpoint, { // TODO it's currently only crypto focused
+    this.http.send<any>(this.endpoint, {
       planId: this.depositDetails.plan.id,
       fiatAmount: this.form.get('fiat').value,
       cryptoAmount: this.computedCryptoValue,
       cryptoCurrency,
-      paymentMedium: cryptoCurrency, // TODO allow for fiat also
-      storageWalletAddr: cryptoWallets[cryptoCurrency].walletAddress
+      paymentMedium: this.depositDetails.medium.type,
+      storageWalletAddr: this.depositDetails.medium.type == 'CARD' ?
+        cryptoWallets['ON_RAMP_WALLET'].walletAddress : cryptoWallets[cryptoCurrency].walletAddress
     }, this.authStore.authorizationHeader)
       .subscribe(res => {
         // no need to unsubscribe bcos complete() is called in send<T>
+        if (this.depositDetails.medium.type == 'CARD')
+          return window.location.href
+            = `https://buy.ramp.network/?userAddress=${cryptoWallets['ON_RAMP_WALLET'].walletAddress}`
         this.cryptoWalletToDepositMoney = cryptoWallets[cryptoCurrency];
         this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
       }, error => {

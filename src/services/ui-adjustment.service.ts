@@ -8,7 +8,7 @@ import { Breadcrumb } from 'src/models/breadcrumb';
 export class UIAdjustmentService {
   headerHeight: number;
   isSideMenuVisible = new Subject<boolean>();
-  private isSideMenuVisible_ = false;
+  private isSideMenuVisible_ = true;
   isNotificationPaneVisible = new BehaviorSubject<boolean>(false);
   breadcrumbs: BehaviorSubject<Breadcrumb[]>;
   appHasLoadedBefore = false;
