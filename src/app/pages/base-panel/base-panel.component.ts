@@ -71,6 +71,9 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
         answer ? this.unApplySideMenuCloseActions()
           : this.applySideMenuCloseActions();
       });
+
+    // fixes a bug whereby <top-bar> isn't visible on login, on mobile
+    document.documentElement.scrollTop = 0;
   }
 
   ngOnDestroy(): void {

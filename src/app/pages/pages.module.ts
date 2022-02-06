@@ -50,6 +50,8 @@ export const pageRoutes: Routes = [
     path: 'payments/withdraw',
     component: WithdrawComponent,
     resolve: { withdrawalAvailabilityBlocks: WithdrawalService },
+    // helps me reload data when I call withDrawComponent.reloadView. See reloadView
+    runGuardsAndResolvers: 'always',
     data: { animation: 'Payments' }
   },
   {

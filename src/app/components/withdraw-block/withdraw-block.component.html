@@ -1,6 +1,7 @@
 <td>
     <input type="radio" name="withdrawFromThisBlock" (click)="selectRadio()"
-           [value]="block.depositId" [disabled]="block.status == 'unavailable'">
+           [value]="block.depositId"
+           [disabled]="block.status == 'unavailable' || block.status == 'withdrawn'">
 </td>
 <td>Deposit</td>
 <td>{{block.description}}</td>

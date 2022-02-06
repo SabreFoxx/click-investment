@@ -16,9 +16,11 @@ export class WithdrawBlockComponent implements OnInit {
   ngOnInit(): void { }
 
   selectRadio(): void {
-    const radio = (this.hostElement.nativeElement as HTMLElement).querySelector('input');
-    radio.click();
-    radio.checked = true;
+    if (this.block.status == 'available') {
+      const radio = (this.hostElement.nativeElement as HTMLElement).querySelector('input');
+      radio.click();
+      radio.checked = true;
+    }
   }
 
   get depositIdToUse(): number {
