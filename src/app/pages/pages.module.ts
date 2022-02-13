@@ -26,6 +26,8 @@ import { environment } from 'src/environments/environment';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ValidationComponent } from './validation/validation.component';
 import { TransactionService } from 'src/services/transaction.service';
+import { PaybackComponent } from './payback/payback.component';
+import { PaybackValidationService } from 'src/services/payback-validation.service';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -78,6 +80,13 @@ export const pageRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     data: { animation: 'Validations' }
   },
+  { // TODO only admin should see certain pages
+    path: 'paybacks', component: PaybackComponent,
+    resolve: { resolveDepositsForValidation: PaybackValidationService },
+    // helps me reload data when I call validationComponent.reloadView. See reloadView
+    runGuardsAndResolvers: 'always',
+    data: { animation: 'Paybacks' }
+  },
   {
     path: 'profile',
     component: ProfileComponent,
@@ -102,7 +111,8 @@ export const pageRoutes: Routes = [
     DepositComponent,
     AboutComponent,
     WithdrawComponent,
-    ValidationComponent
+    ValidationComponent,
+    PaybackComponent
   ],
   imports: [
     CommonModule,
