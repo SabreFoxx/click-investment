@@ -26,8 +26,8 @@ import { environment } from 'src/environments/environment';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ValidationComponent } from './validation/validation.component';
 import { TransactionService } from 'src/services/transaction.service';
-import { PaybackComponent } from './payback/payback.component';
-import { PaybackValidationService } from 'src/services/payback-validation.service';
+import { DisbursalComponent } from './disbursal/disbursal.component';
+import { DisbursalValidationService } from 'src/services/disbursal-validation.service';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -81,11 +81,11 @@ export const pageRoutes: Routes = [
     data: { animation: 'Validations' }
   },
   { // TODO only admin should see certain pages
-    path: 'paybacks', component: PaybackComponent,
-    resolve: { resolveDepositsForValidation: PaybackValidationService },
+    path: 'disbursals', component: DisbursalComponent,
+    resolve: { resolveDepositsForValidation: DisbursalValidationService },
     // helps me reload data when I call validationComponent.reloadView. See reloadView
     runGuardsAndResolvers: 'always',
-    data: { animation: 'Paybacks' }
+    data: { animation: 'Disbursals' }
   },
   {
     path: 'profile',
@@ -112,7 +112,7 @@ export const pageRoutes: Routes = [
     AboutComponent,
     WithdrawComponent,
     ValidationComponent,
-    PaybackComponent
+    DisbursalComponent
   ],
   imports: [
     CommonModule,
@@ -190,6 +190,12 @@ export const pageRoutes: Routes = [
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
+      }
+    }, {
+      provide: 'ADMIN_WITHDRAWAL_FOR_DISBURSAL_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.WITHDRAWAL_FOR_DISBURSAL}`
       }
     }
   ]

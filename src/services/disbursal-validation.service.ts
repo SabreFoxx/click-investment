@@ -1,19 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Deposit } from 'src/models/deposit';
+import { Withdrawal } from 'src/models/withdrawal';
 import { AuthStorageService } from './auth-storage.service';
 import { SimpleHttpService } from './simple-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaybackValidationService implements Resolve<Deposit[]> {
+export class DisbursalValidationService implements Resolve<Withdrawal[]> {
 
   constructor(private http: SimpleHttpService, private authStore: AuthStorageService,
-    @Inject('ADMIN_FETCH_DEPOSITS_FOR_VERIFICATION_URL') private endpoint: string) { }
+    @Inject('ADMIN_WITHDRAWAL_FOR_DISBURSAL_URL') private endpoint: string) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Deposit[]> {
-    return this.http.loadPageData<Deposit[]>(this.endpoint, this.authStore.authorizationHeader);
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Withdrawal[]> {
+    return this.http.loadPageData<Withdrawal[]>(this.endpoint, this.authStore.authorizationHeader);
   }
 }
