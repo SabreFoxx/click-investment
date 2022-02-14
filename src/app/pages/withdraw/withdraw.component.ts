@@ -72,10 +72,10 @@ export class WithdrawComponent implements OnInit {
             statusMessage = `Unavailable till ${this.datePipe.transform(deposit.lockedTill, 'medium')}`
             cssClass = 'pending'
           }
-          if (deposit['Withdrawals.id']) {
+          if (deposit['Withdrawal.id']) {
             status = 'withdrawn'
             statusMessage = 'Withdrawn on '
-              + `${this.datePipe.transform(deposit['Withdrawals.createdAt'], 'medium')}`
+              + `${this.datePipe.transform(deposit['Withdrawal.createdAt'], 'medium')}`
             cssClass = 'failure'
           }
 
@@ -189,7 +189,7 @@ export class WithdrawComponent implements OnInit {
         ]
       },
       footer: 'After you click the Withdraw button, wait a couple of minutes '
-        + "for us to verify the transaction on our end. We'll credit your wallet soon "
+        + "for us to verify the transaction on our end. We'll credit your wallet soon."
     }).then(result => {
       if (result.isConfirmed) {
         const [fiatAmount, paymentMedium, userWalletAddr] = result.value;
@@ -210,6 +210,7 @@ export class WithdrawComponent implements OnInit {
               footer: 'Check your transaction log for the status.',
               showCancelButton: false
             })
+            this.reloadView();
           });
       } else if (result.isDismissed && result.dismiss == Swal.DismissReason.cancel)
         this.alertMixin.fire({
@@ -245,6 +246,14 @@ export class WithdrawComponent implements OnInit {
 
   get planCurrentAmount(): number {
     return calculateCurrentAmount(this.withdrawDetails?.plan);
+  }
+
+  /**
+   * Reload our view, and thus its data
+   */
+  reloadView(): void {
+    this.router.navigated = false;
+    this.router.navigate(['./'], { relativeTo: this.route });
   }
 
 }

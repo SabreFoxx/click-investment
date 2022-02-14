@@ -171,9 +171,6 @@ export class StatComponent implements OnInit, OnDestroy {
     this.ui.isNotificationPaneVisible
       .pipe(takeUntil(this.subscriptions))
       .subscribe(v => this.currentlyDisplayedPlan.next(this.currentlyDisplayedPlan.value));
-
-    // fixes a bug whereby <top-bar> isn't visible on login, on mobile
-    document.documentElement.scrollTop = 0;
   }
 
   display(plan: Plan) {

@@ -4,8 +4,8 @@
 /* Imports necessary to modify bulma variables */
 @use "sass:math";
 
-@import "node_modules/bulma/sass/utilities/initial-variables",
-"node_modules/bulma/sass/utilities/functions";
+@import "bulma/sass/utilities/initial-variables",
+"bulma/sass/utilities/functions";
 /* Override bulma initial variables default here */
 // Add a serif family
 $family-serif: 'Pridi, serif',
@@ -23,7 +23,7 @@ $message-radius: 1rem;
 /* End override initial variables */
 
 /* Import necessary to modify bulma derived variables */
-@import "node_modules/bulma/sass/utilities/derived-variables";
+@import "bulma/sass/utilities/derived-variables";
 /* Override derived variables default here */
 $control-width: 1400px;
 /* End override derived variables */

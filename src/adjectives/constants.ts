@@ -30,7 +30,8 @@ export enum ApiEndpoints {
     DEPOSIT_TRANSACTION = '/deposit',
     WITHDRAWAL_TRANSACTION = '/withdrawal',
 
-    DEPOSIT_FOR_VERIFICATION = '/admin/deposit'
+    DEPOSIT_FOR_VERIFICATION = '/admin/deposit',
+    WITHDRAWAL_FOR_DISBURSAL = '/admin/deposit'
 }
 
 export const apiPrefix: { prod: string, dev: string, test: string } = {

@@ -26,6 +26,8 @@ import { environment } from 'src/environments/environment';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ValidationComponent } from './validation/validation.component';
 import { TransactionService } from 'src/services/transaction.service';
+import { DisbursalComponent } from './disbursal/disbursal.component';
+import { DisbursalValidationService } from 'src/services/disbursal-validation.service';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -50,6 +52,8 @@ export const pageRoutes: Routes = [
     path: 'payments/withdraw',
     component: WithdrawComponent,
     resolve: { withdrawalAvailabilityBlocks: WithdrawalService },
+    // helps me reload data when I call withDrawComponent.reloadView. See reloadView
+    runGuardsAndResolvers: 'always',
     data: { animation: 'Payments' }
   },
   {
@@ -76,6 +80,13 @@ export const pageRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     data: { animation: 'Validations' }
   },
+  { // TODO only admin should see certain pages
+    path: 'disbursals', component: DisbursalComponent,
+    resolve: { resolveDepositsForValidation: DisbursalValidationService },
+    // helps me reload data when I call validationComponent.reloadView. See reloadView
+    runGuardsAndResolvers: 'always',
+    data: { animation: 'Disbursals' }
+  },
   {
     path: 'profile',
     component: ProfileComponent,
@@ -100,7 +111,8 @@ export const pageRoutes: Routes = [
     DepositComponent,
     AboutComponent,
     WithdrawComponent,
-    ValidationComponent
+    ValidationComponent,
+    DisbursalComponent
   ],
   imports: [
     CommonModule,
@@ -178,6 +190,12 @@ export const pageRoutes: Routes = [
       deps: ['API_PREFIX'],
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.DEPOSIT_FOR_VERIFICATION}`
+      }
+    }, {
+      provide: 'ADMIN_WITHDRAWAL_FOR_DISBURSAL_URL',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.WITHDRAWAL_FOR_DISBURSAL}`
       }
     }
   ]
