@@ -82,7 +82,7 @@ export const pageRoutes: Routes = [
   },
   { // TODO only admin should see certain pages
     path: 'disbursals', component: DisbursalComponent,
-    resolve: { resolveDepositsForValidation: DisbursalValidationService },
+    resolve: { resolveDisbursalsForValidation: DisbursalValidationService },
     // helps me reload data when I call validationComponent.reloadView. See reloadView
     runGuardsAndResolvers: 'always',
     data: { animation: 'Disbursals' }

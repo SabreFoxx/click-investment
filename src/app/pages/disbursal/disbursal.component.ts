@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
-import { Deposit } from 'src/models/deposit';
+import { map, pluck } from 'rxjs/operators';
+import { Withdrawal } from 'src/models/withdrawal';
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 
 @Component({
@@ -11,7 +11,9 @@ import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
   styleUrls: ['./disbursal.component.scss']
 })
 export class DisbursalComponent implements OnInit {
-  depositsForValidation: Observable<Deposit[]>;
+  disbursalsForValidation: Observable<Withdrawal[]>;
+  // userWalletAddr of Withdrawal will be renamed to walletAddr
+  viewData: Observable<any>;
 
   constructor(private route: ActivatedRoute, private ui: UIAdjustmentService,
     private router: Router,) {
@@ -19,7 +21,19 @@ export class DisbursalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.depositsForValidation = this.route.data.pipe(pluck('resolveDepositsForValidation'));
+    this.disbursalsForValidation = this.route.data.pipe(pluck('resolveDisbursalsForValidation'));
+    this.viewData = this.disbursalsForValidation.pipe(
+      map(withdrawals => {
+        return withdrawals.map(withdrawal => {
+          // rename userWalletAddr to walletAddr
+          const oldKey = 'userWalletAddr'
+          const newKey = 'walletAddr'
+
+          const { [oldKey]: replaceByKey, ...rest } = withdrawal
+          return { ...rest, [newKey]: replaceByKey }
+        })
+      })
+    );
   }
 
   /**

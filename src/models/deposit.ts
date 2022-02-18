@@ -6,5 +6,6 @@ export interface Deposit {
     cryptoAmount: number,
     status: 'PENDING' | 'SUCCESS' | 'FAILED',
     paymentMedium: 'XRP', 'XLM', 'CARD',
-    createdAt: any
+    createdAt: any,
+    storageWalletAddr?: string
 }

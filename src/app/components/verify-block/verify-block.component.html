@@ -6,7 +6,7 @@
 <td>{{block?.createdAt | date:'shortTime'}}</td>
 <td>{{block.fiatAmount | currency:block.fiatCurrency:'symbol'}}</td>
 <td>{{block.paymentMedium}}</td>
-<td><abbr [title]="block['storageWalletAddr']">{{block['storageWalletAddr'].substring(0, 7)}}</abbr>
+<td><abbr [title]="block['walletAddr']">{{block['walletAddr'].substring(0, 7)}}</abbr>
 </td>
 <td><button class="button is-rounded is-link" (click)="accept()">Accept</button>
 </td>

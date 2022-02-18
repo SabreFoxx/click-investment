@@ -5,6 +5,7 @@ import { Component, Inject, Input, OnInit, Output, EventEmitter } from '@angular
 import { getMaxLetters } from 'src/adjectives/functions';
 import { Deposit } from 'src/models/deposit';
 import Swal from 'sweetalert2';
+import { Withdrawal } from 'src/models/withdrawal';
 
 @Component({
   selector: 'tr[app-verify-block]',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./verify-block.component.scss']
 })
 export class VerifyBlockComponent implements OnInit {
-  @Input() block: Deposit;
+  @Input() block: Deposit | Withdrawal | any;
   @Output() reloadList = new EventEmitter();
 
   alertMixin = Swal.mixin({
