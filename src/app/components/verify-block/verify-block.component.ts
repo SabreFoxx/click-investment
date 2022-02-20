@@ -10,24 +10,24 @@ import { Withdrawal } from 'src/models/withdrawal';
 })
 export class VerifyBlockComponent implements OnInit {
   @Input() block: Deposit | Withdrawal | any;
-  @Output() acceptTransaction = new EventEmitter();
-  @Output() hideTransaction = new EventEmitter();
-  @Output() rejectTransaction = new EventEmitter();
+  @Output() accept = new EventEmitter();
+  @Output() hide = new EventEmitter();
+  @Output() reject = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  accept() {
-    this.acceptTransaction.emit(this.block);
+  accept_() {
+    this.accept.emit(this.block);
   }
 
-  hide() {
-    this.hideTransaction.emit(this.block);
+  hide_() {
+    this.hide.emit(this.block);
   }
 
-  reject() {
-    this.rejectTransaction.emit(this.block);
+  reject_() {
+    this.reject.emit(this.block);
   }
 
   trimLength(string) {

@@ -56,7 +56,7 @@ export class DisbursalComponent implements OnInit {
     );
   }
 
-  accept(block: Withdrawal) {
+  acceptTransaction(block: Withdrawal) {
     this.alertMixin.fire({
       title: 'Are you sure you want to confirm this payment?',
       text: `This payment was made by ${block["User.firstName"]} `
@@ -75,9 +75,7 @@ export class DisbursalComponent implements OnInit {
     });
   }
 
-  hide(block: Withdrawal) { }
-
-  reject(block: Withdrawal) {
+  rejectTransaction(block: Withdrawal) {
     this.alertMixin.fire({
       title: 'Read this twice! Do you really want to reject this payment?',
       text: `This payment was made by ${block["User.firstName"]} ${block["User.lastName"]} `
