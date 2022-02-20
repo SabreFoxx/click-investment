@@ -5,5 +5,6 @@ export interface Withdrawal {
     status: 'PENDING' | 'DISBURSED' | 'REJECTED',
     from: 'DEPOSITED_MONEY' | 'PROFIT',
     PlanId: number,
+    userWalletAddr: string,
     createdAt: any
 }
