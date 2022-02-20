@@ -56,7 +56,7 @@ export class ValidationComponent implements OnInit {
     );
   }
 
-  accept(block: Deposit) {
+  acceptTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Are you sure you want to confirm this payment?',
       text: `This payment was made by ${block["User.firstName"]} `
@@ -75,7 +75,7 @@ export class ValidationComponent implements OnInit {
     });
   }
 
-  hide(block: Deposit) {
+  hideTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Do you really want to hide this payment?',
       text: `This payment was made by ${block["User.firstName"]} `
@@ -93,7 +93,7 @@ export class ValidationComponent implements OnInit {
     });
   }
 
-  reject(block: Deposit) {
+  rejectTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Read this twice! Do you really want to reject this payment?',
       text: `This payment was made by ${block["User.firstName"]} ${block["User.lastName"]} `

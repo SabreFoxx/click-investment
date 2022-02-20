@@ -49,7 +49,8 @@
                 </tfoot>
                 <tbody>
                     <tr *ngFor="let deposit of viewData | async" [block]="deposit"
-                        (reloadList)="reloadView()" class="row" app-verify-block>
+                        (accept)="acceptTransaction($event)" (reject)="rejectTransaction($event)"
+                        class="row" app-verify-block>
                     </tr>
                 </tbody>
             </table>
