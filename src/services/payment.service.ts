@@ -37,12 +37,13 @@ export class PaymentService implements Resolve<Deposit[]> {
         type: 'CARD'
       },
       {
-        name: 'Bank wire', cssClass: 'WIRE',
+        name: 'Bank wire', cssClass: 'wire',
         description: "Wire transfer, bank transfer, or credit transfer, is a method "
           + "of electronic funds transfer from one person or entity to another. "
           + "A wire transfer can be made from one bank account to another bank account, "
           + "or through a transfer of cash at a cash office.",
-        type: 'WIRE'
+        type: 'CARD'
+        // type: 'WIRE'
       }
     ]);
   }

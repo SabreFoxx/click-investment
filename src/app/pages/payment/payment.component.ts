@@ -51,10 +51,7 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.depositPaymentMethods = this.payMthServ.methods
-      .pipe(map(methods => {
-        return methods.filter(m => m.type != 'WIRE')
-      }));
+    this.depositPaymentMethods = this.payMthServ.methods;
     this.withdrawalPaymentMethods = this.payMthServ.methods
       .pipe(map(methods => {
         return methods.filter(m => m.type == 'CRYPTO')

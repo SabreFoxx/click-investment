@@ -15,5 +15,4 @@ export class PlanRepositoryService implements Resolve<Plan[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Plan[]> {
     return this.http.loadPageData<Plan[]>(this.endpoint, this.authStore.authorizationHeader);
   }
-
 }
