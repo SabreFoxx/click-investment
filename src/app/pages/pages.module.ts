@@ -197,6 +197,12 @@ export const pageRoutes: Routes = [
       useFactory(prefix: string) {
         return `${prefix}${ApiEndpoints.WITHDRAWAL_FOR_DISBURSAL}`
       }
+    }, {
+      provide: 'NOTIFICATION',
+      deps: ['API_PREFIX'],
+      useFactory(prefix: string) {
+        return `${prefix}${ApiEndpoints.NOTIFICATION}`
+      }
     }
   ]
 })

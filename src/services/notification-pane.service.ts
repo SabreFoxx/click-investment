@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { Notification } from 'src/models/notification';
+import { AuthStorageService } from './auth-storage.service';
+import { SimpleHttpService } from './simple-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +12,19 @@ export class NotificationPaneService {
   newsHeadlines: Array<Notification>;
   notifications: Array<Notification>;
   display: BehaviorSubject<Array<Notification>>;
+  private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor() {
-    const alert = new Notification('Deposit Made', `
-    Your deposit of 20 GBP was made successfully
-      `, '2022-01-05 12:23:14.429+00');
+  constructor(private http: SimpleHttpService, @Inject('NOTIFICATION') private endpoint: string,
+    private authStore: AuthStorageService) {
+    this.notifications = [];
+    http.receive<any[]>(this.endpoint, this.authStore.authorizationHeader)
+      .pipe(
+        map(notifications => notifications.map(n => n?.Notification)),
+        takeUntil(this.subscriptions)
+      )
+      .subscribe(notifications => {
+        this.notifications = notifications
+      });
 
     this.newsHeadlines = [
       new Notification(
@@ -56,8 +67,11 @@ export class NotificationPaneService {
       )
     ];
 
-    this.notifications = [alert, alert, alert, alert, alert, alert, alert, alert, alert];
-
     this.display = new BehaviorSubject(this.newsHeadlines);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.next(true);
+    this.subscriptions.complete();
   }
 }
