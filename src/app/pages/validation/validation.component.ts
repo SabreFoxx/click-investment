@@ -59,7 +59,7 @@ export class ValidationComponent implements OnInit {
   acceptTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Are you sure you want to confirm this payment?',
-      text: `This payment was made by ${block["User.firstName"]} `
+      text: `This payment was made by ${block["User.name"]} `
         + `${block["User.lastName"]} `
         + `on ${this.datePipe.transform(block.createdAt, 'medium')}`,
       confirmButtonText: 'Yes, confirm payment',
@@ -78,7 +78,7 @@ export class ValidationComponent implements OnInit {
   hideTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Do you really want to hide this payment?',
-      text: `This payment was made by ${block["User.firstName"]} `
+      text: `This payment was made by ${block["User.name"]} `
         + `${block["User.lastName"]} `
         + `on ${this.datePipe.transform(block.createdAt, 'medium')}`,
       confirmButtonText: 'Yes, hide payment',
@@ -96,7 +96,7 @@ export class ValidationComponent implements OnInit {
   rejectTransaction(block: Deposit) {
     this.alertMixin.fire({
       title: 'Read this twice! Do you really want to reject this payment?',
-      text: `This payment was made by ${block["User.firstName"]} ${block["User.lastName"]} `
+      text: `This payment was made by ${block["User.name"]} ${block["User.lastName"]} `
         + `on ${this.datePipe.transform(block.createdAt, 'medium')}`,
       icon: 'warning',
       iconColor: '#fb6962',

@@ -12,8 +12,8 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class SettingsCardComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  firstName: AbstractControl;
-  surname: AbstractControl;
+  name: AbstractControl;
+  currency: AbstractControl;
   email: AbstractControl;
   phone: AbstractControl;
 
@@ -27,8 +27,8 @@ export class SettingsCardComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, @Inject('REGISTRATION_URL') private endpoint: string,
     private auth: AuthService, private authStore: AuthStorageService) {
     this.form = this.fb.group({
-      'firstName': ['', Validators.required],
-      'surname': ['', Validators.required],
+      'name': ['', Validators.required],
+      'currency': ['', Validators.required],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'phone': ['', Validators.minLength(5)] // TODO change to currency, even in sign-up.component
     });
@@ -37,8 +37,8 @@ export class SettingsCardComponent implements OnInit, OnDestroy {
       'retypePassword': ['', Validators.required]
     });
 
-    this.firstName = this.form.controls['firstName'];
-    this.surname = this.form.controls['surname'];
+    this.name = this.form.controls['name'];
+    this.currency = this.form.controls['currency'];
     this.email = this.form.controls['email'];
     this.phone = this.form.controls['phone'];
     this.password = this.passwordForm.controls['password'];
@@ -49,7 +49,7 @@ export class SettingsCardComponent implements OnInit, OnDestroy {
     this.authStore.currentUser
       .pipe(takeUntil(this.subscriptions))
       .subscribe(user => {
-        this.firstName.setValue(user.name)
+        this.name.setValue(user.name)
         this.email.setValue(user.email)
         this.phone.setValue(user.currency)
       });

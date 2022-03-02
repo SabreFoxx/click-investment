@@ -1,6 +1,6 @@
 <td>
-    <abbr [title]="block['User.firstName'] + ' ' + block['User.lastName']">
-        {{trimLength(block['User.firstName'])}} {{trimLength(block['User.lastName'])}}</abbr>
+    <abbr [title]="block['User.name'] + ' ' + block['User.lastName']">
+        {{trimLength(block['User.name'])}}</abbr>
 </td>
 <td>{{block?.createdAt | date:'mediumDate'}}</td>
 <td>{{block?.createdAt | date:'shortTime'}}</td>
