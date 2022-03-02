@@ -1,6 +1,6 @@
 export interface User {
-    firstName: string,
-    lastName: string,
+    name: string,
     email: string,
-    currency: string
+    currency: string,
+    phoneNumber: string,
 }

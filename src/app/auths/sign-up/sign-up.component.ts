@@ -17,8 +17,8 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  firstName: AbstractControl;
-  surname: AbstractControl;
+  name: AbstractControl;
+  currency: AbstractControl;
   email: AbstractControl;
   phone: AbstractControl;
   password: AbstractControl;
@@ -30,16 +30,16 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(fb: FormBuilder, @Inject('REGISTRATION_URL') private endpoint: string,
     private auth: AuthService) {
     this.form = fb.group({
-      'firstName': ['', Validators.required],
-      'surname': ['', Validators.required],
+      'name': ['', Validators.required],
+      'currency': [''],
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'phone': ['', Validators.minLength(5)],
       'password': ['', Validators.compose([Validators.required])],
       'retypePassword': ['', Validators.required]
     });
 
-    this.firstName = this.form.controls['firstName'];
-    this.surname = this.form.controls['surname'];
+    this.name = this.form.controls['name'];
+    this.currency = this.form.controls['currency'];
     this.email = this.form.controls['email'];
     this.phone = this.form.controls['phone'];
     this.password = this.form.controls['password'];

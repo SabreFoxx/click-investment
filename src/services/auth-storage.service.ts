@@ -14,10 +14,10 @@ export class AuthStorageService {
   constructor() {
     this.httpHeader = new HttpHeaders;
     const emptyUser: User = {
-      firstName: null,
-      lastName: null,
+      name: null,
       email: null,
-      currency: null
+      currency: null,
+      phoneNumber: null
     }
     this.currentUser = new BehaviorSubject(emptyUser);
   }

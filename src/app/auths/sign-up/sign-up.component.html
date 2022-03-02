@@ -4,14 +4,20 @@
         <br>
         <div class="input-row">
             <div>
-                <input-box placeholder="Surname" errorMsg="Enter your surname" [control]="surname"
-                           [validationFailed]="surname.invalid && surname.touched">
+                <input-box placeholder="Name" errorMsg="Enter your surname" [control]="name"
+                           [validationFailed]="name.invalid && name.touched">
                 </input-box>
             </div>
             <div>
-                <input-box placeholder="Firstname" errorMsg="Enter your name" [control]="firstName"
-                           [validationFailed]="firstName.invalid && firstName.touched">
-                </input-box>
+                <div class="input-box">
+                    <div class="select" style="width: 100%">
+                        <select class="input" [formControl]="currency"
+                                placeholder="Select currency">
+                            <option>USD</option>
+                            <option>GBP</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -57,9 +63,8 @@
         <br>
         <div class="input-row">
             <a [routerLink]="['/auth/signup_']" class="button is-rounded">Back</a>
-            <!-- <button class="button is-rounded is-link" type="submit"
-                    [disabled]="!form.valid || disableSubmitButton">Submit</button> -->
-            <button class="button is-rounded is-link" type="submit" disabled>Submit</button>
+            <button class="button is-rounded is-link" type="submit"
+                    [disabled]="!form.valid || disableSubmitButton">Submit</button>
         </div>
     </form>
 </section>
