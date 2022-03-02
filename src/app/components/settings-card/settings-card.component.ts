@@ -49,8 +49,7 @@ export class SettingsCardComponent implements OnInit, OnDestroy {
     this.authStore.currentUser
       .pipe(takeUntil(this.subscriptions))
       .subscribe(user => {
-        this.firstName.setValue(user.firstName)
-        this.surname.setValue(user.lastName)
+        this.firstName.setValue(user.name)
         this.email.setValue(user.email)
         this.phone.setValue(user.currency)
       });
