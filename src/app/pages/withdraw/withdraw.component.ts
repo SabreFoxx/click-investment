@@ -192,11 +192,11 @@ export class WithdrawComponent implements OnInit {
         + "for us to verify the transaction on our end. We'll credit your wallet soon."
     }).then(result => {
       if (result.isConfirmed) {
-        const [fiatAmount, paymentMedium, userWalletAddr] = result.value;
+        const [fiatAmount, withdrawalMedium, userWalletAddr] = result.value;
 
         this.http.send<any>(this.endpoint, {
           fiatAmount,
-          paymentMedium,
+          withdrawalMedium,
           userWalletAddr,
           planId: this.withdrawDetails.plan.id,
           depositId: this.withdrawalBlockToUse.depositId

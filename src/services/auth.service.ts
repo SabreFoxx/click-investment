@@ -27,18 +27,6 @@ export class AuthService {
     });
   }
 
-  public register(credentials, endpoint = this.registrationEndpoint) {
-    this.post.send<User>(endpoint, credentials)
-      .subscribe(user => {
-        this.authStorage.currentUser.next(user);
-        this.router.navigate(['/app/stats']);
-      })
-    this.post.fullResponseBody.subscribe(response => {
-      if (response?.token)
-        this.authStorage.userJwtToken = response['token'];
-    });
-  }
-
   public refreshLogin() {
     if (this.authStorage.isLoggedIn)
       this.post.send<User>(this.loginRefreshEndpoint, null,
