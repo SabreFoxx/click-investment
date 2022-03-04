@@ -11,10 +11,10 @@
             <div>
                 <div class="input-box">
                     <div class="select" style="width: 100%">
-                        <select class="input" [formControl]="currency"
-                                placeholder="Select currency">
-                            <option>USD</option>
-                            <option>GBP</option>
+                        <select class="input" [formControl]="currency" id="currency">
+                            <option value="" selected>Currency</option>
+                            <option value="USD">USD</option>
+                            <option value="GBP">GBP</option>
                         </select>
                     </div>
                 </div>
