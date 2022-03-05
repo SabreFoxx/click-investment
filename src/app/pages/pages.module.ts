@@ -28,6 +28,7 @@ import { ValidationComponent } from './validation/validation.component';
 import { TransactionService } from 'src/services/transaction.service';
 import { DisbursalComponent } from './disbursal/disbursal.component';
 import { DisbursalValidationService } from 'src/services/disbursal-validation.service';
+import { AdminGuardService } from 'src/services/admin-guard.service';
 
 export const pageRoutes: Routes = [
   { path: '', redirectTo: 'stats', pathMatch: 'full' },
@@ -73,19 +74,21 @@ export const pageRoutes: Routes = [
     resolve: { resolvePlans: PlanRepositoryService },
     data: { animation: 'Plans' }
   },
-  { // TODO only admin should see certain pages
+  {
     path: 'validations', component: ValidationComponent,
     resolve: { resolveDepositsForValidation: DepositValidationService },
     // helps me reload data when I call validationComponent.reloadView. See reloadView
     runGuardsAndResolvers: 'always',
-    data: { animation: 'Validations' }
+    data: { animation: 'Validations' },
+    canActivate: [AdminGuardService]
   },
-  { // TODO only admin should see certain pages
+  {
     path: 'disbursals', component: DisbursalComponent,
     resolve: { resolveDisbursalsForValidation: DisbursalValidationService },
     // helps me reload data when I call validationComponent.reloadView. See reloadView
     runGuardsAndResolvers: 'always',
-    data: { animation: 'Disbursals' }
+    data: { animation: 'Disbursals' },
+    canActivate: [AdminGuardService]
   },
   {
     path: 'profile',

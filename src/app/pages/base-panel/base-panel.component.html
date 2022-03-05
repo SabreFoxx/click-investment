@@ -7,7 +7,8 @@
                 <div class="menu-button__slice"></div>
             </div>
             <img #profilePic class="profile-pic" src="/assets/img/avatar.png" alt="profile-picture">
-            <span *ngIf="(isSideMenuVisible | async) ?? true" class="text text-welcome">Welcome,</span>
+            <span *ngIf="(isSideMenuVisible | async) ?? true"
+                  class="text text-welcome">Welcome,</span>
             <span *ngIf="(isSideMenuVisible | async) ?? true" class="text text-name">
                 {{(user | async)?.name}}
             </span>
@@ -47,7 +48,8 @@
                     </ng-container>
                     <ng-container class="name">Plans</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'validations']" toolTip="Validations">
+                <app-side-menu-item *ngIf="(user | async).isAdmin" [link]="['/app', 'validations']"
+                                    toolTip="Validations">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#hand-okay"></use>
@@ -55,7 +57,8 @@
                     </ng-container>
                     <ng-container class="name">Validations</ng-container>
                 </app-side-menu-item>
-                <app-side-menu-item [link]="['/app', 'disbursals']" toolTip="Disbursals">
+                <app-side-menu-item *ngIf="(user | async).isAdmin" [link]="['/app', 'disbursals']"
+                                    toolTip="Disbursals">
                     <ng-container class="svg-icon">
                         <svg #templateVarUsedWhenIsShowSideMenu class="svg-icon">
                             <use xlink:href="#package-variant-closed-minus"></use>

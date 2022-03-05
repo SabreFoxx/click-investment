@@ -25,7 +25,7 @@
                 <td>{{deposit.createdAt | date:'mediumDate'}}</td>
                 <td>{{deposit.createdAt | date:'shortTime'}}</td>
                 <td>{{deposit.fiatAmount | currency:deposit.fiatCurrency:'symbol'}}</td>
-                <td>{{deposit.paymentMedium}}</td>
+                <td>{{deposit.paymentMedium | titlecase}}</td>
                 <td>Made payment to the {{deposit['Plan.name']}} plan</td>
                 <td class="status">
                     <div class="flex">

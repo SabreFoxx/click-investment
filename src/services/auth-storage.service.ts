@@ -17,7 +17,8 @@ export class AuthStorageService {
       name: null,
       email: null,
       currency: null,
-      phoneNumber: null
+      phoneNumber: null,
+      isAdmin: false
     }
     this.currentUser = new BehaviorSubject(emptyUser);
   }

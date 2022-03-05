@@ -3,4 +3,5 @@ export interface User {
     email: string,
     currency: string,
     phoneNumber: string,
+    isAdmin: boolean
 }

@@ -27,7 +27,7 @@
                 <td>{{withdrawal.createdAt | date:'mediumDate'}}</td>
                 <td>{{withdrawal.createdAt | date:'shortTime'}}</td>
                 <td>{{withdrawal.fiatAmount | currency:withdrawal.fiatCurrency:'symbol'}}</td>
-                <td>{{withdrawal.paymentMedium}}</td>
+                <td>{{withdrawal.paymentMedium | titlecase}}</td>
                 <td>Made payment to the {{withdrawal['Plan.name']}} plan</td>
                 <td class="status">
                     <div class="flex">
