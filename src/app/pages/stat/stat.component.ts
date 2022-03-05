@@ -66,7 +66,7 @@ export class StatComponent implements OnInit, OnDestroy {
           show: false
         }
       },
-      colors: ["#5b9571"],
+      colors: ["#297634"],
       stroke: {
         width: 3
       },
