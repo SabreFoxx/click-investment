@@ -5,7 +5,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Amount</th>
-                <th><abbr title="Crypto currency or bank wire for receiving funds">Channel</abbr>
+                <th><abbr title="Crypto address money was received into">Wallet addr</abbr>
                 </th>
                 <th><abbr title="Description of what was achieved">Objective</abbr></th>
                 <th>Status</th>
@@ -16,7 +16,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Amount</th>
-                <th><abbr title="Crypto currency or bank wire for receiving funds">Channel</abbr>
+                <th><abbr title="Crypto address money was received into">Wallet addr</abbr>
                 </th>
                 <th><abbr title="Description of what was achieved">Objective</abbr></th>
                 <th>Status</th>
@@ -27,8 +27,8 @@
                 <td>{{withdrawal.createdAt | date:'mediumDate'}}</td>
                 <td>{{withdrawal.createdAt | date:'shortTime'}}</td>
                 <td>{{withdrawal.fiatAmount | currency:withdrawal.fiatCurrency:'symbol'}}</td>
-                <td>{{withdrawal.paymentMedium | titlecase}}</td>
-                <td>Made payment to the {{withdrawal['Plan.name']}} plan</td>
+                <td>{{withdrawal.userWalletAddr.substring(0, 7)}}</td>
+                <td>Withdrew money from the {{withdrawal['Plan.name']}} plan</td>
                 <td class="status">
                     <div class="flex">
                         <span class="status-text">{{withdrawal.status | titlecase}}</span>
