@@ -18,7 +18,7 @@ import { cryptoWallets } from 'src/adjectives/constants';
   styleUrls: ['./deposit.component.scss']
 })
 export class DepositComponent implements OnInit {
-  @ViewChild('addr') addr: ElementRef;
+  @ViewChild('instruction') instruction: ElementRef;
   depositDetails: PaymentTool;
   user: BehaviorSubject<User>;
   disableDepositSubmitButton: boolean = true;
@@ -98,7 +98,7 @@ export class DepositComponent implements OnInit {
           return window.location.href
             = `https://buy.ramp.network/?userAddress=${cryptoWallets['ON_RAMP_WALLET'].walletAddress}`
         this.cryptoWalletToDepositMoney = cryptoWallets[cryptoCurrency];
-        this.renderer.setStyle(this.addr.nativeElement, 'opacity', '1');
+        this.renderer.setStyle(this.instruction.nativeElement, 'opacity', 1);
       }, error => {
         this.disableDepositSubmitButton = false;
       });
