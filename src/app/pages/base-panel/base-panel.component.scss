@@ -128,7 +128,7 @@ $side-menu-closed-transition-mobile: transform 200ms ease-out;
             width: 100%;
 
             @media (min-width: 48em) {
-                min-height: $top-height;
+                min-height: auto;
             }
 
             &.side-menu-closed {

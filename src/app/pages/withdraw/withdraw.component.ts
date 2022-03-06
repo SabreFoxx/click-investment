@@ -199,7 +199,7 @@ export class WithdrawComponent implements OnInit {
           withdrawalMedium,
           userWalletAddr,
           planId: this.withdrawDetails.plan.id,
-          depositId: this.withdrawalBlockToUse.depositId
+          depositId: this.withdrawalBlockToUse?.depositId
         }, this.authStorage.authorizationHeader)
           .subscribe(res => {
             this.alertMixin.fire({

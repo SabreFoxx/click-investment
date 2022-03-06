@@ -7,6 +7,7 @@ import { delay, map, pluck, takeUntil } from 'rxjs/operators';
 import { Plan } from 'src/models/plan';
 import Swiper, { SwiperOptions, EffectCoverflow, Pagination } from 'swiper';
 import { loadPlanDataForApexChartSeries } from 'src/adjectives/functions';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 Swiper.use([EffectCoverflow, Pagination]);
 
@@ -26,7 +27,8 @@ export class StatComponent implements OnInit, OnDestroy {
 
   private subscriptions: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private route: ActivatedRoute, private ui: UIAdjustmentService) {
+  constructor(private route: ActivatedRoute, private ui: UIAdjustmentService,
+    private deviceService: DeviceDetectorService) {
     ui.setBreadcrumbs([{ url: '/app/stats', title: 'Stats' }]);
 
     this.swiperConfig = {
@@ -164,9 +166,10 @@ export class StatComponent implements OnInit, OnDestroy {
         this.planStatOptions.colors = [plan?.profileColor]
       });
 
-    this.ui.isSideMenuVisible
-      .pipe(takeUntil(this.subscriptions))
-      .subscribe(v => this.currentlyDisplayedPlan.next(this.currentlyDisplayedPlan.value));
+    if (this.deviceService.isDesktop())
+      this.ui.isSideMenuVisible
+        .pipe(takeUntil(this.subscriptions))
+        .subscribe(v => this.currentlyDisplayedPlan.next(this.currentlyDisplayedPlan.value));
 
     this.ui.isNotificationPaneVisible
       .pipe(takeUntil(this.subscriptions))
