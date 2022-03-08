@@ -194,6 +194,22 @@ export class WithdrawComponent implements OnInit {
       if (result.isConfirmed) {
         const [fiatAmount, withdrawalMedium, userWalletAddr] = result.value;
 
+        // at this point in the flow, depositId is empty if we're withdrawing from profit
+        // so, if the user is withdrawing from profit, and the set amount is greater than
+        // the total profit, we won't proceed
+        if (this.withdrawalBlockToUse?.depositId == null
+          && (fiatAmount > this.planCurrentGross - this.planCurrentAmount)) {
+          this.alertMixin.fire({
+            title: 'Withdrawal amount exceeds allowed value',
+            icon: 'warning',
+            iconHtml: null,
+            iconColor: '#f7b654',
+            footer: null,
+            showCancelButton: false
+          })
+          return;
+        }
+
         this.http.send<any>(this.endpoint, {
           fiatAmount,
           withdrawalMedium,

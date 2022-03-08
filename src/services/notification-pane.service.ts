@@ -19,7 +19,9 @@ export class NotificationPaneService {
     this.notifications = [];
     http.receive<any[]>(this.endpoint, this.authStore.authorizationHeader)
       .pipe(
-        map(notifications => notifications.map(n => n?.Notification)),
+        map(notifications => notifications.map(n => {
+          return { ...n?.Notification, createdAt: n.createdAt, updatedAt: n.updatedAt }
+        })),
         takeUntil(this.subscriptions)
       )
       .subscribe(notifications => {

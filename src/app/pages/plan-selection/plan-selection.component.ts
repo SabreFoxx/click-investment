@@ -1,7 +1,7 @@
 import { UIAdjustmentService } from 'src/services/ui-adjustment.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { PaymentTool } from 'src/models/payment-tool';
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
