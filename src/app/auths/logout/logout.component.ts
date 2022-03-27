@@ -30,7 +30,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.authStore.userJwtToken = null;
-    this.authStore.currentUser = null;
+    this.authStore.currentUser.next(null);
   }
 
   ngAfterViewInit(): void {
