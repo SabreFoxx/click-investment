@@ -144,7 +144,7 @@ export class WithdrawComponent implements OnInit {
             </p>
             <p style="font-size: 0.9em; font-weight: bold"><em>
               <span style="color: #fb6962">Ensure you select the right crypto currency, and provide
-                the correct wallet address for that currency, or you might lose your funds</span>
+                the correct wallet address for that currency, or you might lose your funds.</span>
             </em></p>
           </div>
 
@@ -262,6 +262,10 @@ export class WithdrawComponent implements OnInit {
 
   get planCurrentAmount(): number {
     return calculateCurrentAmount(this.withdrawDetails?.plan);
+  }
+
+  get profit(): number {
+    return Math.max(0, this.planCurrentGross - this.planCurrentAmount)
   }
 
   /**

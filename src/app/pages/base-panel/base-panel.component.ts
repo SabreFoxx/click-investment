@@ -89,7 +89,7 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
     this.ui.toggleSideMenu();
   }
 
-  applySideMenuCloseActions() {
+  private applySideMenuCloseActions() {
     this.r.addClass(this.sideMenu.nativeElement, 'side-menu-closed');
     this.r.addClass(this.top.nativeElement, 'side-menu-closed');
     this.r.addClass(this.menuButton.nativeElement, 'side-menu-closed');
@@ -102,7 +102,7 @@ export class BasePanelComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  unApplySideMenuCloseActions() {
+  private unApplySideMenuCloseActions() {
     this.r.removeClass(this.sideMenu.nativeElement, 'side-menu-closed');
     this.r.removeClass(this.top.nativeElement, 'side-menu-closed');
     this.r.removeClass(this.menuButton.nativeElement, 'side-menu-closed');

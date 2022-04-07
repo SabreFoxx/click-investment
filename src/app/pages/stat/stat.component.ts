@@ -158,7 +158,7 @@ export class StatComponent implements OnInit, OnDestroy {
   ngAfterViewInit(): void {
     // draw graph
     this.currentlyDisplayedPlan
-      .pipe(delay(500), takeUntil(this.subscriptions)) // delay() fixes a bug
+      .pipe(delay(700), takeUntil(this.subscriptions)) // delay() fixes a bug
       .subscribe(plan => {
         this.planStatOptions.series = [{
           data: loadPlanDataForApexChartSeries(plan)

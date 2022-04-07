@@ -49,7 +49,13 @@ export class SideMenuItemComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.subscriptions))
       .subscribe(answer => {
         this.toolTip_ = answer ? this.toolTip : '';
-      })
+      });
+
+    // close side menu on mobile by default
+    setTimeout(() => {
+      if (this.deviceService.isMobile())
+        this.ui.closeSideMenu();
+    }, 1);
   }
 
   clicked() {
